@@ -1,1 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategic Overview | Sports Strategy</title>
+    <style>
+        /* --- DESIGN SYSTEM & VARIABLES --- */
+        :root {
+            /* Palette */
+            --brand-red: #D32F2F;
+            --brand-red-light: #FFEBEE;
+            --brand-red-dark: #B71C1C;
+            --bg-body: #F9FAFB;
+            --bg-card: #FFFFFF;
+            --text-main: #1F2937;
+            --text-muted: #6B7280;
+            --border-light: #E5E7EB;
 
+            /* Spacing & Layout */
+            --nav-height: 70px;
+            --container-width: 1200px;
+            --card-radius: 12px;
+            --section-padding: 80px 20px;
+
+            /* Typography */
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-size-base: 16px;
+            
+            /* Animation */
+            --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        /* --- RESET & BASE --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            font-size: var(--font-size-base);
+            overflow-x: hidden;
+            transition: background-color 0.3s ease;
+        }
+
+        /* --- LOGO POSITIONING --- */
+        #global-logo {
+            position: fixed;
+            top: 15px; /* Vertically centered in the 70px nav area */
+            left: 30px;
+            height: 40px;
+            z-index: 2000; /* Above navbar and content */
+            display: flex;
+            align-items: center;
+        }
+
+        #global-logo img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Fallback if image missing */
+        .logo-fallback {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--text-main);
+            border: 2px solid var(--brand-red);
+            padding: 5px 15px;
+            border-radius: 4px;
+            background: white;
+            white-space: nowrap;
+        }
+
+        /* --- NAVIGATION --- */
+        #navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: var(--nav-height);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-light);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Space between Links and Controls */
+            padding-right: 40px;
+            padding-left: 200px; /* Space reserved for the Logo */
+            transition: all 0.3s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.9rem;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links li a:hover, .nav-links li a.active {
+            color: var(--brand-red);
+        }
+
+        .nav-links li a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -24px;
+            left: 0; right: 0;
+            height: 3px;
+            background: var(--brand-red);
+        }
+
+        /* --- CONTROLS --- */
+        .controls { display: flex; gap: 15px; align-items: center; }
+
+        .btn-toggle {
+            background: none;
+            border: 1px solid var(--border-light);
+            padding: 6px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .btn-toggle:hover {
+            border-color: var(--brand-red);
+            color: var(--brand-red);
+        }
+
+        .btn-toggle.active {
+            background: var(--brand-red);
+            color: white;
+            border-color: var(--brand-red);
+        }
+
+        /* --- PROGRESS BAR --- */
+        #progress-container {
+            position: fixed;
+            top: var(--nav-height);
+            left: 0;
+            width: 100%;
+            height: 3px;
+            z-index: 999;
+            background: transparent;
+        }
+        #progress-bar {
+            height: 100%;
+            background: var(--brand-red);
+            width: 0%;
+            transition: width 0.2s;
+        }
+
+        /* --- UTILITIES --- */
+        .container { max-width: var(--container-width); margin: 0 auto; width: 100%; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .text-red { color: var(--brand-red); }
+        .text-muted { color: var(--text-muted); }
+        .badge { display: inline-block; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+        .badge-red { background: var(--brand-red-light); color: var(--brand-red-dark); }
+
+        /* --- SECTIONS --- */
+        section {
+            min-height: 100vh;
+            padding: var(--section-padding);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; line-height: 1.2; }
+        .section-subtitle { font-size: 1.25rem; color: var(--text-muted); max-width: 600px; margin-bottom: 40px; }
+
+        /* --- CARDS --- */
+        .card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: var(--card-radius);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0,0,0,0.02);
+            transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .card h3 { margin-bottom: 15px; font-size: 1.25rem; display: flex; align-items: center; gap: 10px; }
+        .card-icon { width: 32px; height: 32px; background: var(--brand-red-light); color: var(--brand-red); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold;}
+
+        /* --- HERO --- */
+        #home { background: radial-gradient(circle at 80% 20%, var(--brand-red-light) 0%, transparent 40%); }
+        .hero-stats { margin-top: 40px; display: flex; gap: 40px; }
+        .hero-stat h4 { font-size: 2.5rem; color: var(--brand-red); font-weight: 800; line-height: 1; }
+        .hero-stat p { font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
+
+        /* --- DASHBOARD --- */
+        .kpi-card { text-align: center; padding: 40px 20px; border-top: 4px solid var(--brand-red); }
+        .kpi-value { font-size: 3rem; font-weight: 700; color: var(--text-main); margin: 10px 0; font-feature-settings: "tnum"; font-variant-numeric: tabular-nums; }
+        .kpi-label { font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600; }
+
+        /* --- TIMELINE --- */
+        .timeline-wrapper { position: relative; padding-left: 40px; border-left: 2px solid var(--border-light); margin: 20px 0; }
+        .timeline-item { position: relative; margin-bottom: 40px; }
+        .timeline-item::before { content: ''; position: absolute; left: -49px; top: 0; width: 16px; height: 16px; border-radius: 50%; background: white; border: 3px solid var(--brand-red); }
+        .timeline-date { font-weight: 700; color: var(--brand-red); margin-bottom: 5px; display: block; }
+
+        /* --- FOOTER NAV --- */
+        .footer-nav { margin-top: 40px; display: flex; justify-content: flex-end; }
+        .btn-next { background: var(--text-main); color: white; border: none; padding: 12px 30px; border-radius: 30px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+        .btn-next:hover { background: var(--brand-red); }
+
+        /* --- ANIMATIONS --- */
+        .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out); }
+        .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+
+        /* --- PRESENTER MODE --- */
+        body.presenter-mode { --font-size-base: 22px; --container-width: 95%; background-color: white; }
+        
+        /* In presenter mode, hide the Nav Links but keep the Bar for the Logo/Button context */
+        body.presenter-mode #navbar { 
+            background: white; 
+            border-bottom: 4px solid var(--brand-red);
+        }
+        body.presenter-mode .nav-links { display: none; } /* Hide links */
+        body.presenter-mode section { padding: 40px; justify-content: flex-start; border-bottom: none; }
+        body.presenter-mode .card { box-shadow: none; border: 2px solid #eee; }
+        body.presenter-mode .grid-4, body.presenter-mode .grid-3 { grid-template-columns: 1fr 1fr; }
+        
+        #presenter-indicator { display: none; position: fixed; bottom: 20px; left: 20px; background: var(--brand-red); color: white; padding: 5px 15px; border-radius: 4px; font-size: 14px; font-weight: bold; z-index: 2000; }
+        body.presenter-mode #presenter-indicator { display: block; }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            #navbar { padding-left: 20px; justify-content: flex-end; } /* Move links over */
+            #global-logo { position: relative; left: 0; margin-right: auto; } /* Reflow logo */
+            .nav-links { display: none; }
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr !important; }
+            .hero-stats { flex-direction: column; gap: 20px; }
+            .section-title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 
+      GLOBAL LOGO 
+      Place your logo file in a folder named 'assets' in your repo.
+      E.g., assets/logo.png
+    -->
+    <div id="global-logo">
+        <img src="assets/logo.png" alt="Company Logo" onerror="this.onerror=null; this.parentNode.innerHTML='<span class=\'logo-fallback\'>LOGO</span>'">
+    </div>
+
+    <!-- Progress Bar -->
+    <div id="progress-container"><div id="progress-bar"></div></div>
+
+    <!-- Sticky Navigation -->
+    <nav id="navbar">
+        <!-- Links centered -->
+        <ul class="nav-links">
+            <li><a href="#home" class="active">Overview</a></li>
+            <li><a href="#vision">Vision</a></li>
+            <li><a href="#partnerships">Partnerships</a></li>
+            <li><a href="#production">Production</a></li>
+            <li><a href="#kpis">KPIs</a></li>
+            <li><a href="#timeline">90-Day Plan</a></li>
+        </ul>
+        
+        <!-- Controls Right -->
+        <div class="controls">
+            <button class="btn-toggle" id="presenter-toggle" aria-label="Toggle Presenter Mode">
+                <span>Presenter Mode</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Presenter Indicator -->
+    <div id="presenter-indicator">Presenter Mode: ON</div>
+
+    <main>
+        <!-- 1. HOME / HERO -->
+        <section id="home">
+            <div class="container fade-in-up">
+                <span class="badge badge-red" style="margin-bottom: 20px;">FY 2026-27 STRATEGY</span>
+                <h1 class="section-title" style="font-size: 4rem; line-height: 1.1;">Redefining the<br><span class="text-red">Sports Experience</span></h1>
+                <p class="section-subtitle">
+                    A comprehensive strategic roadmap to position DishHome Go as the undisputed leader in premium sports streaming.
+                </p>
+
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <h4>360°</h4>
+                        <p>Content Ecosystem</p>
+                    </div>
+                    <div class="hero-stat">
+                        <h4>4K</h4>
+                        <p>Production Standard</p>
+                    </div>
+                    <div class="hero-stat">
+                        <h4>99.9%</h4>
+                        <p>Uptime Reliability</p>
+                    </div>
+                </div>
+
+                <div class="footer-nav">
+                    <button class="btn-next" onclick="scrollToId('vision')">Explore Strategy &darr;</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. VISION & OBJECTIVES -->
+        <section id="vision">
+            <div class="container">
+                <div class="fade-in-up" style="margin-bottom: 50px;">
+                    <h2 class="section-title">Strategic Vision</h2>
+                    <p class="section-subtitle">Our core objectives align with user retention and market dominance.</p>
+                </div>
+
+                <div class="grid-3">
+                    <div class="card fade-in-up delay-100">
+                        <h3><div class="card-icon">01</div> Market Penetration</h3>
+                        <p>Aggressively capture the youth demographic through mobile-first sports packages and flexible subscription models.</p>
+                    </div>
+                    <div class="card fade-in-up delay-200">
+                        <h3><div class="card-icon">02</div> Tech Excellence</h3>
+                        <p>Reduce latency to <5s and implement adaptive bitrate streaming to ensure seamless viewing on all networks.</p>
+                    </div>
+                    <div class="card fade-in-up delay-300">
+                        <h3><div class="card-icon">03</div> Brand Authority</h3>
+                        <p>Establish Brand Logiq as the premier sports curator by securing exclusive rights to high-value regional leagues.</p>
+                    </div>
+                </div>
+                
+                <div class="footer-nav">
+                    <button class="btn-next" onclick="scrollToId('partnerships')">Partnerships &rarr;</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. CONTENT & PARTNERSHIPS -->
+        <section id="partnerships">
+            <div class="container">
+                <div class="fade-in-up" style="margin-bottom: 50px;">
+                    <h2 class="section-title">Rights & Partnerships</h2>
+                    <p class="section-subtitle">Securing key assets to drive subscription growth.</p>
+                </div>
+
+                <div class="grid-2">
+                    <!-- Strategy Card -->
+                    <div class="card fade-in-up">
+                        <h3 class="text-red">Acquisition Strategy</h3>
+                        <ul style="list-style: none; margin-top: 15px;">
+                            <li style="padding: 10px 0; border-bottom: 1px solid #eee;"><strong>Tier 1:</strong> Exclusive Regional Football Leagues</li>
+                            <li style="padding: 10px 0; border-bottom: 1px solid #eee;"><strong>Tier 2:</strong> International Cricket Highlights</li>
+                            <li style="padding: 10px 0;"><strong>Tier 3:</strong> Emerging E-Sports Tournaments</li>
+                        </ul>
+                    </div>
+
+                    <!-- Partners Grid -->
+                    <div class="card fade-in-up delay-100">
+                        <h3>Key Stakeholders</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
+                            <div style="background: #f4f4f4; padding: 15px; border-radius: 8px; text-align: center; font-weight: bold; color: #555;">League A</div>
+                            <div style="background: #f4f4f4; padding: 15px; border-radius: 8px; text-align: center; font-weight: bold; color: #555;">Broadcaster X</div>
+                            <div style="background: #f4f4f4; padding: 15px; border-radius: 8px; text-align: center; font-weight: bold; color: #555;">Tech Partner Y</div>
+                            <div style="background: #f4f4f4; padding: 15px; border-radius: 8px; text-align: center; font-weight: bold; color: #555;">Agency Z</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-nav">
+                    <button class="btn-next" onclick="scrollToId('production')">Production &rarr;</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. PRODUCTION & OPS -->
+        <section id="production">
+            <div class="container">
+                <div class="fade-in-up" style="margin-bottom: 50px;">
+                    <h2 class="section-title">Production & Ops</h2>
+                    <p class="section-subtitle">Elevating the visual standard.</p>
+                </div>
+
+                <div class="grid-4">
+                    <div class="card fade-in-up">
+                        <div class="card-icon" style="margin-bottom:15px;">HD</div>
+                        <h4>Signal Acquisition</h4>
+                        <p style="font-size: 0.9rem; color: #666;">Redundant fiber links with satellite backup.</p>
+                    </div>
+                    <div class="card fade-in-up delay-100">
+                        <div class="card-icon" style="margin-bottom:15px;">UI</div>
+                        <h4>Graphics Engine</h4>
+                        <p style="font-size: 0.9rem; color: #666;">Real-time stats overlay and dynamic scoreboards.</p>
+                    </div>
+                    <div class="card fade-in-up delay-200">
+                        <div class="card-icon" style="margin-bottom:15px;">AI</div>
+                        <h4>Highlights</h4>
+                        <p style="font-size: 0.9rem; color: #666;">AI-driven auto-clipping for social media.</p>
+                    </div>
+                    <div class="card fade-in-up delay-300">
+                        <div class="card-icon" style="margin-bottom:15px;">CDN</div>
+                        <h4>Delivery</h4>
+                        <p style="font-size: 0.9rem; color: #666;">Multi-CDN architecture for zero buffering.</p>
+                    </div>
+                </div>
+                <div class="footer-nav">
+                    <button class="btn-next" onclick="scrollToId('marketing')">Marketing &rarr;</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. MARKETING -->
+        <section id="marketing">
+             <div class="container">
+                <div class="fade-in-up" style="margin-bottom: 50px;">
+                    <h2 class="section-title">Marketing & Growth</h2>
+                    <p class="section-subtitle">From awareness to retention.</p>
+                </div>
+                
+                <div class="card fade-in-up" style="display: flex; gap: 40px; align-items: center; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 300px;">
+                        <h3 class="text-red">Campaign Focus: "Game On, Anywhere"</h3>
+                        <p>Leveraging influencer partnerships and geo-targeted ads during live matches to drive instant installs.</p>
+                        <br>
+                        <strong>Key Channels:</strong>
+                        <ul style="margin-left: 20px; margin-top: 10px; color: var(--text-muted);">
+                            <li>In-App Notifications (Cross-sell)</li>
+                            <li>Social Media (Short-form video)</li>
+                            <li>On-Ground Activation at Stadiums</li>
+                        </ul>
+                    </div>
+                    <div style="flex: 1; min-width: 300px; background: #f9f9f9; padding: 30px; border-radius: 8px; text-align: center;">
+                        <h4 style="margin-bottom: 20px;">Projected Conversion Funnel</h4>
+                        <!-- Simple CSS Chart Representation -->
+                        <div style="background: #ddd; height: 30px; width: 100%; border-radius: 4px; margin-bottom: 10px; position: relative;">
+                            <div style="position:absolute; left: 10px; top: 5px; font-size: 12px; font-weight: bold;">Impressions</div>
+                        </div>
+                        <div style="background: #ddd; height: 30px; width: 60%; margin: 0 auto 10px auto; border-radius: 4px; position: relative;">
+                            <div style="position:absolute; left: 10px; top: 5px; font-size: 12px; font-weight: bold;">Clicks</div>
+                        </div>
+                        <div style="background: var(--brand-red); height: 30px; width: 30%; margin: 0 auto; border-radius: 4px; position: relative;">
+                            <div style="position:absolute; left: 0; right: 0; top: 5px; font-size: 12px; font-weight: bold; color: white;">Subscribers</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-nav">
+                    <button class="btn-next" onclick="scrollToId('kpis')">View KPIs &rarr;</button>
+                </div>
+             </div>
+        </section>
+
+        <!-- 6. KPI DASHBOARD -->
+        <section id="kpis">
+            <div class="container">
+                <div class="fade-in-up" style="margin-bottom: 50px;">
+                    <h2 class="section-title">Projected KPIs <span style="font-size: 0.5em; vertical-align: middle; color: #999;">(Q1 - Q2)</span></h2>
+                </div>
+
+                <div class="grid-4">
+                    <div class="card kpi-card fade-in-up">
+                        <div class="kpi-label">Target Subscribers</div>
+                        <div class="kpi-value" data-target="250">0</div>
+                        <div class="text-muted">Thousands</div>
+                    </div>
+                    <div class="card kpi-card fade-in-up delay-100">
+                        <div class="kpi-label">User Retention</div>
+                        <div class="kpi-value" data-target="78">0</div>
+                        <div class="text-muted">Percent (%)</div>
+                    </div>
+                    <div class="card kpi-card fade-in-up delay-200">
+                        <div class="kpi-label">Ad Revenue</div>
+                        <div class="kpi-value" data-target="1.2">0</div>
+                        <div class="text-muted">Million USD</div>
+                    </div>
+                    <div class="card kpi-card fade-in-up delay-300">
+                        <div class="kpi-label">Avg Watch Time</div>
+                        <div class="kpi-value" data-target="42">0</div>
+                        <div class="text-muted">Minutes</div>
+                    </div>
+                </div>
+
+                <div class="grid-2" style="margin-top: 30px;">
+                    <div class="card kpi-card fade-in-up">
+                        <div class="kpi-label">Customer CAC</div>
+                        <div class="kpi-value" style="color: #666; font-size: 2.5rem;">$ <span data-target="4">0</span>.50</div>
+                    </div>
+                    <div class="card kpi-card fade-in-up">
+                        <div class="kpi-label">App Store Rating</div>
+                        <div class="kpi-value" style="color: #666; font-size: 2.5rem;"><span data-target="4">0</span>.8</div>
+                    </div>
+                </div>
+
+                <div class="footer-nav">
+                    <button class="btn-next" onclick="scrollToId('timeline')">Action Plan &rarr;</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. 90-DAY ACTION PLAN -->
+        <section id="timeline">
+            <div class="container">
+                <div class="fade-in-up" style="margin-bottom: 50px;">
+                    <h2 class="section-title">90-Day Roadmap</h2>
+                    <p class="section-subtitle">Execution phases for immediate implementation.</p>
+                </div>
+
+                <div class="timeline-wrapper">
+                    <!-- Month 1 -->
+                    <div class="timeline-item fade-in-up">
+                        <span class="timeline-date">Days 0 - 30</span>
+                        <h3>Infrastructure & Legal</h3>
+                        <p class="text-muted">Finalize rights contracts, server stress testing, and initial payment gateway integration updates.</p>
+                    </div>
+
+                    <!-- Month 2 -->
+                    <div class="timeline-item fade-in-up delay-100">
+                        <span class="timeline-date">Days 31 - 60</span>
+                        <h3>Beta Launch & Marketing</h3>
+                        <p class="text-muted">Soft launch to 5,000 users. Initiate "Early Bird" marketing campaigns. Calibration of analytics dashboard.</p>
+                    </div>
+
+                    <!-- Month 3 -->
+                    <div class="timeline-item fade-in-up delay-200">
+                        <span class="timeline-date">Days 61 - 90</span>
+                        <h3>Full Rollout</h3>
+                        <p class="text-muted">Nationwide public launch. Activate sponsorship deals. Begin Phase 2 content acquisition talks.</p>
+                    </div>
+                </div>
+                
+                <div class="footer-nav">
+                    <button class="btn-next" onclick="scrollToId('risks')">Risk Analysis &rarr;</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. RISKS & CLOSING -->
+        <section id="risks">
+            <div class="container">
+                <div class="fade-in-up" style="margin-bottom: 50px;">
+                    <h2 class="section-title">Risk Mitigation</h2>
+                </div>
+
+                <div class="card fade-in-up" style="padding: 0; overflow: hidden; margin-bottom: 60px;">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left; padding: 20px; background: #f3f4f6; font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted);">Risk Area</th>
+                                <th style="text-align: left; padding: 20px; background: #f3f4f6; font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted);">Impact Level</th>
+                                <th style="text-align: left; padding: 20px; background: #f3f4f6; font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted);">Mitigation Strategy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 20px; border-bottom: 1px solid var(--border-light);"><strong>Technical Outage</strong><br><span class="text-muted">High traffic loads</span></td>
+                                <td style="padding: 20px; border-bottom: 1px solid var(--border-light); color: var(--brand-red); font-weight: 700;">HIGH</td>
+                                <td style="padding: 20px; border-bottom: 1px solid var(--border-light);">Auto-scaling cloud infrastructure and fallback low-latency CDN.</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 20px; border-bottom: 1px solid var(--border-light);"><strong>Rights Loss</strong><br><span class="text-muted">Competitor bids</span></td>
+                                <td style="padding: 20px; border-bottom: 1px solid var(--border-light); color: #F59E0B; font-weight: 700;">MEDIUM</td>
+                                <td style="padding: 20px; border-bottom: 1px solid var(--border-light);">Long-term lock-in contracts (3+ years) and right of first refusal clauses.</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 20px;"><strong>User Churn</strong><br><span class="text-muted">Post-season drop</span></td>
+                                <td style="padding: 20px; color: #F59E0B; font-weight: 700;">MEDIUM</td>
+                                <td style="padding: 20px;">Bundle non-sports entertainment content during off-seasons.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card fade-in-up" style="background: var(--text-main); color: white; text-align: center; padding: 60px;">
+                    <h2 style="margin-bottom: 20px;">Ready to Execute</h2>
+                    <p style="margin-bottom: 30px; color: #ccc;">The strategy is sound, the tech is ready, and the market is waiting.</p>
+                    
+                    <div style="display: flex; gap: 20px; justify-content: center;">
+                        <div style="text-align: left;">
+                            <div style="font-size: 0.8rem; text-transform: uppercase; color: #888;">Presented By</div>
+                            <div style="font-weight: bold;">Head of Sports</div>
+                            <div>Brand Logiq Pvt. Ltd.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // --- UTILS ---
+        const $ = (selector) => document.querySelector(selector);
+        const $$ = (selector) => document.querySelectorAll(selector);
+
+        // --- NAVIGATION LOGIC ---
+        function scrollToId(id) {
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Active Link Highlighting using Intersection Observer
+        const sections = $$('section');
+        const navLinks = $$('.nav-links li a');
+        const progressBar = $('#progress-bar');
+
+        const observerOptions = {
+            threshold: 0.3 // Trigger when 30% of section is visible
+        };
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Update Nav
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${entry.target.id}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => sectionObserver.observe(section));
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            progressBar.style.width = scrolled + "%";
+        });
+
+        // --- ANIMATION OBSERVER ---
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Stop observing once visible to prevent re-triggering (optional)
+                    fadeObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        $$('.fade-in-up').forEach(el => fadeObserver.observe(el));
+
+        // --- KPI COUNTER LOGIC ---
+        let kpiAnimated = false;
+        const kpiSection = $('#kpis');
+        
+        const kpiObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !kpiAnimated) {
+                kpiAnimated = true;
+                $$('.kpi-value span, .kpi-value').forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    if (!target) return; // Skip if no data-target (for static text wrapper)
+
+                    const duration = 2000; // 2 seconds
+                    const increment = target / (duration / 16); // 60fps approx
+                    
+                    let current = 0;
+                    const updateCount = () => {
+                        current += increment;
+                        if (current < target) {
+                            counter.innerText = Number.isInteger(target) ? Math.ceil(current) : current.toFixed(1);
+                            requestAnimationFrame(updateCount);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    updateCount();
+                });
+            }
+        }, { threshold: 0.5 });
+        
+        if(kpiSection) kpiObserver.observe(kpiSection);
+
+        // --- PRESENTER MODE ---
+        const toggleBtn = $('#presenter-toggle');
+        
+        toggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('presenter-mode');
+            const isActive = document.body.classList.contains('presenter-mode');
+            
+            toggleBtn.classList.toggle('active');
+            toggleBtn.innerHTML = isActive ? '<span>Exit Presenter</span>' : '<span>Presenter Mode</span>';
+            
+            // Re-trigger resize events if needed for layout
+            window.dispatchEvent(new Event('resize'));
+        });
+
+        // --- KEYBOARD NAVIGATION ---
+        document.addEventListener('keydown', (e) => {
+            if(e.key === 'p' || e.key === 'P') {
+                toggleBtn.click();
+            }
+            
+            // Simple section hopping logic
+            const currentSectionIndex = [...sections].findIndex(sec => 
+                sec.getBoundingClientRect().top >= -100 && sec.getBoundingClientRect().top <= window.innerHeight / 2
+            );
+
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+                e.preventDefault();
+                if (currentSectionIndex < sections.length - 1) {
+                    scrollToId(sections[currentSectionIndex + 1].id);
+                }
+            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (currentSectionIndex > 0) {
+                    scrollToId(sections[currentSectionIndex - 1].id);
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
