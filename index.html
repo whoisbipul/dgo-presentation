@@ -7,7 +7,6 @@
     <style>
         /* --- DESIGN SYSTEM & VARIABLES --- */
         :root {
-            /* Palette */
             --brand-red: #D32F2F;
             --brand-red-light: #FFEBEE;
             --brand-red-dark: #B71C1C;
@@ -16,22 +15,14 @@
             --text-main: #1F2937;
             --text-muted: #6B7280;
             --border-light: #E5E7EB;
-
-            /* Spacing & Layout */
             --nav-height: 70px;
             --container-width: 1200px;
             --card-radius: 12px;
             --section-padding: 80px 20px;
-
-            /* Typography */
             --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            --font-size-base: 16px;
-            
-            /* Animation */
             --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
         }
 
-        /* --- RESET & BASE --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
         
@@ -40,39 +31,53 @@
             background-color: var(--bg-body);
             color: var(--text-main);
             line-height: 1.6;
-            font-size: var(--font-size-base);
             overflow-x: hidden;
-            transition: background-color 0.3s ease;
         }
 
-        /* --- LOGO POSITIONING --- */
+        /* --- GLOBAL LOGO CONTAINER (Adjusted for Size) --- */
         #global-logo {
             position: fixed;
-            top: 15px; /* Vertically centered in the 70px nav area */
-            left: 30px;
-            height: 40px;
-            z-index: 2000; /* Above navbar and content */
+            top: 0;
+            left: 0;
+            /* Increased height to accommodate larger logo */
+            height: 90px; 
+            width: 300px; 
+            z-index: 2000; 
             display: flex;
-            align-items: center;
+            align-items: center; /* Vertically center */
+            padding-left: 20px;
+            pointer-events: none; 
         }
 
         #global-logo img {
-            height: 100%;
+            /* INCREASED SIZE HERE */
+            max-height: 65px; 
             width: auto;
-            object-fit: contain;
             display: block;
+            pointer-events: auto;
+            /* Optional: Add a subtle drop shadow to make it pop */
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
 
-        /* Fallback if image missing */
+        /* Fallback Text Logic */
         .logo-fallback {
             font-weight: 800;
-            font-size: 1.2rem;
+            font-size: 1.5rem; /* Larger fallback font */
             color: var(--text-main);
-            border: 2px solid var(--brand-red);
-            padding: 5px 15px;
-            border-radius: 4px;
-            background: white;
-            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            pointer-events: auto;
+            background: rgba(255,255,255,0.9);
+            padding: 8px 15px;
+            border-radius: 8px;
+        }
+        .logo-fallback::before {
+            content: '';
+            display: block;
+            width: 16px; height: 16px;
+            background: var(--brand-red);
+            border-radius: 50%;
         }
 
         /* --- NAVIGATION --- */
@@ -86,9 +91,10 @@
             z-index: 1000;
             display: flex;
             align-items: center;
-            justify-content: space-between; /* Space between Links and Controls */
+            justify-content: space-between; 
             padding-right: 40px;
-            padding-left: 200px; /* Space reserved for the Logo */
+            /* Increased padding-left to push links further right away from big logo */
+            padding-left: 280px; 
             transition: all 0.3s ease;
         }
 
@@ -165,7 +171,7 @@
             transition: width 0.2s;
         }
 
-        /* --- UTILITIES --- */
+        /* --- SECTIONS & COMPONENTS --- */
         .container { max-width: var(--container-width); margin: 0 auto; width: 100%; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
         .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
@@ -175,7 +181,6 @@
         .badge { display: inline-block; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
         .badge-red { background: var(--brand-red-light); color: var(--brand-red-dark); }
 
-        /* --- SECTIONS --- */
         section {
             min-height: 100vh;
             padding: var(--section-padding);
@@ -234,12 +239,12 @@
         /* --- PRESENTER MODE --- */
         body.presenter-mode { --font-size-base: 22px; --container-width: 95%; background-color: white; }
         
-        /* In presenter mode, hide the Nav Links but keep the Bar for the Logo/Button context */
         body.presenter-mode #navbar { 
             background: white; 
             border-bottom: 4px solid var(--brand-red);
+            padding-left: 300px; /* Keep Logo space */
         }
-        body.presenter-mode .nav-links { display: none; } /* Hide links */
+        body.presenter-mode .nav-links { display: none; } 
         body.presenter-mode section { padding: 40px; justify-content: flex-start; border-bottom: none; }
         body.presenter-mode .card { box-shadow: none; border: 2px solid #eee; }
         body.presenter-mode .grid-4, body.presenter-mode .grid-3 { grid-template-columns: 1fr 1fr; }
@@ -249,8 +254,9 @@
 
         /* Mobile */
         @media (max-width: 768px) {
-            #navbar { padding-left: 20px; justify-content: flex-end; } /* Move links over */
-            #global-logo { position: relative; left: 0; margin-right: auto; } /* Reflow logo */
+            #navbar { padding-left: 20px; justify-content: flex-end; } 
+            #global-logo { position: absolute; left: 0; width: 150px; }
+            #global-logo img { max-height: 50px; } /* Smaller on mobile */
             .nav-links { display: none; }
             .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr !important; }
             .hero-stats { flex-direction: column; gap: 20px; }
@@ -262,11 +268,13 @@
 
     <!-- 
       GLOBAL LOGO 
-      Place your logo file in a folder named 'assets' in your repo.
-      E.g., assets/logo.png
+      Ensure your logo file is roughly aspect-ratio appropriate.
+      If it is square, it will now be 65px tall.
+      If it is a rectangle, it will be 65px tall (much wider).
     -->
     <div id="global-logo">
-        <img src="assets/logo.png" alt="Company Logo" onerror="this.onerror=null; this.parentNode.innerHTML='<span class=\'logo-fallback\'>LOGO</span>'">
+        <img src="assets/logo.png" alt="Company Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="logo-fallback" style="display:none;">Brand Logiq</div>
     </div>
 
     <!-- Progress Bar -->
@@ -274,7 +282,7 @@
 
     <!-- Sticky Navigation -->
     <nav id="navbar">
-        <!-- Links centered -->
+        <!-- Links -->
         <ul class="nav-links">
             <li><a href="#home" class="active">Overview</a></li>
             <li><a href="#vision">Vision</a></li>
@@ -284,7 +292,7 @@
             <li><a href="#timeline">90-Day Plan</a></li>
         </ul>
         
-        <!-- Controls Right -->
+        <!-- Controls -->
         <div class="controls">
             <button class="btn-toggle" id="presenter-toggle" aria-label="Toggle Presenter Mode">
                 <span>Presenter Mode</span>
