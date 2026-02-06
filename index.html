@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Business of Sports | DGO Strategy</title>
     <style>
-        /* --- DESIGN SYSTEM & VARIABLES --- */
+        /* --- DESIGN SYSTEM --- */
         :root {
             --brand-red: #D32F2F;
             --brand-red-light: #FFEBEE;
@@ -17,8 +17,6 @@
             --border-light: #E5E7EB;
             --nav-height: 70px;
             --container-width: 1200px;
-            --card-radius: 12px;
-            --section-padding: 80px 20px;
             --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
             --ease-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -35,7 +33,7 @@
             overflow-x: hidden;
         }
 
-        /* --- GLOBAL LOGO --- */
+        /* --- GLOBAL ELEMENTS --- */
         #global-logo {
             position: fixed; top: 0; left: 0; height: 90px; width: 300px; z-index: 2000; 
             display: flex; align-items: center; padding-left: 20px; pointer-events: none; 
@@ -49,12 +47,8 @@
             display: flex; align-items: center; gap: 8px; pointer-events: auto;
             background: rgba(255,255,255,0.95); padding: 8px 15px; border-radius: 8px; border: 1px solid #eee;
         }
-        .logo-fallback::before {
-            content: ''; display: block; width: 14px; height: 14px;
-            background: var(--brand-red); border-radius: 50%;
-        }
+        .logo-fallback::before { content: ''; display: block; width: 14px; height: 14px; background: var(--brand-red); border-radius: 50%; }
 
-        /* --- NAVIGATION --- */
         #navbar {
             position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height);
             background: rgba(255, 255, 255, 0.98); border-bottom: 1px solid var(--border-light);
@@ -71,35 +65,21 @@
             content: ''; position: absolute; bottom: -24px; left: 0; right: 0; height: 3px; background: var(--brand-red);
         }
 
-        /* --- CONTROLS --- */
-        .controls { display: flex; gap: 15px; align-items: center; }
         .btn-toggle {
             background: none; border: 1px solid var(--border-light); padding: 6px 16px; border-radius: 6px;
             cursor: pointer; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 6px;
             transition: all 0.2s;
         }
         .btn-toggle:hover { border-color: var(--brand-red); color: var(--brand-red); }
-        .btn-toggle.active { background: var(--brand-red); color: white; border-color: var(--brand-red); }
 
-        /* --- PROGRESS BAR --- */
         #progress-container { position: fixed; top: var(--nav-height); left: 0; width: 100%; height: 3px; z-index: 999; background: transparent; }
         #progress-bar { height: 100%; background: var(--brand-red); width: 0%; transition: width 0.2s; }
 
-        /* --- LAYOUT UTILITIES --- */
-        .container { max-width: var(--container-width); margin: 0 auto; width: 100%; position: relative; z-index: 2; }
-        .text-red { color: var(--brand-red); }
-        .text-muted { color: var(--text-muted); }
+        .container { max-width: 1200px; margin: 0 auto; width: 100%; position: relative; z-index: 2; }
         .badge { display: inline-block; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; margin-bottom: 15px;}
         .badge-red { background: var(--brand-red-light); color: var(--brand-red); }
 
-        /* --- SECTIONS --- */
-        section {
-            min-height: 100vh; padding: var(--section-padding);
-            display: flex; flex-direction: column; justify-content: center;
-            position: relative; border-bottom: 1px solid var(--border-light);
-        }
-
-        /* --- BG PATTERN --- */
+        /* --- BACKGROUND PATTERN --- */
         .bg-pattern {
             background-color: white; 
             background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
@@ -110,11 +90,18 @@
             background: linear-gradient(to bottom, transparent, white); pointer-events: none;
         }
 
-        /* --- HOME STYLES --- */
-        #home { align-items: flex-start; }
+        section {
+            min-height: 100vh; padding: 80px 20px;
+            display: flex; flex-direction: column; justify-content: center;
+            position: relative; border-bottom: 1px solid var(--border-light);
+        }
+
+        .section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; }
+        .section-subtitle { font-size: 1.25rem; color: var(--text-muted); max-width: 700px; margin-bottom: 40px; }
+
+        /* --- HOME ASSETS --- */
         .home-title { font-size: 3.2rem; font-weight: 800; line-height: 1.1; margin-bottom: 15px; color: var(--text-main); position: relative;}
         .home-subtitle { font-size: 1.2rem; color: var(--text-muted); max-width: 800px; margin-bottom: 40px; }
-
         .live-dot {
             display: inline-block; width: 12px; height: 12px; background: var(--brand-red); border-radius: 50%;
             margin-bottom: 8px; margin-right: 8px; vertical-align: middle;
@@ -122,7 +109,6 @@
         }
         @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(211, 47, 47, 0); } 100% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0); } }
 
-        /* --- ASSET GRID --- */
         .asset-container { display: flex; gap: 15px; margin-bottom: 30px; position: relative; }
         .asset-item {
             position: relative; background: white; border: 1px solid #ddd; padding: 12px 24px; border-radius: 50px;
@@ -161,8 +147,7 @@
         .ecosystem-chain { display: flex; align-items: stretch; gap: 20px; margin-bottom: 50px; width: 100%; position: relative; }
         .eco-step {
             flex: 1; background: white; border: 1px solid #eee; border-radius: 8px; padding: 25px 20px;
-            position: relative; transition: transform 0.2s, border-color 0.2s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            position: relative; transition: transform 0.2s, border-color 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
         .eco-step:hover { transform: translateY(-5px); border-color: var(--brand-red); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
         .eco-step:not(:last-child)::after {
@@ -175,117 +160,85 @@
         .step-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; }
         .step-desc { font-size: 0.85rem; color: #666; line-height: 1.5; }
 
-        /* --- SECTION 2: BENTO GRID --- */
+        /* --- STRATEGY GRID (BENTO) --- */
+        .grid-header { font-size: 0.9rem; font-weight: 700; color: #999; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px; padding-left: 5px; border-left: 3px solid var(--brand-red); }
+        
         .bento-grid {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; width: 100%; margin-bottom: 40px;
         }
 
         .pop-card {
-            background: white; border-radius: 16px; padding: 35px; border: 1px solid #eee;
+            background: white; border-radius: 16px; padding: 30px; border: 1px solid #eee;
             transition: all 0.4s var(--ease-elastic); position: relative; z-index: 1;
             display: flex; flex-direction: column; justify-content: space-between;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03); cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
         }
         .pop-card:hover {
             transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-            z-index: 10;
-            border-color: #ddd;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); z-index: 10; border-color: #ddd;
         }
-        
-        .pop-card::after {
-            content: 'Click for Analysis ↗'; position: absolute; bottom: 15px; right: 20px;
-            font-size: 0.7rem; color: var(--brand-red); font-weight: bold; opacity: 0;
-            transform: translateY(10px); transition: all 0.3s;
-        }
-        .pop-card:hover::after { opacity: 1; transform: translateY(0); }
-
         .col-span-2 { grid-column: span 2; }
         
-        .card-dark { background: linear-gradient(145deg, #1f2937, #111827); color: white; border: 1px solid #374151; }
-        .card-dark h3, .card-dark .text-muted { color: white; opacity: 0.9; }
-        .card-dark:hover { border-color: var(--brand-red); }
+        .brand-logo-text { font-size: 1.2rem; font-weight: 800; margin-bottom: 15px; display:flex; align-items: center; gap:8px; }
+        .stat-row { display: flex; gap: 30px; margin-bottom: 20px; }
+        .stat-huge { font-size: 2.2rem; font-weight: 800; color: #333; line-height: 1; margin-bottom: 5px; }
+        .stat-label { font-size: 0.8rem; text-transform: uppercase; color: #777; font-weight: 600; letter-spacing: 0.5px; }
+        .desc-text { font-size: 0.9rem; color: #555; line-height: 1.5; margin-bottom: 15px; }
+        .citation-box { font-size: 0.75rem; color: #999; font-style: italic; border-top: 1px solid #f0f0f0; padding-top: 10px; margin-top: auto; }
+
+        /* --- NEW FLYWHEEL CSS --- */
+        .flywheel-container {
+            display: flex; align-items: center; justify-content: space-between;
+            background: white; border: 1px dashed #ccc; border-radius: 12px; padding: 30px;
+            position: relative; margin-top: 20px;
+        }
+        .fw-item { flex: 1; display: flex; gap: 15px; align-items: flex-start; padding: 0 10px; }
+        .fw-icon {
+            font-size: 2rem; background: var(--brand-red-light); width: 50px; height: 50px;
+            display: flex; align-items: center; justify-content: center; border-radius: 8px; flex-shrink: 0;
+        }
+        .fw-title { font-weight: 800; color: var(--text-main); margin-bottom: 5px; }
+        .fw-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; }
+        .fw-arrow { font-size: 1.5rem; color: #ccc; padding: 0 20px; font-weight: 300; }
+
+        /* --- TECH PIPELINE --- */
+        .pipeline-container {
+            display: flex; align-items: center; justify-content: space-between;
+            background: white; border: 1px solid #eee; padding: 40px; border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03); margin-top: 30px; margin-bottom: 30px;
+        }
+        .pipe-node { text-align: center; position: relative; flex: 1; }
+        .pipe-icon { 
+            width: 60px; height: 60px; background: #fff; border: 2px solid var(--brand-red); 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            margin: 0 auto 15px; font-size: 1.5rem; position: relative; z-index: 2;
+        }
+        .pipe-label { font-weight: 700; color: #333; font-size: 1rem; margin-bottom: 5px; }
+        .pipe-sub { font-size: 0.8rem; color: #777; }
         
-        .stat-huge {
-            font-size: 3rem; font-weight: 800; color: var(--text-main); margin: 10px 0;
-            line-height: 1; letter-spacing: -1px;
+        /* Connecting Line */
+        .pipe-line {
+            position: absolute; top: 30px; left: 50%; right: -50%; height: 3px; background: #eee; z-index: 1;
         }
-        .stat-label { font-size: 0.85rem; text-transform: uppercase; color: #777; font-weight: 600; letter-spacing: 1px; }
-        .citation-box {
-            font-size: 0.75rem; color: #999; margin-top: 20px; font-style: italic; border-top: 1px solid #eee; padding-top: 10px;
+        .pipe-node:last-child .pipe-line { display: none; }
+        /* Animated Flow Dot */
+        .flow-dot {
+            position: absolute; top: -4px; left: 0; width: 10px; height: 10px; border-radius: 50%;
+            background: var(--brand-red); animation: flow 2s infinite linear;
         }
-        .brand-logo-text { font-size: 1.2rem; font-weight: 800; margin-bottom: 10px; display:flex; align-items: center; gap:8px;}
+        @keyframes flow { 0% { left: 0; opacity: 1; } 100% { left: 100%; opacity: 0; } }
 
-        /* --- THE MOAT STRIP (NEW) --- */
-        .moat-strip {
-            display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;
-            background: white; border: 1px solid #eee; border-radius: 12px; padding: 25px;
-            margin-top: 20px;
-        }
-        .moat-item { display: flex; gap: 15px; align-items: flex-start; }
-        .moat-icon { 
-            background: #FFF8F8; color: var(--brand-red); width: 45px; height: 45px; 
-            border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-        .moat-content h4 { margin: 0 0 5px 0; font-size: 1rem; color: #333; }
-        .moat-content p { margin: 0; font-size: 0.85rem; color: #666; line-height: 1.4; }
-
-        /* --- MODAL SYSTEM --- */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); z-index: 5000;
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; visibility: hidden; transition: all 0.3s;
-        }
-        .modal-overlay.active { opacity: 1; visibility: visible; }
-
-        .modal-content {
-            background: white; width: 90%; max-width: 800px;
-            border-radius: 16px; padding: 40px; border-top: 6px solid var(--brand-red);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
-            transform: scale(0.9); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative; max-height: 90vh; overflow-y: auto;
-        }
-        .modal-overlay.active .modal-content { transform: scale(1); }
-
-        .close-modal {
-            position: absolute; top: 20px; right: 20px; background: #f0f0f0; width: 36px; height: 36px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: bold; font-size: 1.2rem; border: none; color: #333; transition: background 0.2s;
-        }
-        .close-modal:hover { background: #e0e0e0; color: var(--brand-red); }
-
-        .modal-header h2 { margin-bottom: 5px; color: var(--text-main); font-size: 2.2rem; font-weight: 800; }
-        .modal-subtitle { color: #666; font-size: 1.1rem; margin-bottom: 25px; }
-        .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
-        .m-stat-box { background: #fafafa; padding: 25px; border-radius: 12px; border: 1px solid #eee; text-align: center; }
-        .m-stat-val { font-size: 2rem; font-weight: 800; color: var(--brand-red); margin-bottom: 5px; }
-        .m-stat-desc { font-size: 0.85rem; color: #555; font-weight: 600; text-transform: uppercase; }
-        .chart-box { background: #fff; padding: 20px; border-radius: 12px; border: 1px solid #eee; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
-        .chart-title { font-size: 0.9rem; font-weight: 700; color: #333; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-        .bar-chart { display: flex; align-items: flex-end; height: 120px; gap: 20px; padding-top: 20px; }
-        .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
-        .bar-val { font-size: 0.8rem; font-weight: 700; margin-bottom: 5px; color: #555; }
-        .bar { width: 100%; background: #ddd; border-radius: 4px 4px 0 0; transition: height 1s ease; position: relative; }
-        .bar.highlight { background: var(--brand-red); }
-        .bar-label { font-size: 0.75rem; color: #888; margin-top: 8px; text-align: center; }
-        .key-insight { background: #FFF8F8; border-left: 4px solid var(--brand-red); padding: 20px; border-radius: 0 8px 8px 0; margin-bottom: 20px; color: #444; font-size: 1rem; line-height: 1.6; }
-        .modal-footer { margin-top: 20px; pt-top: 15px; border-top: 1px solid #eee; font-size: 0.8rem; color: #999; font-style: italic; }
-
-        /* --- GENERIC COMPONENTS --- */
-        .section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; }
-        .section-subtitle { font-size: 1.25rem; color: var(--text-muted); max-width: 700px; margin-bottom: 40px; }
-        .card { background: var(--bg-card); padding: 30px; border-radius: var(--card-radius); box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.05); transition: transform 0.3s; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
-        .card h3 { margin-bottom: 15px; font-size: 1.25rem; }
+        /* --- COMMERCIAL & TIMELINE --- */
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .btn-start { margin-top: 20px; background: var(--brand-red); color: white; padding: 12px 30px; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; }
-        .btn-start:hover { background: var(--brand-red-hover); }
+        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .text-red { color: var(--brand-red); }
         .timeline-wrapper { position: relative; padding-left: 40px; border-left: 2px solid #eee; margin-top: 30px;}
         .timeline-item { position: relative; margin-bottom: 40px; }
         .timeline-item::before { content: ''; position: absolute; left: -49px; top: 0; width: 16px; height: 16px; border-radius: 50%; background: white; border: 3px solid var(--brand-red); }
         .timeline-date { font-weight: 700; color: var(--brand-red); display: block; margin-bottom: 5px;}
+
+        /* --- UTILS --- */
+        .btn-start { margin-top: 20px; background: var(--brand-red); color: white; padding: 12px 30px; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; }
         .fade-in-up { opacity: 0; transform: translateY(20px); transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out); }
         .fade-in-up.visible { opacity: 1; transform: translateY(0); }
         .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; } .delay-3 { transition-delay: 0.3s; }
@@ -304,7 +257,10 @@
         body.presenter-mode .market-strip { display: flex; } 
         body.presenter-mode .bento-grid { grid-template-columns: 1fr; }
         body.presenter-mode .col-span-2 { grid-column: span 1; }
-        body.presenter-mode .moat-strip { grid-template-columns: 1fr; }
+        body.presenter-mode .pipeline-container { flex-direction: column; gap: 40px; }
+        body.presenter-mode .pipe-line { width: 3px; height: 100%; left: 50%; top: 60px; right: auto; transform: translateX(-50%); }
+        body.presenter-mode .flow-dot { top: 0; left: -3px; width: 10px; height: 10px; animation: flow-vert 2s infinite linear; }
+        @keyframes flow-vert { 0% { top: 0; opacity: 1; } 100% { top: 100%; opacity: 0; } }
         #presenter-indicator { display: none; position: fixed; bottom: 20px; left: 20px; background: var(--brand-red); color: white; padding: 5px 15px; border-radius: 4px; font-weight: bold; z-index: 2000; }
         body.presenter-mode #presenter-indicator { display: block; }
 
@@ -324,9 +280,11 @@
             .market-strip { flex-direction: column; gap: 20px; padding: 20px; }
             .market-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px; width: 100%; }
             .market-stat:last-child { border-bottom: none; }
-            .modal-content { width: 95%; padding: 20px; }
-            .modal-grid { grid-template-columns: 1fr; }
-            .moat-strip { grid-template-columns: 1fr; }
+            .pipeline-container { flex-direction: column; gap: 40px; }
+            .pipe-line { display: none; } /* Simplified for mobile */
+            .flywheel-container { flex-direction: column; gap: 20px; }
+            .fw-arrow { transform: rotate(90deg); padding: 10px 0; }
+            .fw-item { width: 100%; }
         }
     </style>
 </head>
@@ -336,32 +294,6 @@
     <div id="global-logo">
         <img src="assets/logo.png" alt="Company Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
         <div class="logo-fallback" style="display:none;">Brand Logiq</div>
-    </div>
-
-    <!-- DATA-RICH MODAL -->
-    <div id="platform-modal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModal()">&times;</button>
-            <div class="modal-header">
-                <h2 id="modal-title">Platform Name</h2>
-                <div id="modal-subtitle" class="modal-subtitle">Strategic Analysis 2025</div>
-            </div>
-            
-            <div class="modal-grid">
-                <div class="m-stat-box">
-                    <div id="modal-stat-1" class="m-stat-val">0</div>
-                    <div id="modal-label-1" class="m-stat-desc">Metric 1</div>
-                </div>
-                <div class="m-stat-box">
-                    <div id="modal-stat-2" class="m-stat-val">0</div>
-                    <div id="modal-label-2" class="m-stat-desc">Metric 2</div>
-                </div>
-            </div>
-
-            <div id="modal-vis" class="chart-box"></div>
-            <div id="modal-insight" class="key-insight"></div>
-            <div id="modal-footer" class="modal-footer">Source: Citation</div>
-        </div>
     </div>
 
     <!-- Progress Bar -->
@@ -394,6 +326,7 @@
                     <p class="home-subtitle">Deconstructing the ecosystem of sports on DGO - how we acquire rights, manage the signal, and commercialize the experience ?</p>
                 </div>
 
+                <!-- Assets (Same as before) -->
                 <div class="asset-container fade-in-up delay-1">
                     <div style="font-size: 0.85rem; font-weight: 700; color: #999; text-transform: uppercase; align-self: center; margin-right: 10px;">Primary Assets:</div>
                     <div class="asset-item"><div class="asset-dot"></div> Cricket
@@ -444,95 +377,198 @@
             </div>
         </section>
 
-        <!-- 2. STRATEGIC VALIDATION -->
+        <!-- 2. STRATEGIC VALIDATION (BENTO GRID) -->
         <section id="strategy" class="bg-pattern">
             <div class="container">
                 <div class="fade-in-up">
-                    <span class="badge badge-red" style="background:#e3f2fd; color:#0288d1; margin-bottom:15px;">Global & Regional Benchmarks</span>
-                    <h2 class="section-title">Why Sports? The Economic Reality</h2>
-                    <p class="section-subtitle">Live sports is the only content category that guarantees "appointment viewing" and mass acquisition. Click cards for detailed analysis.</p>
+                    <h2 class="section-title">Why Sports? Global & Regional Trends</h2>
+                    <p class="section-subtitle">A deep dive into how global giants leverage sports for scale, retention, and commerce.</p>
                 </div>
 
+                <!-- India Region -->
+                <div class="grid-header fade-in-up">Regional Powerhouse (India)</div>
                 <div class="bento-grid">
-                    <!-- JioHotstar -->
-                    <div class="pop-card col-span-2 fade-in-up delay-1" onclick="openModal('jio')" style="border-top: 5px solid #0078BC; background: linear-gradient(to bottom right, #ffffff, #e1f5fe);">
-                        <div style="position: absolute; top: 20px; right: 20px; background: #0078BC; color: white; padding: 4px 12px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; letter-spacing: 1px;">THE SCALE MODEL</div>
+                    
+                    <!-- JioHotstar (Big Feature) -->
+                    <div class="pop-card col-span-2 fade-in-up delay-1" style="border-top: 5px solid #0078BC; background: linear-gradient(to bottom right, #ffffff, #e1f5fe);">
                         <div>
                             <div class="brand-logo-text" style="color: #0078BC; font-size: 1.5rem;">JioHotstar <span style="font-weight:400; color:#555; font-size:0.9rem; margin-left:8px;">(Merged Entity)</span></div>
-                            <div class="stat-huge" style="color:#0078BC;">60 Crore+</div>
-                            <div class="stat-label">Unique Viewers (Projected IPL 2025)</div>
-                            <p style="margin-top: 15px; color: #444; line-height: 1.6;"><strong>Strategy:</strong> Aggressive "Free Sports" model to capture 90% of data-consuming youth.</p>
+                            <div class="stat-row">
+                                <div><div class="stat-huge" style="color:#0078BC;">60 Crore+</div><div class="stat-label">Projected Unique Reach (IPL 25)</div></div>
+                                <div><div class="stat-huge" style="color:#333;">Ad-Led</div><div class="stat-label">Primary Revenue Model</div></div>
+                            </div>
+                            <p class="desc-text"><strong>The Strategy:</strong> "Free Sports for Scale." By removing the paywall, they capture 90% of data-consuming youth, monetizing via massive ad inventory scale (SSAI) rather than subscription alone.</p>
                         </div>
-                        <div class="citation-box">Source: Industry Projections 2025</div>
+                        <div class="citation-box">Source: Media Partners Asia (MPA) 2025 Outlook / FICCI-EY Report</div>
                     </div>
 
                     <!-- Nepal Gap -->
-                    <div class="pop-card card-dark fade-in-up delay-2" onclick="openModal('nepal')" style="border-top: 5px solid var(--brand-red);">
+                    <div class="pop-card card-dark fade-in-up delay-2" style="border-top: 5px solid var(--brand-red);">
                         <div>
-                            <div class="brand-logo-text text-red">THE MARKET VOID</div>
-                            <div class="stat-huge" style="color:white;">0</div>
-                            <div class="stat-label" style="color:rgba(255,255,255,0.7);">Dedicated Sports OTTs in Nepal</div>
-                            <p style="margin-top: 15px; color: rgba(255,255,255,0.8); font-size: 0.9rem; line-height: 1.6;">30M+ potential users have 4G/Fiber but no local platform for Tier-1 sports. DGO is the first-mover.</p>
+                            <div class="brand-logo-text text-red">THE NEPAL OPPORTUNITY</div>
+                            <div class="stat-huge" style="color:white;">Zero</div>
+                            <div class="stat-label" style="color:rgba(255,255,255,0.7);">Dominant Sports OTTs</div>
+                            <p class="desc-text" style="color: rgba(255,255,255,0.8); margin-top:20px;">
+                                While India has JioHotstar, Nepal has 30M+ users with 4G/Fiber but no local platform for Tier-1 sports. DGO is the first-mover.
+                            </p>
                         </div>
                         <div class="citation-box" style="border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.5);">Opportunity Index: High</div>
                     </div>
+                </div>
 
+                <!-- International Region -->
+                <div class="grid-header fade-in-up delay-2">International Benchmarks</div>
+                <div class="bento-grid">
                     <!-- Netflix -->
-                    <div class="pop-card fade-in-up delay-3" onclick="openModal('netflix')" style="border-top: 5px solid #E50914;">
+                    <div class="pop-card fade-in-up delay-3" style="border-top: 5px solid #E50914;">
                         <div class="brand-logo-text" style="color: #E50914;">NETFLIX</div>
                         <div class="stat-huge" style="font-size: 2.2rem;">$5 Billion</div>
-                        <div class="stat-label">WWE RAW Deal</div>
-                        <p style="margin-top: 10px; font-size: 0.9rem; color: #666; line-height: 1.4;"><strong>The Pivot:</strong> VOD giant pivoting to Live for retention.</p>
+                        <div class="stat-label">WWE RAW Deal (10 Years)</div>
+                        <p class="desc-text" style="margin-top:15px;"><strong>The Pivot:</strong> Moving from VOD (Binge) to Live (Appointment Viewing) to reduce monthly churn.</p>
+                        <div class="citation-box">Source: Netflix SEC 10-K Filing / Variety</div>
                     </div>
 
                     <!-- Sony LIV -->
-                    <div class="pop-card fade-in-up delay-4" onclick="openModal('sonyliv')" style="border-top: 5px solid #F9A825;">
+                    <div class="pop-card fade-in-up delay-4" style="border-top: 5px solid #F9A825;">
                         <div class="brand-logo-text" style="color: #F9A825;">Sony LIV</div>
-                        <div class="stat-huge" style="font-size: 2.2rem;">UEFA</div>
-                        <div class="stat-label">Champions League</div>
-                        <p style="margin-top: 10px; font-size: 0.9rem; color: #666; line-height: 1.4;"><strong>Premium Model:</strong> Exclusive rights drive high ARPU.</p>
+                        <div class="stat-huge" style="font-size: 2.2rem;">Premium</div>
+                        <div class="stat-label">UEFA Rights Holder</div>
+                        <p class="desc-text" style="margin-top:15px;"><strong>The Model:</strong> Targeting the "High ARPU" urban user who pays for quality (Champions League).</p>
+                        <div class="citation-box">Source: Ormax Media OTT Report 2024</div>
                     </div>
 
                     <!-- Prime Video -->
-                    <div class="pop-card fade-in-up delay-5" onclick="openModal('prime')" style="border-top: 5px solid #00A8E1;">
+                    <div class="pop-card fade-in-up delay-5" style="border-top: 5px solid #00A8E1;">
                         <div class="brand-logo-text" style="color: #00A8E1;">prime video</div>
-                        <div class="stat-huge" style="font-size: 2.2rem;">The Test</div>
-                        <div class="stat-label">Sports Docu-Series</div>
-                        <p style="margin-top: 10px; font-size: 0.9rem; color: #666; line-height: 1.4;"><strong>Narrative Ecosystem:</strong> Driving engagement between matches.</p>
+                        <div class="stat-huge" style="font-size: 2.2rem;">Narrative</div>
+                        <div class="stat-label">Docu-Series (The Test)</div>
+                        <p class="desc-text" style="margin-top:15px;"><strong>The Eco-System:</strong> Using behind-the-scenes content to keep fans engaged when matches aren't live.</p>
+                        <div class="citation-box">Source: Amazon Global Report</div>
                     </div>
                 </div>
 
-                <!-- THE MOAT (How DGO Executes) -->
-                <div class="moat-strip fade-in-up delay-5">
-                    <div class="moat-item">
-                        <div class="moat-icon">⚡</div>
-                        <div class="moat-content"><h4>ISP Advantage</h4><p>DGO sits on the DishHome Fiber network. Zero buffering for 300K+ households.</p></div>
-                    </div>
-                    <div class="moat-item">
-                        <div class="moat-icon">🎙️</div>
-                        <div class="moat-content"><h4>Hyper-Localization</h4><p>Nepali Commentary & Local Studio Pre-shows. International apps can't match this.</p></div>
-                    </div>
-                    <div class="moat-item">
-                        <div class="moat-icon">💳</div>
-                        <div class="moat-content"><h4>Frictionless Pay</h4><p>Bundled with Internet Bill + Khalti/Esewa. No credit card barriers.</p></div>
+                <!-- ADDED FLYWHEEL SECTION -->
+                <div class="flywheel-wrapper fade-in-up delay-5" style="margin-top: 50px;">
+                    <h3 class="grid-header" style="margin-bottom: 25px; border-color: #333;">The Strategic Fit: DGO Ecosystem</h3>
+                    
+                    <div class="flywheel-container">
+                        <!-- 1. The Hook -->
+                        <div class="fw-item">
+                            <div class="fw-icon">🧲</div>
+                            <div class="fw-content">
+                                <div class="fw-title">Acquisition Hook</div>
+                                <div class="fw-desc">Sports is the cheapest way to acquire users (Low CPA). It forces immediate app downloads.</div>
+                            </div>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div class="fw-arrow">➜</div>
+
+                        <!-- 2. The Habit -->
+                        <div class="fw-item">
+                            <div class="fw-icon">🔄</div>
+                            <div class="fw-content">
+                                <div class="fw-title">Habit Formation</div>
+                                <div class="fw-desc">Unlike movies (watch once), sports creates recurring weekly active users (WAU).</div>
+                            </div>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div class="fw-arrow">➜</div>
+
+                        <!-- 3. The Lock-in -->
+                        <div class="fw-item">
+                            <div class="fw-icon">🔒</div>
+                            <div class="fw-content">
+                                <div class="fw-title">ISP Churn Reduction</div>
+                                <div class="fw-desc">Bundling sports with internet plans reduces fiber disconnection rates by ~15%.</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
             </div>
         </section>
 
-        <!-- 3. BROADCAST OPS -->
+        <!-- 3. BROADCAST OPS (NEW PIPELINE VISUAL) -->
         <section id="broadcast">
             <div class="container">
-                <div class="fade-in-up"><h2 class="section-title">Broadcast Operations</h2><p class="section-subtitle">Technical workflow.</p></div>
-                <div class="grid-3">
-                    <div class="card fade-in-up delay-1"><h3>Source Feed</h3><p class="text-muted">Satellite/Fiber Downlink</p></div>
-                    <div class="card fade-in-up delay-2"><h3>MCR</h3><p class="text-muted">Localization & Graphics</p></div>
-                    <div class="card fade-in-up delay-3"><h3>Encoding</h3><p class="text-muted">Adaptive Bitrate Streaming</p></div>
+                <div class="fade-in-up">
+                    <h2 class="section-title">Broadcast Operations</h2>
+                    <p class="section-subtitle">How we deliver a 4K Live Signal with <5 second latency.</p>
                 </div>
+                
+                <div class="pipeline-container fade-in-up delay-1">
+                    <!-- Step 1 -->
+                    <div class="pipe-node">
+                        <div class="pipe-icon">📡</div>
+                        <div class="pipe-label">Source Ingest</div>
+                        <div class="pipe-sub">Satellite / Fiber</div>
+                        <div class="pipe-line"><div class="flow-dot"></div></div>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="pipe-node">
+                        <div class="pipe-icon">🎛️</div>
+                        <div class="pipe-label">Processing</div>
+                        <div class="pipe-sub">Cloud Transcoding</div>
+                        <div class="pipe-line"><div class="flow-dot" style="animation-delay: 0.5s"></div></div>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="pipe-node">
+                        <div class="pipe-icon">☁️</div>
+                        <div class="pipe-label">CDN Edge</div>
+                        <div class="pipe-sub">Akamai / Cloudflare</div>
+                        <div class="pipe-line"><div class="flow-dot" style="animation-delay: 1s"></div></div>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="pipe-node">
+                        <div class="pipe-icon">📱</div>
+                        <div class="pipe-label">User Screen</div>
+                        <div class="pipe-sub">Adaptive Bitrate Player</div>
+                    </div>
+                </div>
+
+                <!-- REMOVED PREVIOUS GRID-2 (TECHNICAL/LOCALIZATION) AS REQUESTED -->
             </div>
         </section>
-        
+
+        <!-- 4. COMMERCIALIZATION -->
+        <section id="commercial">
+             <div class="container">
+                <div class="fade-in-up">
+                    <h2 class="section-title">Commercialization</h2>
+                    <p class="section-subtitle">Monetizing the eyeballs.</p>
+                </div>
+                
+                <div class="grid-2">
+                    <div class="card fade-in-up">
+                        <h3 class="text-red">Revenue Models</h3>
+                        <div style="margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+                            <strong>Subscription (SVOD)</strong>
+                            <p class="text-muted" style="font-size: 0.9rem;">Users pay monthly to access Tier 1 sports.</p>
+                        </div>
+                        <div style="margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+                            <strong>Advertising (AVOD)</strong>
+                            <p class="text-muted" style="font-size: 0.9rem;">Free users see pre-roll ads before stream starts and mid-roll ads during breaks.</p>
+                        </div>
+                        <div>
+                            <strong>Sponsorship</strong>
+                            <p class="text-muted" style="font-size: 0.9rem;">"Powered By" logos, on-screen graphics, and studio branding.</p>
+                        </div>
+                    </div>
+
+                    <div class="card fade-in-up delay-1" style="background: #f9f9f9; text-align: center;">
+                        <h3>The Sports Funnel</h3>
+                        <p class="text-muted" style="margin-bottom: 30px;">Sports has the lowest Cost Per Acquisition (CPA).</p>
+                        <div style="background: #ddd; height: 40px; width: 90%; margin: 0 auto 5px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">Casual Fan (Free Highlights)</div>
+                        <div style="background: #ccc; height: 40px; width: 70%; margin: 0 auto 5px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">Live Viewer (Ad Supported)</div>
+                        <div style="background: var(--brand-red); height: 40px; width: 50%; margin: 0 auto; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.8rem;">Premium Sub (Recurring Revenue)</div>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <!-- 5. 90-DAY PLAN -->
         <section id="timeline">
             <div class="container">
                 <div class="fade-in-up"><h2 class="section-title">90-Day Execution</h2><p class="section-subtitle">Roadmap to launch.</p></div>
@@ -547,135 +583,81 @@
     </main>
 
     <script>
-        // --- DATA WITH VISUALIZATION HTML ---
-        const platformData = {
-            jio: {
-                title: "JioHotstar (Merged Entity)",
-                subtitle: "The Mass Scale Ad-Model",
-                stat1: "₹3,500 Cr",
-                label1: "Digital Ad Rev (FY25 Est)",
-                stat2: "45 mins",
-                label2: "Avg Watch Time / Match",
-                visHTML: `
-                    <div class="chart-title">Revenue Composition: The Shift to Digital</div>
-                    <div class="bar-chart">
-                        <div class="bar-col"><div class="bar-val">30%</div><div class="bar" style="height:30%"></div><div class="bar-label">Subscription</div></div>
-                        <div class="bar-col"><div class="bar-val">70%</div><div class="bar highlight" style="height:70%"></div><div class="bar-label">Ad Revenue</div></div>
-                    </div>
-                `,
-                desc: "<strong>Key Insight:</strong> JioHotstar proves that in South Asia, volume beats price. By removing the paywall for sports, they access 100% of the addressable market, monetizing via Server-Side Ad Insertion (SSAI). The merger creates a monopoly with ~85% of India's streaming viewership.",
-                source: "Source: Media Partners Asia (MPA) 2025 Outlook / FICCI-EY Media & Entertainment Report 2024"
-            },
-            netflix: {
-                title: "Netflix",
-                subtitle: "Solving the Churn Problem",
-                stat1: "+4.5M",
-                label1: "Ad-Tier Adds (Q4 '24)",
-                stat2: "52 Weeks",
-                label2: "Live Content per Year",
-                visHTML: `
-                    <div class="chart-title">Retention Impact: Live vs VOD</div>
-                    <div class="bar-chart">
-                        <div class="bar-col"><div class="bar-val">Med</div><div class="bar" style="height:50%"></div><div class="bar-label">Movies (Binge)</div></div>
-                        <div class="bar-col"><div class="bar-val">High</div><div class="bar highlight" style="height:90%"></div><div class="bar-label">WWE (Weekly)</div></div>
-                    </div>
-                `,
-                desc: "<strong>Key Insight:</strong> VOD has a 'Binge & Cancel' problem. Live sports creates 'Appointment Viewing,' forcing users to keep the app installed year-round. This deal ensures 52 weeks of active engagement, crucial for their ad-supported tier growth.",
-                source: "Source: Netflix SEC 10-K Filing 2024 / Variety Market Analysis"
-            },
-            sonyliv: {
-                title: "Sony LIV",
-                subtitle: "The Premium ARPU Model",
-                stat1: "₹999",
-                label1: "Annual ARPU (Sports)",
-                stat2: "4x",
-                label2: "Higher than Industry Avg",
-                visHTML: `
-                    <div class="chart-title">ARPU Comparison (Annual)</div>
-                    <div class="bar-chart">
-                        <div class="bar-col"><div class="bar-val">₹299</div><div class="bar" style="height:30%"></div><div class="bar-label">Gen Ent.</div></div>
-                        <div class="bar-col"><div class="bar-val">₹999</div><div class="bar highlight" style="height:90%"></div><div class="bar-label">Sony Sports</div></div>
-                    </div>
-                `,
-                desc: "<strong>Key Insight:</strong> Football fans are price-insensitive for quality. Sony LIV targets the top 10M urban users who demand 4K streaming and zero lag for UEFA properties. This validates the 'Premium Tier' strategy for DGO.",
-                source: "Source: Ormax Media: The OTT Audience Report 2024 / Sony Pictures Networks Financials"
-            },
-            prime: {
-                title: "Prime Video",
-                subtitle: "Content to Commerce",
-                stat1: "15%",
-                label1: "Conversion to Shopper",
-                stat2: "24/7",
-                label2: "Engagement via Docus",
-                visHTML: `
-                    <div class="chart-title">The Commerce Funnel</div>
-                    <div class="bar-chart">
-                        <div class="bar-col"><div class="bar-val">View</div><div class="bar" style="height:90%; opacity:0.5"></div><div class="bar-label">Match</div></div>
-                        <div class="bar-col"><div class="bar-val">Engage</div><div class="bar highlight" style="height:70%"></div><div class="bar-label">Docu-Series</div></div>
-                        <div class="bar-col"><div class="bar-val">Shop</div><div class="bar" style="height:40%; background:#2a2a2a; color:white;"></div><div class="bar-label">Merch</div></div>
-                    </div>
-                `,
-                desc: "<strong>Key Insight:</strong> Amazon isn't just selling content; they are selling a lifestyle. 'The Test' keeps cricket fans in the ecosystem during the off-season, reducing churn and increasing retail cross-sell opportunities.",
-                source: "Source: Amazon Global 10-K Filing (2024) / Nielsen Streaming Ratings"
-            },
-            nepal: {
-                title: "Nepal Opportunity",
-                subtitle: "Mobile-First Explosion",
-                stat1: "30%",
-                label1: "YoY Data Usage Growth",
-                stat2: "90%",
-                label2: "Android Dominance",
-                visHTML: `
-                    <div class="chart-title">Projected DGO User Growth</div>
-                    <div class="bar-chart">
-                        <div class="bar-col"><div class="bar-val">Y1</div><div class="bar" style="height:30%"></div><div class="bar-label">Seed</div></div>
-                        <div class="bar-col"><div class="bar-val">Y2</div><div class="bar" style="height:60%"></div><div class="bar-label">Scale</div></div>
-                        <div class="bar-col"><div class="bar-val">Y3</div><div class="bar highlight" style="height:100%"></div><div class="bar-label">Dominate</div></div>
-                    </div>
-                `,
-                desc: "<strong>Key Insight:</strong> The hardware (Smartphones) and pipe (ISP) are ready. DGO provides the missing layer: The Platform. With 100% digital readiness in urban centers, the market is primed for a mobile-first sports OTT.",
-                source: "Source: Nepal Telecommunications Authority (NTA) MIS Report 2024 / World Bank Digital Data"
-            }
-        };
+        const $ = (s) => document.querySelector(s);
+        const $$ = (s) => document.querySelectorAll(s);
 
-        const modal = document.getElementById('platform-modal');
-        function openModal(key) {
-            const data = platformData[key];
-            if(!data) return;
-            document.getElementById('modal-title').innerText = data.title;
-            document.getElementById('modal-subtitle').innerText = data.subtitle;
-            document.getElementById('modal-stat-1').innerText = data.stat1;
-            document.getElementById('modal-label-1').innerText = data.label1;
-            document.getElementById('modal-stat-2').innerText = data.stat2;
-            document.getElementById('modal-label-2').innerText = data.label2;
-            document.getElementById('modal-vis').innerHTML = data.visHTML;
-            document.getElementById('modal-insight').innerHTML = data.desc;
-            document.getElementById('modal-footer').innerText = data.source;
-            modal.classList.add('active');
-        }
-        function closeModal() { modal.classList.remove('active'); }
-        modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+        // --- NAV & SCROLL ---
+        const sections = $$('section');
+        const navLinks = $$('.nav-links li a');
+        const progressBar = $('#progress-bar');
 
-        /* Common Scripts (Nav, Observer, Animations) */
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => { if(e.isIntersecting) { 
-                e.target.classList.add('visible'); 
-                // Trigger Count Up if Market Strip
-                if(e.target.classList.contains('market-strip-container')) runCounters();
-            }});
-        }, {threshold: 0.2});
-        document.querySelectorAll('.fade-in-up, .market-strip-container').forEach(e => observer.observe(e));
-
-        function runCounters() {
-            document.querySelectorAll('.market-counter').forEach(c => {
-                const t = +c.dataset.target;
-                let s = 0;
-                const i = setInterval(() => { s++; c.innerText = s; if(s >= t) clearInterval(i); }, 20);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${entry.target.id}`) link.classList.add('active');
+                    });
+                }
             });
-        }
+        }, { threshold: 0.3 });
+        sections.forEach(sec => observer.observe(sec));
 
-        document.getElementById('presenter-toggle').onclick = () => document.body.classList.toggle('presenter-mode');
-        document.addEventListener('keydown', (e) => { if(e.key === 'p') document.body.classList.toggle('presenter-mode'); if(e.key === 'Escape') closeModal(); });
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            progressBar.style.width = (winScroll / height) * 100 + "%";
+        });
+
+        // --- ANIMATIONS ---
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    fadeObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        $$('.fade-in-up').forEach(el => fadeObserver.observe(el));
+
+        // --- MARKET COUNTER ANIMATION ---
+        let marketStatsRun = false;
+        const marketObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !marketStatsRun) {
+                marketStatsRun = true;
+                document.querySelectorAll('.market-counter').forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    const duration = 2000;
+                    const startTime = performance.now();
+                    const animate = (currentTime) => {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const ease = 1 - Math.pow(1 - progress, 4);
+                        const currentVal = Math.floor(ease * target);
+                        counter.innerText = currentVal;
+                        if (progress < 1) requestAnimationFrame(animate);
+                        else counter.innerText = target;
+                    };
+                    requestAnimationFrame(animate);
+                });
+            }
+        }, { threshold: 0.5 });
+        const marketStrip = document.querySelector('.market-strip');
+        if (marketStrip) marketObserver.observe(marketStrip);
+
+        // --- PRESENTER MODE ---
+        $('#presenter-toggle').addEventListener('click', () => {
+            document.body.classList.toggle('presenter-mode');
+            const isActive = document.body.classList.contains('presenter-mode');
+            const btn = $('#presenter-toggle span');
+            btn.innerText = isActive ? "Exit Mode" : "Presenter Mode";
+            $('#presenter-toggle').classList.toggle('active');
+            window.dispatchEvent(new Event('resize'));
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if(e.key === 'p' || e.key === 'P') $('#presenter-toggle').click();
+        });
     </script>
 </body>
 </html>
