@@ -92,12 +92,14 @@
         .badge { display: inline-block; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; margin-bottom: 15px;}
         .badge-red { background: var(--brand-red-light); color: var(--brand-red); }
 
-        /* --- SECTIONS & BG --- */
+        /* --- SECTIONS --- */
         section {
             min-height: 100vh; padding: var(--section-padding);
             display: flex; flex-direction: column; justify-content: center;
             position: relative; border-bottom: 1px solid var(--border-light);
         }
+
+        /* --- BACKGROUND PATTERN --- */
         .bg-pattern {
             background-color: white; 
             background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
@@ -118,7 +120,9 @@
             margin-bottom: 8px; margin-right: 8px; vertical-align: middle;
             box-shadow: 0 0 0 rgba(211, 47, 47, 0.4); animation: pulse 2s infinite;
         }
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(211, 47, 47, 0); } 100% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0); } }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(211, 47, 47, 0); } 100% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0); }
+        }
 
         /* --- ASSET GRID --- */
         .asset-container { display: flex; gap: 15px; margin-bottom: 30px; position: relative; }
@@ -188,23 +192,37 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.03); cursor: pointer;
         }
         .pop-card:hover {
-            transform: translateY(-12px) scale(1.02); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); z-index: 10; border-color: #ddd;
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            z-index: 10;
+            border-color: #ddd;
         }
+        
         .pop-card::after {
-            content: 'Click for Analysis ↗'; position: absolute; bottom: 15px; right: 20px;
+            content: 'Click for Analysis ↗';
+            position: absolute; bottom: 15px; right: 20px;
             font-size: 0.7rem; color: var(--brand-red); font-weight: bold; opacity: 0;
             transform: translateY(10px); transition: all 0.3s;
         }
         .pop-card:hover::after { opacity: 1; transform: translateY(0); }
 
         .col-span-2 { grid-column: span 2; }
-        .card-dark { background: linear-gradient(145deg, #1f2937, #111827); color: white; border: 1px solid #374151; }
+        
+        .card-dark {
+            background: linear-gradient(145deg, #1f2937, #111827);
+            color: white; border: 1px solid #374151;
+        }
         .card-dark h3, .card-dark .text-muted { color: white; opacity: 0.9; }
         .card-dark:hover { border-color: var(--brand-red); }
         
-        .stat-huge { font-size: 3rem; font-weight: 800; color: var(--text-main); margin: 10px 0; line-height: 1; letter-spacing: -1px; }
+        .stat-huge {
+            font-size: 3rem; font-weight: 800; color: var(--text-main); margin: 10px 0;
+            line-height: 1; letter-spacing: -1px;
+        }
         .stat-label { font-size: 0.85rem; text-transform: uppercase; color: #777; font-weight: 600; letter-spacing: 1px; }
-        .citation-box { font-size: 0.75rem; color: #999; margin-top: 20px; font-style: italic; border-top: 1px solid #eee; padding-top: 10px; }
+        .citation-box {
+            font-size: 0.75rem; color: #999; margin-top: 20px; font-style: italic; border-top: 1px solid #eee; padding-top: 10px;
+        }
         .brand-logo-text { font-size: 1.2rem; font-weight: 800; margin-bottom: 10px; display:flex; align-items: center; gap:8px;}
 
         /* --- DETAILED MODAL SYSTEM --- */
@@ -245,7 +263,7 @@
         }
         .chart-title { font-size: 0.9rem; font-weight: 700; color: #333; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
         
-        /* Mini Chart CSS Components */
+        /* Mini Chart Components */
         .bar-chart { display: flex; align-items: flex-end; height: 120px; gap: 20px; padding-top: 20px; }
         .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
         .bar-val { font-size: 0.8rem; font-weight: 700; margin-bottom: 5px; color: #555; }
@@ -257,7 +275,7 @@
             background: #FFF8F8; border-left: 4px solid var(--brand-red); padding: 20px; 
             border-radius: 0 8px 8px 0; margin-bottom: 20px; color: #444; font-size: 1rem; line-height: 1.6;
         }
-        .modal-footer { margin-top: 20px; pt-top: 15px; border-top: 1px solid #eee; font-size: 0.8rem; color: #999; font-style: italic; }
+        .modal-footer { margin-top: 20px; pt-top: 15px; border-top: 1px solid #eee; font-size: 0.8rem; color: #555; font-weight: 600; }
 
         /* --- GENERIC COMPONENTS --- */
         .section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; }
@@ -462,7 +480,7 @@
                             <div class="brand-logo-text text-red">THE MARKET VOID</div>
                             <div class="stat-huge" style="color:white;">0</div>
                             <div class="stat-label" style="color:rgba(255,255,255,0.7);">Dedicated Sports OTTs in Nepal</div>
-                            <p style="margin-top: 15px; color: rgba(255,255,255,0.8); font-size: 0.9rem; line-height: 1.6;">30M+ potential users have 4G/Fiber but no local platform for Tier-1 sports.</p>
+                            <p style="margin-top: 15px; color: rgba(255,255,255,0.8); font-size: 0.9rem; line-height: 1.6;">30M+ potential users have 4G/Fiber but no local platform for Tier-1 sports. DGO is the first-mover.</p>
                         </div>
                         <div class="citation-box" style="border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.5);">Opportunity Index: High</div>
                     </div>
@@ -494,7 +512,7 @@
             </div>
         </section>
 
-        <!-- (Other sections remain same...) -->
+        <!-- 3. BROADCAST OPS -->
         <section id="broadcast">
             <div class="container">
                 <div class="fade-in-up"><h2 class="section-title">Broadcast Operations</h2><p class="section-subtitle">Technical workflow.</p></div>
@@ -523,7 +541,7 @@
         // --- DATA WITH VISUALIZATION HTML ---
         const platformData = {
             jio: {
-                title: "JioHotstar",
+                title: "JioHotstar (Merged Entity)",
                 subtitle: "The Mass Scale Ad-Model",
                 stat1: "₹3,500 Cr",
                 label1: "Digital Ad Rev (FY25 Est)",
@@ -537,7 +555,7 @@
                     </div>
                 `,
                 desc: "<strong>Key Insight:</strong> JioHotstar proves that in South Asia, volume beats price. By removing the paywall for sports, they access 100% of the addressable market, monetizing via Server-Side Ad Insertion (SSAI).",
-                source: "Source: Media Partners Asia 2025 Outlook"
+                source: "Source: Media Partners Asia (MPA) 2025 Outlook / The Economic Times"
             },
             netflix: {
                 title: "Netflix",
@@ -554,7 +572,7 @@
                     </div>
                 `,
                 desc: "<strong>Key Insight:</strong> VOD has a 'Binge & Cancel' problem. Live sports creates 'Appointment Viewing,' forcing users to keep the app installed year-round.",
-                source: "Source: Netflix Quarterly Report / Variety"
+                source: "Source: Netflix Investor Relations (Q4 2024 Letter) / Variety"
             },
             sonyliv: {
                 title: "Sony LIV",
@@ -571,7 +589,7 @@
                     </div>
                 `,
                 desc: "<strong>Key Insight:</strong> Football fans are price-insensitive for quality. Sony LIV targets the top 10M urban users who demand 4K streaming and zero lag.",
-                source: "Source: Ormax Media OTT Report"
+                source: "Source: Ormax Media: The OTT Audience Report 2024"
             },
             prime: {
                 title: "Prime Video",
@@ -589,7 +607,7 @@
                     </div>
                 `,
                 desc: "<strong>Key Insight:</strong> Amazon isn't just selling content; they are selling a lifestyle. 'The Test' keeps cricket fans in the ecosystem during the off-season.",
-                source: "Source: Amazon Global Reports"
+                source: "Source: Amazon Global 10-K Filing (2024) / Bloomberg Markets"
             },
             nepal: {
                 title: "Nepal Opportunity",
@@ -607,7 +625,7 @@
                     </div>
                 `,
                 desc: "<strong>Key Insight:</strong> The hardware (Smartphones) and pipe (ISP) are ready. DGO provides the missing layer: The Platform.",
-                source: "Source: NTA / Internal Projections"
+                source: "Source: Nepal Telecommunications Authority (NTA) MIS Report 2024 / World Bank Digital Data"
             }
         };
 
