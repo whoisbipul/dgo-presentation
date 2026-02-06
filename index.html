@@ -98,7 +98,7 @@
             position: relative; border-bottom: 1px solid var(--border-light);
         }
 
-        /* --- HOME: ECOSYSTEM STYLES --- */
+        /* --- HOME STYLES --- */
         #home { background: white; align-items: flex-start; }
 
         .home-title { font-size: 3.2rem; font-weight: 800; line-height: 1.1; margin-bottom: 15px; color: var(--text-main); }
@@ -108,8 +108,8 @@
         .asset-container {
             display: flex;
             gap: 15px;
-            margin-bottom: 50px;
-            position: relative; /* Context for z-index */
+            margin-bottom: 30px; /* Reduced to fit market strip */
+            position: relative;
         }
 
         .asset-item {
@@ -130,7 +130,7 @@
             border-color: var(--brand-red);
             color: var(--brand-red);
             transform: translateY(-2px);
-            z-index: 100; /* Ensure active item is on top */
+            z-index: 100;
         }
 
         .asset-dot {
@@ -141,13 +141,13 @@
         }
         .asset-item:hover .asset-dot { background: var(--brand-red); }
 
-        /* The Popup Card */
+        /* Popup Card */
         .asset-popup {
             position: absolute;
             bottom: 140%; 
             left: 50%;
             transform: translateX(-50%) translateY(10px) scale(0.95);
-            width: 280px; /* Wider to fit text */
+            width: 280px; 
             background: white;
             border-radius: 12px;
             box-shadow: 0 15px 30px rgba(0,0,0,0.15);
@@ -156,20 +156,18 @@
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             pointer-events: none;
             border: 1px solid #eee;
-            overflow: hidden; /* Ensure rounded corners clip content */
+            overflow: hidden; 
         }
 
-        /* Show Popup on Hover */
         .asset-item:hover .asset-popup {
             opacity: 1;
             visibility: visible;
             transform: translateX(-50%) translateY(0) scale(1);
         }
 
-        /* Image Wrapper for uniform cropping */
         .popup-img-wrapper {
             width: 100%;
-            height: 150px; /* Fixed height for uniformity */
+            height: 150px; 
             overflow: hidden;
             background: #f0f0f0;
         }
@@ -177,15 +175,12 @@
         .asset-popup img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Key: Crops image to fill box */
+            object-fit: cover; 
             transition: transform 3s ease; 
         }
 
-        .asset-item:hover .asset-popup img {
-            transform: scale(1.1); /* Slow zoom on hover */
-        }
+        .asset-item:hover .asset-popup img { transform: scale(1.1); }
 
-        /* Text area inside popup */
         .popup-text {
             padding: 15px;
             font-size: 0.85rem;
@@ -196,12 +191,38 @@
             background: white;
         }
 
-        /* Fallback for missing images */
-        .img-placeholder {
-            width: 100%; height: 100%; 
-            background: #e0e0e0; 
-            display: flex; align-items: center; justify-content: center; 
-            color: #888; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;
+        /* --- MARKET SNAPSHOT STRIP (NEW) --- */
+        .market-strip {
+            display: flex;
+            background: linear-gradient(135deg, var(--brand-red) 0%, #b71c1c 100%);
+            border-radius: 8px;
+            padding: 20px 30px;
+            color: white;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 20px rgba(183, 28, 28, 0.2);
+            width: 100%;
+        }
+
+        .market-stat {
+            text-align: center;
+            border-right: 1px solid rgba(255,255,255,0.2);
+            flex: 1;
+        }
+        .market-stat:last-child { border-right: none; }
+
+        .m-val {
+            font-size: 2rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+        .m-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
         }
 
         /* --- ECOSYSTEM CHAIN --- */
@@ -268,6 +289,10 @@
         .delay-2 { transition-delay: 0.2s; }
         .delay-3 { transition-delay: 0.3s; }
 
+        .img-placeholder {
+            width: 100%; height: 100%; background: #e0e0e0; display: flex; align-items: center; justify-content: center; color: #888;
+        }
+
         /* --- PRESENTER MODE --- */
         body.presenter-mode { --font-size-base: 22px; --container-width: 95%; background-color: white; }
         body.presenter-mode #navbar { padding-left: 320px; justify-content: flex-end; }
@@ -277,6 +302,8 @@
         body.presenter-mode .eco-step { border-left: 5px solid var(--brand-red); }
         body.presenter-mode .eco-step:not(:last-child)::after { content: '↓'; right: 50%; top: auto; bottom: -20px; transform: translateX(50%); }
         body.presenter-mode .home-title { font-size: 4rem; }
+        body.presenter-mode .market-strip { display: flex; } /* Keep stats in presentation mode */
+        
         #presenter-indicator { display: none; position: fixed; bottom: 20px; left: 20px; background: var(--brand-red); color: white; padding: 5px 15px; border-radius: 4px; font-weight: bold; z-index: 2000; }
         body.presenter-mode #presenter-indicator { display: block; }
 
@@ -292,7 +319,10 @@
             .agenda-grid { grid-template-columns: 1fr 1fr; }
             .home-title { font-size: 2.5rem; }
             .asset-container { flex-wrap: wrap; justify-content: flex-start; }
-            .asset-popup { display: none; } /* Hide popup on mobile as no hover exists */
+            .asset-popup { display: none; } 
+            .market-strip { flex-direction: column; gap: 20px; padding: 20px; }
+            .market-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px; width: 100%; }
+            .market-stat:last-child { border-bottom: none; }
         }
     </style>
 </head>
@@ -398,14 +428,29 @@
                     </div>
                 </div>
 
+                <!-- NEW: MARKET SNAPSHOT STRIP -->
+                <div class="market-strip fade-in-up delay-2">
+                    <div class="market-stat">
+                        <div class="m-val">22M+</div>
+                        <div class="m-label">Total Addressable Market</div>
+                    </div>
+                    <div class="market-stat">
+                        <div class="m-val">65%</div>
+                        <div class="m-label">Youth Demographic (&lt;30)</div>
+                    </div>
+                    <div class="market-stat">
+                        <div class="m-val">100%</div>
+                        <div class="m-label">Digital Readiness</div>
+                    </div>
+                </div>
+
                 <!-- THE VALUE CHAIN -->
-                <div class="ecosystem-chain fade-in-up delay-2">
+                <div class="ecosystem-chain fade-in-up delay-3">
                     <div class="eco-step">
                         <div class="step-icon">1</div>
                         <div class="step-title">Acquisition</div>
                         <div class="step-desc">
                             <strong>The IP (Rights).</strong> Bidding for legal permission to broadcast leagues.
-                            <div style="font-size:0.75rem; color:#999; margin-top:5px;">(Exclusivity, Territory, Digital)</div>
                         </div>
                     </div>
                     <div class="eco-step">
@@ -413,7 +458,6 @@
                         <div class="step-title">Production</div>
                         <div class="step-desc">
                             <strong>The Signal.</strong> Capturing live feeds via satellite/fiber and adding graphics.
-                            <div style="font-size:0.75rem; color:#999; margin-top:5px;">(World Feed, Commentary, Stats)</div>
                         </div>
                     </div>
                     <div class="eco-step">
@@ -421,7 +465,6 @@
                         <div class="step-title">Delivery</div>
                         <div class="step-desc">
                             <strong>The Platform.</strong> Streaming to DGO users with low latency.
-                            <div style="font-size:0.75rem; color:#999; margin-top:5px;">(CDN, Adaptive Bitrate, 4K)</div>
                         </div>
                     </div>
                     <div class="eco-step">
@@ -429,7 +472,6 @@
                         <div class="step-title">Commercialization</div>
                         <div class="step-desc">
                             <strong>The Revenue.</strong> Converting viewership into money.
-                            <div style="font-size:0.75rem; color:#999; margin-top:5px;">(Ads, Subscriptions, Sponsors)</div>
                         </div>
                     </div>
                 </div>
