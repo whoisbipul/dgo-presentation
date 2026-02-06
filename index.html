@@ -191,6 +191,7 @@
             transition: all 0.4s var(--ease-elastic); position: relative; z-index: 1;
             display: flex; flex-direction: column; justify-content: space-between;
             box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            cursor: pointer; /* Indication of interaction */
         }
 
         .pop-card:hover {
@@ -199,6 +200,15 @@
             z-index: 10;
             border-color: #ddd;
         }
+        
+        /* Interactive Hint */
+        .pop-card::after {
+            content: 'Click for Analysis ↗';
+            position: absolute; bottom: 15px; right: 20px;
+            font-size: 0.7rem; color: var(--brand-red); font-weight: bold; opacity: 0;
+            transform: translateY(10px); transition: all 0.3s;
+        }
+        .pop-card:hover::after { opacity: 1; transform: translateY(0); }
 
         .col-span-2 { grid-column: span 2; }
         
@@ -207,6 +217,7 @@
             color: white; border: 1px solid #374151;
         }
         .card-dark h3, .card-dark .text-muted { color: white; opacity: 0.9; }
+        .card-dark:hover { border-color: var(--brand-red); }
         
         .stat-huge {
             font-size: 3rem; font-weight: 800; color: var(--text-main); margin: 10px 0;
@@ -217,6 +228,45 @@
             font-size: 0.75rem; color: #999; margin-top: 20px; font-style: italic; border-top: 1px solid #eee; padding-top: 10px;
         }
         .brand-logo-text { font-size: 1.2rem; font-weight: 800; margin-bottom: 10px; display:flex; align-items: center; gap:8px;}
+
+        /* --- MODAL SYSTEM --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
+            z-index: 5000;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: all 0.3s;
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+
+        .modal-content {
+            background: white; width: 90%; max-width: 700px;
+            border-radius: 16px; padding: 40px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            transform: scale(0.9); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative; max-height: 90vh; overflow-y: auto;
+        }
+        .modal-overlay.active .modal-content { transform: scale(1); }
+
+        .close-modal {
+            position: absolute; top: 20px; right: 20px;
+            background: #eee; width: 32px; height: 32px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; font-weight: bold; font-size: 1.2rem;
+            border: none; color: #555; transition: background 0.2s;
+        }
+        .close-modal:hover { background: #ddd; }
+
+        .modal-header h2 { margin-bottom: 10px; color: var(--text-main); font-size: 2rem;}
+        .modal-badge { display: inline-block; background: var(--brand-red-light); color: var(--brand-red); padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-bottom: 15px;}
+        
+        .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 25px 0; }
+        .m-stat-box { background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid var(--brand-red); }
+        .m-stat-val { font-size: 1.8rem; font-weight: 800; color: #333; }
+        .m-stat-desc { font-size: 0.85rem; color: #666; margin-top: 5px; }
+
+        .modal-body { color: #555; line-height: 1.6; font-size: 1rem; }
+        .modal-footer { margin-top: 25px; pt-top: 15px; border-top: 1px solid #eee; font-size: 0.8rem; color: #888; font-style: italic; }
 
         /* --- GENERIC COMPONENTS --- */
         .section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; }
@@ -281,6 +331,8 @@
             .market-strip { flex-direction: column; gap: 20px; padding: 20px; }
             .market-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px; width: 100%; }
             .market-stat:last-child { border-bottom: none; }
+            .modal-content { width: 95%; padding: 20px; }
+            .modal-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -290,6 +342,33 @@
     <div id="global-logo">
         <img src="assets/logo.png" alt="Company Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
         <div class="logo-fallback" style="display:none;">Brand Logiq</div>
+    </div>
+
+    <!-- MODAL CONTAINER (Hidden by default) -->
+    <div id="platform-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">&times;</button>
+            <div class="modal-header">
+                <span id="modal-badge" class="modal-badge">CASE STUDY</span>
+                <h2 id="modal-title">Platform Name</h2>
+            </div>
+            <div class="modal-grid">
+                <div class="m-stat-box">
+                    <div id="modal-stat-1" class="m-stat-val">0</div>
+                    <div id="modal-label-1" class="m-stat-desc">Metric 1</div>
+                </div>
+                <div class="m-stat-box">
+                    <div id="modal-stat-2" class="m-stat-val">0</div>
+                    <div id="modal-label-2" class="m-stat-desc">Metric 2</div>
+                </div>
+            </div>
+            <div id="modal-body" class="modal-body">
+                Detailed description goes here.
+            </div>
+            <div id="modal-footer" class="modal-footer">
+                Source: Citation
+            </div>
+        </div>
     </div>
 
     <!-- Progress Bar -->
@@ -372,20 +451,19 @@
             </div>
         </section>
 
-        <!-- 2. STRATEGIC VALIDATION (UPDATED WITH SONY LIV & 3D POPS) -->
+        <!-- 2. STRATEGIC VALIDATION -->
         <section id="strategy" class="bg-pattern">
             <div class="container">
                 <div class="fade-in-up">
                     <span class="badge badge-red" style="background:#e3f2fd; color:#0288d1; margin-bottom:15px;">Global & Regional Benchmarks</span>
                     <h2 class="section-title">Why Sports? The Economic Reality</h2>
-                    <p class="section-subtitle">The global streaming war has pivoted to Live Sports. It is the only lever for mass acquisition and high-value retention.</p>
+                    <p class="section-subtitle">Live sports is the only content category that guarantees "appointment viewing" and mass acquisition. Click cards for detailed analysis.</p>
                 </div>
 
-                <!-- BENTO GRID -->
                 <div class="bento-grid">
                     
-                    <!-- JioHotstar (Big Feature) -->
-                    <div class="pop-card col-span-2 fade-in-up delay-1" style="border-top: 5px solid #0078BC; background: linear-gradient(to bottom right, #ffffff, #e1f5fe);">
+                    <!-- JioHotstar (Interactive) -->
+                    <div class="pop-card col-span-2 fade-in-up delay-1" onclick="openModal('jio')" style="border-top: 5px solid #0078BC; background: linear-gradient(to bottom right, #ffffff, #e1f5fe);">
                         <div style="position: absolute; top: 20px; right: 20px; background: #0078BC; color: white; padding: 4px 12px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; letter-spacing: 1px;">THE SCALE MODEL</div>
                         <div>
                             <div class="brand-logo-text" style="color: #0078BC; font-size: 1.5rem;">JioHotstar <span style="font-weight:400; color:#555; font-size:0.9rem; margin-left:8px;">(Merged Entity)</span></div>
@@ -393,14 +471,13 @@
                             <div class="stat-label">Unique Viewers (Projected IPL 2025)</div>
                             <p style="margin-top: 15px; color: #444; line-height: 1.6;">
                                 <strong>Strategy:</strong> Aggressive "Free Sports" model to capture 90% of data-consuming youth.
-                                <br><span style="font-size:0.9rem; color:#666;">They monetize via scale (Ad-Inventory) rather than Paywall alone. This mirrors the Nepal opportunity.</span>
                             </p>
                         </div>
-                        <div class="citation-box">Source: Industry Projections 2025 / Merger Valuation Reports</div>
+                        <div class="citation-box">Source: Industry Projections 2025</div>
                     </div>
 
-                    <!-- Nepal Gap -->
-                    <div class="pop-card card-dark fade-in-up delay-2" style="border-top: 5px solid var(--brand-red);">
+                    <!-- Nepal Gap (Interactive) -->
+                    <div class="pop-card card-dark fade-in-up delay-2" onclick="openModal('nepal')" style="border-top: 5px solid var(--brand-red);">
                         <div>
                             <div class="brand-logo-text text-red">THE MARKET VOID</div>
                             <div class="stat-huge" style="color:white;">0</div>
@@ -412,8 +489,8 @@
                         <div class="citation-box" style="border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.5);">Opportunity Index: High</div>
                     </div>
 
-                    <!-- Netflix -->
-                    <div class="pop-card fade-in-up delay-3" style="border-top: 5px solid #E50914;">
+                    <!-- Netflix (Interactive) -->
+                    <div class="pop-card fade-in-up delay-3" onclick="openModal('netflix')" style="border-top: 5px solid #E50914;">
                         <div class="brand-logo-text" style="color: #E50914;">NETFLIX</div>
                         <div class="stat-huge" style="font-size: 2.2rem;">$5 Billion</div>
                         <div class="stat-label">WWE RAW Deal</div>
@@ -422,23 +499,23 @@
                         </p>
                     </div>
 
-                    <!-- Sony LIV -->
-                    <div class="pop-card fade-in-up delay-4" style="border-top: 5px solid #F9A825;">
+                    <!-- Sony LIV (Interactive) -->
+                    <div class="pop-card fade-in-up delay-4" onclick="openModal('sonyliv')" style="border-top: 5px solid #F9A825;">
                         <div class="brand-logo-text" style="color: #F9A825;">Sony LIV</div>
                         <div class="stat-huge" style="font-size: 2.2rem;">UEFA</div>
-                        <div class="stat-label">Champions League (2024-27)</div>
+                        <div class="stat-label">Champions League</div>
                         <p style="margin-top: 10px; font-size: 0.9rem; color: #666; line-height: 1.4;">
-                            <strong>Premium Model:</strong> Using exclusive, high-value European football rights to drive high-ARPU subscriptions.
+                            <strong>Premium Model:</strong> Using exclusive rights to drive high-ARPU subscriptions.
                         </p>
                     </div>
 
-                    <!-- Prime Video -->
-                    <div class="pop-card fade-in-up delay-5" style="border-top: 5px solid #00A8E1;">
+                    <!-- Prime Video (Interactive) -->
+                    <div class="pop-card fade-in-up delay-5" onclick="openModal('prime')" style="border-top: 5px solid #00A8E1;">
                         <div class="brand-logo-text" style="color: #00A8E1;">prime video</div>
                         <div class="stat-huge" style="font-size: 2.2rem;">The Test</div>
                         <div class="stat-label">Sports Docu-Series</div>
                         <p style="margin-top: 10px; font-size: 0.9rem; color: #666; line-height: 1.4;">
-                            <strong>Narrative Ecosystem:</strong> Investing in storytelling around teams to maintain engagement between live matches.
+                            <strong>Narrative Ecosystem:</strong> Storytelling that keeps users engaged between matches.
                         </p>
                     </div>
 
@@ -546,6 +623,88 @@
         const $ = (s) => document.querySelector(s);
         const $$ = (s) => document.querySelectorAll(s);
 
+        // --- PLATFORM DATA (2025 UPDATES) ---
+        const platformData = {
+            jio: {
+                title: "JioHotstar (Merged Entity)",
+                badge: "ASIAN SCALE MODEL",
+                stat1: "60 Crore+",
+                label1: "Projected Unique Reach (IPL 2025)",
+                stat2: "₹2,000 Cr+",
+                label2: "Projected Ad Revenue (Digital Only)",
+                desc: "<strong>The Strategy:</strong> Post-merger, JioHotstar controls over 85% of India's streaming market. Their model is 'Free Sports for Scale, Paid Entertainment for Yield.'<br><br>They utilize Server-Side Ad Insertion (SSAI) to deliver targeted ads to 30M+ concurrent users, effectively turning sports into the nation's largest advertising billboard. DGO aims to replicate this 'Ad-Funded Scale' model for the Nepal mass market.",
+                source: "Source: Media Partners Asia / Reuters (2025 Outlook)"
+            },
+            netflix: {
+                title: "Netflix Live",
+                badge: "GLOBAL PIVOT",
+                stat1: "$5 Billion",
+                label1: "10-Year WWE Deal (Starts Jan 2025)",
+                stat2: "Zero",
+                label2: "Previous Live Sports Experience",
+                desc: "<strong>The Strategy:</strong> Netflix has historically avoided live sports. The WWE deal marks a massive pivot to solve their biggest problem: Churn.<br><br>By acquiring 52 weeks of live content (WWE Raw), they guarantee that users open the app every week. This 'Appointment Viewing' is critical for their new Ad-Supported Tier growth.",
+                source: "Source: Variety / SEC Filings (2024)"
+            },
+            sonyliv: {
+                title: "Sony LIV",
+                badge: "PREMIUM NICHE",
+                stat1: "2024-27",
+                label1: "UEFA Rights Cycle Secured",
+                stat2: "High ARPU",
+                label2: "Focus on Tier-1 Metro Users",
+                desc: "<strong>The Strategy:</strong> Unlike Jio's mass market approach, Sony LIV targets the affluent urban user. They secured Champions League and Euro rights to drive high-cost subscription packs.<br><br>For DGO, this represents the 'Premium Tier' opportunity—bundling 4K European football for high-paying subscribers.",
+                source: "Source: Sony Pictures Networks Press Release"
+            },
+            prime: {
+                title: "Amazon Prime Video",
+                badge: "ECOSYSTEM PLAY",
+                stat1: "$13 Billion",
+                label1: "NFL Thursday Night Football Deal",
+                stat2: "The Test",
+                label2: "Docu-Series Driving Engagement",
+                desc: "<strong>The Strategy:</strong> Amazon uses sports as a loss-leader to drive Prime memberships (which increases retail shopping).<br><br>Their success with <em>The Test</em> and <em>All or Nothing</em> proves that 'Sports Narrative' (documentaries) keeps fans subscribed even when the live match isn't on. DGO can produce similar low-cost local content for Nepal Cricket.",
+                source: "Source: Bloomberg / Amazon Annual Report"
+            },
+            nepal: {
+                title: "The Nepal Opportunity",
+                badge: "MARKET GAP",
+                stat1: "72%",
+                label1: "Smartphone Penetration",
+                stat2: "Zero",
+                label2: "Dominant Sports OTT",
+                desc: "<strong>The Vacuum:</strong> Nepal's digital infrastructure is ready (4G/Fiber is widespread), but the content ecosystem is stuck in the cable TV era.<br><br>There is no single app that aggregates Cricket, Football, and eSports for the Nepali youth. DGO has the first-mover advantage to become the default 'Sports Home' for the nation.",
+                source: "Source: NTA MIS Report / Internal Analysis"
+            }
+        };
+
+        // --- MODAL FUNCTIONS ---
+        const modal = document.getElementById('platform-modal');
+        
+        function openModal(key) {
+            const data = platformData[key];
+            if(!data) return;
+
+            document.getElementById('modal-title').innerText = data.title;
+            document.getElementById('modal-badge').innerText = data.badge;
+            document.getElementById('modal-stat-1').innerText = data.stat1;
+            document.getElementById('modal-label-1').innerText = data.label1;
+            document.getElementById('modal-stat-2').innerText = data.stat2;
+            document.getElementById('modal-label-2').innerText = data.label2;
+            document.getElementById('modal-body').innerHTML = data.desc;
+            document.getElementById('modal-footer').innerText = data.source;
+
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        // Close on background click
+        modal.addEventListener('click', (e) => {
+            if(e.target === modal) closeModal();
+        });
+
         // --- NAV & SCROLL ---
         const sections = $$('section');
         const navLinks = $$('.nav-links li a');
@@ -617,6 +776,7 @@
 
         document.addEventListener('keydown', (e) => {
             if(e.key === 'p' || e.key === 'P') $('#presenter-toggle').click();
+            if(e.key === 'Escape') closeModal(); // ESC closes modal
         });
     </script>
 </body>
