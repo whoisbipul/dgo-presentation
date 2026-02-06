@@ -102,12 +102,10 @@
         #home { 
             background-color: white; 
             align-items: flex-start;
-            /* SUBTLE TACTICAL DOT PATTERN */
             background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
             background-size: 30px 30px; 
         }
 
-        /* Fading overlay at bottom of home for smooth transition */
         #home::after {
             content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 150px;
             background: linear-gradient(to bottom, transparent, white); pointer-events: none;
@@ -142,7 +140,6 @@
         .asset-dot { width: 8px; height: 8px; background: #ccc; border-radius: 50%; transition: background 0.3s; }
         .asset-item:hover .asset-dot { background: var(--brand-red); }
 
-        /* Popup Card */
         .asset-popup {
             position: absolute; bottom: 140%; left: 50%; transform: translateX(-50%) translateY(10px) scale(0.95);
             width: 280px; background: white; border-radius: 12px; box-shadow: 0 15px 30px rgba(0,0,0,0.15);
@@ -173,7 +170,7 @@
         .eco-step {
             flex: 1; background: white; border: 1px solid #eee; border-radius: 8px; padding: 25px 20px;
             position: relative; transition: transform 0.2s, border-color 0.2s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02); /* Slight shadow for white on grey pattern */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
         .eco-step:hover { transform: translateY(-5px); border-color: var(--brand-red); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
         .eco-step:not(:last-child)::after {
@@ -197,6 +194,35 @@
             text-decoration: none; font-weight: 600; display: inline-block;
         }
         .btn-start:hover { background: var(--brand-red-hover); }
+
+        /* --- STRATEGY SECTION STYLES (NEW) --- */
+        .comparison-grid {
+            display: grid; grid-template-columns: 2fr 1fr; gap: 30px;
+        }
+        
+        .global-case {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+            background: #fafafa; padding: 25px; border-radius: 12px; border: 1px solid #eee;
+        }
+
+        .case-item {
+            position: relative;
+        }
+        .case-brand { font-size: 1.1rem; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .case-brand.netflix { color: #E50914; }
+        .case-brand.jio { color: #0078BC; }
+        
+        .case-stat { font-size: 1.8rem; font-weight: 800; color: #333; margin-bottom: 5px; }
+        .case-desc { font-size: 0.9rem; color: #666; line-height: 1.4; }
+        .citation { font-size: 0.7rem; color: #999; margin-top: 5px; font-style: italic; }
+
+        .nepal-opportunity {
+            background: #1f2937; color: white; padding: 30px; border-radius: 12px;
+            display: flex; flex-direction: column; justify-content: center;
+        }
+        .opp-title { color: var(--brand-red); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; font-weight: 700; margin-bottom: 15px; }
+        .opp-stat { font-size: 2.5rem; font-weight: 700; margin-bottom: 10px; line-height: 1.1; }
+        .opp-desc { font-size: 1rem; opacity: 0.8; line-height: 1.5; }
 
         /* --- GENERIC COMPONENTS --- */
         .section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; }
@@ -243,6 +269,7 @@
         body.presenter-mode .eco-step:not(:last-child)::after { content: '↓'; right: 50%; top: auto; bottom: -20px; transform: translateX(50%); }
         body.presenter-mode .home-title { font-size: 4rem; }
         body.presenter-mode .market-strip { display: flex; } 
+        body.presenter-mode .comparison-grid { grid-template-columns: 1fr; } 
         #presenter-indicator { display: none; position: fixed; bottom: 20px; left: 20px; background: var(--brand-red); color: white; padding: 5px 15px; border-radius: 4px; font-weight: bold; z-index: 2000; }
         body.presenter-mode #presenter-indicator { display: block; }
 
@@ -262,6 +289,8 @@
             .market-strip { flex-direction: column; gap: 20px; padding: 20px; }
             .market-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px; width: 100%; }
             .market-stat:last-child { border-bottom: none; }
+            .comparison-grid { grid-template-columns: 1fr; }
+            .global-case { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -280,7 +309,7 @@
     <nav id="navbar">
         <ul class="nav-links">
             <li><a href="#home" class="active">Home</a></li>
-            <li><a href="#ecosystem">The Ecosystem</a></li>
+            <li><a href="#strategy">Why Sports?</a></li>
             <li><a href="#broadcast">Broadcast Ops</a></li>
             <li><a href="#commercial">Commercialization</a></li>
             <li><a href="#timeline">90-Day Plan</a></li>
@@ -306,7 +335,6 @@
                 <!-- INTERACTIVE PRIMARY ASSETS -->
                 <div class="asset-container fade-in-up delay-1">
                     <div style="font-size: 0.85rem; font-weight: 700; color: #999; text-transform: uppercase; align-self: center; margin-right: 10px;">Primary Assets:</div>
-                    
                     <!-- Cricket -->
                     <div class="asset-item">
                         <div class="asset-dot"></div> Cricket
@@ -315,12 +343,9 @@
                                 <img src="assets/cricket.jpg" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                                 <div class="img-placeholder" style="display:none">IMG</div>
                             </div>
-                            <div class="popup-text">
-                                Nepal Premier League stands out as one of the highest viewed sporting event in the country.
-                            </div>
+                            <div class="popup-text">Nepal Premier League stands out as one of the highest viewed sporting event in the country.</div>
                         </div>
                     </div>
-
                     <!-- Football -->
                     <div class="asset-item">
                         <div class="asset-dot"></div> Football
@@ -329,12 +354,9 @@
                                 <img src="assets/football.jpg" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                                 <div class="img-placeholder" style="display:none">IMG</div>
                              </div>
-                            <div class="popup-text">
-                                Football in Nepal has shown a great potential, specially with the women's team matches drawing a huge attention.
-                            </div>
+                            <div class="popup-text">Football in Nepal has shown a great potential, specially with the women's team matches drawing a huge attention.</div>
                         </div>
                     </div>
-
                     <!-- Volleyball -->
                     <div class="asset-item">
                         <div class="asset-dot"></div> Volleyball
@@ -343,12 +365,9 @@
                                 <img src="assets/volleyball.jpg" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                                 <div class="img-placeholder" style="display:none">IMG</div>
                              </div>
-                            <div class="popup-text">
-                                The national game of Nepal has a huge commercial market, in a way - yet to be tapped.
-                            </div>
+                            <div class="popup-text">The national game of Nepal has a huge commercial market, in a way - yet to be tapped.</div>
                         </div>
                     </div>
-
                     <!-- eSports -->
                     <div class="asset-item">
                         <div class="asset-dot"></div> eSports
@@ -357,14 +376,12 @@
                                 <img src="assets/eSports.jpg" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                                 <div class="img-placeholder" style="display:none">IMG</div>
                              </div>
-                            <div class="popup-text">
-                                The youngest sports vertical has a massive youth following and interest.
-                            </div>
+                            <div class="popup-text">The youngest sports vertical has a massive youth following and interest.</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- MARKET SNAPSHOT STRIP (ANIMATED) -->
+                <!-- MARKET SNAPSHOT STRIP -->
                 <div class="market-strip-container fade-in-up delay-2">
                     <div class="market-strip">
                         <div class="market-stat">
@@ -380,110 +397,94 @@
                             <div class="m-label">Smartphone Penetration</div>
                         </div>
                     </div>
-                    <div class="market-source">
-                        Source: NTA MIS Report (2024) / Central Bureau of Statistics (CBS) Data
-                    </div>
+                    <div class="market-source">Source: NTA MIS Report (2024) / Central Bureau of Statistics (CBS) Data</div>
                 </div>
 
-                <!-- THE VALUE CHAIN (Sequentially Animated) -->
+                <!-- THE VALUE CHAIN -->
                 <div class="ecosystem-chain">
                     <div class="eco-step fade-in-up delay-3">
                         <div class="step-icon">1</div>
                         <div class="step-title">Acquisition</div>
-                        <div class="step-desc">
-                            <strong>The IP (Rights).</strong> Bidding for legal permission to broadcast leagues.
-                        </div>
+                        <div class="step-desc"><strong>The IP (Rights).</strong> Bidding for legal permission to broadcast leagues.</div>
                     </div>
                     <div class="eco-step fade-in-up delay-4">
                         <div class="step-icon">2</div>
                         <div class="step-title">Production</div>
-                        <div class="step-desc">
-                            <strong>The Signal.</strong> Capturing live feeds via satellite/fiber and adding graphics.
-                        </div>
+                        <div class="step-desc"><strong>The Signal.</strong> Capturing live feeds via satellite/fiber and adding graphics.</div>
                     </div>
                     <div class="eco-step fade-in-up delay-5">
                         <div class="step-icon">3</div>
                         <div class="step-title">Delivery</div>
-                        <div class="step-desc">
-                            <strong>The Platform.</strong> Streaming to DGO users with low latency.
-                        </div>
+                        <div class="step-desc"><strong>The Platform.</strong> Streaming to DGO users with low latency.</div>
                     </div>
                     <div class="eco-step fade-in-up delay-5" style="transition-delay: 0.6s;">
                         <div class="step-icon">4</div>
                         <div class="step-title">Commercialization</div>
-                        <div class="step-desc">
-                            <strong>The Revenue.</strong> Converting viewership into money.
-                        </div>
+                        <div class="step-desc"><strong>The Revenue.</strong> Converting viewership into money.</div>
                     </div>
                 </div>
 
-                <!-- Agenda / CTA -->
-                <div class="agenda-section fade-in-up delay-5" style="transition-delay: 0.7s;">
-                    <p style="font-size: 0.9rem; color: #999; margin-bottom: 20px; font-weight: 600; text-transform: uppercase;">Presentation Agenda</p>
-                    <div class="agenda-grid">
-                        <a href="#ecosystem" class="agenda-item">
-                            <strong>1. The Ecosystem</strong>
-                            Understanding Rights & IPs
-                        </a>
-                        <a href="#broadcast" class="agenda-item">
-                            <strong>2. Broadcast Ops</strong>
-                            Tech & Signal Workflow
-                        </a>
-                        <a href="#commercial" class="agenda-item">
-                            <strong>3. Monetization</strong>
-                            Revenue Models
-                        </a>
-                        <a href="#timeline" class="agenda-item">
-                            <strong>4. Action Plan</strong>
-                            90-Day Roadmap
-                        </a>
-                    </div>
-                    <div style="text-align: right;">
-                        <a href="#ecosystem" class="btn-start">Start: The Ecosystem &rarr;</a>
-                    </div>
+                <!-- CTA -->
+                <div class="agenda-section fade-in-up delay-5" style="transition-delay: 0.7s; text-align:right;">
+                    <a href="#strategy" class="btn-start">Start: Why Sports? &rarr;</a>
                 </div>
             </div>
         </section>
 
-        <!-- 2. THE ECOSYSTEM (Rights & IP) -->
-        <section id="ecosystem">
+        <!-- 2. STRATEGIC VALIDATION (NEW SECTION) -->
+        <section id="strategy">
             <div class="container">
                 <div class="fade-in-up">
-                    <h2 class="section-title">1. The Ecosystem: Rights & IP</h2>
-                    <p class="section-subtitle">We don't "make" the game; we buy the right to show it. This is how the inventory works.</p>
+                    <h2 class="section-title">Why Sports? The Strategic Pivot</h2>
+                    <p class="section-subtitle">Live sports is the only content category that guarantees appointment viewing and mass acquisition in 2026. Global giants are pivoting—and Nepal is an open market.</p>
                 </div>
-                <div class="grid-2">
-                    <div class="card fade-in-up delay-1">
-                        <h3 class="text-red">What are "Rights"?</h3>
-                        <p class="text-muted" style="margin-bottom: 20px;">A license from a governing body (e.g., ICC, FIFA, League Boards) permitting us to transmit the live match within a specific territory.</p>
-                        <ul style="list-style: none; padding-left: 10px; border-left: 2px solid #eee;">
-                            <li style="margin-bottom: 10px;"><strong>Exclusive:</strong> Only we show it (High Value).</li>
-                            <li style="margin-bottom: 10px;"><strong>Non-Exclusive:</strong> Shared with others (Low Cost).</li>
-                            <li><strong>Digital vs. Linear:</strong> App vs. TV rights.</li>
-                        </ul>
-                    </div>
-                    <div class="card fade-in-up delay-2">
-                        <h3>Our Target Assets</h3>
-                        <div style="display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 15px;">
-                            <div style="background: #F9FAFB; padding: 15px; border-radius: 8px; border: 1px solid #eee;">
-                                <strong style="color: #333;">Tier 1: High Impact</strong>
-                                <div style="font-size: 0.9rem; color: #666;">Major Cricket Leagues & Top Football. Drivers of subscription acquisition.</div>
-                            </div>
-                            <div style="background: #F9FAFB; padding: 15px; border-radius: 8px; border: 1px solid #eee;">
-                                <strong style="color: #333;">Tier 2: Retention Content</strong>
-                                <div style="font-size: 0.9rem; color: #666;">B-Leagues, Highlights, Classic Matches. Keeps users engaged daily.</div>
-                            </div>
+
+                <div class="comparison-grid">
+                    <!-- Global Case Studies -->
+                    <div class="global-case fade-in-up delay-1">
+                        <!-- Netflix -->
+                        <div class="case-item">
+                            <div class="case-brand netflix">NETFLIX</div>
+                            <div class="case-stat">$5 Billion</div>
+                            <div class="case-desc">Deal for WWE Raw. Even the king of VOD is pivoting to "appointment viewing" live events.</div>
+                            <div class="citation">Source: Variety / CNBC (2024)</div>
+                        </div>
+                        <!-- JioCinema -->
+                        <div class="case-item" style="border-left: 1px solid #eee; padding-left: 20px;">
+                            <div class="case-brand jio">JioCinema</div>
+                            <div class="case-stat">44 Crore</div>
+                            <div class="case-desc">Viewers for IPL 2023. Validating that free/ad-supported sports drives mass adoption in South Asia.</div>
+                            <div class="citation">Source: Viacom18 / BARC India</div>
                         </div>
                     </div>
+
+                    <!-- The Nepal Opportunity -->
+                    <div class="nepal-opportunity fade-in-up delay-2">
+                        <div class="opp-title">The Nepal Opportunity</div>
+                        <div class="opp-stat">The Vacuum</div>
+                        <div class="opp-desc">While global markets are saturated, Nepal has <strong>72% smartphone penetration</strong> but <strong>Zero</strong> dominant sports OTT platforms. DGO fills this void.</div>
+                    </div>
+                </div>
+
+                <!-- Strategic Fit Grid -->
+                <div class="grid-2 fade-in-up delay-3" style="margin-top: 40px;">
+                     <div class="card">
+                        <h3>Acquisition Engine</h3>
+                        <p class="text-muted">Sports brings users in cheaply (Lowest CPA). Users download DGO for the match.</p>
+                     </div>
+                     <div class="card">
+                        <h3>Retention Anchor</h3>
+                        <p class="text-muted">Once they are in, our entertainment library keeps them. Sports creates the habit.</p>
+                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 3. BROADCAST OPS (Technical) -->
+        <!-- 3. BROADCAST OPS -->
         <section id="broadcast">
             <div class="container">
                 <div class="fade-in-up">
-                    <h2 class="section-title">2. Broadcast Operations</h2>
+                    <h2 class="section-title">Broadcast Operations</h2>
                     <p class="section-subtitle">The technical journey: How a goal in a stadium reaches a phone in 5 seconds.</p>
                 </div>
                 <div class="grid-3">
@@ -510,12 +511,11 @@
         <section id="commercial">
              <div class="container">
                 <div class="fade-in-up">
-                    <h2 class="section-title">3. Commercialization</h2>
+                    <h2 class="section-title">Commercialization</h2>
                     <p class="section-subtitle">Monetizing the eyeballs.</p>
                 </div>
                 
                 <div class="grid-2">
-                    <!-- Revenue Streams -->
                     <div class="card fade-in-up">
                         <h3 class="text-red">Revenue Models</h3>
                         <div style="margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
@@ -532,11 +532,9 @@
                         </div>
                     </div>
 
-                    <!-- The Funnel -->
                     <div class="card fade-in-up delay-1" style="background: #f9f9f9; text-align: center;">
                         <h3>The Sports Funnel</h3>
                         <p class="text-muted" style="margin-bottom: 30px;">Sports has the lowest Cost Per Acquisition (CPA).</p>
-                        
                         <div style="background: #ddd; height: 40px; width: 90%; margin: 0 auto 5px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">Casual Fan (Free Highlights)</div>
                         <div style="background: #ccc; height: 40px; width: 70%; margin: 0 auto 5px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">Live Viewer (Ad Supported)</div>
                         <div style="background: var(--brand-red); height: 40px; width: 50%; margin: 0 auto; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.8rem;">Premium Sub (Recurring Revenue)</div>
@@ -569,7 +567,6 @@
                         <p class="text-muted">Marketing campaign kickoff. First live match broadcast.</p>
                     </div>
                 </div>
-                
                 <div style="margin-top: 60px; text-align: center; border-top: 1px solid #eee; padding-top: 40px;" class="fade-in-up delay-3">
                     <p class="text-muted">Prepared for DGO by</p>
                     <strong style="font-size: 1.2rem;">Brand Logiq Pvt. Ltd.</strong>
@@ -624,23 +621,16 @@
                 marketStatsRun = true;
                 document.querySelectorAll('.market-counter').forEach(counter => {
                     const target = +counter.getAttribute('data-target');
-                    const duration = 2000; // 2 seconds
+                    const duration = 2000;
                     const startTime = performance.now();
-
                     const animate = (currentTime) => {
                         const elapsed = currentTime - startTime;
                         const progress = Math.min(elapsed / duration, 1);
-                        // Ease out quart
                         const ease = 1 - Math.pow(1 - progress, 4);
-
                         const currentVal = Math.floor(ease * target);
                         counter.innerText = currentVal;
-
-                        if (progress < 1) {
-                            requestAnimationFrame(animate);
-                        } else {
-                            counter.innerText = target;
-                        }
+                        if (progress < 1) requestAnimationFrame(animate);
+                        else counter.innerText = target;
                     };
                     requestAnimationFrame(animate);
                 });
@@ -659,7 +649,6 @@
             window.dispatchEvent(new Event('resize'));
         });
 
-        // --- KEYBOARD ---
         document.addEventListener('keydown', (e) => {
             if(e.key === 'p' || e.key === 'P') $('#presenter-toggle').click();
         });
