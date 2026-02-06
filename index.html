@@ -227,32 +227,54 @@
         .fw-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; }
         .fw-arrow { font-size: 1.5rem; color: #ccc; padding: 0 20px; font-weight: 300; }
 
-        /* --- ASSET HERO CARDS (NEW) --- */
+        /* --- UPDATED ASSET HERO CARDS (SLIDE UP INTERACTION) --- */
         .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 40px; }
+        
         .asset-hero-card {
-            height: 350px; border-radius: 16px; overflow: hidden; position: relative; cursor: pointer;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            background-color: #eee;
+            height: 420px; border-radius: 16px; overflow: hidden; position: relative; cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+            background-color: #000;
+            border: 1px solid rgba(0,0,0,0.1);
         }
-        .asset-hero-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
         .ah-img-bg {
-            width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;
+            width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; opacity: 0.85;
         }
-        .asset-hero-card:hover .ah-img-bg { transform: scale(1.1); }
+        .asset-hero-card:hover .ah-img-bg { transform: scale(1.1); opacity: 0.6; }
         
         .ah-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 100%);
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 10%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0) 100%);
             padding: 25px; display: flex; flex-direction: column; justify-content: flex-end;
         }
         
-        .ah-title { color: white; font-weight: 800; font-size: 1.5rem; margin-bottom: 5px; line-height: 1; }
-        .ah-stat { color: var(--brand-red); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 10px; }
-        .ah-tag { 
-            background: rgba(255,255,255,0.2); backdrop-filter: blur(4px); 
-            color: white; padding: 5px 12px; border-radius: 20px; 
-            font-size: 0.7rem; display: inline-block; align-self: flex-start; border: 1px solid rgba(255,255,255,0.3);
+        .ah-content {
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: translateY(60px); /* Hide lists by default */
         }
+        .asset-hero-card:hover .ah-content { transform: translateY(0); }
+
+        .ah-badge { 
+            display: inline-block; padding: 4px 10px; border-radius: 4px; 
+            font-size: 0.65rem; font-weight: 700; text-transform: uppercase; 
+            margin-bottom: 8px; color: white; letter-spacing: 1px;
+        }
+        .badge-cricket { background: #0078BC; }
+        .badge-football { background: #006400; }
+        .badge-volleyball { background: #CC5500; }
+        .badge-esports { background: #4B0082; }
+
+        .ah-title { color: white; font-weight: 800; font-size: 1.8rem; margin-bottom: 5px; line-height: 1; text-transform: uppercase; }
+        .ah-usp { font-size: 0.85rem; color: rgba(255,255,255,0.8); margin-bottom: 15px; font-weight: 500; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px; }
+        
+        /* PROPERTIES LIST (REVEAL ON HOVER) */
+        .ah-props { display: flex; flex-direction: column; gap: 6px; }
+        .ah-prop-item {
+            font-size: 0.75rem; color: white; display: flex; align-items: center; gap: 8px;
+            opacity: 0; transition: opacity 0.3s ease 0.1s;
+        }
+        .ah-prop-item::before { content: '★'; color: #FFD700; font-size: 0.6rem; }
+        
+        .asset-hero-card:hover .ah-prop-item { opacity: 1; }
 
         /* --- OPS MODEL --- */
         .value-stack { display: flex; flex-direction: column; gap: 15px; margin-bottom: 50px; }
@@ -635,42 +657,70 @@
 
                 <div class="grid-4 fade-in-up delay-1">
                     <!-- CRICKET -->
-                    <div class="asset-hero-card" onclick="openModal('cricket')">
+                    <div class="asset-hero-card group" onclick="openModal('cricket')">
                         <img src="assets/cricthumb.jpg" class="ah-img-bg" onerror="this.src='https://placehold.co/400x600/003366/FFF?text=Cricket';">
                         <div class="ah-overlay">
-                            <div class="ah-tag">The Flagship</div>
-                            <div class="ah-title">CRICKET</div>
-                            <div class="ah-stat">2.5M Live Concurrents</div>
+                            <div class="ah-content">
+                                <span class="ah-badge badge-cricket">The Flagship</span>
+                                <h3 class="ah-title">CRICKET</h3>
+                                <div class="ah-usp">USP: The Unifying Force</div>
+                                <div class="ah-props">
+                                    <div class="ah-prop-item">NPL (Nepal Premier League)</div>
+                                    <div class="ah-prop-item">ICC CWC League II</div>
+                                    <div class="ah-prop-item">International Series</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <!-- FOOTBALL -->
-                    <div class="asset-hero-card" onclick="openModal('football')">
+                    <div class="asset-hero-card group" onclick="openModal('football')">
                          <img src="assets/footthumb.jpg" class="ah-img-bg" onerror="this.src='https://placehold.co/400x600/006400/FFF?text=Football';">
                         <div class="ah-overlay">
-                            <div class="ah-tag">Tribal Loyalty</div>
-                            <div class="ah-title">FOOTBALL</div>
-                            <div class="ah-stat">65% Youth Share</div>
+                            <div class="ah-content">
+                                <span class="ah-badge badge-football">Tribal Loyalty</span>
+                                <h3 class="ah-title">FOOTBALL</h3>
+                                <div class="ah-usp">USP: High-Value Youth</div>
+                                <div class="ah-props">
+                                    <div class="ah-prop-item">SAFF Championship (M/W)</div>
+                                    <div class="ah-prop-item">Women's Franchise League</div>
+                                    <div class="ah-prop-item">A-Division League</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <!-- VOLLEYBALL -->
-                    <div class="asset-hero-card" onclick="openModal('volleyball')">
+                    <div class="asset-hero-card group" onclick="openModal('volleyball')">
                          <img src="assets/vollthumb.jpg" class="ah-img-bg" onerror="this.src='https://placehold.co/400x600/CC5500/FFF?text=Volleyball';">
                         <div class="ah-overlay">
-                            <div class="ah-tag">National Sport</div>
-                            <div class="ah-title">VOLLEYBALL</div>
-                            <div class="ah-stat">#1 Rural Reach</div>
+                            <div class="ah-content">
+                                <span class="ah-badge badge-volleyball">National Sport</span>
+                                <h3 class="ah-title">VOLLEYBALL</h3>
+                                <div class="ah-usp">USP: Rural Dominance</div>
+                                <div class="ah-props">
+                                    <div class="ah-prop-item">National Volleyball League</div>
+                                    <div class="ah-prop-item">CAVA Nations League</div>
+                                    <div class="ah-prop-item">Club Championships</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <!-- ESPORTS -->
-                    <div class="asset-hero-card" onclick="openModal('esports')">
+                    <div class="asset-hero-card group" onclick="openModal('esports')">
                          <img src="assets/esports thumb.jpg" class="ah-img-bg" onerror="this.src='https://placehold.co/400x600/4B0082/FFF?text=eSports';">
                         <div class="ah-overlay">
-                            <div class="ah-tag">Digital Native</div>
-                            <div class="ah-title">eSPORTS</div>
-                            <div class="ah-stat">5Hrs Daily Engagement</div>
+                            <div class="ah-content">
+                                <span class="ah-badge badge-esports">Digital Native</span>
+                                <h3 class="ah-title">eSPORTS</h3>
+                                <div class="ah-usp">USP: Future Proofing</div>
+                                <div class="ah-props">
+                                    <div class="ah-prop-item">DGO Pro Series (Own IP)</div>
+                                    <div class="ah-prop-item">PUBG/FreeFire Regionals</div>
+                                    <div class="ah-prop-item">Influencer Showdowns</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -990,7 +1040,7 @@
                 label1: "Total Population Reach",
                 stat2: "NPL",
                 label2: "Top Property (NPL)",
-                desc: "Cricket in Nepal is no longer just a sport; it is a unifying cultural event. Viewership data from 2025 shows that during Nepal Premier League matches, ISPs report a 400% spike in traffic. It is the only property that aggregates the entire family in front of a screen.",
+                desc: "<strong>Key Properties:</strong> NPL (Nepal Premier League), ICC CWC League II, International Home Series.<br><br>Cricket in Nepal is no longer just a sport; it is a unifying cultural event. Viewership data from 2025 shows that during Nepal Premier League matches, ISPs report a 400% spike in traffic. It is the only property that aggregates the entire family in front of a screen.",
                 citation: "Source: CAN Annual Report 2026 / Worldlink ISP Traffic Data",
                 color: "#003366",
                 chartTitle: "Viewer Demographics",
@@ -1003,7 +1053,7 @@
                 label1: "Gen Z Penetration",
                 stat2: "High",
                 label2: "Social Engagement Rate",
-                desc: "While Cricket has the scale, Football has the passion. Fan clubs for European teams and local A-Division clubs drive the highest social media engagement. This audience is younger, urban, and more likely to make digital payments.",
+                desc: "<strong>Key Properties:</strong> SAFF Championship (Men/Women), Women's Franchise League, A-Division League.<br><br>While Cricket has the scale, Football has the passion. Fan clubs for European teams and local A-Division clubs drive the highest social media engagement. This audience is younger, urban, and more likely to make digital payments.",
                 citation: "Source: ANFA Digital Audit 2026 / FIFA Forward Report",
                 color: "#006400",
                 chartTitle: "Age Distribution",
@@ -1016,7 +1066,7 @@
                 label1: "Sport by Participation",
                 stat2: "35%",
                 label2: "Female Viewership",
-                desc: "Often overlooked by advertisers, Volleyball is the national sport of Nepal and dominates rural viewership. It has the highest female viewership share of any sport in the country, offering a unique opportunity for FMCG brands targeting household decision-makers.",
+                desc: "<strong>Key Properties:</strong> National Volleyball League (NVL), CAVA Nations League, Club Championships.<br><br>Often overlooked by advertisers, Volleyball is the national sport of Nepal and dominates rural viewership. It has the highest female viewership share of any sport in the country, offering a unique opportunity for FMCG brands targeting household decision-makers.",
                 citation: "Source: Ministry of Youth & Sports 2025 / NVA",
                 color: "#CC5500",
                 chartTitle: "Geographic Reach",
@@ -1029,7 +1079,7 @@
                 label1: "Active Gamers",
                 stat2: "55m",
                 label2: "Avg Daily Time Spent",
-                desc: "With globally competitive teams in PUBG Mobile and Free Fire, Nepal's eSports scene is exploding. This audience does not watch TV; they watch streams. Acquiring eSports rights effectively locks in the next generation of subscribers (Age 12-22).",
+                desc: "<strong>Key Properties:</strong> DGO Pro Series (Own IP), PUBG/FreeFire Regional Qualifiers.<br><br>With globally competitive teams in PUBG Mobile and Free Fire, Nepal's eSports scene is exploding. This audience does not watch TV; they watch streams. Acquiring eSports rights effectively locks in the next generation of subscribers (Age 12-22).",
                 citation: "Source: Newzoo Global Games Market 2026 / Nepal Gaming Alliance",
                 color: "#4B0082",
                 chartTitle: "Device Usage",
