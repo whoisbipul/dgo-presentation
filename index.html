@@ -98,18 +98,19 @@
             position: relative; border-bottom: 1px solid var(--border-light);
         }
 
-        /* --- HOME STYLES --- */
-        #home { 
+        /* --- BACKGROUND PATTERN (SHARED) --- */
+        .bg-pattern {
             background-color: white; 
-            align-items: flex-start;
             background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
             background-size: 30px 30px; 
         }
-
-        #home::after {
+        .bg-pattern::after {
             content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 150px;
             background: linear-gradient(to bottom, transparent, white); pointer-events: none;
         }
+
+        /* --- HOME STYLES --- */
+        #home { align-items: flex-start; }
 
         .home-title { font-size: 3.2rem; font-weight: 800; line-height: 1.1; margin-bottom: 15px; color: var(--text-main); position: relative;}
         .home-subtitle { font-size: 1.2rem; color: var(--text-muted); max-width: 800px; margin-bottom: 40px; }
@@ -128,10 +129,7 @@
         }
 
         /* --- INTERACTIVE ASSET GRID --- */
-        .asset-container {
-            display: flex; gap: 15px; margin-bottom: 30px; position: relative;
-        }
-
+        .asset-container { display: flex; gap: 15px; margin-bottom: 30px; position: relative; }
         .asset-item {
             position: relative; background: white; border: 1px solid #ddd; padding: 12px 24px; border-radius: 50px;
             cursor: pointer; transition: all 0.3s ease; font-weight: 600; color: #333; display: flex; align-items: center; gap: 8px; z-index: 10;
@@ -183,50 +181,53 @@
         .step-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; }
         .step-desc { font-size: 0.85rem; color: #666; line-height: 1.5; }
 
-        /* Agenda Grid */
-        .agenda-section { border-top: 1px solid #eee; padding-top: 30px; width: 100%; }
-        .agenda-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-        .agenda-item { text-decoration: none; color: var(--text-muted); display: block; transition: 0.2s; }
-        .agenda-item strong { display: block; color: var(--text-main); font-size: 1rem; margin-bottom: 5px; }
-        .agenda-item:hover strong { color: var(--brand-red); }
-        .btn-start {
-            margin-top: 20px; background: var(--brand-red); color: white; padding: 12px 30px; border-radius: 6px;
-            text-decoration: none; font-weight: 600; display: inline-block;
+        /* --- SECTION 2: BENTO GRID --- */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            width: 100%;
         }
-        .btn-start:hover { background: var(--brand-red-hover); }
 
-        /* --- STRATEGY SECTION STYLES (NEW) --- */
-        .comparison-grid {
-            display: grid; grid-template-columns: 2fr 1fr; gap: 30px;
+        .bento-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid #eee;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex; flex-direction: column; justify-content: space-between;
         }
+        .bento-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            border-color: #fce7e7;
+        }
+
+        /* Span 2 columns */
+        .col-span-2 { grid-column: span 2; }
         
-        .global-case {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
-            background: #fafafa; padding: 25px; border-radius: 12px; border: 1px solid #eee;
+        /* Dark Theme Card for Nepal */
+        .card-dark {
+            background: linear-gradient(145deg, #1f2937, #111827);
+            color: white;
+            border: 1px solid #374151;
         }
-
-        .case-item {
-            position: relative;
-        }
-        .case-brand { font-size: 1.1rem; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
-        .case-brand.netflix { color: #E50914; }
-        .case-brand.jio { color: #0078BC; }
+        .card-dark h3, .card-dark .text-muted { color: white; opacity: 0.9; }
         
-        .case-stat { font-size: 1.8rem; font-weight: 800; color: #333; margin-bottom: 5px; }
-        .case-desc { font-size: 0.9rem; color: #666; line-height: 1.4; }
-        .citation { font-size: 0.7rem; color: #999; margin-top: 5px; font-style: italic; }
-
-        .nepal-opportunity {
-            background: #1f2937; color: white; padding: 30px; border-radius: 12px;
-            display: flex; flex-direction: column; justify-content: center;
+        .stat-huge {
+            font-size: 3rem; font-weight: 800; color: var(--text-main); margin: 10px 0;
+            line-height: 1; letter-spacing: -1px;
         }
-        .opp-title { color: var(--brand-red); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; font-weight: 700; margin-bottom: 15px; }
-        .opp-stat { font-size: 2.5rem; font-weight: 700; margin-bottom: 10px; line-height: 1.1; }
-        .opp-desc { font-size: 1rem; opacity: 0.8; line-height: 1.5; }
+        .stat-label { font-size: 0.85rem; text-transform: uppercase; color: #777; font-weight: 600; letter-spacing: 1px; }
+        .citation-box {
+            font-size: 0.75rem; color: #999; margin-top: 20px; font-style: italic; border-top: 1px solid #eee; padding-top: 10px;
+        }
+        .brand-logo-text { font-size: 1.2rem; font-weight: 800; margin-bottom: 10px; display:flex; align-items: center; gap:8px;}
 
         /* --- GENERIC COMPONENTS --- */
         .section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; }
-        .section-subtitle { font-size: 1.25rem; color: var(--text-muted); max-width: 600px; margin-bottom: 40px; }
+        .section-subtitle { font-size: 1.25rem; color: var(--text-muted); max-width: 700px; margin-bottom: 40px; }
         .card {
             background: var(--bg-card); padding: 30px; border-radius: var(--card-radius);
             box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.05);
@@ -237,11 +238,12 @@
         
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
         .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-
-        .kpi-card { text-align: center; border-top: 4px solid var(--brand-red); }
-        .kpi-value { font-size: 3rem; font-weight: 700; color: var(--text-main); font-feature-settings: "tnum"; }
-        .kpi-label { font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600; }
+        
+        .btn-start {
+            margin-top: 20px; background: var(--brand-red); color: white; padding: 12px 30px; border-radius: 6px;
+            text-decoration: none; font-weight: 600; display: inline-block;
+        }
+        .btn-start:hover { background: var(--brand-red-hover); }
 
         .timeline-wrapper { position: relative; padding-left: 40px; border-left: 2px solid #eee; margin-top: 30px;}
         .timeline-item { position: relative; margin-bottom: 40px; }
@@ -269,7 +271,8 @@
         body.presenter-mode .eco-step:not(:last-child)::after { content: '↓'; right: 50%; top: auto; bottom: -20px; transform: translateX(50%); }
         body.presenter-mode .home-title { font-size: 4rem; }
         body.presenter-mode .market-strip { display: flex; } 
-        body.presenter-mode .comparison-grid { grid-template-columns: 1fr; } 
+        body.presenter-mode .bento-grid { grid-template-columns: 1fr; }
+        body.presenter-mode .col-span-2 { grid-column: span 1; }
         #presenter-indicator { display: none; position: fixed; bottom: 20px; left: 20px; background: var(--brand-red); color: white; padding: 5px 15px; border-radius: 4px; font-weight: bold; z-index: 2000; }
         body.presenter-mode #presenter-indicator { display: block; }
 
@@ -279,7 +282,8 @@
             #global-logo { position: absolute; left: 0; width: 180px; }
             #global-logo img { max-height: 50px; }
             .nav-links { display: none; }
-            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr !important; }
+            .grid-2, .grid-3, .bento-grid { grid-template-columns: 1fr !important; }
+            .col-span-2 { grid-column: span 1; }
             .ecosystem-chain { flex-direction: column; }
             .eco-step:not(:last-child)::after { display: none; }
             .agenda-grid { grid-template-columns: 1fr 1fr; }
@@ -289,8 +293,6 @@
             .market-strip { flex-direction: column; gap: 20px; padding: 20px; }
             .market-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px; width: 100%; }
             .market-stat:last-child { border-bottom: none; }
-            .comparison-grid { grid-template-columns: 1fr; }
-            .global-case { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -324,7 +326,7 @@
     <main>
         
         <!-- 1. HOME: THE EDUCATIONAL OVERVIEW -->
-        <section id="home">
+        <section id="home" class="bg-pattern">
             <div class="container">
                 <div class="fade-in-up">
                     <span class="badge badge-red"><span class="live-dot"></span>Executive Overview</span>
@@ -332,150 +334,125 @@
                     <p class="home-subtitle">Deconstructing the ecosystem of sports on DGO - how we acquire rights, manage the signal, and commercialize the experience ?</p>
                 </div>
 
-                <!-- INTERACTIVE PRIMARY ASSETS -->
+                <!-- ASSETS -->
                 <div class="asset-container fade-in-up delay-1">
                     <div style="font-size: 0.85rem; font-weight: 700; color: #999; text-transform: uppercase; align-self: center; margin-right: 10px;">Primary Assets:</div>
-                    <!-- Cricket -->
-                    <div class="asset-item">
-                        <div class="asset-dot"></div> Cricket
+                    <div class="asset-item"><div class="asset-dot"></div> Cricket
                         <div class="asset-popup">
-                            <div class="popup-img-wrapper">
-                                <img src="assets/cricket.jpg" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                <div class="img-placeholder" style="display:none">IMG</div>
-                            </div>
+                            <div class="popup-img-wrapper"><img src="assets/cricket.jpg" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="img-placeholder" style="display:none">IMG</div></div>
                             <div class="popup-text">Nepal Premier League stands out as one of the highest viewed sporting event in the country.</div>
                         </div>
                     </div>
-                    <!-- Football -->
-                    <div class="asset-item">
-                        <div class="asset-dot"></div> Football
+                    <div class="asset-item"><div class="asset-dot"></div> Football
                         <div class="asset-popup">
-                             <div class="popup-img-wrapper">
-                                <img src="assets/football.jpg" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                <div class="img-placeholder" style="display:none">IMG</div>
-                             </div>
+                             <div class="popup-img-wrapper"><img src="assets/football.jpg" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="img-placeholder" style="display:none">IMG</div></div>
                             <div class="popup-text">Football in Nepal has shown a great potential, specially with the women's team matches drawing a huge attention.</div>
                         </div>
                     </div>
-                    <!-- Volleyball -->
-                    <div class="asset-item">
-                        <div class="asset-dot"></div> Volleyball
+                    <div class="asset-item"><div class="asset-dot"></div> Volleyball
                         <div class="asset-popup">
-                             <div class="popup-img-wrapper">
-                                <img src="assets/volleyball.jpg" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                <div class="img-placeholder" style="display:none">IMG</div>
-                             </div>
+                             <div class="popup-img-wrapper"><img src="assets/volleyball.jpg" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="img-placeholder" style="display:none">IMG</div></div>
                             <div class="popup-text">The national game of Nepal has a huge commercial market, in a way - yet to be tapped.</div>
                         </div>
                     </div>
-                    <!-- eSports -->
-                    <div class="asset-item">
-                        <div class="asset-dot"></div> eSports
+                    <div class="asset-item"><div class="asset-dot"></div> eSports
                         <div class="asset-popup">
-                             <div class="popup-img-wrapper">
-                                <img src="assets/eSports.jpg" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                <div class="img-placeholder" style="display:none">IMG</div>
-                             </div>
+                             <div class="popup-img-wrapper"><img src="assets/eSports.jpg" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="img-placeholder" style="display:none">IMG</div></div>
                             <div class="popup-text">The youngest sports vertical has a massive youth following and interest.</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- MARKET SNAPSHOT STRIP -->
+                <!-- MARKET SNAPSHOT -->
                 <div class="market-strip-container fade-in-up delay-2">
                     <div class="market-strip">
-                        <div class="market-stat">
-                            <div class="m-val"><span class="market-counter" data-target="38">0</span>M+</div>
-                            <div class="m-label">Internet Subscriptions</div>
-                        </div>
-                        <div class="market-stat">
-                            <div class="m-val">~<span class="market-counter" data-target="40">0</span>%</div>
-                            <div class="m-label">Youth Demographic (16-40)</div>
-                        </div>
-                        <div class="market-stat">
-                            <div class="m-val"><span class="market-counter" data-target="72">0</span>%</div>
-                            <div class="m-label">Smartphone Penetration</div>
-                        </div>
+                        <div class="market-stat"><div class="m-val"><span class="market-counter" data-target="38">0</span>M+</div><div class="m-label">Internet Subscriptions</div></div>
+                        <div class="market-stat"><div class="m-val">~<span class="market-counter" data-target="40">0</span>%</div><div class="m-label">Youth Demographic (16-40)</div></div>
+                        <div class="market-stat"><div class="m-val"><span class="market-counter" data-target="72">0</span>%</div><div class="m-label">Smartphone Penetration</div></div>
                     </div>
                     <div class="market-source">Source: NTA MIS Report (2024) / Central Bureau of Statistics (CBS) Data</div>
                 </div>
 
-                <!-- THE VALUE CHAIN -->
+                <!-- VALUE CHAIN -->
                 <div class="ecosystem-chain">
                     <div class="eco-step fade-in-up delay-3">
-                        <div class="step-icon">1</div>
-                        <div class="step-title">Acquisition</div>
-                        <div class="step-desc"><strong>The IP (Rights).</strong> Bidding for legal permission to broadcast leagues.</div>
+                        <div class="step-icon">1</div><div class="step-title">Acquisition</div><div class="step-desc"><strong>The IP (Rights).</strong> Bidding for legal permission to broadcast leagues.</div>
                     </div>
                     <div class="eco-step fade-in-up delay-4">
-                        <div class="step-icon">2</div>
-                        <div class="step-title">Production</div>
-                        <div class="step-desc"><strong>The Signal.</strong> Capturing live feeds via satellite/fiber and adding graphics.</div>
+                        <div class="step-icon">2</div><div class="step-title">Production</div><div class="step-desc"><strong>The Signal.</strong> Capturing live feeds via satellite/fiber and adding graphics.</div>
                     </div>
                     <div class="eco-step fade-in-up delay-5">
-                        <div class="step-icon">3</div>
-                        <div class="step-title">Delivery</div>
-                        <div class="step-desc"><strong>The Platform.</strong> Streaming to DGO users with low latency.</div>
+                        <div class="step-icon">3</div><div class="step-title">Delivery</div><div class="step-desc"><strong>The Platform.</strong> Streaming to DGO users with low latency.</div>
                     </div>
                     <div class="eco-step fade-in-up delay-5" style="transition-delay: 0.6s;">
-                        <div class="step-icon">4</div>
-                        <div class="step-title">Commercialization</div>
-                        <div class="step-desc"><strong>The Revenue.</strong> Converting viewership into money.</div>
+                        <div class="step-icon">4</div><div class="step-title">Commercialization</div><div class="step-desc"><strong>The Revenue.</strong> Converting viewership into money.</div>
                     </div>
                 </div>
 
-                <!-- CTA -->
                 <div class="agenda-section fade-in-up delay-5" style="transition-delay: 0.7s; text-align:right;">
                     <a href="#strategy" class="btn-start">Start: Why Sports? &rarr;</a>
                 </div>
             </div>
         </section>
 
-        <!-- 2. STRATEGIC VALIDATION (NEW SECTION) -->
-        <section id="strategy">
+        <!-- 2. STRATEGIC VALIDATION (UPDATED) -->
+        <section id="strategy" class="bg-pattern">
             <div class="container">
                 <div class="fade-in-up">
                     <h2 class="section-title">Why Sports? The Strategic Pivot</h2>
-                    <p class="section-subtitle">Live sports is the only content category that guarantees appointment viewing and mass acquisition in 2026. Global giants are pivoting—and Nepal is an open market.</p>
+                    <p class="section-subtitle">Live sports is the only content category that guarantees "appointment viewing" and mass acquisition. The global giants have validated this model.</p>
                 </div>
 
-                <div class="comparison-grid">
-                    <!-- Global Case Studies -->
-                    <div class="global-case fade-in-up delay-1">
-                        <!-- Netflix -->
-                        <div class="case-item">
-                            <div class="case-brand netflix">NETFLIX</div>
-                            <div class="case-stat">$5 Billion</div>
-                            <div class="case-desc">Deal for WWE Raw. Even the king of VOD is pivoting to "appointment viewing" live events.</div>
-                            <div class="citation">Source: Variety / CNBC (2024)</div>
+                <!-- BENTO GRID LAYOUT -->
+                <div class="bento-grid">
+                    
+                    <!-- JioHotstar (Big Feature) -->
+                    <div class="bento-card col-span-2 fade-in-up delay-1" style="border-left: 5px solid #0078BC;">
+                        <div>
+                            <div class="brand-logo-text" style="color: #0078BC;">JioHotstar <span style="font-weight:400; color:#999; font-size:0.8rem; margin-left:5px;">(Merged Entity)</span></div>
+                            <div class="stat-huge">60 Crore+</div>
+                            <div class="stat-label">Unique Viewers (IPL 2025)</div>
+                            <p style="margin-top: 15px; color: #555;">The merged entity has proven that Digital-First Free Streaming is the ultimate scale engine in South Asia.</p>
                         </div>
-                        <!-- JioCinema -->
-                        <div class="case-item" style="border-left: 1px solid #eee; padding-left: 20px;">
-                            <div class="case-brand jio">JioCinema</div>
-                            <div class="case-stat">44 Crore</div>
-                            <div class="case-desc">Viewers for IPL 2023. Validating that free/ad-supported sports drives mass adoption in South Asia.</div>
-                            <div class="citation">Source: Viacom18 / BARC India</div>
-                        </div>
+                        <div class="citation-box">Source: Industry Report 2025 (Projected Reach)</div>
                     </div>
 
-                    <!-- The Nepal Opportunity -->
-                    <div class="nepal-opportunity fade-in-up delay-2">
-                        <div class="opp-title">The Nepal Opportunity</div>
-                        <div class="opp-stat">The Vacuum</div>
-                        <div class="opp-desc">While global markets are saturated, Nepal has <strong>72% smartphone penetration</strong> but <strong>Zero</strong> dominant sports OTT platforms. DGO fills this void.</div>
+                    <!-- Nepal Gap -->
+                    <div class="bento-card card-dark fade-in-up delay-2">
+                        <div>
+                            <div class="brand-logo-text text-red">THE NEPAL GAP</div>
+                            <div class="stat-huge" style="color:white;">0</div>
+                            <div class="stat-label" style="color:rgba(255,255,255,0.7);">Dominant Sports OTTs</div>
+                            <p style="margin-top: 15px; color: rgba(255,255,255,0.8); font-size: 0.9rem;">
+                                30M+ users are waiting. The infrastructure (Fiber/4G) is ready. The content is missing.
+                            </p>
+                        </div>
+                        <div class="citation-box" style="border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.5);">Opportunity Index: High</div>
                     </div>
-                </div>
 
-                <!-- Strategic Fit Grid -->
-                <div class="grid-2 fade-in-up delay-3" style="margin-top: 40px;">
-                     <div class="card">
-                        <h3>Acquisition Engine</h3>
-                        <p class="text-muted">Sports brings users in cheaply (Lowest CPA). Users download DGO for the match.</p>
-                     </div>
-                     <div class="card">
-                        <h3>Retention Anchor</h3>
-                        <p class="text-muted">Once they are in, our entertainment library keeps them. Sports creates the habit.</p>
-                     </div>
+                    <!-- Netflix -->
+                    <div class="bento-card fade-in-up delay-3" style="border-left: 5px solid #E50914;">
+                        <div class="brand-logo-text" style="color: #E50914;">NETFLIX</div>
+                        <div class="stat-huge" style="font-size: 2.2rem;">$5 Billion</div>
+                        <div class="stat-label">WWE Deal</div>
+                        <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">Even the King of VOD is pivoting to Live Sports for retention.</p>
+                    </div>
+
+                    <!-- Prime Video -->
+                    <div class="bento-card fade-in-up delay-4" style="border-left: 5px solid #00A8E1;">
+                        <div class="brand-logo-text" style="color: #00A8E1;">prime video</div>
+                        <div class="stat-huge" style="font-size: 2.2rem;">Champions</div>
+                        <div class="stat-label">League Rights</div>
+                        <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">Using exclusive football to drive Prime subscriptions globally.</p>
+                    </div>
+
+                    <!-- Strategy Summary -->
+                    <div class="bento-card fade-in-up delay-5" style="background: #FFF0F0; border: 1px solid #FFCDD2;">
+                        <div class="brand-logo-text text-red">DGO STRATEGY</div>
+                        <p style="color: #B71C1C; font-weight: 600;">Acquire Low (Sports) &rarr; Retain High (Entertainment)</p>
+                        <p style="font-size: 0.85rem; margin-top: 5px; color: #D32F2F;">Sports reduces Customer Acquisition Cost (CAC) by 60% compared to Movies.</p>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -514,7 +491,6 @@
                     <h2 class="section-title">Commercialization</h2>
                     <p class="section-subtitle">Monetizing the eyeballs.</p>
                 </div>
-                
                 <div class="grid-2">
                     <div class="card fade-in-up">
                         <h3 class="text-red">Revenue Models</h3>
@@ -531,7 +507,6 @@
                             <p class="text-muted" style="font-size: 0.9rem;">"Powered By" logos, on-screen graphics, and studio branding.</p>
                         </div>
                     </div>
-
                     <div class="card fade-in-up delay-1" style="background: #f9f9f9; text-align: center;">
                         <h3>The Sports Funnel</h3>
                         <p class="text-muted" style="margin-bottom: 30px;">Sports has the lowest Cost Per Acquisition (CPA).</p>
