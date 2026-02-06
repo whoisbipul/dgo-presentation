@@ -22,7 +22,6 @@
             --border-light: #E5E7EB;
             --nav-height: 70px;
             --container-width: 1200px;
-            /* CHANGED FONT TO POPPINS */
             --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
             --ease-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -37,7 +36,7 @@
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
-            letter-spacing: -0.01em; /* Poppins looks better slightly tight */
+            letter-spacing: -0.01em; 
         }
 
         /* --- GLOBAL ELEMENTS --- */
@@ -262,32 +261,65 @@
         .c-bar-fill { height: 100%; background: #333; border-radius: 6px; width: 0%; transition: width 1s ease 0.3s; position: relative;}
         .c-val { width: 60px; text-align: right; font-weight: 700; color: #333; }
 
-        /* --- TECH PIPELINE --- */
+        /* --- UPDATED TECH PIPELINE (DARK MODE NOC STYLE) --- */
         .pipeline-container {
             display: flex; align-items: center; justify-content: space-between;
-            background: white; border: 1px solid #eee; padding: 40px; border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03); margin-top: 30px; margin-bottom: 30px;
+            position: relative;
+            background: #0f172a; /* Dark Blue/Black */
+            border: 1px solid #1e293b; 
+            padding: 50px 40px 40px; 
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+            margin-top: 30px; margin-bottom: 30px;
+            color: white;
         }
+
+        .live-indicator {
+            position: absolute; top: 20px; left: 30px;
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; color: var(--brand-red);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .blink-dot { width: 8px; height: 8px; background: var(--brand-red); border-radius: 50%; animation: pulse-fast 1s infinite; }
+        @keyframes pulse-fast { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+
         .pipe-node { text-align: center; position: relative; flex: 1; }
         .pipe-icon { 
-            width: 60px; height: 60px; background: #fff; border: 2px solid var(--brand-red); 
+            width: 60px; height: 60px; background: #1e293b; border: 2px solid #334155;
             border-radius: 50%; display: flex; align-items: center; justify-content: center; 
-            margin: 0 auto 15px; font-size: 1.5rem; position: relative; z-index: 2;
+            margin: 0 auto 15px; font-size: 1.5rem; position: relative; z-index: 2; color: white;
         }
-        .pipe-label { font-weight: 700; color: #333; font-size: 1rem; margin-bottom: 5px; }
-        .pipe-sub { font-size: 0.8rem; color: #777; }
+        .pipe-label { font-weight: 700; color: white; font-size: 1rem; margin-bottom: 2px; }
+        .pipe-tech { font-size: 0.75rem; color: #94a3b8; font-family: monospace; margin-bottom: 2px; }
+        .pipe-stat { font-size: 0.8rem; color: #4ade80; font-weight: 700; font-family: monospace; }
         
         /* Connecting Line */
         .pipe-line {
-            position: absolute; top: 30px; left: 50%; right: -50%; height: 3px; background: #eee; z-index: 1;
+            position: absolute; top: 30px; left: 50%; right: -50%; height: 3px; background: #334155; z-index: 1;
         }
         .pipe-node:last-child .pipe-line { display: none; }
         /* Animated Flow Dot */
         .flow-dot {
             position: absolute; top: -4px; left: 0; width: 10px; height: 10px; border-radius: 50%;
-            background: var(--brand-red); animation: flow 2s infinite linear;
+            background: #4ade80; box-shadow: 0 0 10px #4ade80; animation: flow 2s infinite linear;
         }
         @keyframes flow { 0% { left: 0; opacity: 1; } 100% { left: 100%; opacity: 0; } }
+
+        /* TECH GRID (NEW) */
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-top: 30px; }
+        .tech-card {
+            background: white; padding: 25px; border-radius: 12px; border: 1px solid #eee;
+            transition: transform 0.3s ease; display: flex; flex-direction: column;
+        }
+        .tech-card:hover { transform: translateY(-5px); border-color: var(--brand-red); }
+        .tc-header { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
+        .tc-icon { font-size: 1.5rem; }
+        .tc-title { font-weight: 700; font-size: 1rem; color: #333; }
+        .tc-desc { font-size: 0.9rem; color: #666; line-height: 1.6; margin-bottom: 20px; flex-grow: 1; }
+        .tc-tag { 
+            align-self: flex-start; font-size: 0.7rem; font-weight: 700; 
+            text-transform: uppercase; background: #f3f4f6; color: #555; 
+            padding: 4px 10px; border-radius: 4px; letter-spacing: 0.5px; 
+        }
 
         /* --- COMMERCIAL & TIMELINE --- */
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
@@ -341,7 +373,7 @@
             .market-strip { flex-direction: column; gap: 20px; padding: 20px; }
             .market-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px; width: 100%; }
             .market-stat:last-child { border-bottom: none; }
-            .pipeline-container { flex-direction: column; gap: 40px; }
+            .pipeline-container { flex-direction: column; gap: 40px; padding-top: 60px;}
             .pipe-line { display: none; } /* Simplified for mobile */
             .flywheel-container { flex-direction: column; gap: 20px; }
             .fw-arrow { transform: rotate(90deg); padding: 10px 0; }
@@ -533,19 +565,84 @@
             </div>
         </section>
 
-        <!-- 3. BROADCAST OPS -->
-        <section id="broadcast">
+        <!-- 3. BROADCAST OPS (UPDATED WITH TECH STACK) -->
+        <section id="broadcast" class="bg-pattern">
             <div class="container">
                 <div class="fade-in-up">
                     <h2 class="section-title">Broadcast Operations</h2>
-                    <p class="section-subtitle">How we deliver a 4K Live Signal with <5 second latency.</p>
+                    <p class="section-subtitle">Delivering a 4K Live Signal in a bandwidth-constrained environment.</p>
                 </div>
                 
+                <!-- ENHANCED LIVE PIPELINE -->
                 <div class="pipeline-container fade-in-up delay-1">
-                    <div class="pipe-node"><div class="pipe-icon">📡</div><div class="pipe-label">Source Ingest</div><div class="pipe-sub">Satellite / Fiber</div><div class="pipe-line"><div class="flow-dot"></div></div></div>
-                    <div class="pipe-node"><div class="pipe-icon">🎛️</div><div class="pipe-label">Processing</div><div class="pipe-sub">Cloud Transcoding</div><div class="pipe-line"><div class="flow-dot" style="animation-delay: 0.5s"></div></div></div>
-                    <div class="pipe-node"><div class="pipe-icon">☁️</div><div class="pipe-label">CDN Edge</div><div class="pipe-sub">Akamai / Cloudflare</div><div class="pipe-line"><div class="flow-dot" style="animation-delay: 1s"></div></div></div>
-                    <div class="pipe-node"><div class="pipe-icon">📱</div><div class="pipe-label">User Screen</div><div class="pipe-sub">Adaptive Bitrate Player</div></div>
+                    <div class="live-indicator">
+                        <span class="blink-dot"></span> LIVE SIGNAL PATH
+                    </div>
+                    
+                    <!-- Step 1 -->
+                    <div class="pipe-node">
+                        <div class="pipe-icon">📡</div>
+                        <div class="pipe-label">Ingest</div>
+                        <div class="pipe-tech">Protocol: SRT (UDP)</div>
+                        <div class="pipe-stat">Bitrate: <span class="live-num">12.5</span> Mbps</div>
+                        <div class="pipe-line"><div class="flow-dot"></div></div>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="pipe-node">
+                        <div class="pipe-icon">🎛️</div>
+                        <div class="pipe-label">Transcoding</div>
+                        <div class="pipe-tech">Codec: HEVC (H.265)</div>
+                        <div class="pipe-stat">Profile: ABR Ladder</div>
+                        <div class="pipe-line"><div class="flow-dot" style="animation-delay: 0.5s"></div></div>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="pipe-node">
+                        <div class="pipe-icon">☁️</div>
+                        <div class="pipe-label">Local Peering</div>
+                        <div class="pipe-tech">Node: NPIX / KTM</div>
+                        <div class="pipe-stat">Latency: <span class="live-latency">24</span>ms</div>
+                        <div class="pipe-line"><div class="flow-dot" style="animation-delay: 1s"></div></div>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="pipe-node">
+                        <div class="pipe-icon">📱</div>
+                        <div class="pipe-label">Playback</div>
+                        <div class="pipe-tech">Player: ExoPlayer</div>
+                        <div class="pipe-stat">Buffer: Healthy</div>
+                    </div>
+                </div>
+
+                <!-- TECH STACK GRID -->
+                <div class="grid-3 fade-in-up delay-2">
+                    <!-- Card 1 -->
+                    <div class="tech-card">
+                        <div class="tc-header">
+                            <div class="tc-icon">📉</div>
+                            <div class="tc-title">Data Optimization</div>
+                        </div>
+                        <p class="tc-desc">We use <strong>HEVC (H.265)</strong> compression to deliver 1080p quality at just <strong>4Mbps</strong>. This saves users 40% data compared to standard streams.</p>
+                        <div class="tc-tag">User Benefit: Less Data Use</div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="tech-card">
+                        <div class="tc-header">
+                            <div class="tc-icon">⚡</div>
+                            <div class="tc-title">Local Peering (NPIX)</div>
+                        </div>
+                        <p class="tc-desc">Traffic stays inside Nepal. By peering directly with local ISPs via <strong>NPIX</strong>, we bypass expensive international bandwidth and reduce latency.</p>
+                        <div class="tc-tag">Ops Benefit: Lower Cost</div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="tech-card">
+                        <div class="tc-header">
+                            <div class="tc-icon">🛡️</div>
+                            <div class="tc-title">Signal Reliability</div>
+                        </div>
+                        <p class="tc-desc">We replaced RTMP with <strong>SRT (Secure Reliable Transport)</strong>. This recovers lost packets during transmission, preventing "glitches" even on unstable connections.</p>
+                        <div class="tc-tag">Quality: Zero Glitch</div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -844,6 +941,23 @@
         }, { threshold: 0.5 });
         const marketStrip = document.querySelector('.market-strip');
         if (marketStrip) marketObserver.observe(marketStrip);
+
+        // --- LIVE PIPELINE SIMULATION (PAGE 3) ---
+        setInterval(() => {
+            // Randomize Bitrate between 12.0 and 13.0
+            const bitrateNodes = document.querySelectorAll('.live-num');
+            bitrateNodes.forEach(node => {
+                const val = (12 + Math.random()).toFixed(1);
+                node.innerText = val;
+            });
+
+            // Randomize Latency between 22 and 26
+            const latencyNodes = document.querySelectorAll('.live-latency');
+            latencyNodes.forEach(node => {
+                const val = Math.floor(22 + Math.random() * 5);
+                node.innerText = val;
+            });
+        }, 2000); // Update every 2 seconds
 
         // --- PRESENTER MODE ---
         $('#presenter-toggle').addEventListener('click', () => {
