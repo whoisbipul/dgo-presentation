@@ -99,7 +99,7 @@
             position: relative; border-bottom: 1px solid var(--border-light);
         }
 
-        /* --- BACKGROUND PATTERN --- */
+        /* --- BG PATTERN --- */
         .bg-pattern {
             background-color: white; 
             background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
@@ -120,9 +120,7 @@
             margin-bottom: 8px; margin-right: 8px; vertical-align: middle;
             box-shadow: 0 0 0 rgba(211, 47, 47, 0.4); animation: pulse 2s infinite;
         }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(211, 47, 47, 0); } 100% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0); }
-        }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(211, 47, 47, 0); } 100% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0); } }
 
         /* --- ASSET GRID --- */
         .asset-container { display: flex; gap: 15px; margin-bottom: 30px; position: relative; }
@@ -179,10 +177,7 @@
 
         /* --- SECTION 2: BENTO GRID --- */
         .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            width: 100%;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; width: 100%; margin-bottom: 40px;
         }
 
         .pop-card {
@@ -199,8 +194,7 @@
         }
         
         .pop-card::after {
-            content: 'Click for Analysis ↗';
-            position: absolute; bottom: 15px; right: 20px;
+            content: 'Click for Analysis ↗'; position: absolute; bottom: 15px; right: 20px;
             font-size: 0.7rem; color: var(--brand-red); font-weight: bold; opacity: 0;
             transform: translateY(10px); transition: all 0.3s;
         }
@@ -208,10 +202,7 @@
 
         .col-span-2 { grid-column: span 2; }
         
-        .card-dark {
-            background: linear-gradient(145deg, #1f2937, #111827);
-            color: white; border: 1px solid #374151;
-        }
+        .card-dark { background: linear-gradient(145deg, #1f2937, #111827); color: white; border: 1px solid #374151; }
         .card-dark h3, .card-dark .text-muted { color: white; opacity: 0.9; }
         .card-dark:hover { border-color: var(--brand-red); }
         
@@ -225,7 +216,22 @@
         }
         .brand-logo-text { font-size: 1.2rem; font-weight: 800; margin-bottom: 10px; display:flex; align-items: center; gap:8px;}
 
-        /* --- DETAILED MODAL SYSTEM --- */
+        /* --- THE MOAT STRIP (NEW) --- */
+        .moat-strip {
+            display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;
+            background: white; border: 1px solid #eee; border-radius: 12px; padding: 25px;
+            margin-top: 20px;
+        }
+        .moat-item { display: flex; gap: 15px; align-items: flex-start; }
+        .moat-icon { 
+            background: #FFF8F8; color: var(--brand-red); width: 45px; height: 45px; 
+            border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        .moat-content h4 { margin: 0 0 5px 0; font-size: 1rem; color: #333; }
+        .moat-content p { margin: 0; font-size: 0.85rem; color: #666; line-height: 1.4; }
+
+        /* --- MODAL SYSTEM --- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); z-index: 5000;
@@ -251,31 +257,20 @@
 
         .modal-header h2 { margin-bottom: 5px; color: var(--text-main); font-size: 2.2rem; font-weight: 800; }
         .modal-subtitle { color: #666; font-size: 1.1rem; margin-bottom: 25px; }
-        
         .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
         .m-stat-box { background: #fafafa; padding: 25px; border-radius: 12px; border: 1px solid #eee; text-align: center; }
         .m-stat-val { font-size: 2rem; font-weight: 800; color: var(--brand-red); margin-bottom: 5px; }
         .m-stat-desc { font-size: 0.85rem; color: #555; font-weight: 600; text-transform: uppercase; }
-
-        .chart-box { 
-            background: #fff; padding: 20px; border-radius: 12px; border: 1px solid #eee; 
-            margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); 
-        }
+        .chart-box { background: #fff; padding: 20px; border-radius: 12px; border: 1px solid #eee; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
         .chart-title { font-size: 0.9rem; font-weight: 700; color: #333; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-        
-        /* Mini Chart Components */
         .bar-chart { display: flex; align-items: flex-end; height: 120px; gap: 20px; padding-top: 20px; }
         .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
         .bar-val { font-size: 0.8rem; font-weight: 700; margin-bottom: 5px; color: #555; }
         .bar { width: 100%; background: #ddd; border-radius: 4px 4px 0 0; transition: height 1s ease; position: relative; }
         .bar.highlight { background: var(--brand-red); }
         .bar-label { font-size: 0.75rem; color: #888; margin-top: 8px; text-align: center; }
-
-        .key-insight { 
-            background: #FFF8F8; border-left: 4px solid var(--brand-red); padding: 20px; 
-            border-radius: 0 8px 8px 0; margin-bottom: 20px; color: #444; font-size: 1rem; line-height: 1.6;
-        }
-        .modal-footer { margin-top: 20px; pt-top: 15px; border-top: 1px solid #eee; font-size: 0.8rem; color: #555; font-weight: 600; }
+        .key-insight { background: #FFF8F8; border-left: 4px solid var(--brand-red); padding: 20px; border-radius: 0 8px 8px 0; margin-bottom: 20px; color: #444; font-size: 1rem; line-height: 1.6; }
+        .modal-footer { margin-top: 20px; pt-top: 15px; border-top: 1px solid #eee; font-size: 0.8rem; color: #999; font-style: italic; }
 
         /* --- GENERIC COMPONENTS --- */
         .section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; }
@@ -309,6 +304,7 @@
         body.presenter-mode .market-strip { display: flex; } 
         body.presenter-mode .bento-grid { grid-template-columns: 1fr; }
         body.presenter-mode .col-span-2 { grid-column: span 1; }
+        body.presenter-mode .moat-strip { grid-template-columns: 1fr; }
         #presenter-indicator { display: none; position: fixed; bottom: 20px; left: 20px; background: var(--brand-red); color: white; padding: 5px 15px; border-radius: 4px; font-weight: bold; z-index: 2000; }
         body.presenter-mode #presenter-indicator { display: block; }
 
@@ -330,6 +326,7 @@
             .market-stat:last-child { border-bottom: none; }
             .modal-content { width: 95%; padding: 20px; }
             .modal-grid { grid-template-columns: 1fr; }
+            .moat-strip { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -350,7 +347,6 @@
                 <div id="modal-subtitle" class="modal-subtitle">Strategic Analysis 2025</div>
             </div>
             
-            <!-- Key Stats -->
             <div class="modal-grid">
                 <div class="m-stat-box">
                     <div id="modal-stat-1" class="m-stat-val">0</div>
@@ -362,12 +358,8 @@
                 </div>
             </div>
 
-            <!-- Visualization Area (Injected via JS) -->
             <div id="modal-vis" class="chart-box"></div>
-
-            <!-- Descriptive Insight -->
             <div id="modal-insight" class="key-insight"></div>
-
             <div id="modal-footer" class="modal-footer">Source: Citation</div>
         </div>
     </div>
@@ -509,6 +501,23 @@
                         <p style="margin-top: 10px; font-size: 0.9rem; color: #666; line-height: 1.4;"><strong>Narrative Ecosystem:</strong> Driving engagement between matches.</p>
                     </div>
                 </div>
+
+                <!-- THE MOAT (How DGO Executes) -->
+                <div class="moat-strip fade-in-up delay-5">
+                    <div class="moat-item">
+                        <div class="moat-icon">⚡</div>
+                        <div class="moat-content"><h4>ISP Advantage</h4><p>DGO sits on the DishHome Fiber network. Zero buffering for 300K+ households.</p></div>
+                    </div>
+                    <div class="moat-item">
+                        <div class="moat-icon">🎙️</div>
+                        <div class="moat-content"><h4>Hyper-Localization</h4><p>Nepali Commentary & Local Studio Pre-shows. International apps can't match this.</p></div>
+                    </div>
+                    <div class="moat-item">
+                        <div class="moat-icon">💳</div>
+                        <div class="moat-content"><h4>Frictionless Pay</h4><p>Bundled with Internet Bill + Khalti/Esewa. No credit card barriers.</p></div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -554,8 +563,8 @@
                         <div class="bar-col"><div class="bar-val">70%</div><div class="bar highlight" style="height:70%"></div><div class="bar-label">Ad Revenue</div></div>
                     </div>
                 `,
-                desc: "<strong>Key Insight:</strong> JioHotstar proves that in South Asia, volume beats price. By removing the paywall for sports, they access 100% of the addressable market, monetizing via Server-Side Ad Insertion (SSAI).",
-                source: "Source: Media Partners Asia (MPA) 2025 Outlook / The Economic Times"
+                desc: "<strong>Key Insight:</strong> JioHotstar proves that in South Asia, volume beats price. By removing the paywall for sports, they access 100% of the addressable market, monetizing via Server-Side Ad Insertion (SSAI). The merger creates a monopoly with ~85% of India's streaming viewership.",
+                source: "Source: Media Partners Asia (MPA) 2025 Outlook / FICCI-EY Media & Entertainment Report 2024"
             },
             netflix: {
                 title: "Netflix",
@@ -571,8 +580,8 @@
                         <div class="bar-col"><div class="bar-val">High</div><div class="bar highlight" style="height:90%"></div><div class="bar-label">WWE (Weekly)</div></div>
                     </div>
                 `,
-                desc: "<strong>Key Insight:</strong> VOD has a 'Binge & Cancel' problem. Live sports creates 'Appointment Viewing,' forcing users to keep the app installed year-round.",
-                source: "Source: Netflix Investor Relations (Q4 2024 Letter) / Variety"
+                desc: "<strong>Key Insight:</strong> VOD has a 'Binge & Cancel' problem. Live sports creates 'Appointment Viewing,' forcing users to keep the app installed year-round. This deal ensures 52 weeks of active engagement, crucial for their ad-supported tier growth.",
+                source: "Source: Netflix SEC 10-K Filing 2024 / Variety Market Analysis"
             },
             sonyliv: {
                 title: "Sony LIV",
@@ -588,8 +597,8 @@
                         <div class="bar-col"><div class="bar-val">₹999</div><div class="bar highlight" style="height:90%"></div><div class="bar-label">Sony Sports</div></div>
                     </div>
                 `,
-                desc: "<strong>Key Insight:</strong> Football fans are price-insensitive for quality. Sony LIV targets the top 10M urban users who demand 4K streaming and zero lag.",
-                source: "Source: Ormax Media: The OTT Audience Report 2024"
+                desc: "<strong>Key Insight:</strong> Football fans are price-insensitive for quality. Sony LIV targets the top 10M urban users who demand 4K streaming and zero lag for UEFA properties. This validates the 'Premium Tier' strategy for DGO.",
+                source: "Source: Ormax Media: The OTT Audience Report 2024 / Sony Pictures Networks Financials"
             },
             prime: {
                 title: "Prime Video",
@@ -606,8 +615,8 @@
                         <div class="bar-col"><div class="bar-val">Shop</div><div class="bar" style="height:40%; background:#2a2a2a; color:white;"></div><div class="bar-label">Merch</div></div>
                     </div>
                 `,
-                desc: "<strong>Key Insight:</strong> Amazon isn't just selling content; they are selling a lifestyle. 'The Test' keeps cricket fans in the ecosystem during the off-season.",
-                source: "Source: Amazon Global 10-K Filing (2024) / Bloomberg Markets"
+                desc: "<strong>Key Insight:</strong> Amazon isn't just selling content; they are selling a lifestyle. 'The Test' keeps cricket fans in the ecosystem during the off-season, reducing churn and increasing retail cross-sell opportunities.",
+                source: "Source: Amazon Global 10-K Filing (2024) / Nielsen Streaming Ratings"
             },
             nepal: {
                 title: "Nepal Opportunity",
@@ -624,7 +633,7 @@
                         <div class="bar-col"><div class="bar-val">Y3</div><div class="bar highlight" style="height:100%"></div><div class="bar-label">Dominate</div></div>
                     </div>
                 `,
-                desc: "<strong>Key Insight:</strong> The hardware (Smartphones) and pipe (ISP) are ready. DGO provides the missing layer: The Platform.",
+                desc: "<strong>Key Insight:</strong> The hardware (Smartphones) and pipe (ISP) are ready. DGO provides the missing layer: The Platform. With 100% digital readiness in urban centers, the market is primed for a mobile-first sports OTT.",
                 source: "Source: Nepal Telecommunications Authority (NTA) MIS Report 2024 / World Bank Digital Data"
             }
         };
