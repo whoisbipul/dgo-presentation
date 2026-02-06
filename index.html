@@ -85,7 +85,7 @@
         #progress-bar { height: 100%; background: var(--brand-red); width: 0%; transition: width 0.2s; }
 
         /* --- LAYOUT UTILITIES --- */
-        .container { max-width: var(--container-width); margin: 0 auto; width: 100%; }
+        .container { max-width: var(--container-width); margin: 0 auto; width: 100%; position: relative; z-index: 2; }
         .text-red { color: var(--brand-red); }
         .text-muted { color: var(--text-muted); }
         .badge { display: inline-block; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; margin-bottom: 15px;}
@@ -99,10 +99,35 @@
         }
 
         /* --- HOME STYLES --- */
-        #home { background: white; align-items: flex-start; }
+        #home { 
+            background-color: white; 
+            align-items: flex-start;
+            /* SUBTLE TACTICAL DOT PATTERN */
+            background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+            background-size: 30px 30px; 
+        }
 
-        .home-title { font-size: 3.2rem; font-weight: 800; line-height: 1.1; margin-bottom: 15px; color: var(--text-main); }
+        /* Fading overlay at bottom of home for smooth transition */
+        #home::after {
+            content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 150px;
+            background: linear-gradient(to bottom, transparent, white); pointer-events: none;
+        }
+
+        .home-title { font-size: 3.2rem; font-weight: 800; line-height: 1.1; margin-bottom: 15px; color: var(--text-main); position: relative;}
         .home-subtitle { font-size: 1.2rem; color: var(--text-muted); max-width: 800px; margin-bottom: 40px; }
+
+        /* PULSING LIVE DOT */
+        .live-dot {
+            display: inline-block; width: 12px; height: 12px; background: var(--brand-red); border-radius: 50%;
+            margin-bottom: 8px; margin-right: 8px; vertical-align: middle;
+            box-shadow: 0 0 0 rgba(211, 47, 47, 0.4);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(211, 47, 47, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0); }
+        }
 
         /* --- INTERACTIVE ASSET GRID --- */
         .asset-container {
@@ -113,7 +138,7 @@
             position: relative; background: white; border: 1px solid #ddd; padding: 12px 24px; border-radius: 50px;
             cursor: pointer; transition: all 0.3s ease; font-weight: 600; color: #333; display: flex; align-items: center; gap: 8px; z-index: 10;
         }
-        .asset-item:hover { border-color: var(--brand-red); color: var(--brand-red); transform: translateY(-2px); z-index: 100; }
+        .asset-item:hover { border-color: var(--brand-red); color: var(--brand-red); transform: translateY(-2px); z-index: 100; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .asset-dot { width: 8px; height: 8px; background: #ccc; border-radius: 50%; transition: background 0.3s; }
         .asset-item:hover .asset-dot { background: var(--brand-red); }
 
@@ -125,52 +150,37 @@
             pointer-events: none; border: 1px solid #eee; overflow: hidden;
         }
         .asset-item:hover .asset-popup { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0) scale(1); }
-
         .popup-img-wrapper { width: 100%; height: 150px; overflow: hidden; background: #f0f0f0; }
         .asset-popup img { width: 100%; height: 100%; object-fit: cover; transition: transform 3s ease; }
         .asset-item:hover .asset-popup img { transform: scale(1.1); }
         .popup-text { padding: 15px; font-size: 0.85rem; color: #555; line-height: 1.4; text-align: left; font-weight: 400; background: white; }
 
         /* --- MARKET SNAPSHOT STRIP --- */
-        .market-strip-container {
-            margin-bottom: 50px;
-            width: 100%;
-        }
-
+        .market-strip-container { margin-bottom: 50px; width: 100%; }
         .market-strip {
-            display: flex;
-            background: linear-gradient(135deg, var(--brand-red) 0%, #b71c1c 100%);
-            border-radius: 8px;
-            padding: 20px 30px;
-            color: white;
-            justify-content: space-around;
-            align-items: center;
-            box-shadow: 0 10px 20px rgba(183, 28, 28, 0.2);
+            display: flex; background: linear-gradient(135deg, var(--brand-red) 0%, #b71c1c 100%);
+            border-radius: 8px; padding: 20px 30px; color: white; justify-content: space-around;
+            align-items: center; box-shadow: 0 10px 20px rgba(183, 28, 28, 0.2);
         }
-
         .market-stat { text-align: center; border-right: 1px solid rgba(255,255,255,0.2); flex: 1; }
         .market-stat:last-child { border-right: none; }
-
         .m-val { font-size: 2rem; font-weight: 800; line-height: 1; margin-bottom: 5px; font-feature-settings: "tnum"; font-variant-numeric: tabular-nums; }
         .m-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; }
-
-        /* Source Citation Text */
-        .market-source {
-            text-align: right; font-size: 0.75rem; color: #999; margin-top: 8px; font-style: italic;
-        }
+        .market-source { text-align: right; font-size: 0.75rem; color: #999; margin-top: 8px; font-style: italic; }
 
         /* --- ECOSYSTEM CHAIN --- */
         .ecosystem-chain { display: flex; align-items: stretch; gap: 20px; margin-bottom: 50px; width: 100%; position: relative; }
         .eco-step {
-            flex: 1; background: #F9FAFB; border: 1px solid #eee; border-radius: 8px; padding: 25px 20px;
+            flex: 1; background: white; border: 1px solid #eee; border-radius: 8px; padding: 25px 20px;
             position: relative; transition: transform 0.2s, border-color 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02); /* Slight shadow for white on grey pattern */
         }
         .eco-step:hover { transform: translateY(-5px); border-color: var(--brand-red); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
         .eco-step:not(:last-child)::after {
-            content: '→'; position: absolute; right: -18px; top: 50%; transform: translateY(-50%); font-size: 1.5rem; color: #ddd; z-index: 10;
+            content: '→'; position: absolute; right: -18px; top: 50%; transform: translateY(-50%); font-size: 1.5rem; color: #ccc; z-index: 10;
         }
         .step-icon {
-            font-size: 1.5rem; margin-bottom: 15px; color: var(--brand-red); background: white; width: 40px; height: 40px;
+            font-size: 1.5rem; margin-bottom: 15px; color: var(--brand-red); background: #fafafa; width: 40px; height: 40px;
             display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid #eee;
         }
         .step-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; }
@@ -218,6 +228,8 @@
         .delay-1 { transition-delay: 0.1s; }
         .delay-2 { transition-delay: 0.2s; }
         .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .delay-5 { transition-delay: 0.5s; }
 
         .img-placeholder { width: 100%; height: 100%; background: #e0e0e0; display: flex; align-items: center; justify-content: center; color: #888; }
 
@@ -286,7 +298,7 @@
         <section id="home">
             <div class="container">
                 <div class="fade-in-up">
-                    <span class="badge badge-red">Executive Overview</span>
+                    <span class="badge badge-red"><span class="live-dot"></span>Executive Overview</span>
                     <h1 class="home-title">The Business of Live Sports: <br><span class="text-red">From Pitch to Platform</span></h1>
                     <p class="home-subtitle">Deconstructing the ecosystem of sports on DGO - how we acquire rights, manage the signal, and commercialize the experience ?</p>
                 </div>
@@ -342,7 +354,6 @@
                         <div class="asset-dot"></div> eSports
                         <div class="asset-popup">
                              <div class="popup-img-wrapper">
-                                <!-- Fixed case sensitivity to eSports.jpg -->
                                 <img src="assets/eSports.jpg" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                                 <div class="img-placeholder" style="display:none">IMG</div>
                              </div>
@@ -374,30 +385,30 @@
                     </div>
                 </div>
 
-                <!-- THE VALUE CHAIN -->
-                <div class="ecosystem-chain fade-in-up delay-3">
-                    <div class="eco-step">
+                <!-- THE VALUE CHAIN (Sequentially Animated) -->
+                <div class="ecosystem-chain">
+                    <div class="eco-step fade-in-up delay-3">
                         <div class="step-icon">1</div>
                         <div class="step-title">Acquisition</div>
                         <div class="step-desc">
                             <strong>The IP (Rights).</strong> Bidding for legal permission to broadcast leagues.
                         </div>
                     </div>
-                    <div class="eco-step">
+                    <div class="eco-step fade-in-up delay-4">
                         <div class="step-icon">2</div>
                         <div class="step-title">Production</div>
                         <div class="step-desc">
                             <strong>The Signal.</strong> Capturing live feeds via satellite/fiber and adding graphics.
                         </div>
                     </div>
-                    <div class="eco-step">
+                    <div class="eco-step fade-in-up delay-5">
                         <div class="step-icon">3</div>
                         <div class="step-title">Delivery</div>
                         <div class="step-desc">
                             <strong>The Platform.</strong> Streaming to DGO users with low latency.
                         </div>
                     </div>
-                    <div class="eco-step">
+                    <div class="eco-step fade-in-up delay-5" style="transition-delay: 0.6s;">
                         <div class="step-icon">4</div>
                         <div class="step-title">Commercialization</div>
                         <div class="step-desc">
@@ -407,7 +418,7 @@
                 </div>
 
                 <!-- Agenda / CTA -->
-                <div class="agenda-section fade-in-up delay-3">
+                <div class="agenda-section fade-in-up delay-5" style="transition-delay: 0.7s;">
                     <p style="font-size: 0.9rem; color: #999; margin-bottom: 20px; font-weight: 600; text-transform: uppercase;">Presentation Agenda</p>
                     <div class="agenda-grid">
                         <a href="#ecosystem" class="agenda-item">
