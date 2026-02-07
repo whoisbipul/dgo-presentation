@@ -358,6 +358,52 @@
         .p-madhesh  { top: 75%; left: 68%; } /* Terai - Low */
         .p-koshi    { top: 70%; left: 82%; }
 
+        /* --- DIASPORA BLOCK --- */
+        .diaspora-container {
+            margin-top: 40px;
+            background: linear-gradient(to right, #f8f9fa, #ffffff);
+            border: 1px solid #eee;
+            border-radius: 16px;
+            padding: 35px;
+            position: relative;
+            overflow: hidden;
+        }
+        .diaspora-container::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--brand-red);
+        }
+
+        .diaspora-header { margin-bottom: 30px; }
+        .dia-title { font-size: 1.5rem; font-weight: 800; color: #333; margin-bottom: 5px; }
+        .dia-sub { color: #666; font-size: 0.95rem; max-width: 800px; }
+
+        .diaspora-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+        .dia-card {
+            background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px;
+            display: flex; gap: 15px; align-items: flex-start;
+            transition: transform 0.3s;
+        }
+        .dia-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+
+        .dia-icon { font-size: 2rem; background: #f3f4f6; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 8px; flex-shrink: 0; }
+
+        .dia-info { flex: 1; }
+        .dia-info h4 { font-size: 1rem; font-weight: 700; margin-bottom: 5px; color: #111; }
+
+        .dia-stat { font-size: 1.4rem; font-weight: 800; color: #333; margin-bottom: 8px; display: flex; align-items: baseline; gap: 8px; }
+        .dia-label { font-size: 0.65rem; text-transform: uppercase; color: #999; font-weight: 600; letter-spacing: 0.5px; }
+
+        .dia-bar-bg { width: 100%; height: 6px; background: #eee; border-radius: 3px; margin-bottom: 12px; overflow: hidden; }
+        .dia-bar-fill { height: 100%; background: var(--brand-red); border-radius: 3px; }
+
+        .dia-insight { font-size: 0.75rem; color: #666; line-height: 1.4; border-top: 1px dashed #eee; padding-top: 8px; }
+
+        .dia-footer { text-align: right; font-size: 0.7rem; color: #aaa; margin-top: 15px; font-style: italic; }
+
+        @media (max-width: 768px) {
+            .diaspora-grid { grid-template-columns: 1fr; }
+        }
+
 
         /* --- OPS MODEL --- */
         .value-stack { display: flex; flex-direction: column; gap: 15px; margin-bottom: 50px; }
@@ -836,6 +882,50 @@
                         <div class="province-node p-madhesh" id="pn-madhesh"><span class="pn-score">🏏</span> Madhesh</div>
                         <div class="province-node p-koshi" id="pn-koshi"><span class="pn-score">⚽</span> Koshi</div>
                     </div>
+                </div>
+
+                <!-- GLOBAL DIASPORA BLOCK -->
+                <div class="diaspora-container fade-in-up delay-3">
+                    <div class="diaspora-header">
+                        <h3 class="dia-title">The "Beyond Borders" Opportunity</h3>
+                        <p class="dia-sub">Monetizing the 4M+ Non-Resident Nepalis (NRN). While domestic traffic drives volume, international traffic drives direct revenue.</p>
+                    </div>
+                    
+                    <div class="diaspora-grid">
+                        <!-- Middle East (Volume) -->
+                        <div class="dia-card volume-card">
+                            <div class="dia-icon">🏗️</div>
+                            <div class="dia-info">
+                                <h4>Middle East & Malaysia</h4>
+                                <div class="dia-stat">2.2M+ <span class="dia-label">Est. Audience</span></div>
+                                <div class="dia-bar-bg"><div class="dia-bar-fill" style="width: 85%;"></div></div>
+                                <p class="dia-insight"><strong>Strategy:</strong> Low Data, Mobile-First. High engagement during weekends (Friday).</p>
+                            </div>
+                        </div>
+
+                        <!-- West (Value) -->
+                        <div class="dia-card value-card">
+                            <div class="dia-icon">🎓</div>
+                            <div class="dia-info">
+                                <h4>Australia, USA & UK</h4>
+                                <div class="dia-stat">850K+ <span class="dia-label">Est. Audience</span></div>
+                                <div class="dia-bar-bg"><div class="dia-bar-fill" style="width: 40%; background: #006400;"></div></div>
+                                <p class="dia-insight"><strong>Strategy:</strong> Premium Subscription ($5/mo). High willingness to pay for HD quality.</p>
+                            </div>
+                        </div>
+
+                        <!-- India (Student/Mix) -->
+                        <div class="dia-card mix-card">
+                            <div class="dia-icon">🚆</div>
+                            <div class="dia-info">
+                                <h4>India</h4>
+                                <div class="dia-stat">600K+ <span class="dia-label">Est. Audience</span></div>
+                                <div class="dia-bar-bg"><div class="dia-bar-fill" style="width: 30%; background: #CC5500;"></div></div>
+                                <p class="dia-insight"><strong>Strategy:</strong> Hybrid Model. Target students and migrant workers.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dia-footer">Data Reference: Department of Foreign Employment (DoFE) & Remittance Flows 2025</div>
                 </div>
 
             </div>
