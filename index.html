@@ -276,7 +276,88 @@
         
         .asset-hero-card:hover .ah-prop-item { opacity: 1; }
 
-        /* --- QUALITY SECTION (REDESIGNED) --- */
+        /* --- QUALITY SECTION (MERGED SIMULATOR + DASHBOARD) --- */
+        
+        /* 1. SIMULATOR GRID */
+        .quality-grid {
+            display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 30px; margin-bottom: 50px;
+        }
+        .q-card {
+            border-radius: 16px; padding: 30px; display: flex; flex-direction: column;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); overflow: hidden;
+        }
+        .dark-theme { background: #111827; color: white; border: 1px solid #374151; }
+        .light-theme { background: white; color: #333; border: 1px solid #e5e7eb; }
+
+        .qc-header { display: flex; gap: 15px; align-items: flex-start; margin-bottom: 25px; }
+        .qc-icon {
+            font-size: 1.5rem; background: rgba(255,255,255,0.1); width: 45px; height: 45px;
+            display: flex; align-items: center; justify-content: center; border-radius: 8px; flex-shrink: 0;
+        }
+        .qc-sub { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; margin-top: 2px; }
+
+        /* LATENCY SIMULATOR */
+        .latency-stage { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
+        .lat-screen {
+            background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: space-between;
+            border: 1px solid rgba(255,255,255,0.05); position: relative; overflow: hidden;
+        }
+        .dgo-time { border-color: #4ade80; background: rgba(74, 222, 128, 0.05); }
+        .tv-time { border-color: #f87171; background: rgba(248, 113, 113, 0.05); opacity: 0.8; }
+
+        .ls-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; width: 140px; }
+        .ls-timer { font-family: monospace; font-size: 1.2rem; letter-spacing: 2px; color: white; }
+        .ls-delay-tag { font-size: 0.65rem; padding: 2px 6px; background: rgba(255,255,255,0.1); border-radius: 4px; color: #ccc;}
+        .ls-event { 
+            position: absolute; right: 0; top: 0; bottom: 0; width: 0; 
+            background: var(--brand-red); display: flex; align-items: center; 
+            padding-left: 0; font-weight: 800; font-size: 0.8rem; overflow: hidden;
+            transition: width 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap;
+        }
+        .ls-event.active { width: 120px; padding-left: 15px; box-shadow: -5px 0 15px rgba(0,0,0,0.5); }
+
+        .latency-controls { margin-top: auto; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: center; }
+        .btn-action {
+            background: var(--brand-red); color: white; border: none; padding: 10px 25px;
+            border-radius: 6px; font-weight: 700; cursor: pointer; text-transform: uppercase;
+            font-size: 0.85rem; transition: transform 0.1s; width: 100%; margin-bottom: 15px;
+        }
+        .btn-action:active { transform: scale(0.98); }
+        .lat-note { font-size: 0.8rem; color: #9ca3af; text-align: left; line-height: 1.5; }
+
+        /* FPS ANIMATION */
+        .fps-stage { margin-bottom: 20px; background: #f9fafb; padding: 20px; border-radius: 12px; }
+        .fps-row { margin-bottom: 25px; }
+        .fps-meta { display: flex; justify-content: space-between; font-size: 0.75rem; margin-bottom: 5px; font-weight: 600; }
+        .fps-val.highlight { color: var(--brand-red); }
+        .fps-desc { color: #888; font-weight: 400; }
+
+        .fps-track {
+            width: 100%; height: 8px; background: #e5e7eb; border-radius: 4px; position: relative;
+        }
+        .fps-ball {
+            width: 20px; height: 20px; background: #333; border-radius: 50%;
+            position: absolute; top: -6px; left: 0;
+        }
+        .ball-25 {
+            animation: moveRight 2s infinite steps(10); /* Choppy */
+            background: #666;
+        }
+        .ball-60 {
+            animation: moveRight 2s infinite linear; /* Smooth */
+            background: var(--brand-red); box-shadow: 0 2px 5px rgba(211, 47, 47, 0.4);
+        }
+
+        @keyframes moveRight {
+            0% { left: 0%; }
+            50% { left: 90%; }
+            100% { left: 0%; }
+        }
+        .fps-explanation { font-size: 0.8rem; color: #555; line-height: 1.5; padding: 0 10px; }
+
+
+        /* 2. COMPARISON DASHBOARD (TOGGLE) */
         .comparison-dashboard {
             background: #1f2937; border-radius: 16px; padding: 40px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.2); position: relative;
@@ -671,6 +752,11 @@
             .province-node { padding: 4px 8px; font-size: 0.6rem; }
             .pn-score { font-size: 0.9rem; }
 
+            .quality-grid { grid-template-columns: 1fr; }
+            .lat-screen { padding: 10px; }
+            .ls-timer { font-size: 1rem; }
+            .ls-label { width: 100px; font-size: 0.65rem; }
+
             .cd-grid { grid-template-columns: 1fr 1fr; }
             .elevation-grid { grid-template-columns: 1fr; }
             .cd-toggle-bg { width: 100%; }
@@ -1049,7 +1135,7 @@
             </div>
         </section>
 
-        <!-- 3.5 BROADCAST QUALITY (REDESIGNED) -->
+        <!-- 3.5 BROADCAST QUALITY (COMBINED) -->
         <section id="quality-gap" class="bg-pattern">
             <div class="container">
                 <div class="fade-in-up">
@@ -1058,8 +1144,90 @@
                     <p class="section-subtitle">Bridging the divide between "It works" and "It's world-class."</p>
                 </div>
 
-                <!-- 1. INTERACTIVE COMPARISON DASHBOARD -->
-                <div class="comparison-dashboard fade-in-up delay-1">
+                <!-- 1. SIMULATOR GRID (Goal/FPS) -->
+                <div class="quality-grid fade-in-up delay-1">
+                    <div class="q-card dark-theme">
+                        <div class="qc-header">
+                            <div class="qc-icon">⏱️</div>
+                            <div>
+                                <h3>The "Spoiler" Effect</h3>
+                                <p class="qc-sub">Latency Simulation</p>
+                            </div>
+                        </div>
+                        
+                        <div class="latency-stage">
+                            <!-- Real World Event -->
+                            <div class="lat-screen real-time">
+                                <div class="ls-label">Real Life (Stadium)</div>
+                                <div class="ls-timer" id="timer-real">00:00</div>
+                                <div class="ls-event" id="event-real">MATCH START</div>
+                            </div>
+
+                            <!-- DGO Stream -->
+                            <div class="lat-screen dgo-time">
+                                <div class="ls-label" style="color: #4ade80;">DGO (Low Latency)</div>
+                                <div class="ls-timer" id="timer-dgo">00:00</div>
+                                <div class="ls-delay-tag">Lag: 4s</div>
+                                <div class="ls-event" id="event-dgo">MATCH START</div>
+                            </div>
+
+                            <!-- Legacy TV/Pirate Stream -->
+                            <div class="lat-screen tv-time">
+                                <div class="ls-label" style="color: #f87171;">Legacy Cable / Pirate</div>
+                                <div class="ls-timer" id="timer-tv">00:00</div>
+                                <div class="ls-delay-tag">Lag: 45s</div>
+                                <div class="ls-event" id="event-tv">MATCH START</div>
+                            </div>
+                        </div>
+
+                        <div class="latency-controls">
+                            <button class="btn-action" onclick="triggerGoal()">⚽ SIMULATE GOAL</button>
+                            <p class="lat-note"><strong>The Insight:</strong> If a user gets a "GOAL!" notification on their phone before they see it on the stream, they feel cheated. We target < 6s latency.</p>
+                        </div>
+                    </div>
+
+                    <!-- VISUAL: FPS COMPARISON -->
+                    <div class="q-card light-theme">
+                        <div class="qc-header">
+                            <div class="qc-icon" style="background:var(--brand-red); color:white;">🎞️</div>
+                            <div>
+                                <h3>The "Motion" Standard</h3>
+                                <p class="qc-sub">25fps vs. 50fps (Frame Rate)</p>
+                            </div>
+                        </div>
+
+                        <div class="fps-stage">
+                            <!-- 25 FPS DEMO -->
+                            <div class="fps-row">
+                                <div class="fps-meta">
+                                    <span class="fps-val">25 FPS</span>
+                                    <span class="fps-desc">Nepal Standard Broadcast</span>
+                                </div>
+                                <div class="fps-track">
+                                    <div class="fps-ball ball-25"></div>
+                                </div>
+                            </div>
+
+                            <!-- 50 FPS DEMO -->
+                            <div class="fps-row">
+                                <div class="fps-meta">
+                                    <span class="fps-val highlight">50/60 FPS</span>
+                                    <span class="fps-desc">Global Sports Standard</span>
+                                </div>
+                                <div class="fps-track">
+                                    <div class="fps-ball ball-60"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fps-explanation">
+                            <p><strong>Why it matters:</strong> In movies, 24fps is "cinematic." In sports, fast-moving objects (cricket balls) disappear or "ghost" at low frame rates. DGO is the first in Nepal to enforce a strict <strong>50fps</strong> pipeline.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. INTERACTIVE COMPARISON DASHBOARD (Toggle) -->
+                <div class="comparison-dashboard fade-in-up delay-2">
                     <div class="cd-controls">
                         <div class="cd-toggle-bg">
                             <div class="cd-pill" id="cd-pill"></div>
@@ -1073,8 +1241,8 @@
                     </div>
                 </div>
 
-                <!-- 2. THE ELEVATION STRATEGY (ROS & PACKAGING) -->
-                <div class="elevation-section fade-in-up delay-2">
+                <!-- 3. THE ELEVATION STRATEGY (ROS & PACKAGING) -->
+                <div class="elevation-section fade-in-up delay-3">
                     <h3 class="grid-header" style="margin-top: 50px;">The Elevation Strategy: Beyond the Signal</h3>
                     <div class="elevation-grid">
                         
@@ -1707,6 +1875,70 @@
             });
         }, 2000); // Update every 2 seconds
         
+        // --- LATENCY SIMULATOR LOGIC (RESTORED) ---
+        let seconds = 0;
+        let timerInterval;
+        const realTimer = document.getElementById('timer-real');
+        const dgoTimer = document.getElementById('timer-dgo');
+        const tvTimer = document.getElementById('timer-tv');
+        const dgoLag = 4; // seconds
+        const tvLag = 15; // cheat: use 15s instead of 45s for faster demo
+
+        function startTimers() {
+            timerInterval = setInterval(() => {
+                seconds++;
+                
+                // Update Realtime
+                realTimer.innerText = formatTime(seconds);
+                
+                // Update DGO (Delayed by 4s)
+                if(seconds > dgoLag) dgoTimer.innerText = formatTime(seconds - dgoLag);
+                
+                // Update TV (Delayed by 15s)
+                if(seconds > tvLag) tvTimer.innerText = formatTime(seconds - tvLag);
+            }, 1000);
+        }
+
+        function formatTime(s) {
+            const mins = Math.floor(s / 60).toString().padStart(2, '0');
+            const secs = (s % 60).toString().padStart(2, '0');
+            return `${mins}:${secs}`;
+        }
+
+        function triggerGoal() {
+            // 1. Show Realtime Goal
+            showEvent('event-real');
+            
+            // 2. Show DGO Goal after lag
+            setTimeout(() => {
+                showEvent('event-dgo');
+            }, dgoLag * 1000);
+
+            // 3. Show TV Goal after huge lag
+            setTimeout(() => {
+                showEvent('event-tv');
+            }, tvLag * 1000);
+        }
+
+        function showEvent(id) {
+            const el = document.getElementById(id);
+            el.innerText = "GOAL !!!";
+            el.classList.add('active');
+            setTimeout(() => {
+                el.classList.remove('active');
+                el.innerText = "MATCH START"; // Reset text
+            }, 3000);
+        }
+
+        // Start timers when section is visible (using existing observer logic)
+        const qualitySection = document.getElementById('quality-gap');
+        const qObserver = new IntersectionObserver((entries) => {
+            if(entries[0].isIntersecting && !timerInterval) {
+                startTimers();
+            }
+        }, { threshold: 0.3 });
+        if(qualitySection) qObserver.observe(qualitySection);
+
         // --- DASHBOARD TOGGLE LOGIC (NEW) ---
         const cdData = {
             legacy: [
@@ -1768,7 +2000,7 @@
         `;
         document.head.appendChild(styleSheet);
 
-        // Initialize
+        // Initialize Toggle
         document.addEventListener('DOMContentLoaded', () => {
             setMode('legacy');
         });
