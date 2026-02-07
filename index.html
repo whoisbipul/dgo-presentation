@@ -292,33 +292,85 @@
         .geo-btn.active { background: var(--brand-red-light); color: var(--brand-red); border-color: var(--brand-red); }
         .geo-btn.active::after { content: '→'; }
 
-        .geo-map-area { flex: 1; position: relative; background: #f9f9f9; border-radius: 12px; overflow: hidden; }
-        /* Placeholder styling in case img is missing */
-        .geo-map-bg {
-            width: 100%; height: 100%; object-fit: contain; opacity: 0.2;
-            background-image: url('assets/nepal_map.png'); /* Assumes image exists */
-            background-position: center; background-repeat: no-repeat; background-size: 80%;
+        /* FIXED MAP CSS */
+        .geo-map-area { 
+            flex: 1; 
+            position: relative; 
+            background: #ffffff; /* Cleaner white background */
+            border-radius: 12px; 
+            overflow: hidden; 
         }
-        
-        .province-node {
-            position: absolute; width: 100px; padding: 8px; background: white; border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1); font-size: 0.7rem; font-weight: 700;
-            text-align: center; transition: all 0.3s ease; opacity: 0.5; transform: scale(0.9);
-            border: 2px solid transparent;
-        }
-        .province-node.active-node {
-            opacity: 1; transform: scale(1.1); z-index: 10; border-color: var(--brand-red);
-        }
-        .pn-score { display: block; font-size: 1.2rem; line-height: 1; margin-top: 4px; color: var(--brand-red); }
 
-        /* Approximate Positioning for Nepal Map */
-        .p-sudur { top: 20%; left: 5%; }
-        .p-karnali { top: 15%; left: 25%; }
-        .p-lumbini { top: 60%; left: 30%; }
-        .p-gandaki { top: 30%; left: 45%; }
-        .p-bagmati { top: 40%; left: 60%; }
-        .p-madhesh { top: 75%; left: 65%; }
-        .p-koshi { top: 35%; left: 80%; }
+        /* FIX: Use 'contain' to keep map proportions perfect so dots don't drift */
+        .geo-map-bg {
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain; 
+            opacity: 0.15; /* Subtle background */
+            background-image: url('assets/nepal_map.png'); /* Ensure this matches your file name */
+            background-position: center; 
+            background-repeat: no-repeat; 
+            background-size: contain; 
+        }
+
+        /* FIX: Smaller, cleaner nodes centered on coordinates */
+        .province-node {
+            position: absolute; 
+            width: 80px; 
+            padding: 6px 4px; 
+            background: white; 
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+            font-size: 0.65rem; 
+            font-weight: 700;
+            text-align: center; 
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            opacity: 0.6; 
+            transform: translate(-50%, -50%) scale(0.9); /* Center the dot on the coordinate */
+            border: 1px solid #eee;
+            z-index: 5;
+            cursor: pointer;
+        }
+
+        .province-node.active-node {
+            opacity: 1; 
+            transform: translate(-50%, -50%) scale(1.1); 
+            z-index: 10; 
+            border-color: var(--brand-red);
+            box-shadow: 0 8px 20px rgba(211, 47, 47, 0.15);
+        }
+
+        .pn-score { 
+            display: block; 
+            font-size: 1.1rem; 
+            line-height: 1.2; 
+            margin-top: 2px; 
+        }
+
+        /* --- REFINED COORDINATES (Geographically Accurate) --- */
+        /* Percentages are based on a centered map with 'contain' fit */
+        
+        /* Far West (Sudurpaschim) */
+        .p-sudur    { top: 35%; left: 15%; }
+
+        /* Mid-West (Karnali - Hills/Mountain) */
+        .p-karnali  { top: 28%; left: 32%; }
+
+        /* West (Lumbini - Terai/Plains) */
+        .p-lumbini  { top: 68%; left: 38%; }
+
+        /* Central (Gandaki - Hills) */
+        .p-gandaki  { top: 42%; left: 50%; }
+
+        /* Capital Region (Bagmati) */
+        .p-bagmati  { top: 52%; left: 65%; }
+
+        /* South East (Madhesh - Terai) */
+        .p-madhesh  { top: 78%; left: 70%; }
+
+        /* Far East (Koshi) */
+        .p-koshi    { top: 45%; left: 85%; }
+
 
         /* --- OPS MODEL --- */
         .value-stack { display: flex; flex-direction: column; gap: 15px; margin-bottom: 50px; }
@@ -507,7 +559,9 @@
             
             .geo-dashboard { flex-direction: column; }
             .geo-controls { width: 100%; border-right: none; border-bottom: 1px solid #eee; padding-bottom: 20px; padding-right: 0; }
-            .geo-map-area { height: 300px; }
+            .geo-map-area { height: 350px; }
+            .province-node { width: 60px; font-size: 0.55rem; }
+            .pn-score { font-size: 0.9rem; }
         }
     </style>
 </head>
