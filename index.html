@@ -276,7 +276,7 @@
         
         .asset-hero-card:hover .ah-prop-item { opacity: 1; }
 
-        /* --- QUALITY SECTION (MERGED SIMULATOR + DASHBOARD) --- */
+        /* --- QUALITY SECTION (MERGED SIMULATOR + DASHBOARD + EXPERIENCE) --- */
         
         /* 1. SIMULATOR GRID */
         .quality-grid {
@@ -394,28 +394,82 @@
         .status-danger { color: #f87171; text-shadow: 0 0 10px rgba(248, 113, 113, 0.3); }
         .status-success { color: #4ade80; text-shadow: 0 0 10px rgba(74, 222, 128, 0.3); }
 
-        /* --- ELEVATION STRATEGY CARDS --- */
-        .elevation-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
-        .ele-card {
-            background: white; border: 1px solid #eee; border-radius: 12px; padding: 30px;
-            display: flex; gap: 20px; transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .ele-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); border-color: var(--brand-red); }
+        /* --- 3. EXPERIENCE ENGINE CARDS (NEW) --- */
+        .xp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
 
-        .ele-icon {
-            width: 50px; height: 50px; background: var(--brand-red-light); color: var(--brand-red);
-            border-radius: 10px; display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; flex-shrink: 0;
+        .xp-card {
+            background: white; border: 1px solid #e5e7eb; border-radius: 16px;
+            overflow: hidden; cursor: pointer; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
         }
-        .ele-content h4 { margin-bottom: 5px; font-weight: 700; color: #333; }
-        .ele-content p { font-size: 0.85rem; color: #666; margin-bottom: 15px; line-height: 1.5; }
+        .xp-card:hover { transform: translateY(-3px); border-color: var(--brand-red); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
 
-        .ele-solution {
-            background: #f9fafb; padding: 15px; border-radius: 8px; border-left: 3px solid var(--brand-red);
-            font-size: 0.85rem; color: #444;
+        /* Compact State */
+        .xp-preview { padding: 25px; display: flex; align-items: center; gap: 20px; }
+        .xp-icon-bg {
+            width: 50px; height: 50px; background: #f3f4f6; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;
         }
-        .ele-solution ul { margin-top: 5px; padding-left: 15px; margin-bottom: 0; }
-        .ele-solution li { margin-bottom: 3px; color: #555; }
+        .xp-meta h4 { font-weight: 800; color: #111; margin-bottom: 4px; font-size: 1.1rem; }
+        .xp-meta p { font-size: 0.85rem; color: #666; margin: 0; line-height: 1.3; }
+        .xp-arrow { margin-left: auto; color: #ccc; font-weight: 700; transition: transform 0.3s; }
+
+        /* Expanded State */
+        .xp-content {
+            max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            background: #fafafa; border-top: 1px solid #f0f0f0;
+        }
+        .xp-card.active .xp-content { max-height: 400px; /* Arbitrary large height */ }
+        .xp-card.active .xp-arrow { transform: rotate(180deg); color: var(--brand-red); }
+        .xp-card.active { border-color: var(--brand-red); box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+
+        .xp-visual-box {
+            margin: 20px; height: 120px; background: white; border: 1px solid #eee;
+            border-radius: 8px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center;
+        }
+        .xp-list { padding: 0 20px 20px 40px; font-size: 0.85rem; color: #555; list-style-type: disc; }
+        .xp-list li { margin-bottom: 8px; }
+
+        /* --- VISUALIZATIONS (CSS Only) --- */
+
+        /* 1. Heatmap */
+        .heatmap-demo { width: 100%; height: 100%; position: relative; background: #e0f2fe; }
+        .hm-spot { position: absolute; width: 60px; height: 60px; background: radial-gradient(circle, rgba(255,0,0,0.8) 0%, rgba(255,0,0,0) 70%); transform: translate(-50%, -50%); border-radius: 50%; }
+        .hm-label { position: absolute; bottom: 5px; right: 10px; font-size: 0.6rem; color: #000; opacity: 0.5; font-weight: 700; }
+        .win-prob-demo {
+            position: absolute; bottom: 10px; left: 10px; right: 10px;
+            background: rgba(255,255,255,0.9); padding: 5px; border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .wp-bar { height: 6px; background: #ddd; border-radius: 3px; overflow: hidden; margin-bottom: 4px; }
+        .wp-fill { height: 100%; background: var(--brand-red); }
+        .wp-text { display: flex; justify-content: space-between; font-size: 0.6rem; font-weight: 700; color: #555; }
+
+        /* 2. Camera Angles */
+        .cam-angles { position: relative; width: 100%; height: 100%; }
+        .cam-target {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: #22c55e; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; color: white; font-weight: 700;
+        }
+        .cam {
+            position: absolute; background: white; padding: 2px 6px; border-radius: 4px;
+            font-size: 0.6rem; font-weight: 700; border: 1px solid #ccc;
+        }
+        .c-1 { top: 10px; left: 10px; } .c-2 { bottom: 10px; right: 10px; } .c-3 { top: 10px; right: 10px; }
+
+        /* 3. Audio Viz */
+        .audio-viz { display: flex; align-items: center; justify-content: center; gap: 4px; background: #111; color: white; flex-direction: column; }
+        .av-bar { width: 6px; height: 20px; background: var(--brand-red); animation: sound 0.8s infinite ease-in-out alternate; }
+        .av-bar:nth-child(odd) { animation-duration: 0.6s; }
+        .av-label { margin-top: 10px; font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+        @keyframes sound { 0% { height: 10px; opacity: 0.5; } 100% { height: 40px; opacity: 1; } }
+
+        /* 4. Narrative */
+        .narrative-box { background: #f8fafc; }
+        .n-timeline { display: flex; align-items: center; width: 80%; justify-content: space-between; }
+        .nt-node { font-size: 0.7rem; font-weight: 700; padding: 4px 8px; border-radius: 4px; background: #eee; color: #999; }
+        .nt-node.active { background: var(--brand-red); color: white; transform: scale(1.1); box-shadow: 0 4px 10px rgba(211, 47, 47, 0.3); }
+        .nt-line { flex: 1; height: 2px; background: #ddd; margin: 0 5px; }
 
         /* --- MAP DASHBOARD --- */
         .geo-dashboard {
@@ -758,7 +812,7 @@
             .ls-label { width: 100px; font-size: 0.65rem; }
 
             .cd-grid { grid-template-columns: 1fr 1fr; }
-            .elevation-grid { grid-template-columns: 1fr; }
+            .xp-grid { grid-template-columns: 1fr; }
             .cd-toggle-bg { width: 100%; }
             .cd-btn { width: 50%; font-size: 0.8rem; padding: 10px; }
             .cd-pill { width: 50%; }
@@ -1241,76 +1295,126 @@
                     </div>
                 </div>
 
-                <!-- 3. THE ELEVATION STRATEGY (ROS & PACKAGING) -->
-                <div class="elevation-section fade-in-up delay-3">
-                    <h3 class="grid-header" style="margin-top: 50px;">The Elevation Strategy: Beyond the Signal</h3>
-                    <div class="elevation-grid">
+                <!-- 3. THE EXPERIENCE ENGINE (NEW INTERACTIVE CARDS) -->
+                <div class="elevation-section fade-in-up delay-2">
+                    <div style="display:flex; justify-content:space-between; align-items:end; margin-bottom:30px; margin-top:60px;">
+                        <h3 class="grid-header" style="margin:0;">The Experience Engine</h3>
+                        <span style="font-size:0.8rem; color:#999;">Tap cards to reveal features</span>
+                    </div>
+
+                    <div class="xp-grid">
                         
-                        <!-- Card 1: ROS -->
-                        <div class="ele-card">
-                            <div class="ele-icon">📋</div>
-                            <div class="ele-content">
-                                <h4>Uniform ROS (Run of Show)</h4>
-                                <p><strong>Problem:</strong> Random start times, dead air before kickoff, abrupt cuts.</p>
-                                <div class="ele-solution">
-                                    <strong>The Fix:</strong> A script-driven broadcast.
-                                    <ul>
-                                        <li>T-30: Stream Start (Loop)</li>
-                                        <li>T-10: Studio Handoff</li>
-                                        <li>T-00: Kickoff (Exact)</li>
-                                    </ul>
+                        <!-- CARD 1: DATA -->
+                        <div class="xp-card" onclick="toggleXP(this)">
+                            <div class="xp-preview">
+                                <div class="xp-icon-bg">📊</div>
+                                <div class="xp-meta">
+                                    <h4>Data Intelligence</h4>
+                                    <p>Advanced Stats, Heatmaps & Win Probability.</p>
                                 </div>
+                                <div class="xp-arrow">↓</div>
+                            </div>
+                            <div class="xp-content">
+                                <div class="xp-visual-box">
+                                    <!-- CSS Heatmap Demo -->
+                                    <div class="heatmap-demo">
+                                        <div class="hm-spot" style="top:20%; left:30%; opacity:0.6;"></div>
+                                        <div class="hm-spot" style="top:50%; left:60%; opacity:0.8;"></div>
+                                        <div class="hm-spot" style="top:80%; left:40%; opacity:0.4;"></div>
+                                        <span class="hm-label">Player Heatmap (Live)</span>
+                                    </div>
+                                    <!-- Win Prob Demo -->
+                                    <div class="win-prob-demo">
+                                        <div class="wp-bar">
+                                            <div class="wp-fill" style="width: 65%;"></div>
+                                        </div>
+                                        <div class="wp-text"><span>Home: 65%</span><span>Away: 35%</span></div>
+                                    </div>
+                                </div>
+                                <ul class="xp-list">
+                                    <li><strong>Live Win Probability:</strong> Real-time AI prediction.</li>
+                                    <li><strong>Player Comparisons:</strong> Head-to-head stat overlays.</li>
+                                    <li><strong>Clean Scorebug:</strong> Modern, non-intrusive HUD.</li>
+                                </ul>
                             </div>
                         </div>
 
-                        <!-- Card 2: Packaged Shows -->
-                        <div class="ele-card">
-                            <div class="ele-icon">🎁</div>
-                            <div class="ele-content">
-                                <h4>Packaged Programming</h4>
-                                <p><strong>Problem:</strong> "Just the match." No context, no build-up.</p>
-                                <div class="ele-solution">
-                                    <strong>The Fix:</strong> Wrapping the event.
-                                    <ul>
-                                        <li><strong>Pre-Show:</strong> Lineup analysis & predictions.</li>
-                                        <li><strong>Mid-Show:</strong> Highlights & "Moment of the Half."</li>
-                                        <li><strong>Post-Show:</strong> Expert breakdown.</li>
-                                    </ul>
+                        <!-- CARD 2: VISUALS -->
+                        <div class="xp-card" onclick="toggleXP(this)">
+                            <div class="xp-preview">
+                                <div class="xp-icon-bg">🎥</div>
+                                <div class="xp-meta">
+                                    <h4>Visual Immersion</h4>
+                                    <p>Cinematic Angles & Super Slow-Mo.</p>
                                 </div>
+                                <div class="xp-arrow">↓</div>
+                            </div>
+                            <div class="xp-content">
+                                <div class="xp-visual-box" style="background: #000;">
+                                    <div class="cam-angles">
+                                        <div class="cam c-1">Spyder</div>
+                                        <div class="cam c-2">Stump</div>
+                                        <div class="cam c-3">Drone</div>
+                                        <div class="cam-target">🏏 Pitch</div>
+                                    </div>
+                                </div>
+                                <ul class="xp-list">
+                                    <li><strong>Multi-Cam:</strong> 12+ Cameras including Drone & Buggy.</li>
+                                    <li><strong>Super Slow-Mo:</strong> 1000fps replays for DRS clarity.</li>
+                                    <li><strong>Color Grading:</strong> Vibrant, high-contrast look (HDR).</li>
+                                </ul>
                             </div>
                         </div>
 
-                        <!-- Card 3: Visual Identity (AI Suggestion) -->
-                        <div class="ele-card">
-                            <div class="ele-icon">🎨</div>
-                            <div class="ele-content">
-                                <h4>Standardized Graphics (HUD)</h4>
-                                <p><strong>Problem:</strong> Inconsistent scoreboards, poor fonts, hard to read on mobile.</p>
-                                <div class="ele-solution">
-                                    <strong>The Fix:</strong> A "Mobile-First" HUD.
-                                    <ul>
-                                        <li>Big, bold score overlays.</li>
-                                        <li>Standardized colors for all leagues.</li>
-                                        <li>Dynamic "Stat Pops" (e.g., Run Rate).</li>
-                                    </ul>
+                        <!-- CARD 3: EMOTION (AUDIO) -->
+                        <div class="xp-card" onclick="toggleXP(this)">
+                            <div class="xp-preview">
+                                <div class="xp-icon-bg">🎧</div>
+                                <div class="xp-meta">
+                                    <h4>Sonic Atmosphere</h4>
+                                    <p>Audio Engineering & World-Class Commentary.</p>
                                 </div>
+                                <div class="xp-arrow">↓</div>
+                            </div>
+                            <div class="xp-content">
+                                <div class="xp-visual-box audio-viz">
+                                    <div class="av-bar"></div><div class="av-bar"></div><div class="av-bar"></div>
+                                    <div class="av-bar"></div><div class="av-bar"></div><div class="av-bar"></div>
+                                    <div class="av-label">Dolby Atmosphere Mix</div>
+                                </div>
+                                <ul class="xp-list">
+                                    <li><strong>The "Roar":</strong> Dedicated crowd ambient mics (-12db).</li>
+                                    <li><strong>Commentary:</strong> Separated center channel (-6db).</li>
+                                    <li><strong>Result:</strong> You feel the stadium, but hear the expert.</li>
+                                </ul>
                             </div>
                         </div>
 
-                        <!-- Card 4: Audio Engineering (AI Suggestion) -->
-                        <div class="ele-card">
-                            <div class="ele-icon">🎧</div>
-                            <div class="ele-content">
-                                <h4>Audio Mix & Commentary</h4>
-                                <p><strong>Problem:</strong> Crowd noise drowning out commentators. Mono audio.</p>
-                                <div class="ele-solution">
-                                    <strong>The Fix:</strong> The "International Mix".
-                                    <ul>
-                                        <li>Crowd Mics (Ambient) set to -12db.</li>
-                                        <li>Commentary (Center) set to -6db.</li>
-                                        <li>Result: Excitement without noise.</li>
-                                    </ul>
+                        <!-- CARD 4: NARRATIVE -->
+                        <div class="xp-card" onclick="toggleXP(this)">
+                            <div class="xp-preview">
+                                <div class="xp-icon-bg">🎭</div>
+                                <div class="xp-meta">
+                                    <h4>The Narrative</h4>
+                                    <p>Storytelling beyond the 90 minutes.</p>
                                 </div>
+                                <div class="xp-arrow">↓</div>
+                            </div>
+                            <div class="xp-content">
+                                <div class="xp-visual-box narrative-box">
+                                    <div class="n-timeline">
+                                        <div class="nt-node">Pre-Show</div>
+                                        <div class="nt-line"></div>
+                                        <div class="nt-node active">Match</div>
+                                        <div class="nt-line"></div>
+                                        <div class="nt-node">Post-Show</div>
+                                    </div>
+                                </div>
+                                <ul class="xp-list">
+                                    <li><strong>Uniform ROS:</strong> Structured Run-of-Show (No dead air).</li>
+                                    <li><strong>Hero Building:</strong> Player backstories & rivalries.</li>
+                                    <li><strong>Packaged Show:</strong> Analysis, Highlights, & Predictions.</li>
+                                </ul>
                             </div>
                         </div>
 
@@ -2004,6 +2108,16 @@
         document.addEventListener('DOMContentLoaded', () => {
             setMode('legacy');
         });
+
+        // --- EXPERIENCE CARD TOGGLE ---
+        function toggleXP(card) {
+            // Close others
+            document.querySelectorAll('.xp-card').forEach(c => {
+                if(c !== card) c.classList.remove('active');
+            });
+            // Toggle Clicked
+            card.classList.toggle('active');
+        }
 
         // --- PRESENTER MODE ---
         $('#presenter-toggle').addEventListener('click', () => {
