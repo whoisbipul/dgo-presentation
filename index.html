@@ -380,10 +380,16 @@
 
         .dia-card {
             background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px;
-            display: flex; gap: 15px; align-items: flex-start;
-            transition: transform 0.3s;
+            display: flex; flex-direction: column; /* Changed for accordion */
+            gap: 15px; 
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
         }
-        .dia-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .dia-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); border-color: #ddd; }
+        .dia-card.active { border-color: var(--brand-red); box-shadow: 0 10px 30px rgba(211, 47, 47, 0.1); transform: translateY(-5px); }
+
+        .dia-main-content { display: flex; gap: 15px; align-items: flex-start; width: 100%; }
 
         .dia-icon { font-size: 2rem; background: #f3f4f6; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 8px; flex-shrink: 0; }
 
@@ -397,6 +403,21 @@
         .dia-bar-fill { height: 100%; background: var(--brand-red); border-radius: 3px; }
 
         .dia-insight { font-size: 0.75rem; color: #666; line-height: 1.4; border-top: 1px dashed #eee; padding-top: 8px; }
+        .click-hint { font-size: 0.7rem; color: var(--brand-red); font-weight: 600; margin-top: 5px; opacity: 0; transition: opacity 0.3s; }
+        .dia-card:hover .click-hint { opacity: 1; }
+
+        /* Hidden Deep Dive Section */
+        .dia-deep-dive {
+            max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out;
+            background: #fafafa; margin: 0 -20px -20px -20px; border-radius: 0 0 12px 12px;
+            padding: 0 20px; border-top: 1px solid transparent;
+        }
+        .dia-card.active .dia-deep-dive { max-height: 300px; padding: 20px; border-top-color: #eee; }
+        
+        .dd-list { list-style: none; font-size: 0.75rem; color: #555; margin-bottom: 10px; }
+        .dd-list li { margin-bottom: 6px; padding-left: 15px; position: relative; }
+        .dd-list li::before { content: '•'; color: var(--brand-red); position: absolute; left: 0; font-weight: bold; }
+        .dd-source { font-size: 0.65rem; color: #999; font-style: italic; }
 
         .dia-footer { text-align: right; font-size: 0.7rem; color: #aaa; margin-top: 15px; font-style: italic; }
 
@@ -893,39 +914,75 @@
                     
                     <div class="diaspora-grid">
                         <!-- Middle East (Volume) -->
-                        <div class="dia-card volume-card">
-                            <div class="dia-icon">🏗️</div>
-                            <div class="dia-info">
-                                <h4>Middle East & Malaysia</h4>
-                                <div class="dia-stat">2.2M+ <span class="dia-label">Est. Audience</span></div>
-                                <div class="dia-bar-bg"><div class="dia-bar-fill" style="width: 85%;"></div></div>
-                                <p class="dia-insight"><strong>Strategy:</strong> Low Data, Mobile-First. High engagement during weekends (Friday).</p>
+                        <div class="dia-card volume-card" onclick="toggleDia(this)">
+                            <div class="dia-main-content">
+                                <div class="dia-icon">🏗️</div>
+                                <div class="dia-info">
+                                    <h4>Middle East & Malaysia</h4>
+                                    <div class="dia-stat">2.2M+ <span class="dia-label">Est. Audience</span></div>
+                                    <div class="dia-bar-bg"><div class="dia-bar-fill" style="width: 85%;"></div></div>
+                                    <p class="dia-insight"><strong>Strategy:</strong> Low Data, Mobile-First. High engagement during weekends (Friday).</p>
+                                    <div class="click-hint">Click for Sources ↓</div>
+                                </div>
+                            </div>
+                            <!-- Hidden Content -->
+                            <div class="dia-deep-dive">
+                                <ul class="dd-list">
+                                    <li><strong>Malaysia:</strong> ~600,000</li>
+                                    <li><strong>Qatar:</strong> ~500,000</li>
+                                    <li><strong>Saudi Arabia:</strong> ~400,000</li>
+                                    <li><strong>UAE:</strong> ~400,000</li>
+                                </ul>
+                                <div class="dd-source">Source: Department of Foreign Employment (DoFE) Annual Report 2023/24</div>
                             </div>
                         </div>
 
                         <!-- West (Value) -->
-                        <div class="dia-card value-card">
-                            <div class="dia-icon">🎓</div>
-                            <div class="dia-info">
-                                <h4>Australia, USA & UK</h4>
-                                <div class="dia-stat">850K+ <span class="dia-label">Est. Audience</span></div>
-                                <div class="dia-bar-bg"><div class="dia-bar-fill" style="width: 40%; background: #006400;"></div></div>
-                                <p class="dia-insight"><strong>Strategy:</strong> Premium Subscription ($5/mo). High willingness to pay for HD quality.</p>
+                        <div class="dia-card value-card" onclick="toggleDia(this)">
+                            <div class="dia-main-content">
+                                <div class="dia-icon">🎓</div>
+                                <div class="dia-info">
+                                    <h4>Australia, USA & UK</h4>
+                                    <div class="dia-stat">850K+ <span class="dia-label">Est. Audience</span></div>
+                                    <div class="dia-bar-bg"><div class="dia-bar-fill" style="width: 40%; background: #006400;"></div></div>
+                                    <p class="dia-insight"><strong>Strategy:</strong> Premium Subscription ($5/mo). High willingness to pay for HD quality.</p>
+                                    <div class="click-hint">Click for Sources ↓</div>
+                                </div>
+                            </div>
+                            <!-- Hidden Content -->
+                            <div class="dia-deep-dive">
+                                <ul class="dd-list">
+                                    <li><strong>USA:</strong> ~300,000+ (Census/IIE)</li>
+                                    <li><strong>Australia:</strong> ~250,000 (ABS Census 2021)</li>
+                                    <li><strong>UK:</strong> ~150,000+ (ONS Data)</li>
+                                </ul>
+                                <div class="dd-source">Source: ABS Census 2021 / US Census Bureau / ONS UK</div>
                             </div>
                         </div>
 
                         <!-- India (Student/Mix) -->
-                        <div class="dia-card mix-card">
-                            <div class="dia-icon">🚆</div>
-                            <div class="dia-info">
-                                <h4>India</h4>
-                                <div class="dia-stat">600K+ <span class="dia-label">Est. Audience</span></div>
-                                <div class="dia-bar-bg"><div class="dia-bar-fill" style="width: 30%; background: #CC5500;"></div></div>
-                                <p class="dia-insight"><strong>Strategy:</strong> Hybrid Model. Target students and migrant workers.</p>
+                        <div class="dia-card mix-card" onclick="toggleDia(this)">
+                            <div class="dia-main-content">
+                                <div class="dia-icon">🚆</div>
+                                <div class="dia-info">
+                                    <h4>India</h4>
+                                    <div class="dia-stat">600K+ <span class="dia-label">Est. Audience</span></div>
+                                    <div class="dia-bar-bg"><div class="dia-bar-fill" style="width: 30%; background: #CC5500;"></div></div>
+                                    <p class="dia-insight"><strong>Strategy:</strong> Hybrid Model. Target students and migrant workers in Metros.</p>
+                                    <div class="click-hint">Click for Sources ↓</div>
+                                </div>
+                            </div>
+                            <!-- Hidden Content -->
+                            <div class="dia-deep-dive">
+                                <ul class="dd-list">
+                                    <li><strong>Total Pop:</strong> 2M-3M (Estimated)</li>
+                                    <li><strong>Targetable:</strong> ~600k (Digital Natives)</li>
+                                    <li><strong>Key Hubs:</strong> Delhi, Bangalore, Mumbai</li>
+                                </ul>
+                                <div class="dd-source">Source: MoFA / EPG Reports (Peace & Friendship Treaty Data)</div>
                             </div>
                         </div>
                     </div>
-                    <div class="dia-footer">Data Reference: Department of Foreign Employment (DoFE) & Remittance Flows 2025</div>
                 </div>
 
             </div>
@@ -1335,6 +1392,16 @@
                     el.querySelector('.pn-score').innerText = '🎮';
                 });
             }
+        }
+
+        // --- DIASPORA TOGGLE ---
+        function toggleDia(element) {
+            // Close others
+            document.querySelectorAll('.dia-card').forEach(c => {
+                if(c !== element) c.classList.remove('active');
+            });
+            // Toggle clicked
+            element.classList.toggle('active');
         }
 
         // --- MODAL LOGIC ---
