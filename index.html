@@ -35,68 +35,87 @@
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
-            letter-spacing: -0.01em; 
+            letter-spacing: -0.01em;
         }
 
         /* --- GLOBAL ELEMENTS --- */
         #global-logo {
-            position: fixed; top: 0; left: 0; height: 90px; width: 300px; z-index: 2000; 
-            display: flex; align-items: center; padding-left: 20px; pointer-events: none; 
+            position: fixed;
+            top: 0; left: 0; height: 90px; width: 300px; z-index: 2000; 
+            display: flex; align-items: center; padding-left: 20px; pointer-events: none;
         }
         #global-logo img {
-            max-height: 65px; width: auto; display: block; pointer-events: auto;
+            max-height: 65px;
+            width: auto; display: block; pointer-events: auto;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
         }
         .logo-fallback {
-            font-weight: 800; font-size: 1.5rem; color: var(--text-main);
+            font-weight: 800;
+            font-size: 1.5rem; color: var(--text-main);
             display: flex; align-items: center; gap: 8px; pointer-events: auto;
-            background: rgba(255,255,255,0.95); padding: 8px 15px; border-radius: 8px; border: 1px solid #eee;
+            background: rgba(255,255,255,0.95); padding: 8px 15px; border-radius: 8px;
+            border: 1px solid #eee;
         }
-        .logo-fallback::before { content: ''; display: block; width: 14px; height: 14px; background: var(--brand-red); border-radius: 50%; }
+        .logo-fallback::before { content: ''; display: block; width: 14px;
+        height: 14px; background: var(--brand-red); border-radius: 50%; }
 
         #navbar {
-            position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height);
+            position: fixed;
+            top: 0; left: 0; right: 0; height: var(--nav-height);
             background: rgba(255, 255, 255, 0.98); border-bottom: 1px solid var(--border-light);
-            z-index: 1000; display: flex; align-items: center; justify-content: space-between; 
+            z-index: 1000;
+            display: flex; align-items: center; justify-content: space-between; 
             padding-right: 40px; padding-left: 280px; transition: all 0.3s ease;
         }
         .nav-links { display: flex; gap: 30px; list-style: none; }
         .nav-links li a {
-            text-decoration: none; color: var(--text-muted); font-weight: 500; font-size: 0.9rem;
+            text-decoration: none;
+            color: var(--text-muted); font-weight: 500; font-size: 0.9rem;
             position: relative; transition: color 0.3s;
         }
         .nav-links li a:hover, .nav-links li a.active { color: var(--brand-red); }
         .nav-links li a.active::after {
-            content: ''; position: absolute; bottom: -24px; left: 0; right: 0; height: 3px; background: var(--brand-red);
+            content: '';
+            position: absolute; bottom: -24px; left: 0; right: 0; height: 3px; background: var(--brand-red);
         }
 
         .btn-toggle {
-            background: none; border: 1px solid var(--border-light); padding: 6px 16px; border-radius: 6px;
-            cursor: pointer; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 6px;
+            background: none;
+            border: 1px solid var(--border-light); padding: 6px 16px; border-radius: 6px;
+            cursor: pointer; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center;
+            gap: 6px;
             transition: all 0.2s; font-family: var(--font-family);
         }
-        .btn-toggle:hover { border-color: var(--brand-red); color: var(--brand-red); }
+        .btn-toggle:hover { border-color: var(--brand-red);
+        color: var(--brand-red); }
 
-        #progress-container { position: fixed; top: var(--nav-height); left: 0; width: 100%; height: 3px; z-index: 999; background: transparent; }
-        #progress-bar { height: 100%; background: var(--brand-red); width: 0%; transition: width 0.2s; }
+        #progress-container { position: fixed; top: var(--nav-height); left: 0; width: 100%;
+        height: 3px; z-index: 999; background: transparent; }
+        #progress-bar { height: 100%; background: var(--brand-red);
+        width: 0%; transition: width 0.2s; }
 
-        .container { max-width: 1200px; margin: 0 auto; width: 100%; position: relative; z-index: 2; }
-        .badge { display: inline-block; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; margin-bottom: 15px;}
+        .container { max-width: 1200px; margin: 0 auto;
+        width: 100%; position: relative; z-index: 2; }
+        .badge { display: inline-block;
+        padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+        margin-bottom: 15px;}
         .badge-red { background: var(--brand-red-light); color: var(--brand-red); }
 
         /* --- BACKGROUND PATTERN --- */
         .bg-pattern {
-            background-color: white; 
+            background-color: white;
             background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
             background-size: 30px 30px; 
         }
         .bg-pattern::after {
-            content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 150px;
+            content: '';
+            position: absolute; bottom: 0; left: 0; right: 0; height: 150px;
             background: linear-gradient(to bottom, transparent, white); pointer-events: none;
         }
 
         section {
-            min-height: 100vh; padding: 80px 20px;
+            min-height: 100vh;
+            padding: 80px 20px;
             display: flex; flex-direction: column; justify-content: center;
             position: relative; border-bottom: 1px solid var(--border-light);
         }
@@ -105,77 +124,108 @@
         .section-subtitle { font-size: 1.1rem; color: var(--text-muted); max-width: 700px; margin-bottom: 40px; font-weight: 400; }
 
         /* --- HOME ASSETS --- */
-        .home-title { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; color: var(--text-main); position: relative;}
-        .home-subtitle { font-size: 1.2rem; color: var(--text-muted); max-width: 800px; margin-bottom: 40px; }
+        .home-title { font-size: 3.5rem;
+        font-weight: 800; line-height: 1.1; margin-bottom: 20px; color: var(--text-main); position: relative;}
+        .home-subtitle { font-size: 1.2rem;
+        color: var(--text-muted); max-width: 800px; margin-bottom: 40px; }
         .live-dot {
-            display: inline-block; width: 12px; height: 12px; background: var(--brand-red); border-radius: 50%;
+            display: inline-block;
+            width: 12px; height: 12px; background: var(--brand-red); border-radius: 50%;
             margin-bottom: 8px; margin-right: 8px; vertical-align: middle;
             box-shadow: 0 0 0 rgba(211, 47, 47, 0.4); animation: pulse 2s infinite;
         }
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(211, 47, 47, 0); } 100% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0); } }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0.7);
+        } 70% { box-shadow: 0 0 0 10px rgba(211, 47, 47, 0);
+        } 100% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0);
+        } }
 
         .asset-container { display: flex; gap: 15px; margin-bottom: 30px; position: relative; }
         .asset-item {
-            position: relative; background: white; border: 1px solid #ddd; padding: 12px 24px; border-radius: 50px;
-            cursor: pointer; transition: all 0.3s ease; font-weight: 600; color: #333; display: flex; align-items: center; gap: 8px; z-index: 10;
+            position: relative;
+            background: white; border: 1px solid #ddd; padding: 12px 24px; border-radius: 50px;
+            cursor: pointer; transition: all 0.3s ease; font-weight: 600;
+            color: #333; display: flex; align-items: center; gap: 8px; z-index: 10;
         }
-        .asset-item:hover { border-color: var(--brand-red); color: var(--brand-red); transform: translateY(-2px); z-index: 100; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .asset-dot { width: 8px; height: 8px; background: #ccc; border-radius: 50%; transition: background 0.3s; }
+        .asset-item:hover { border-color: var(--brand-red); color: var(--brand-red); transform: translateY(-2px); z-index: 100;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .asset-dot { width: 8px; height: 8px;
+        background: #ccc; border-radius: 50%; transition: background 0.3s; }
         .asset-item:hover .asset-dot { background: var(--brand-red); }
 
         .asset-popup {
-            position: absolute; bottom: 140%; left: 50%; transform: translateX(-50%) translateY(10px) scale(0.95);
+            position: absolute;
+            bottom: 140%; left: 50%; transform: translateX(-50%) translateY(10px) scale(0.95);
             width: 280px; background: white; border-radius: 12px; box-shadow: 0 15px 30px rgba(0,0,0,0.15);
             opacity: 0; visibility: hidden; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             pointer-events: none; border: 1px solid #eee; overflow: hidden;
         }
         .asset-item:hover .asset-popup { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0) scale(1); }
         .popup-img-wrapper { width: 100%; height: 150px; overflow: hidden; background: #f0f0f0; }
-        .asset-popup img { width: 100%; height: 100%; object-fit: cover; transition: transform 3s ease; }
+        .asset-popup img { width: 100%; height: 100%; object-fit: cover;
+        transition: transform 3s ease; }
         .asset-item:hover .asset-popup img { transform: scale(1.1); }
-        .popup-text { padding: 15px; font-size: 0.85rem; color: #555; line-height: 1.4; text-align: left; font-weight: 400; background: white; }
+        .popup-text { padding: 15px; font-size: 0.85rem; color: #555; line-height: 1.4; text-align: left;
+        font-weight: 400; background: white; }
 
         /* --- MARKET STRIP --- */
-        .market-strip-container { margin-bottom: 50px; width: 100%; }
+        .market-strip-container { margin-bottom: 50px;
+        width: 100%; }
         .market-strip {
-            display: flex; background: linear-gradient(135deg, var(--brand-red) 0%, #b71c1c 100%);
+            display: flex;
+            background: linear-gradient(135deg, var(--brand-red) 0%, #b71c1c 100%);
             border-radius: 12px; padding: 25px 30px; color: white; justify-content: space-around;
-            align-items: center; box-shadow: 0 15px 30px rgba(183, 28, 28, 0.25);
+            align-items: center;
+            box-shadow: 0 15px 30px rgba(183, 28, 28, 0.25);
         }
-        .market-stat { text-align: center; border-right: 1px solid rgba(255,255,255,0.2); flex: 1; }
+        .market-stat { text-align: center;
+        border-right: 1px solid rgba(255,255,255,0.2); flex: 1; }
         .market-stat:last-child { border-right: none; }
-        .m-val { font-size: 2.2rem; font-weight: 700; line-height: 1; margin-bottom: 5px; font-feature-settings: "tnum"; font-variant-numeric: tabular-nums; }
-        .m-label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; font-weight: 500;}
-        .market-source { text-align: right; font-size: 0.75rem; color: #999; margin-top: 8px; font-style: italic; }
+        .m-val { font-size: 2.2rem; font-weight: 700; line-height: 1; margin-bottom: 5px; font-feature-settings: "tnum";
+        font-variant-numeric: tabular-nums; }
+        .m-label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9;
+        font-weight: 500;}
+        .market-source { text-align: right; font-size: 0.75rem; color: #999; margin-top: 8px;
+        font-style: italic; }
 
         /* --- ECOSYSTEM CHAIN --- */
-        .ecosystem-chain { display: flex; align-items: stretch; gap: 20px; margin-bottom: 50px; width: 100%; position: relative; }
+        .ecosystem-chain { display: flex;
+        align-items: stretch; gap: 20px; margin-bottom: 50px; width: 100%; position: relative; }
         .eco-step {
-            flex: 1; background: white; border: 1px solid #eee; border-radius: 8px; padding: 25px 20px;
-            position: relative; transition: transform 0.2s, border-color 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            flex: 1;
+            background: white; border: 1px solid #eee; border-radius: 8px; padding: 25px 20px;
+            position: relative; transition: transform 0.2s, border-color 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
-        .eco-step:hover { transform: translateY(-5px); border-color: var(--brand-red); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .eco-step:hover { transform: translateY(-5px); border-color: var(--brand-red);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
         .eco-step:not(:last-child)::after {
-            content: '→'; position: absolute; right: -18px; top: 50%; transform: translateY(-50%); font-size: 1.5rem; color: #ccc; z-index: 10;
+            content: '';
+            position: absolute; right: -18px; top: 50%; transform: translateY(-50%); font-size: 1.5rem; color: #ccc; z-index: 10;
         }
         .step-icon {
-            font-size: 1.5rem; margin-bottom: 15px; color: var(--brand-red); background: #fafafa; width: 40px; height: 40px;
-            display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid #eee;
+            font-size: 1.5rem;
+            margin-bottom: 15px; color: var(--brand-red); background: #fafafa; width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center; border-radius: 50%;
+            border: 1px solid #eee;
         }
         .step-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; }
         .step-desc { font-size: 0.85rem; color: #666; line-height: 1.5; }
 
         /* --- STRATEGY GRID (BENTO) --- */
-        .grid-header { font-size: 0.9rem; font-weight: 700; color: #999; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px; padding-left: 5px; border-left: 3px solid var(--brand-red); }
+        .grid-header { font-size: 0.9rem;
+        font-weight: 700; color: #999; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px; padding-left: 5px; border-left: 3px solid var(--brand-red); }
         
         .bento-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; width: 100%; margin-bottom: 40px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); gap: 25px; width: 100%; margin-bottom: 40px;
         }
 
         .pop-card {
-            background: white; border-radius: 16px; padding: 30px; border: 1px solid #eee;
+            background: white;
+            border-radius: 16px; padding: 30px; border: 1px solid #eee;
             transition: all 0.4s var(--ease-elastic); position: relative; z-index: 1;
-            display: flex; flex-direction: column; justify-content: space-between;
+            display: flex; flex-direction: column;
+            justify-content: space-between;
             box-shadow: 0 4px 10px rgba(0,0,0,0.03); cursor: pointer;
         }
         
@@ -191,7 +241,8 @@
         .card-dark .citation-box { color: rgba(255,255,255,0.4) !important; border-color: rgba(255,255,255,0.1) !important; }
         
         .pop-card::after {
-            content: 'View Data ↗'; position: absolute; bottom: 30px; right: 30px; 
+            content: 'View Data ';
+            position: absolute; bottom: 30px; right: 30px; 
             font-size: 0.8rem; font-weight: 700; opacity: 0; transform: translateY(10px); 
             transition: all 0.3s; color: inherit;
         }
@@ -204,46 +255,60 @@
         .pop-card:hover::after { opacity: 0.6; transform: translateY(0); }
         .col-span-2 { grid-column: span 2; }
         
-        .brand-logo-text { font-size: 1.2rem; font-weight: 800; margin-bottom: 15px; display:flex; align-items: center; gap:8px; }
-        .stat-row { display: flex; gap: 30px; margin-bottom: 20px; }
-        .stat-huge { font-size: 2.2rem; font-weight: 800; color: #333; line-height: 1; margin-bottom: 5px; }
-        .stat-label { font-size: 0.8rem; text-transform: uppercase; color: #777; font-weight: 600; letter-spacing: 0.5px; }
-        .desc-text { font-size: 0.9rem; color: #555; line-height: 1.5; margin-bottom: 15px; }
-        .citation-box { font-size: 0.75rem; color: #999; font-style: italic; border-top: 1px solid #f0f0f0; padding-top: 10px; margin-top: auto; }
+        .brand-logo-text { font-size: 1.2rem;
+        font-weight: 800; margin-bottom: 15px; display:flex; align-items: center; gap:8px; }
+        .stat-row { display: flex;
+        gap: 30px; margin-bottom: 20px; }
+        .stat-huge { font-size: 2.2rem; font-weight: 800; color: #333;
+        line-height: 1; margin-bottom: 5px; }
+        .stat-label { font-size: 0.8rem; text-transform: uppercase; color: #777;
+        font-weight: 600; letter-spacing: 0.5px; }
+        .desc-text { font-size: 0.9rem; color: #555; line-height: 1.5;
+        margin-bottom: 15px; }
+        .citation-box { font-size: 0.75rem; color: #999; font-style: italic;
+        border-top: 1px solid #f0f0f0; padding-top: 10px; margin-top: auto; }
 
-        /* --- NEW FLYWHEEL CSS --- */
+        /* --- FLYWHEEL CSS --- */
         .flywheel-container {
-            display: flex; align-items: center; justify-content: space-between;
+            display: flex;
+            align-items: center; justify-content: space-between;
             background: white; border: 1px dashed #ccc; border-radius: 12px; padding: 30px;
             position: relative; margin-top: 20px;
         }
-        .fw-item { flex: 1; display: flex; gap: 15px; align-items: flex-start; padding: 0 10px; }
+        .fw-item { flex: 1; display: flex; gap: 15px; align-items: flex-start;
+        padding: 0 10px; }
         .fw-icon {
-            font-size: 2rem; background: var(--brand-red-light); width: 50px; height: 50px;
+            font-size: 2rem;
+            background: var(--brand-red-light); width: 50px; height: 50px;
             display: flex; align-items: center; justify-content: center; border-radius: 8px; flex-shrink: 0;
         }
         .fw-title { font-weight: 800; color: var(--text-main); margin-bottom: 5px; }
         .fw-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; }
         .fw-arrow { font-size: 1.5rem; color: #ccc; padding: 0 20px; font-weight: 300; }
 
-        /* --- UPDATED ASSET HERO CARDS (SLIDE UP INTERACTION) --- */
-        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 40px; }
+        /* --- ASSET HERO CARDS --- */
+        .grid-4 { display: grid;
+        grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 40px; }
         
         .asset-hero-card {
-            height: 420px; border-radius: 16px; overflow: hidden; position: relative; cursor: pointer;
+            height: 420px;
+            border-radius: 16px; overflow: hidden; position: relative; cursor: pointer;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
             background-color: #000;
             border: 1px solid rgba(0,0,0,0.1);
         }
         .ah-img-bg {
-            width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; opacity: 0.85;
+            width: 100%;
+            height: 100%; object-fit: cover; transition: transform 0.6s ease; opacity: 0.85;
         }
         .asset-hero-card:hover .ah-img-bg { transform: scale(1.1); opacity: 0.6; }
         
         .ah-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(to top, rgba(0,0,0,0.95) 10%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0) 100%);
-            padding: 25px; display: flex; flex-direction: column; justify-content: flex-end;
+            padding: 25px;
+            display: flex; flex-direction: column; justify-content: flex-end;
         }
         
         .ah-content {
@@ -253,7 +318,8 @@
         .asset-hero-card:hover .ah-content { transform: translateY(0); }
 
         .ah-badge { 
-            display: inline-block; padding: 4px 10px; border-radius: 4px; 
+            display: inline-block;
+            padding: 4px 10px; border-radius: 4px; 
             font-size: 0.65rem; font-weight: 700; text-transform: uppercase; 
             margin-bottom: 8px; color: white; letter-spacing: 1px;
         }
@@ -262,27 +328,30 @@
         .badge-volleyball { background: #CC5500; }
         .badge-esports { background: #4B0082; }
 
-        .ah-title { color: white; font-weight: 800; font-size: 1.8rem; margin-bottom: 5px; line-height: 1; text-transform: uppercase; }
-        .ah-usp { font-size: 0.85rem; color: rgba(255,255,255,0.8); margin-bottom: 15px; font-weight: 500; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px; }
+        .ah-title { color: white; font-weight: 800; font-size: 1.8rem; margin-bottom: 5px; line-height: 1;
+        text-transform: uppercase; }
+        .ah-usp { font-size: 0.85rem; color: rgba(255,255,255,0.8); margin-bottom: 15px; font-weight: 500;
+        border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px; }
         
         /* PROPERTIES LIST (REVEAL ON HOVER) */
-        .ah-props { display: flex; flex-direction: column; gap: 6px; }
+        .ah-props { display: flex;
+        flex-direction: column; gap: 6px; }
         .ah-prop-item {
-            font-size: 0.75rem; color: white; display: flex; align-items: center; gap: 8px;
+            font-size: 0.75rem;
+            color: white; display: flex; align-items: center; gap: 8px;
             opacity: 0; transition: opacity 0.3s ease 0.1s;
         }
-        .ah-prop-item::before { content: '★'; color: #FFD700; font-size: 0.6rem; }
-        
+        .ah-prop-item::before { content: '•'; color: #FFD700; font-size: 0.6rem; }
         .asset-hero-card:hover .ah-prop-item { opacity: 1; }
 
-        /* --- QUALITY SECTION (MERGED SIMULATOR + DASHBOARD + EXPERIENCE) --- */
-        
-        /* 1. SIMULATOR GRID */
+        /* --- QUALITY SECTION --- */
         .quality-grid {
-            display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 30px; margin-bottom: 50px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr; gap: 30px; margin-bottom: 50px;
         }
         .q-card {
-            border-radius: 16px; padding: 30px; display: flex; flex-direction: column;
+            border-radius: 16px;
+            padding: 30px; display: flex; flex-direction: column;
             box-shadow: 0 10px 25px rgba(0,0,0,0.05); overflow: hidden;
         }
         .dark-theme { background: #111827; color: white; border: 1px solid #374151; }
@@ -290,15 +359,18 @@
 
         .qc-header { display: flex; gap: 15px; align-items: flex-start; margin-bottom: 25px; }
         .qc-icon {
-            font-size: 1.5rem; background: rgba(255,255,255,0.1); width: 45px; height: 45px;
+            font-size: 1.5rem;
+            background: rgba(255,255,255,0.1); width: 45px; height: 45px;
             display: flex; align-items: center; justify-content: center; border-radius: 8px; flex-shrink: 0;
         }
         .qc-sub { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; margin-top: 2px; }
 
         /* LATENCY SIMULATOR */
-        .latency-stage { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
+        .latency-stage { display: flex;
+        flex-direction: column; gap: 12px; margin-bottom: 25px; }
         .lat-screen {
-            background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px;
+            background: rgba(0,0,0,0.3);
+            padding: 15px; border-radius: 8px;
             display: flex; align-items: center; justify-content: space-between;
             border: 1px solid rgba(255,255,255,0.05); position: relative; overflow: hidden;
         }
@@ -307,45 +379,54 @@
 
         .ls-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; width: 140px; }
         .ls-timer { font-family: monospace; font-size: 1.2rem; letter-spacing: 2px; color: white; }
-        .ls-delay-tag { font-size: 0.65rem; padding: 2px 6px; background: rgba(255,255,255,0.1); border-radius: 4px; color: #ccc;}
+        .ls-delay-tag { font-size: 0.65rem; padding: 2px 6px; background: rgba(255,255,255,0.1); border-radius: 4px;
+        color: #ccc;}
         .ls-event { 
-            position: absolute; right: 0; top: 0; bottom: 0; width: 0; 
+            position: absolute;
+            right: 0; top: 0; bottom: 0; width: 0; 
             background: var(--brand-red); display: flex; align-items: center; 
-            padding-left: 0; font-weight: 800; font-size: 0.8rem; overflow: hidden;
+            padding-left: 0; font-weight: 800; font-size: 0.8rem;
+            overflow: hidden;
             transition: width 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap;
         }
         .ls-event.active { width: 120px; padding-left: 15px; box-shadow: -5px 0 15px rgba(0,0,0,0.5); }
 
         .latency-controls { margin-top: auto; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: center; }
         .btn-action {
-            background: var(--brand-red); color: white; border: none; padding: 10px 25px;
+            background: var(--brand-red);
+            color: white; border: none; padding: 10px 25px;
             border-radius: 6px; font-weight: 700; cursor: pointer; text-transform: uppercase;
-            font-size: 0.85rem; transition: transform 0.1s; width: 100%; margin-bottom: 15px;
+            font-size: 0.85rem; transition: transform 0.1s;
+            width: 100%; margin-bottom: 15px;
         }
         .btn-action:active { transform: scale(0.98); }
         .lat-note { font-size: 0.8rem; color: #9ca3af; text-align: left; line-height: 1.5; }
 
         /* FPS ANIMATION */
-        .fps-stage { margin-bottom: 20px; background: #f9fafb; padding: 20px; border-radius: 12px; }
+        .fps-stage { margin-bottom: 20px;
+        background: #f9fafb; padding: 20px; border-radius: 12px; }
         .fps-row { margin-bottom: 25px; }
         .fps-meta { display: flex; justify-content: space-between; font-size: 0.75rem; margin-bottom: 5px; font-weight: 600; }
         .fps-val.highlight { color: var(--brand-red); }
         .fps-desc { color: #888; font-weight: 400; }
 
         .fps-track {
-            width: 100%; height: 8px; background: #e5e7eb; border-radius: 4px; position: relative;
+            width: 100%;
+            height: 8px; background: #e5e7eb; border-radius: 4px; position: relative;
         }
         .fps-ball {
-            width: 20px; height: 20px; background: #333; border-radius: 50%;
+            width: 20px;
+            height: 20px; background: #333; border-radius: 50%;
             position: absolute; top: -6px; left: 0;
         }
         .ball-25 {
-            animation: moveRight 2s infinite steps(10); /* Choppy */
+            animation: moveRight 2s infinite steps(10);
             background: #666;
         }
         .ball-60 {
-            animation: moveRight 2s infinite linear; /* Smooth */
-            background: var(--brand-red); box-shadow: 0 2px 5px rgba(211, 47, 47, 0.4);
+            animation: moveRight 2s infinite linear;
+            background: var(--brand-red);
+            box-shadow: 0 2px 5px rgba(211, 47, 47, 0.4);
         }
 
         @keyframes moveRight {
@@ -353,60 +434,75 @@
             50% { left: 90%; }
             100% { left: 0%; }
         }
-        .fps-explanation { font-size: 0.8rem; color: #555; line-height: 1.5; padding: 0 10px; }
+        .fps-explanation { font-size: 0.8rem;
+        color: #555; line-height: 1.5; padding: 0 10px; }
 
 
         /* 2. COMPARISON DASHBOARD (TOGGLE) */
         .comparison-dashboard {
-            background: #1f2937; border-radius: 16px; padding: 40px;
+            background: #1f2937;
+            border-radius: 16px; padding: 40px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.2); position: relative;
             overflow: hidden; color: white; margin-bottom: 50px;
         }
         .cd-controls { display: flex; justify-content: center; margin-bottom: 40px; }
         .cd-toggle-bg {
-            background: #111827; border-radius: 50px; padding: 5px;
+            background: #111827;
+            border-radius: 50px; padding: 5px;
             display: flex; position: relative; border: 1px solid #374151;
         }
         .cd-btn {
-            background: none; border: none; color: #9ca3af; padding: 12px 30px;
+            background: none;
+            border: none; color: #9ca3af; padding: 12px 30px;
             font-weight: 700; font-size: 0.9rem; cursor: pointer; z-index: 2;
             transition: color 0.3s; width: 200px;
         }
         .cd-btn.active { color: white; }
         .cd-pill {
-            position: absolute; top: 5px; left: 5px; width: 200px; height: calc(100% - 10px);
-            background: #374151; border-radius: 50px; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 1;
+            position: absolute;
+            top: 5px; left: 5px; width: 200px; height: calc(100% - 10px);
+            background: #374151; border-radius: 50px;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 1;
         }
 
         /* Dashboard Grid */
-        .cd-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .cd-grid { display: grid;
+        grid-template-columns: repeat(4, 1fr); gap: 20px; }
         .cd-stat-card {
-            background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px;
+            background: rgba(255,255,255,0.05);
+            padding: 20px; border-radius: 12px;
             border: 1px solid rgba(255,255,255,0.1); text-align: center;
             transition: all 0.3s;
         }
         .cd-label { font-size: 0.75rem; text-transform: uppercase; color: #9ca3af; letter-spacing: 1px; margin-bottom: 10px; }
-        .cd-value { font-size: 1.8rem; font-weight: 800; margin-bottom: 5px; display: block;}
+        .cd-value { font-size: 1.8rem; font-weight: 800; margin-bottom: 5px;
+        display: block;}
         .cd-desc { font-size: 0.8rem; opacity: 0.7; }
 
         /* Status Colors */
-        .status-danger { color: #f87171; text-shadow: 0 0 10px rgba(248, 113, 113, 0.3); }
-        .status-success { color: #4ade80; text-shadow: 0 0 10px rgba(74, 222, 128, 0.3); }
+        .status-danger { color: #f87171;
+        text-shadow: 0 0 10px rgba(248, 113, 113, 0.3); }
+        .status-success { color: #4ade80;
+        text-shadow: 0 0 10px rgba(74, 222, 128, 0.3); }
 
-        /* --- 3. EXPERIENCE ENGINE CARDS (NEW) --- */
-        .xp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        /* --- 3. EXPERIENCE ENGINE CARDS --- */
+        .xp-grid { display: grid;
+        grid-template-columns: repeat(2, 1fr); gap: 20px; }
 
         .xp-card {
-            background: white; border: 1px solid #e5e7eb; border-radius: 16px;
+            background: white;
+            border: 1px solid #e5e7eb; border-radius: 16px;
             overflow: hidden; cursor: pointer; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             position: relative;
         }
         .xp-card:hover { transform: translateY(-3px); border-color: var(--brand-red); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
 
         /* Compact State */
-        .xp-preview { padding: 25px; display: flex; align-items: center; gap: 20px; }
+        .xp-preview { padding: 25px;
+        display: flex; align-items: center; gap: 20px; }
         .xp-icon-bg {
-            width: 50px; height: 50px; background: #f3f4f6; border-radius: 12px;
+            width: 50px;
+            height: 50px; background: #f3f4f6; border-radius: 12px;
             display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;
         }
         .xp-meta h4 { font-weight: 800; color: #111; margin-bottom: 4px; font-size: 1.1rem; }
@@ -415,130 +511,132 @@
 
         /* Expanded State */
         .xp-content {
-            max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            max-height: 0;
+            overflow: hidden; transition: max-height 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
             background: #fafafa; border-top: 1px solid #f0f0f0;
         }
-        .xp-card.active .xp-content { max-height: 400px; /* Arbitrary large height */ }
+        .xp-card.active .xp-content { max-height: 400px; }
         .xp-card.active .xp-arrow { transform: rotate(180deg); color: var(--brand-red); }
         .xp-card.active { border-color: var(--brand-red); box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
 
         .xp-visual-box {
-            margin: 20px; height: 120px; background: white; border: 1px solid #eee;
+            margin: 20px;
+            height: 120px; background: white; border: 1px solid #eee;
             border-radius: 8px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center;
         }
-        .xp-list { padding: 0 20px 20px 40px; font-size: 0.85rem; color: #555; list-style-type: disc; }
+        .xp-list { padding: 0 20px 20px 40px; font-size: 0.85rem; color: #555;
+        list-style-type: disc; }
         .xp-list li { margin-bottom: 8px; }
 
-        /* --- VISUALIZATIONS (CSS Only) --- */
-
-        /* 1. Heatmap */
+        /* --- VISUALIZATIONS --- */
         .heatmap-demo { width: 100%; height: 100%; position: relative; background: #e0f2fe; }
         .hm-spot { position: absolute; width: 60px; height: 60px; background: radial-gradient(circle, rgba(255,0,0,0.8) 0%, rgba(255,0,0,0) 70%); transform: translate(-50%, -50%); border-radius: 50%; }
         .hm-label { position: absolute; bottom: 5px; right: 10px; font-size: 0.6rem; color: #000; opacity: 0.5; font-weight: 700; }
-        .win-prob-demo {
-            position: absolute; bottom: 10px; left: 10px; right: 10px;
-            background: rgba(255,255,255,0.9); padding: 5px; border-radius: 4px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
+        .win-prob-demo { position: absolute; bottom: 10px; left: 10px; right: 10px; background: rgba(255,255,255,0.9); padding: 5px; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
         .wp-bar { height: 6px; background: #ddd; border-radius: 3px; overflow: hidden; margin-bottom: 4px; }
         .wp-fill { height: 100%; background: var(--brand-red); }
         .wp-text { display: flex; justify-content: space-between; font-size: 0.6rem; font-weight: 700; color: #555; }
 
-        /* 2. Camera Angles */
-        .cam-angles { position: relative; width: 100%; height: 100%; }
-        .cam-target {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            background: #22c55e; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; color: white; font-weight: 700;
+        /* --- UPDATED COMMERCIAL PLAYBOOK CSS (HERO CARDS) --- */
+        .ss-hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
         }
-        .cam {
-            position: absolute; background: white; padding: 2px 6px; border-radius: 4px;
-            font-size: 0.6rem; font-weight: 700; border: 1px solid #ccc;
+
+        .ss-hero-card {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 20px;
+            padding: 40px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
         }
-        .c-1 { top: 10px; left: 10px; } .c-2 { bottom: 10px; right: 10px; } .c-3 { top: 10px; right: 10px; }
 
-        /* 3. Audio Viz */
-        .audio-viz { display: flex; align-items: center; justify-content: center; gap: 4px; background: #111; color: white; flex-direction: column; }
-        .av-bar { width: 6px; height: 20px; background: var(--brand-red); animation: sound 0.8s infinite ease-in-out alternate; }
-        .av-bar:nth-child(odd) { animation-duration: 0.6s; }
-        .av-label { margin-top: 10px; font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 1px; }
-        @keyframes sound { 0% { height: 10px; opacity: 0.5; } 100% { height: 40px; opacity: 1; } }
+        .ss-hero-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border-color: #ddd;
+        }
 
-        /* 4. Narrative */
-        .narrative-box { background: #f8fafc; }
-        .n-timeline { display: flex; align-items: center; width: 80%; justify-content: space-between; }
-        .nt-node { font-size: 0.7rem; font-weight: 700; padding: 4px 8px; border-radius: 4px; background: #eee; color: #999; }
-        .nt-node.active { background: var(--brand-red); color: white; transform: scale(1.1); box-shadow: 0 4px 10px rgba(211, 47, 47, 0.3); }
-        .nt-line { flex: 1; height: 2px; background: #ddd; margin: 0 5px; }
+        .ss-hero-card.active {
+            border-color: var(--brand-red);
+            box-shadow: 0 20px 40px rgba(211, 47, 47, 0.1);
+        }
 
-        /* --- 6. COMMERCIAL PLAYBOOK --- */
+        .ss-hero-card .ss-badge {
+            align-self: flex-start;
+            margin-bottom: 20px;
+        }
 
-        /* 1. Story Selling Visualizer */
-        .ss-comparison {
-            display: flex; align-items: center; justify-content: center; gap: 40px;
-            background: white; padding: 40px; border-radius: 16px; border: 1px solid #eee;
+        .ss-hero-card h4 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+        }
+
+        .ss-info-list {
             margin-top: 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            list-style: none;
         }
-        .ss-box { text-align: center; flex: 1; max-width: 400px; }
-        .ss-badge { 
-            display: inline-block; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; 
-            padding: 4px 10px; border-radius: 4px; margin-bottom: 10px; letter-spacing: 1px;
+
+        .ss-hero-card.active .ss-info-list {
+            max-height: 500px;
         }
-        .old-way .ss-badge { background: #f3f4f6; color: #666; }
-        .new-way .ss-badge { background: #ecfdf5; color: #059669; }
+
+        .ss-info-list li {
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            color: #4B5563;
+        }
+
+        .ss-info-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--brand-red);
+            font-weight: bold;
+        }
+
+        .legacy-card.active { border-top: 8px solid #9CA3AF; }
+        .contextual-card.active { border-top: 8px solid #059669; }
 
         .ss-visual {
-            background: #111; border-radius: 8px; height: 180px; position: relative;
-            margin: 15px 0; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            background: #111;
+            border-radius: 8px; height: 180px; position: relative;
+            margin-bottom: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         .tv-screen { width: 100%; height: 100%; position: relative; }
-        .tv-content { 
-    width: 100%; 
-    height: 100%; 
-    /* Fallback color if image fails */
-    background-color: #333; 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-}
+        .tv-content { width: 100%; height: 100%; background-color: #333; background-size: cover; background-position: center; position: relative; }
 
-/* Specific Backgrounds */
-.old-way .tv-content {
-    background-image: url('assets/bg-legacy.jpg');
-}
+        .tv-ad-band {
+            position: absolute; bottom: 20px; left: 0; width: 100%; height: 40px;
+            background: rgba(255, 255, 255, 0.95); display: flex; align-items: center; 
+            justify-content: center; color: #d32f2f; font-weight: 800; z-index: 2;
+        }
 
-.new-way .tv-content {
-    background-image: url('assets/bg-contextual.jpg');
-}
-
-/* Ensure overlays sit comfortably on top of images */
-.tv-ad-band {
-    position: absolute; bottom: 20px; left: 0; width: 100%; height: 40px;
-    background: rgba(255, 255, 255, 0.95); display: flex; align-items: center; 
-    justify-content: center; color: #d32f2f; font-weight: 800; 
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-    z-index: 2;
-}
-
-.tv-overlay-context {
-    position: absolute; top: 20px; right: 20px; width: 140px;
-    background: rgba(17, 24, 39, 0.9); /* Slightly darker for better text contrast */
-    border-radius: 8px; padding: 10px;
-    text-align: left; border-left: 3px solid #F59E0B;
-    backdrop-filter: blur(4px);
-    z-index: 2;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
+        .tv-overlay-context {
+            position: absolute; top: 20px; right: 20px; width: 140px; background: rgba(17, 24, 39, 0.9);
+            border-radius: 8px; padding: 10px; text-align: left; border-left: 3px solid #F59E0B; backdrop-filter: blur(4px); z-index: 2;
+        }
         .context-title { display: block; font-size: 0.6rem; color: #ccc; text-transform: uppercase; margin-bottom: 5px; }
         .context-bar { width: 100%; height: 6px; background: #444; border-radius: 3px; margin-bottom: 8px; }
         .cb-fill { width: 30%; height: 100%; background: #ef4444; border-radius: 3px; animation: drain 2s infinite alternate; }
         @keyframes drain { from { width: 30%; background: #ef4444; } to { width: 90%; background: #22c55e; } }
         .context-brand { display: block; font-size: 0.55rem; color: #fff; }
 
-        .ss-desc { font-size: 0.85rem; color: #666; line-height: 1.4; padding: 0 10px; }
-        .ss-arrow { font-size: 2rem; color: #ddd; }
-
-        /* 2. Inventory Grid */
+        /* Inventory Grid */
         .inv-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 20px; }
         .inv-card {
             background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 25px;
@@ -548,290 +646,78 @@
         .inv-icon { font-size: 2rem; margin-bottom: 15px; }
         .inv-title { font-weight: 700; font-size: 1rem; color: #1f2937; margin-bottom: 8px; }
         .inv-text { font-size: 0.8rem; color: #666; line-height: 1.5; flex-grow: 1; margin-bottom: 15px; }
-        .inv-brand-value {
-            font-size: 0.75rem; background: #f0f9ff; padding: 10px; border-radius: 6px;
-            color: #0369a1; border: 1px solid #bae6fd;
-        }
+        .inv-brand-value { font-size: 0.75rem; background: #f0f9ff; padding: 10px; border-radius: 6px; color: #0369a1; border: 1px solid #bae6fd; }
 
-        /* 3. Social Integration Flow */
-        .social-integration {
-            margin-top: 50px; background: #111827; color: white; padding: 40px;
-            border-radius: 16px; text-align: center;
-        }
+        /* Social Integration Flow */
+        .social-integration { margin-top: 50px; background: #111827; color: white; padding: 40px; border-radius: 16px; text-align: center; }
         .si-wrapper { display: flex; justify-content: space-between; align-items: center; max-width: 800px; margin: 0 auto 20px; }
-        .si-node {
-            background: #1f2937; border: 1px solid #374151; padding: 15px 25px;
-            border-radius: 12px; text-align: center; font-weight: 700; font-size: 0.9rem;
-            position: relative; z-index: 2;
-        }
-        .si-icon { font-size: 1.5rem; margin-bottom: 5px; display: block; }
+        .si-node { background: #1f2937; border: 1px solid #374151; padding: 15px 25px; border-radius: 12px; text-align: center; font-weight: 700; font-size: 0.9rem; position: relative; z-index: 2; }
         .si-line { flex: 1; height: 2px; background: #374151; margin: 0 10px; position: relative; }
-        .si-dot {
-            position: absolute; top: -4px; left: 0; width: 10px; height: 10px;
-            background: var(--brand-red); border-radius: 50%; animation: flow 2s infinite linear;
-        }
+        .si-dot { position: absolute; top: -4px; left: 0; width: 10px; height: 10px; background: var(--brand-red); border-radius: 50%; animation: flow 2s infinite linear; }
         .si-caption { font-size: 0.9rem; color: #9ca3af; max-width: 600px; margin: 0 auto; line-height: 1.5; }
 
         /* --- MAP DASHBOARD --- */
-        .geo-dashboard {
-            display: flex; gap: 30px; background: white; border-radius: 16px; border: 1px solid #eee;
-            padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); margin-top: 40px;
-            min-height: 500px;
-        }
+        .geo-dashboard { display: flex; gap: 30px; background: white; border-radius: 16px; border: 1px solid #eee; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); margin-top: 40px; min-height: 500px; }
         .geo-controls { width: 25%; display: flex; flex-direction: column; gap: 10px; border-right: 1px solid #f0f0f0; padding-right: 30px; }
-        .geo-btn { 
-            padding: 15px 20px; border: 1px solid #eee; background: #fafafa; border-radius: 8px;
-            text-align: left; font-weight: 600; cursor: pointer; transition: all 0.2s;
-            display: flex; align-items: center; justify-content: space-between;
-        }
-        .geo-btn:hover { background: #f0f0f0; }
+        .geo-btn { padding: 15px 20px; border: 1px solid #eee; background: #fafafa; border-radius: 8px; text-align: left; font-weight: 600; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: space-between; }
         .geo-btn.active { background: var(--brand-red-light); color: var(--brand-red); border-color: var(--brand-red); }
-        .geo-btn.active::after { content: '→'; }
 
-        /* --- FIXED MAP IMAGE CONTAINER --- */
-        .geo-map-area { 
-            flex: 1; 
-            position: relative; 
-            background: #ffffff;
-            border-radius: 12px; 
-            overflow: hidden; 
-            min-height: 450px; 
-        }
+        .geo-map-area { flex: 1; position: relative; background: #ffffff; border-radius: 12px; overflow: hidden; min-height: 450px; }
+        .geo-map-bg { width: 100%; height: 100%; background-image: url('assets/newnepal.png'); background-size: contain; background-position: center; background-repeat: no-repeat; opacity: 0.2; }
+        .province-node { position: absolute; background: rgba(255,255,255,0.9); backdrop-filter: blur(4px); padding: 4px 10px; border-radius: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; gap: 6px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); opacity: 0.6; transform: translate(-50%, -50%); border: 1px solid #e0e0e0; z-index: 5; cursor: pointer; white-space: nowrap; }
+        .province-node.active-node { opacity: 1; transform: translate(-50%, -50%) scale(1.1); z-index: 10; border-color: var(--brand-red); background: white; }
 
-        .geo-map-bg {
-            width: 100%; 
-            height: 100%; 
-            /* Use 'contain' to ensure the whole map shows without cropping */
-            background-image: url('assets/newnepal.png');
-            background-size: contain;
-            background-position: center; 
-            background-repeat: no-repeat;
-            opacity: 0.2; /* Fade map so markers pop */
-        }
-
-        /* COMPACT NODES (Pill Shape) */
-        .province-node {
-            position: absolute; 
-            background: rgba(255,255,255,0.9); 
-            backdrop-filter: blur(4px);
-            padding: 4px 10px; 
-            border-radius: 20px; /* Pill shape */
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
-            font-size: 0.7rem; 
-            font-weight: 700;
-            display: flex; 
-            align-items: center; 
-            gap: 6px;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            opacity: 0.6; 
-            /* IMPORTANT: Center the node exactly on the percentage point */
-            transform: translate(-50%, -50%); 
-            border: 1px solid #e0e0e0;
-            z-index: 5;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-
-        .province-node.active-node {
-            opacity: 1; 
-            transform: translate(-50%, -50%) scale(1.1); 
-            z-index: 10; 
-            border-color: var(--brand-red);
-            box-shadow: 0 5px 15px rgba(211, 47, 47, 0.15);
-            background: white;
-        }
-
-        .pn-score { font-size: 1rem; line-height: 1; }
-
-        /* --- COORDINATES (Calibrated for Standard Nepal Map Aspect Ratio) --- */
-        /* Assumes the map image is centered within the container */
-        
+        /* Coordinates */
         .p-sudur    { top: 35%; left: 15%; }
         .p-karnali  { top: 25%; left: 32%; }
-        .p-lumbini  { top: 65%; left: 35%; } /* Terai - Low */
+        .p-lumbini  { top: 65%; left: 35%; }
         .p-gandaki  { top: 40%; left: 50%; }
         .p-bagmati  { top: 52%; left: 63%; }
-        .p-madhesh  { top: 75%; left: 68%; } /* Terai - Low */
+        .p-madhesh  { top: 75%; left: 68%; }
         .p-koshi    { top: 70%; left: 82%; }
 
-        /* --- DIASPORA BLOCK --- */
-        .diaspora-container {
-            margin-top: 40px;
-            background: linear-gradient(to right, #f8f9fa, #ffffff);
-            border: 1px solid #eee;
-            border-radius: 16px;
-            padding: 35px;
-            position: relative;
-            overflow: hidden;
-        }
-        .diaspora-container::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--brand-red);
-        }
-
-        .diaspora-header { margin-bottom: 30px; }
-        .dia-title { font-size: 1.5rem; font-weight: 800; color: #333; margin-bottom: 5px; }
-        .dia-sub { color: #666; font-size: 0.95rem; max-width: 800px; }
-
+        /* Diaspora Block */
+        .diaspora-container { margin-top: 40px; background: linear-gradient(to right, #f8f9fa, #ffffff); border: 1px solid #eee; border-radius: 16px; padding: 35px; position: relative; overflow: hidden; }
+        .diaspora-container::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--brand-red); }
         .diaspora-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-
-        .dia-card {
-            background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px;
-            display: flex; flex-direction: column; /* Changed for accordion */
-            gap: 15px; 
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-            position: relative;
-        }
-        .dia-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); border-color: #ddd; }
+        .dia-card { background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 15px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; position: relative; }
         .dia-card.active { border-color: var(--brand-red); box-shadow: 0 10px 30px rgba(211, 47, 47, 0.1); transform: translateY(-5px); }
-
-        .dia-main-content { display: flex; gap: 15px; align-items: flex-start; width: 100%; }
-
-        .dia-icon { font-size: 2rem; background: #f3f4f6; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 8px; flex-shrink: 0; }
-
-        .dia-info { flex: 1; }
-        .dia-info h4 { font-size: 1rem; font-weight: 700; margin-bottom: 5px; color: #111; }
-
-        .dia-stat { font-size: 1.4rem; font-weight: 800; color: #333; margin-bottom: 8px; display: flex; align-items: baseline; gap: 8px; }
-        .dia-label { font-size: 0.65rem; text-transform: uppercase; color: #999; font-weight: 600; letter-spacing: 0.5px; }
-
-        .dia-bar-bg { width: 100%; height: 6px; background: #eee; border-radius: 3px; margin-bottom: 12px; overflow: hidden; }
-        .dia-bar-fill { height: 100%; background: var(--brand-red); border-radius: 3px; }
-
-        .dia-insight { font-size: 0.75rem; color: #666; line-height: 1.4; border-top: 1px dashed #eee; padding-top: 8px; }
-        .click-hint { font-size: 0.7rem; color: var(--brand-red); font-weight: 600; margin-top: 5px; opacity: 0; transition: opacity 0.3s; }
-        .dia-card:hover .click-hint { opacity: 1; }
-
-        /* Hidden Deep Dive Section */
-        .dia-deep-dive {
-            max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out;
-            background: #fafafa; margin: 0 -20px -20px -20px; border-radius: 0 0 12px 12px;
-            padding: 0 20px; border-top: 1px solid transparent;
-        }
+        .dia-deep-dive { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; background: #fafafa; margin: 0 -20px -20px -20px; border-radius: 0 0 12px 12px; padding: 0 20px; border-top: 1px solid transparent; }
         .dia-card.active .dia-deep-dive { max-height: 300px; padding: 20px; border-top-color: #eee; }
-        
-        .dd-list { list-style: none; font-size: 0.75rem; color: #555; margin-bottom: 10px; }
-        .dd-list li { margin-bottom: 6px; padding-left: 15px; position: relative; }
-        .dd-list li::before { content: '•'; color: var(--brand-red); position: absolute; left: 0; font-weight: bold; }
-        .dd-source { font-size: 0.65rem; color: #999; font-style: italic; }
 
-        .dia-footer { text-align: right; font-size: 0.7rem; color: #aaa; margin-top: 15px; font-style: italic; }
-
-        /* --- OPS MODEL (REMOVED HTML, CSS KEPT FOR SAFETY) --- */
         /* --- MODAL DIALOGUE --- */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
-            z-index: 3000; opacity: 0; visibility: hidden;
-            transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;
-        }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); z-index: 3000; opacity: 0; visibility: hidden; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; }
         .modal-overlay.active { opacity: 1; visibility: visible; }
-        
-        .modal-content {
-            background: white; width: 90%; max-width: 800px; max-height: 90vh;
-            border-radius: 16px; position: relative; overflow-y: auto;
-            transform: scale(0.95); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
-        }
+        .modal-content { background: white; width: 90%; max-width: 800px; max-height: 90vh; border-radius: 16px; position: relative; overflow-y: auto; transform: scale(0.95); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); }
         .modal-overlay.active .modal-content { transform: scale(1); }
-        
-        .modal-header { padding: 30px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: flex-start; }
-        .btn-close { background: none; border: none; font-size: 2rem; line-height: 0.5; cursor: pointer; padding: 10px; color: #999; }
-        .btn-close:hover { color: var(--brand-red); }
-        
-        .modal-body { padding: 40px 30px; }
-        .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-        .d-metric-box { background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid var(--brand-red); }
-        .d-val { font-size: 1.8rem; font-weight: 800; color: #333; }
-        .d-lab { font-size: 0.75rem; text-transform: uppercase; color: #666; letter-spacing: 0.5px; margin-top: 5px; }
-        
-        .chart-container { margin-top: 20px; }
-        .chart-row { display: flex; align-items: center; margin-bottom: 15px; font-size: 0.85rem; }
-        .c-label { width: 100px; font-weight: 600; color: #555; }
-        .c-bar-area { flex: 1; background: #eee; height: 12px; border-radius: 6px; margin: 0 15px; overflow: hidden; }
-        .c-bar-fill { height: 100%; background: #333; border-radius: 6px; width: 0%; transition: width 1s ease 0.3s; position: relative;}
-        .c-val { width: 60px; text-align: right; font-weight: 700; color: #333; }
 
-        /* --- UTILS --- */
+        /* PRESENTER MODE */
+        body.presenter-mode { --container-width: 95%; background-color: white; }
+        body.presenter-mode .nav-links { display: none; }
+        body.presenter-mode section { padding: 40px 60px; border-bottom: none; }
+        #presenter-indicator { display: none; position: fixed; bottom: 20px; left: 20px; background: var(--brand-red); color: white; padding: 5px 15px; border-radius: 4px; font-weight: bold; z-index: 2000; }
+        body.presenter-mode #presenter-indicator { display: block; }
+
+        /* UTILS */
         .btn-start { margin-top: 20px; background: var(--brand-red); color: white; padding: 12px 30px; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block; }
         .fade-in-up { opacity: 0; transform: translateY(20px); transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out); }
         .fade-in-up.visible { opacity: 1; transform: translateY(0); }
         .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; } .delay-3 { transition-delay: 0.3s; }
-        .delay-4 { transition-delay: 0.4s; } .delay-5 { transition-delay: 0.5s; }
-        .img-placeholder { width: 100%; height: 100%; background: #e0e0e0; display: flex; align-items: center; justify-content: center; color: #888; }
-
-        /* PRESENTER MODE */
-        body.presenter-mode { --font-size-base: 22px; --container-width: 95%; background-color: white; }
-        body.presenter-mode #navbar { padding-left: 320px; justify-content: flex-end; }
-        body.presenter-mode .nav-links { display: none; }
-        body.presenter-mode section { padding: 40px 60px; border-bottom: none; }
-        body.presenter-mode .ecosystem-chain { flex-direction: column; gap: 10px; } 
-        body.presenter-mode .eco-step { border-left: 5px solid var(--brand-red); }
-        body.presenter-mode .eco-step:not(:last-child)::after { content: '↓'; right: 50%; top: auto; bottom: -20px; transform: translateX(50%); }
-        body.presenter-mode .home-title { font-size: 4rem; }
-        body.presenter-mode .market-strip { display: flex; } 
-        body.presenter-mode .bento-grid { grid-template-columns: 1fr; }
-        body.presenter-mode .col-span-2 { grid-column: span 1; }
-        body.presenter-mode .pipeline-container { flex-direction: column; gap: 40px; }
-        body.presenter-mode .pipe-line { width: 3px; height: 100%; left: 50%; top: 60px; right: auto; transform: translateX(-50%); }
-        body.presenter-mode .flow-dot { top: 0; left: -3px; width: 10px; height: 10px; animation: flow-vert 2s infinite linear; }
-        @keyframes flow-vert { 0% { top: 0; opacity: 1; } 100% { top: 100%; opacity: 0; } }
-        #presenter-indicator { display: none; position: fixed; bottom: 20px; left: 20px; background: var(--brand-red); color: white; padding: 5px 15px; border-radius: 4px; font-weight: bold; z-index: 2000; }
-        body.presenter-mode #presenter-indicator { display: block; }
 
         @media (max-width: 768px) {
-            #navbar { padding-left: 20px; justify-content: flex-end; }
-            #global-logo { position: absolute; left: 0; width: 180px; }
-            #global-logo img { max-height: 50px; }
+            .ss-hero-container { grid-template-columns: 1fr; }
+            .grid-4 { grid-template-columns: 1fr; }
+            #navbar { padding-left: 20px; }
             .nav-links { display: none; }
-            .grid-2, .grid-3, .grid-4, .bento-grid { grid-template-columns: 1fr !important; }
-            .role-grid { grid-template-columns: 1fr !important; }
-            .col-span-2 { grid-column: span 1; }
-            .ecosystem-chain { flex-direction: column; }
-            .eco-step:not(:last-child)::after { display: none; }
-            .home-title { font-size: 2.5rem; }
-            .asset-container { flex-wrap: wrap; justify-content: flex-start; }
-            .asset-popup { display: none; } 
-            .market-strip { flex-direction: column; gap: 20px; padding: 20px; }
-            .market-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px; width: 100%; }
-            .market-stat:last-child { border-bottom: none; }
-            .pipeline-container { flex-direction: column; gap: 40px; padding-top: 60px;}
-            .pipe-line { display: none; } /* Simplified for mobile */
-            .flywheel-container { flex-direction: column; gap: 20px; }
-            .fw-arrow { transform: rotate(90deg); padding: 10px 0; }
-            .fw-item { width: 100%; }
-            .detail-grid { grid-template-columns: 1fr; gap: 15px; }
-            
             .geo-dashboard { flex-direction: column; }
-            .geo-controls { width: 100%; border-right: none; border-bottom: 1px solid #eee; padding-bottom: 20px; padding-right: 0; }
-            .geo-map-area { height: 350px; }
-            .province-node { padding: 4px 8px; font-size: 0.6rem; }
-            .pn-score { font-size: 0.9rem; }
-
-            .quality-grid { grid-template-columns: 1fr; }
-            .lat-screen { padding: 10px; }
-            .ls-timer { font-size: 1rem; }
-            .ls-label { width: 100px; font-size: 0.65rem; }
-
-            .cd-grid { grid-template-columns: 1fr 1fr; }
-            .xp-grid { grid-template-columns: 1fr; }
-            .cd-toggle-bg { width: 100%; }
-            .cd-btn { width: 50%; font-size: 0.8rem; padding: 10px; }
-            .cd-pill { width: 50%; }
-
-            .ss-comparison { flex-direction: column; gap: 20px; }
-            .ss-arrow { transform: rotate(90deg); }
-            .inv-grid { grid-template-columns: 1fr; }
-            .si-wrapper { flex-direction: column; gap: 30px; }
-            .si-line { width: 2px; height: 50px; margin: 0 auto; }
+            .geo-controls { width: 100%; border-right: none; border-bottom: 1px solid #eee; }
         }
     </style>
 </head>
 <body>
 
     <div id="global-logo">
-        <img src="assets/logo.png" alt="Company Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-        <div class="logo-fallback" style="display:none;">Brand Logiq</div>
+        <div class="logo-fallback">Brand Logiq</div>
     </div>
 
     <div id="progress-container"><div id="progress-bar"></div></div>
@@ -852,60 +738,38 @@
     <div id="presenter-indicator">Presenter Mode: ON</div>
 
     <main>
-        
         <section id="home" class="bg-pattern">
             <div class="container">
                 <div class="fade-in-up">
                     <span class="badge badge-red"><span class="live-dot"></span>Executive Overview</span>
-                    <h1 class="home-title">The Business of Live Sports: <br><span class="text-red">From Pitch to Platform</span></h1>
-                    <p class="home-subtitle">Deconstructing the ecosystem of sports on DGO - how we acquire rights, manage the signal, and commercialize the experience ?</p>
+                    <h1 class="home-title">The Business of Live Sports: <br><span style="color:var(--brand-red)">From Pitch to Platform</span></h1>
+                    <p class="home-subtitle">Deconstructing the ecosystem of sports on DGO - how we acquire rights, manage the signal, and commercialize the experience.</p>
                 </div>
 
                 <div class="asset-container fade-in-up delay-1">
                     <div style="font-size: 0.85rem; font-weight: 700; color: #999; text-transform: uppercase; align-self: center; margin-right: 10px;">Primary Assets:</div>
-                    <div class="asset-item"><div class="asset-dot"></div> Cricket
-                        <div class="asset-popup">
-                            <div class="popup-img-wrapper"><img src="assets/cricthumb.jpg" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="img-placeholder" style="display:none">IMG</div></div>
-                            <div class="popup-text">Nepal Premier League stands out as one of the highest viewed sporting event in the country.</div>
-                        </div>
-                    </div>
-                    <div class="asset-item"><div class="asset-dot"></div> Football
-                        <div class="asset-popup">
-                             <div class="popup-img-wrapper"><img src="assets/footthumb.jpg" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="img-placeholder" style="display:none">IMG</div></div>
-                            <div class="popup-text">Football in Nepal has shown a great potential, specially with the women's team matches drawing a huge attention.</div>
-                        </div>
-                    </div>
-                    <div class="asset-item"><div class="asset-dot"></div> Volleyball
-                        <div class="asset-popup">
-                             <div class="popup-img-wrapper"><img src="assets/vollthumb.jpg" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="img-placeholder" style="display:none">IMG</div></div>
-                            <div class="popup-text">The national game of Nepal has a huge commercial market, in a way - yet to be tapped.</div>
-                        </div>
-                    </div>
-                    <div class="asset-item"><div class="asset-dot"></div> eSports
-                        <div class="asset-popup">
-                             <div class="popup-img-wrapper"><img src="assets/esports thumb.jpg" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="img-placeholder" style="display:none">IMG</div></div>
-                            <div class="popup-text">The youngest sports vertical has a massive youth following and interest.</div>
-                        </div>
-                    </div>
+                    <div class="asset-item"><div class="asset-dot"></div> Cricket</div>
+                    <div class="asset-item"><div class="asset-dot"></div> Football</div>
+                    <div class="asset-item"><div class="asset-dot"></div> Volleyball</div>
+                    <div class="asset-item"><div class="asset-dot"></div> eSports</div>
                 </div>
 
                 <div class="market-strip-container fade-in-up delay-2">
                     <div class="market-strip">
                         <div class="market-stat"><div class="m-val"><span class="market-counter" data-target="38">0</span>M+</div><div class="m-label">Internet Subscriptions</div></div>
-                        <div class="market-stat"><div class="m-val">~<span class="market-counter" data-target="40">0</span>%</div><div class="m-label">Youth Demographic (16-40)</div></div>
+                        <div class="market-stat"><div class="m-val">~<span class="market-counter" data-target="40">0</span>%</div><div class="m-label">Youth Demographic</div></div>
                         <div class="market-stat"><div class="m-val"><span class="market-counter" data-target="72">0</span>%</div><div class="m-label">Smartphone Penetration</div></div>
                     </div>
-                    <div class="market-source">Source: NTA MIS Report (2024) / Central Bureau of Statistics (CBS) Data</div>
                 </div>
 
                 <div class="ecosystem-chain">
-                    <div class="eco-step fade-in-up delay-3"><div class="step-icon">1</div><div class="step-title">Acquisition</div><div class="step-desc"><strong>The IP (Rights).</strong> Bidding for legal permission to broadcast leagues.</div></div>
-                    <div class="eco-step fade-in-up delay-4"><div class="step-icon">2</div><div class="step-title">Production</div><div class="step-desc"><strong>The Signal.</strong> Capturing live feeds via satellite/fiber and adding graphics.</div></div>
-                    <div class="eco-step fade-in-up delay-5"><div class="step-icon">3</div><div class="step-title">Delivery</div><div class="step-desc"><strong>The Platform.</strong> Streaming to DGO users with low latency.</div></div>
-                    <div class="eco-step fade-in-up delay-5" style="transition-delay: 0.6s;"><div class="step-icon">4</div><div class="step-title">Commercialization</div><div class="step-desc"><strong>The Revenue.</strong> Converting viewership into money.</div></div>
+                    <div class="eco-step fade-in-up delay-3"><div class="step-icon">1</div><div class="step-title">Acquisition</div><div class="step-desc">The IP (Rights).</div></div>
+                    <div class="eco-step fade-in-up delay-4"><div class="step-icon">2</div><div class="step-title">Production</div><div class="step-desc">The Signal.</div></div>
+                    <div class="eco-step fade-in-up delay-5"><div class="step-icon">3</div><div class="step-title">Delivery</div><div class="step-desc">The Platform.</div></div>
+                    <div class="eco-step fade-in-up delay-5"><div class="step-icon">4</div><div class="step-title">Commercialization</div><div class="step-desc">The Revenue.</div></div>
                 </div>
 
-                <div class="agenda-section fade-in-up delay-5" style="transition-delay: 0.7s; text-align:right;">
+                <div class="agenda-section fade-in-up delay-5" style="text-align:right;">
                     <a href="#strategy" class="btn-start">Start: Why Sports? &rarr;</a>
                 </div>
             </div>
@@ -915,80 +779,21 @@
             <div class="container">
                 <div class="fade-in-up">
                     <h2 class="section-title">Why Sports? Global & Regional Trends</h2>
-                    <p class="section-subtitle">A deep dive into how global giants leverage sports for scale, retention, and commerce.</p>
+                    <p class="section-subtitle">How global giants leverage sports for scale and retention.</p>
                 </div>
 
-                <div class="grid-header fade-in-up">Regional Powerhouse (India)</div>
                 <div class="bento-grid">
-                    
-                    <div class="pop-card col-span-2 fade-in-up delay-1" onclick="openModal('jio')" style="border-top: 5px solid #0078BC; background: linear-gradient(to bottom right, #ffffff, #e1f5fe);">
+                    <div class="pop-card col-span-2 fade-in-up delay-1" onclick="openModal('jio')" style="border-top: 5px solid #0078BC;">
                         <div>
-                            <div class="brand-logo-text" style="color: #0078BC; font-size: 1.5rem;">JioHotstar <span style="font-weight:400; color:#555; font-size:0.9rem; margin-left:8px;">(Merged Entity)</span></div>
-                            <div class="stat-row">
-                                <div><div class="stat-huge" style="color:#0078BC;">60 Crore+</div><div class="stat-label">Projected Unique Reach (IPL 25)</div></div>
-                                <div><div class="stat-huge" style="color:#333;">Ad-Led</div><div class="stat-label">Primary Revenue Model</div></div>
-                            </div>
-                            <p class="desc-text"><strong>The Strategy:</strong> "Free Sports for Scale." By removing the paywall, they capture 90% of data-consuming youth, monetizing via massive ad inventory scale (SSAI) rather than subscription alone.</p>
+                            <div class="brand-logo-text" style="color: #0078BC;">JioHotstar</div>
+                            <p class="desc-text"><strong>The Strategy:</strong> "Free Sports for Scale." monetizing via massive ad inventory scale (SSAI).</p>
                         </div>
-                        <div class="citation-box">Source: Media Partners Asia (MPA) 2025 Outlook / FICCI-EY Report</div>
                     </div>
-
-                    <div class="pop-card card-dark fade-in-up delay-2" onclick="openModal('nepal')" style="border-top: 5px solid var(--brand-red);">
+                    <div class="pop-card card-dark fade-in-up delay-2" onclick="openModal('nepal')">
                         <div>
-                            <div class="brand-logo-text text-red">THE NEPAL OPPORTUNITY</div>
+                            <div class="brand-logo-text">THE NEPAL OPPORTUNITY</div>
                             <div class="stat-huge">Zero</div>
                             <div class="stat-label">Dominant Sports OTTs</div>
-                            <p class="desc-text" style="margin-top:20px;">
-                                While India has JioHotstar, Nepal has 30M+ users with 4G/Fiber but no local platform for Tier-1 sports. DGO is the first-mover.
-                            </p>
-                        </div>
-                        <div class="citation-box">Opportunity Index: High</div>
-                    </div>
-                </div>
-
-                <div class="grid-header fade-in-up delay-2">International Benchmarks</div>
-                <div class="bento-grid">
-                    <div class="pop-card fade-in-up delay-3" onclick="openModal('netflix')" style="border-top: 5px solid #E50914;">
-                        <div class="brand-logo-text" style="color: #E50914;">NETFLIX</div>
-                        <div class="stat-huge" style="font-size: 2.2rem;">$5 Billion</div>
-                        <div class="stat-label">WWE RAW Deal (10 Years)</div>
-                        <p class="desc-text" style="margin-top:15px;"><strong>The Pivot:</strong> Moving from VOD (Binge) to Live (Appointment Viewing) to reduce monthly churn.</p>
-                        <div class="citation-box">Source: Netflix SEC 10-K Filing / Variety</div>
-                    </div>
-
-                    <div class="pop-card fade-in-up delay-4" onclick="openModal('sony')" style="border-top: 5px solid #F9A825;">
-                        <div class="brand-logo-text" style="color: #F9A825;">Sony LIV</div>
-                        <div class="stat-huge" style="font-size: 2.2rem;">Premium</div>
-                        <div class="stat-label">UEFA Rights Holder</div>
-                        <p class="desc-text" style="margin-top:15px;"><strong>The Model:</strong> Targeting the "High ARPU" urban user who pays for quality (Champions League).</p>
-                        <div class="citation-box">Source: Ormax Media OTT Report 2024</div>
-                    </div>
-
-                    <div class="pop-card fade-in-up delay-5" onclick="openModal('prime')" style="border-top: 5px solid #00A8E1;">
-                        <div class="brand-logo-text" style="color: #00A8E1;">prime video</div>
-                        <div class="stat-huge" style="font-size: 2.2rem;">Narrative</div>
-                        <div class="stat-label">Docu-Series (The Test)</div>
-                        <p class="desc-text" style="margin-top:15px;"><strong>The Eco-System:</strong> Using behind-the-scenes content to keep fans engaged when matches aren't live.</p>
-                        <div class="citation-box">Source: Amazon Global Report</div>
-                    </div>
-                </div>
-
-                <div class="flywheel-wrapper fade-in-up delay-5" style="margin-top: 50px;">
-                    <h3 class="grid-header" style="margin-bottom: 25px; border-color: #333;">The Strategic Fit: DGO Ecosystem</h3>
-                    <div class="flywheel-container">
-                        <div class="fw-item">
-                            <div class="fw-icon">🧲</div>
-                            <div class="fw-content"><div class="fw-title">Acquisition Hook</div><div class="fw-desc">Sports is the cheapest way to acquire users (Low CPA). It forces immediate app downloads.</div></div>
-                        </div>
-                        <div class="fw-arrow">➜</div>
-                        <div class="fw-item">
-                            <div class="fw-icon">🔄</div>
-                            <div class="fw-content"><div class="fw-title">Habit Formation</div><div class="fw-desc">Unlike movies (watch once), sports creates recurring weekly active users (WAU).</div></div>
-                        </div>
-                        <div class="fw-arrow">➜</div>
-                        <div class="fw-item">
-                            <div class="fw-icon">🏠</div>
-                            <div class="fw-content"><div class="fw-title">DGO - The Home of Nepal Sports</div><div class="fw-desc">Establishing DGO as a household name for the sports action in country.</div></div>
                         </div>
                     </div>
                 </div>
@@ -999,170 +804,19 @@
             <div class="container">
                 <div class="fade-in-up">
                     <h2 class="section-title">The Four Pillars of Growth</h2>
-                    <p class="section-subtitle">A granular look at the properties that drive our user base.</p>
                 </div>
 
                 <div class="grid-4 fade-in-up delay-1">
-                    <div class="asset-hero-card group" onclick="openModal('cricket')">
-                        <img src="assets/cricthumb.jpg" class="ah-img-bg" onerror="this.src='https://placehold.co/400x600/003366/FFF?text=Cricket';">
+                    <div class="asset-hero-card" onclick="openModal('cricket')">
                         <div class="ah-overlay">
                             <div class="ah-content">
                                 <span class="ah-badge badge-cricket">The Flagship</span>
                                 <h3 class="ah-title">CRICKET</h3>
                                 <div class="ah-usp">USP: The Unifying Force</div>
-                                <div class="ah-props">
-                                    <div class="ah-prop-item">NPL (Nepal Premier League)</div>
-                                    <div class="ah-prop-item">ICC CWC League II</div>
-                                    <div class="ah-prop-item">International Series</div>
-                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="asset-hero-card group" onclick="openModal('football')">
-                         <img src="assets/footthumb.jpg" class="ah-img-bg" onerror="this.src='https://placehold.co/400x600/006400/FFF?text=Football';">
-                        <div class="ah-overlay">
-                            <div class="ah-content">
-                                <span class="ah-badge badge-football">Tribal Loyalty</span>
-                                <h3 class="ah-title">FOOTBALL</h3>
-                                <div class="ah-usp">USP: High-Value Youth</div>
-                                <div class="ah-props">
-                                    <div class="ah-prop-item">SAFF Championship (M/W)</div>
-                                    <div class="ah-prop-item">Women's Franchise League</div>
-                                    <div class="ah-prop-item">A-Division League</div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-
-                    <div class="asset-hero-card group" onclick="openModal('volleyball')">
-                         <img src="assets/vollthumb.jpg" class="ah-img-bg" onerror="this.src='https://placehold.co/400x600/CC5500/FFF?text=Volleyball';">
-                        <div class="ah-overlay">
-                            <div class="ah-content">
-                                <span class="ah-badge badge-volleyball">National Sport</span>
-                                <h3 class="ah-title">VOLLEYBALL</h3>
-                                <div class="ah-usp">USP: Rural Dominance</div>
-                                <div class="ah-props">
-                                    <div class="ah-prop-item">National Volleyball League</div>
-                                    <div class="ah-prop-item">CAVA Nations League</div>
-                                    <div class="ah-prop-item">Club Championships</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="asset-hero-card group" onclick="openModal('esports')">
-                         <img src="assets/esports thumb.jpg" class="ah-img-bg" onerror="this.src='https://placehold.co/400x600/4B0082/FFF?text=eSports';">
-                        <div class="ah-overlay">
-                            <div class="ah-content">
-                                <span class="ah-badge badge-esports">Digital Native</span>
-                                <h3 class="ah-title">eSPORTS</h3>
-                                <div class="ah-usp">USP: Future Proofing</div>
-                                <div class="ah-props">
-                                    <div class="ah-prop-item">DGO Pro Series (Own IP)</div>
-                                    <div class="ah-prop-item">PUBG/FreeFire Regionals</div>
-                                    <div class="ah-prop-item">Influencer Showdowns</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="geo-dashboard fade-in-up delay-2">
-                    <div class="geo-controls">
-                        <h4 style="margin-bottom:10px;">Geographic Focus</h4>
-                        <p class="text-muted" style="font-size:0.85rem; margin-bottom:20px;">Click to view regional dominance:</p>
-                        <div class="geo-btn active" onclick="setGeo('all', this)">All Sports</div>
-                        <div class="geo-btn" onclick="setGeo('cricket', this)">Cricket</div>
-                        <div class="geo-btn" onclick="setGeo('football', this)">Football</div>
-                        <div class="geo-btn" onclick="setGeo('volleyball', this)">Volleyball</div>
-                        <div class="geo-btn" onclick="setGeo('esports', this)">eSports</div>
-                    </div>
-                    <div class="geo-map-area">
-                        <div class="geo-map-bg"></div>
-                        <div class="province-node p-sudur" id="pn-sudur"><span class="pn-score">🏐</span> Sudur</div>
-                        <div class="province-node p-karnali" id="pn-karnali"><span class="pn-score">🏐</span> Karnali</div>
-                        <div class="province-node p-lumbini" id="pn-lumbini"><span class="pn-score">🏏</span> Lumbini</div>
-                        <div class="province-node p-gandaki" id="pn-gandaki"><span class="pn-score">⚽</span> Gandaki</div>
-                        <div class="province-node p-bagmati" id="pn-bagmati"><span class="pn-score">🏏</span> Bagmati</div>
-                        <div class="province-node p-madhesh" id="pn-madhesh"><span class="pn-score">🏏</span> Madhesh</div>
-                        <div class="province-node p-koshi" id="pn-koshi"><span class="pn-score">⚽</span> Koshi</div>
-                    </div>
-                </div>
-
-                <div class="diaspora-container fade-in-up delay-3">
-                    <div class="diaspora-header">
-                        <h3 class="dia-title">The "Beyond Borders" Opportunity</h3>
-                        <p class="dia-sub">Monetizing the 4M+ Non-Resident Nepalis (NRN). While domestic traffic drives volume, international traffic drives direct revenue.</p>
-                    </div>
-                    
-                    <div class="diaspora-grid">
-                        <div class="dia-card volume-card" onclick="toggleDia(this)">
-                            <div class="dia-main-content">
-                                <div class="dia-icon">🏗️</div>
-                                <div class="dia-info">
-                                    <h4>Middle East & Malaysia</h4>
-                                    <div class="dia-stat">2.2M+ <span class="dia-label">Est. Audience</span></div>
-                                    <div class="dia-bar-bg"><div class="dia-bar-fill" style="width: 85%;"></div></div>
-                                    <p class="dia-insight"><strong>Strategy:</strong> Low Data, Mobile-First. High engagement during weekends (Friday).</p>
-                                    <div class="click-hint">Click for Sources ↓</div>
-                                </div>
-                            </div>
-                            <div class="dia-deep-dive">
-                                <ul class="dd-list">
-                                    <li><strong>Malaysia:</strong> ~600,000</li>
-                                    <li><strong>Qatar:</strong> ~500,000</li>
-                                    <li><strong>Saudi Arabia:</strong> ~400,000</li>
-                                    <li><strong>UAE:</strong> ~400,000</li>
-                                </ul>
-                                <div class="dd-source">Source: Department of Foreign Employment (DoFE) Annual Report 2023/24</div>
-                            </div>
-                        </div>
-
-                        <div class="dia-card value-card" onclick="toggleDia(this)">
-                            <div class="dia-main-content">
-                                <div class="dia-icon">🎓</div>
-                                <div class="dia-info">
-                                    <h4>Australia, USA & UK</h4>
-                                    <div class="dia-stat">850K+ <span class="dia-label">Est. Audience</span></div>
-                                    <div class="dia-bar-bg"><div class="dia-bar-fill" style="width: 40%; background: #006400;"></div></div>
-                                    <p class="dia-insight"><strong>Strategy:</strong> Premium Subscription ($5/mo). High willingness to pay for HD quality.</p>
-                                    <div class="click-hint">Click for Sources ↓</div>
-                                </div>
-                            </div>
-                            <div class="dia-deep-dive">
-                                <ul class="dd-list">
-                                    <li><strong>USA:</strong> ~300,000+ (Census/IIE)</li>
-                                    <li><strong>Australia:</strong> ~250,000 (ABS Census 2021)</li>
-                                    <li><strong>UK:</strong> ~150,000+ (ONS Data)</li>
-                                </ul>
-                                <div class="dd-source">Source: ABS Census 2021 / US Census Bureau / ONS UK</div>
-                            </div>
-                        </div>
-
-                        <div class="dia-card mix-card" onclick="toggleDia(this)">
-                            <div class="dia-main-content">
-                                <div class="dia-icon">🚆</div>
-                                <div class="dia-info">
-                                    <h4>India</h4>
-                                    <div class="dia-stat">600K+ <span class="dia-label">Est. Audience</span></div>
-                                    <div class="dia-bar-bg"><div class="dia-bar-fill" style="width: 30%; background: #CC5500;"></div></div>
-                                    <p class="dia-insight"><strong>Strategy:</strong> Hybrid Model. Target students and migrant workers in Metros.</p>
-                                    <div class="click-hint">Click for Sources ↓</div>
-                                </div>
-                            </div>
-                            <div class="dia-deep-dive">
-                                <ul class="dd-list">
-                                    <li><strong>Total Pop:</strong> 2M-3M (Estimated)</li>
-                                    <li><strong>Targetable:</strong> ~600k (Digital Natives)</li>
-                                    <li><strong>Key Hubs:</strong> Delhi, Bangalore, Mumbai</li>
-                                </ul>
-                                <div class="dd-source">Source: MoFA / EPG Reports (Peace & Friendship Treaty Data)</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </section>
 
@@ -1171,216 +825,23 @@
                 <div class="fade-in-up">
                     <span class="badge badge-red">User Experience</span>
                     <h2 class="section-title">The Quality Gap</h2>
-                    <p class="section-subtitle">Bridging the divide between "It works" and "It's world-class."</p>
                 </div>
 
                 <div class="quality-grid fade-in-up delay-1">
                     <div class="q-card dark-theme">
-                        <div class="qc-header">
-                            <div class="qc-icon">⏱️</div>
-                            <div>
-                                <h3>The "Spoiler" Effect</h3>
-                                <p class="qc-sub">Latency Simulation</p>
-                            </div>
-                        </div>
-                        
                         <div class="latency-stage">
-                            <div class="lat-screen real-time">
-                                <div class="ls-label">Real Life (Stadium)</div>
-                                <div class="ls-timer" id="timer-real">00:00</div>
-                                <div class="ls-event" id="event-real">MATCH START</div>
-                            </div>
-
-                            <div class="lat-screen dgo-time">
-                                <div class="ls-label" style="color: #4ade80;">DGO (Low Latency)</div>
-                                <div class="ls-timer" id="timer-dgo">00:00</div>
-                                <div class="ls-delay-tag">Lag: 4s</div>
-                                <div class="ls-event" id="event-dgo">MATCH START</div>
-                            </div>
-
-                            <div class="lat-screen tv-time">
-                                <div class="ls-label" style="color: #f87171;">Legacy Cable / Pirate</div>
-                                <div class="ls-timer" id="timer-tv">00:00</div>
-                                <div class="ls-delay-tag">Lag: 45s</div>
-                                <div class="ls-event" id="event-tv">MATCH START</div>
-                            </div>
+                            <div class="lat-screen real-time"><div class="ls-label">Stadium</div><div class="ls-timer" id="timer-real">00:00</div><div class="ls-event" id="event-real">GOAL</div></div>
+                            <div class="lat-screen dgo-time"><div class="ls-label" style="color: #4ade80;">DGO (Low Latency)</div><div class="ls-timer" id="timer-dgo">00:00</div><div class="ls-event" id="event-dgo">GOAL</div></div>
                         </div>
-
-                        <div class="latency-controls">
-                            <button class="btn-action" onclick="triggerGoal()">⚽ SIMULATE GOAL</button>
-                            <p class="lat-note"><strong>The Insight:</strong> If a user gets a "GOAL!" notification on their phone before they see it on the stream, they feel cheated. We target < 6s latency.</p>
-                        </div>
+                        <button class="btn-action" onclick="triggerGoal()">SIMULATE GOAL</button>
                     </div>
-
                     <div class="q-card light-theme">
-                        <div class="qc-header">
-                            <div class="qc-icon" style="background:var(--brand-red); color:white;">🎞️</div>
-                            <div>
-                                <h3>The "Motion" Standard</h3>
-                                <p class="qc-sub">25fps vs. 50fps (Frame Rate)</p>
-                            </div>
-                        </div>
-
                         <div class="fps-stage">
-                            <div class="fps-row">
-                                <div class="fps-meta">
-                                    <span class="fps-val">25 FPS</span>
-                                    <span class="fps-desc">Nepal Standard Broadcast</span>
-                                </div>
-                                <div class="fps-track">
-                                    <div class="fps-ball ball-25"></div>
-                                </div>
-                            </div>
-
-                            <div class="fps-row">
-                                <div class="fps-meta">
-                                    <span class="fps-val highlight">50/60 FPS</span>
-                                    <span class="fps-desc">Global Sports Standard</span>
-                                </div>
-                                <div class="fps-track">
-                                    <div class="fps-ball ball-60"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="fps-explanation">
-                            <p><strong>Why it matters:</strong> In movies, 24fps is "cinematic." In sports, fast-moving objects (cricket balls) disappear or "ghost" at low frame rates. DGO is the first in Nepal to enforce a strict <strong>50fps</strong> pipeline.</p>
+                            <div class="fps-row"><div class="fps-meta"><span>25 FPS</span></div><div class="fps-track"><div class="fps-ball ball-25"></div></div></div>
+                            <div class="fps-row"><div class="fps-meta"><span class="highlight">50 FPS</span></div><div class="fps-track"><div class="fps-ball ball-60"></div></div></div>
                         </div>
                     </div>
                 </div>
-
-                <div class="comparison-dashboard fade-in-up delay-2">
-                    <div class="cd-controls">
-                        <div class="cd-toggle-bg">
-                            <div class="cd-pill" id="cd-pill"></div>
-                            <button class="cd-btn active" onclick="setMode('legacy')">Legacy Infrastructure</button>
-                            <button class="cd-btn" onclick="setMode('dgo')">DGO Next-Gen Stack</button>
-                        </div>
-                    </div>
-
-                    <div class="cd-grid" id="cd-grid">
-                        </div>
-                </div>
-
-                <div class="elevation-section fade-in-up delay-2">
-                    <div style="display:flex; justify-content:space-between; align-items:end; margin-bottom:30px; margin-top:60px;">
-                        <h3 class="grid-header" style="margin:0;">The Experience Engine</h3>
-                        <span style="font-size:0.8rem; color:#999;">Tap cards to reveal features</span>
-                    </div>
-
-                    <div class="xp-grid">
-                        
-                        <div class="xp-card" onclick="toggleXP(this)">
-                            <div class="xp-preview">
-                                <div class="xp-icon-bg">📊</div>
-                                <div class="xp-meta">
-                                    <h4>Data Intelligence</h4>
-                                    <p>Advanced Stats, Heatmaps & Win Probability.</p>
-                                </div>
-                                <div class="xp-arrow">↓</div>
-                            </div>
-                            <div class="xp-content">
-                                <div class="xp-visual-box">
-                                    <div class="heatmap-demo">
-                                        <div class="hm-spot" style="top:20%; left:30%; opacity:0.6;"></div>
-                                        <div class="hm-spot" style="top:50%; left:60%; opacity:0.8;"></div>
-                                        <div class="hm-spot" style="top:80%; left:40%; opacity:0.4;"></div>
-                                        <span class="hm-label">Player Heatmap (Live)</span>
-                                    </div>
-                                    <div class="win-prob-demo">
-                                        <div class="wp-bar">
-                                            <div class="wp-fill" style="width: 65%;"></div>
-                                        </div>
-                                        <div class="wp-text"><span>Home: 65%</span><span>Away: 35%</span></div>
-                                    </div>
-                                </div>
-                                <ul class="xp-list">
-                                    <li><strong>Live Win Probability:</strong> Real-time AI prediction.</li>
-                                    <li><strong>Player Comparisons:</strong> Head-to-head stat overlays.</li>
-                                    <li><strong>Clean Scorebug:</strong> Modern, non-intrusive HUD.</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="xp-card" onclick="toggleXP(this)">
-                            <div class="xp-preview">
-                                <div class="xp-icon-bg">🎥</div>
-                                <div class="xp-meta">
-                                    <h4>Visual Immersion</h4>
-                                    <p>Broadcast Standard & Vibrant Color.</p>
-                                </div>
-                                <div class="xp-arrow">↓</div>
-                            </div>
-                            <div class="xp-content">
-                                <div class="xp-visual-box" style="background: #000;">
-                                    <div class="cam-angles">
-                                        <div class="cam c-1">Main Gantry</div>
-                                        <div class="cam c-2">Dugout</div>
-                                        <div class="cam c-3">Drone</div>
-                                        <div class="cam-target">🏏 Pitch</div>
-                                    </div>
-                                </div>
-                                <ul class="xp-list">
-                                    <li><strong>Smooth Motion:</strong> True 50fps output (No ghosting).</li>
-                                    <li><strong>Standardized Framing:</strong> FIFA/ICC guideline angles.</li>
-                                    <li><strong>Color Grading:</strong> High-contrast "Glossy" look.</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="xp-card" onclick="toggleXP(this)">
-                            <div class="xp-preview">
-                                <div class="xp-icon-bg">🎧</div>
-                                <div class="xp-meta">
-                                    <h4>Sonic Atmosphere</h4>
-                                    <p>Audio Engineering & World-Class Commentary.</p>
-                                </div>
-                                <div class="xp-arrow">↓</div>
-                            </div>
-                            <div class="xp-content">
-                                <div class="xp-visual-box audio-viz">
-                                    <div class="av-bar"></div><div class="av-bar"></div><div class="av-bar"></div>
-                                    <div class="av-bar"></div><div class="av-bar"></div><div class="av-bar"></div>
-                                    <div class="av-label">Dolby Atmosphere Mix</div>
-                                </div>
-                                <ul class="xp-list">
-                                    <li><strong>The "Roar":</strong> Dedicated crowd ambient mics (-12db).</li>
-                                    <li><strong>Commentary:</strong> Separated center channel (-6db).</li>
-                                    <li><strong>Result:</strong> You feel the stadium, but hear the expert.</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="xp-card" onclick="toggleXP(this)">
-                            <div class="xp-preview">
-                                <div class="xp-icon-bg">🎭</div>
-                                <div class="xp-meta">
-                                    <h4>The Narrative</h4>
-                                    <p>Storytelling beyond the 90 minutes.</p>
-                                </div>
-                                <div class="xp-arrow">↓</div>
-                            </div>
-                            <div class="xp-content">
-                                <div class="xp-visual-box narrative-box">
-                                    <div class="n-timeline">
-                                        <div class="nt-node">Pre-Show</div>
-                                        <div class="nt-line"></div>
-                                        <div class="nt-node active">Match</div>
-                                        <div class="nt-line"></div>
-                                        <div class="nt-node">Post-Show</div>
-                                    </div>
-                                </div>
-                                <ul class="xp-list">
-                                    <li><strong>Uniform ROS:</strong> Structured Run-of-Show (No dead air).</li>
-                                    <li><strong>Hero Building:</strong> Player backstories & rivalries.</li>
-                                    <li><strong>Packaged Show:</strong> Analysis, Highlights, & Predictions.</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
             </div>
         </section>
 
@@ -1389,145 +850,79 @@
                 <div class="fade-in-up">
                     <span class="badge badge-red">Sales Enablement</span>
                     <h2 class="section-title">The Commercial Playbook</h2>
-                    <p class="section-subtitle">Moving from "Logo Exposure" to "Story Selling." How we integrate brands into the fabric of the game.</p>
+                    <p class="section-subtitle">Moving from "Logo Exposure" to "Story Selling."</p>
                 </div>
 
-                <div class="story-selling-container fade-in-up delay-1">
-                    <h3 class="grid-header" style="border-left-color:#F59E0B;">The Shift: Story Selling</h3>
-                    
-                    <div class="ss-comparison">
-                        <div class="ss-box old-way">
-                            <div class="ss-badge">Legacy Sales</div>
-                            <h4>"The Aston Band"</h4>
-                            <div class="ss-visual">
-                                <div class="tv-screen">
-                                    <div class="tv-content"></div>
-                                    <div class="tv-ad-band">BUY MY DRINK</div>
-                                </div>
-                            </div>
-                            <p class="ss-desc">Disruptive. Ignored by users. Low recall.</p>
-                        </div>
-
-                        <div class="ss-arrow">➔</div>
-
-                        <div class="ss-box new-way">
-                            <div class="ss-badge">DGO Strategy</div>
-                            <h4>"Contextual Narrative"</h4>
-                            <div class="ss-visual">
-                                <div class="tv-screen">
-                                    <div class="tv-content"></div>
-                                    <div class="tv-overlay-context">
-                                        <span class="context-title">STAMINA METER</span>
-                                        <div class="context-bar"><div class="cb-fill"></div></div>
-                                        <span class="context-brand">Powered by <strong>Red Bull</strong></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="ss-desc"><strong>Context:</strong> Brand appears when the athlete is tired. <br><strong>Message:</strong> "Recharge." High Recall.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="inventory-section fade-in-up delay-2">
-                    <h3 class="grid-header" style="margin-top:50px;">New Digital Inventory (Beyond the Banner)</h3>
-                    <div class="inv-grid">
+                <div class="ss-hero-container fade-in-up delay-1">
+                    <div class="ss-hero-card legacy-card" onclick="this.classList.toggle('active')">
+                        <div class="ss-badge" style="background: #F3F4F6; color: #6B7280;">LEGACY MODEL</div>
+                        <h4>The "Aston Band" Approach</h4>
                         
-                        <div class="inv-card">
-                            <div class="inv-icon">🎮</div>
-                            <div class="inv-title">Predict & Win</div>
-                            <p class="inv-text"><strong>Format:</strong> Live pop-up polls.<br><em>"Who will score next?"</em></p>
-                            <div class="inv-brand-value">
-                                <strong>Value:</strong> 1st Party Data (Phone/Email) generation for brands.
+                        <div class="ss-visual">
+                            <div class="tv-screen">
+                                <div class="tv-content" style="background-color:#222"></div>
+                                <div class="tv-ad-band">BUY MY DRINK</div>
                             </div>
                         </div>
 
-                        <div class="inv-card">
-                            <div class="inv-icon">⚡</div>
-                            <div class="inv-title">Moment Ownership</div>
-                            <p class="inv-text"><strong>Format:</strong> Triggered graphics.<br><em>"Fastest Sprint"</em> or <em>"Power Strike"</em></p>
-                            <div class="inv-brand-value">
-                                <strong>Value:</strong> Associates brand attributes (Speed, Power) with the game.
+                        <p class="ss-desc" style="font-weight: 600; color: #EF4444;">Status: Disruptive & Ignored</p>
+                        
+                        <ul class="ss-info-list">
+                            <li><strong>Low Recall:</strong> Users treat these as "noise" and mentally filter them out during live action.</li>
+                            <li><strong>Ad Blindness:</strong> Static banners have no relevance to the game's current emotional state.</li>
+                            <li><strong>High Churn:</strong> Interruptive advertising creates friction in the viewing experience.</li>
+                            <li><strong>Inventory Waste:</strong> Brands pay for exposure but fail to build a narrative connection.</li>
+                        </ul>
+                        <div class="click-hint" style="opacity: 1; margin-top: 15px; color:#999; font-size:0.7rem;">Click to view Disadvantages</div>
+                    </div>
+
+                    <div class="ss-hero-card contextual-card" onclick="this.classList.toggle('active')">
+                        <div class="ss-badge" style="background: #ECFDF5; color: #059669;">DGO STRATEGY</div>
+                        <h4>Contextual Narrative</h4>
+                        
+                        <div class="ss-visual">
+                            <div class="tv-screen">
+                                <div class="tv-content" style="background-color:#222"></div>
+                                <div class="tv-overlay-context">
+                                    <span class="context-title">STAMINA METER</span>
+                                    <div class="context-bar"><div class="cb-fill"></div></div>
+                                    <span class="context-brand">Powered by <strong>Red Bull</strong></span>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="inv-card">
-                            <div class="inv-icon">📱</div>
-                            <div class="inv-title">The "Digital Echo"</div>
-                            <p class="inv-text"><strong>Format:</strong> Branded 30s clips posted to Insta/TikTok instantly.</p>
-                            <div class="inv-brand-value">
-                                <strong>Value:</strong> Reaches the 60% of youth who don't watch the full 90 mins.
-                            </div>
-                        </div>
-
-                        <div class="inv-card">
-                            <div class="inv-icon">🎙️</div>
-                            <div class="inv-title">Influencer Watch Party</div>
-                            <p class="inv-text"><strong>Format:</strong> Popular YouTubers commentary audio stream.</p>
-                            <div class="inv-brand-value">
-                                <strong>Value:</strong> Direct access to Gen-Z cult followings.
-                            </div>
-                        </div>
-
+                        <p class="ss-desc" style="font-weight: 600; color: #059669;">Status: High Engagement</p>
+                        
+                        <ul class="ss-info-list">
+                            <li><strong>The "Recharge" Moment:</strong> Brand appears exactly when the athlete is tired, creating emotional alignment. [cite: 604, 605]</li>
+                            <li><strong>Utility Integration:</strong> The ad provides data (Stamina) that the viewer actually wants to see. [cite: 602]</li>
+                            <li><strong>Native Experience:</strong> Doesn't disrupt the flow; it becomes part of the broadcast HUD.</li>
+                            <li><strong>Premium Pricing:</strong> Contextual spots command higher value than standard banners. </li>
+                        </ul>
+                        <div class="click-hint" style="opacity: 1; margin-top: 15px; color:var(--brand-red); font-size:0.7rem;">Click to view Advantages</div>
                     </div>
                 </div>
 
-                <div class="social-integration fade-in-up delay-3">
-                    <div class="si-wrapper">
-                        <div class="si-node">
-                            <div class="si-icon">🏟️</div>
-                            <div>Live Match<br><span style="font-size:0.7rem; color:#888;">Goal Scored</span></div>
-                        </div>
-                        <div class="si-line"><div class="si-dot"></div></div>
-                        <div class="si-node" style="border-color:var(--brand-red);">
-                            <div class="si-icon">✂️</div>
-                            <div>Clipper Team<br><span style="font-size:0.7rem; color:var(--brand-red);">Adds Brand Bumper</span></div>
-                        </div>
-                        <div class="si-line"><div class="si-dot" style="animation-delay:0.5s;"></div></div>
-                        <div class="si-node">
-                            <div class="si-icon">📲</div>
-                            <div>Social Viral<br><span style="font-size:0.7rem; color:#888;">Instagram/TikTok</span></div>
-                        </div>
-                    </div>
-                    <div class="si-caption">
-                        <strong>The 3-Minute Rule:</strong> We package a goal, wrap it in a Sponsor's intro/outro, and post it within 3 minutes. This turns passive broadcast sponsorship into active social engagement.
+                <div class="inventory-section fade-in-up delay-2" style="margin-top:50px;">
+                    <h3 class="grid-header">New Digital Inventory</h3>
+                    <div class="inv-grid">
+                        <div class="inv-card"><div class="inv-title">Predict & Win</div><p class="inv-text">Live pop-up polls during matches. [cite: 607]</p></div>
+                        <div class="inv-card"><div class="inv-title">Moment Ownership</div><p class="inv-text">Triggered graphics like "Fastest Sprint". [cite: 610]</p></div>
+                        <div class="inv-card"><div class="inv-title">The "Digital Echo"</div><p class="inv-text">Branded clips posted to social within 3 mins. [cite: 613, 624]</p></div>
+                        <div class="inv-card"><div class="inv-title">Influencer Party</div><p class="inv-text">Youtuber commentary streams. [cite: 616]</p></div>
                     </div>
                 </div>
-
             </div>
         </section>
-
     </main>
 
     <div class="modal-overlay" id="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
-                <div id="m-header-content">
-                    <h2 id="m-title" style="margin-bottom: 5px;">Title</h2>
-                    <span id="m-sub" class="badge">Subtitle</span>
-                </div>
-                <button class="btn-close" onclick="closeModal()">×</button>
+                <h2 id="m-title">Title</h2>
+                <button onclick="closeModal()" style="background:none; border:none; font-size:2rem; cursor:pointer;">&times;</button>
             </div>
-            <div class="modal-body">
-                <div class="detail-grid">
-                    <div class="d-metric-box">
-                        <div class="d-val" id="m-stat1">0</div>
-                        <div class="d-lab" id="m-label1">Label</div>
-                    </div>
-                    <div class="d-metric-box">
-                        <div class="d-val" id="m-stat2">0</div>
-                        <div class="d-lab" id="m-label2">Label</div>
-                    </div>
-                </div>
-                
-                <h4 style="margin-bottom: 15px; color:#555;">Data Visualization: <span id="m-chart-title">Metric</span></h4>
-                <div class="chart-container" id="m-chart">
-                    </div>
-
-                <div class="desc-text" id="m-desc" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
-                    Description text.
-                </div>
-                <div class="citation-box" id="m-cite">Source</div>
-            </div>
+            <div class="modal-body" id="m-desc" style="padding:20px;"></div>
         </div>
     </div>
 
@@ -1535,336 +930,29 @@
         const $ = (s) => document.querySelector(s);
         const $$ = (s) => document.querySelectorAll(s);
 
-        // --- DATA DICTIONARY FOR MODALS (2025/26 Data) ---
+        // MODAL DATA
         const modalData = {
-            // ... (Strategy Modals - Existing)
-            jio: {
-                title: "JioHotstar: The Merger Effect",
-                sub: "Dominant Market Leader (2025)",
-                stat1: "₹50Bn+",
-                label1: "Proj. Ad Revenue (IPL 25)",
-                stat2: "90%",
-                label2: "Live Sports Market Share",
-                desc: "Post-merger (Reliance + Disney), JioHotstar controls nearly all major cricket rights in India. Their model relies on Server-Side Ad Insertion (SSAI) to deliver targeted ads to 500M+ concurrent users. They have effectively killed the 'Pay-for-Sports' model in India for mass events.",
-                citation: "Source: Goldman Sachs Equity Research (Jan 2025) / Inc42 Merger Analysis",
-                color: "#0078BC",
-                chartTitle: "Revenue Mix (Projected 2025)",
-                chartData: [{ label: "Advertising", value: 75, disp: "75%" }, { label: "Subscription", value: 25, disp: "25%" }]
-            },
-            nepal: {
-                title: "The Nepal Opportunity",
-                sub: "Market Gap Analysis",
-                stat1: "12.3M",
-                label1: "4G Data Users",
-                stat2: "<1%",
-                label2: "Paid OTT Penetration",
-                desc: "There is a massive disconnect between internet capability and content availability. While 12M+ users consume high-bandwidth data, most consumption happens on pirated streams or social clips. DGO has the opportunity to convert this 'Grey Market' traffic into 'White Market' revenue via easy payment integrations (eSewa/Khalti).",
-                citation: "Source: Nepal Telecommunications Authority (NTA) MIS 2024 / World Bank Digital Nepal Report",
-                color: "#D32F2F",
-                chartTitle: "Digital Adoption vs. Paid Content",
-                chartData: [{ label: "Internet Access", value: 90, disp: "90%" }, { label: "Paid OTT Subs", value: 5, disp: "~5%" }]
-            },
-            netflix: {
-                title: "Netflix: Live Pivot",
-                sub: "From Binge to Appointment Viewing",
-                stat1: "$5 Billion",
-                label1: "Content Spend (Live)",
-                stat2: "-12%",
-                label2: "Churn Reduction Target",
-                desc: "In Jan 2025, Netflix began broadcasting WWE Raw live. This strategic shift addresses their biggest weakness: churn. Live sports forces users to log in at specific times (Appointment Viewing) rather than bingeing a series and cancelling the subscription the next month.",
-                citation: "Source: Wall Street Journal (Jan 2025) / Netflix Investor Relations",
-                color: "#E50914",
-                chartTitle: "Retention Power (Month 3)",
-                chartData: [{ label: "VOD Only", value: 65, disp: "65%" }, { label: "VOD + Live Sports", value: 88, disp: "88%" }]
-            },
-            sony: {
-                title: "Sony LIV: High ARPU",
-                sub: "The Premium Niche",
-                stat1: "₹1,499",
-                label1: "Annual Premium Plan",
-                stat2: "35M",
-                label2: "Paying Subscribers",
-                desc: "Unlike Jio's mass-market ad model, Sony LIV focuses on the 'Affluent Urban Male'. By locking down UEFA Champions League and UFC, they command the highest Average Revenue Per User (ARPU) in the region, proving that users *will* pay for high-quality, uninterrupted sports feeds.",
-                citation: "Source: Ormax Media 'State of OTT 2025' / Mint Industry Analysis",
-                color: "#F9A825",
-                chartTitle: "Comparative ARPU (Indexed)",
-                chartData: [{ label: "Generic OTT", value: 40, disp: "1.0x" }, { label: "Sony LIV", value: 90, disp: "2.3x" }]
-            },
-            prime: {
-                title: "Prime Video",
-                sub: "The Commerce Engine",
-                stat1: "200M+",
-                label1: "Global Prime Subs",
-                stat2: "15%",
-                label2: "Higher Shopping Cart Value",
-                desc: "For Amazon, sports is a loss-leader. They don't need to make a profit on the broadcast itself. Data shows that Prime members who watch 'Thursday Night Football' or cricket spend 15% more on the e-commerce store than non-viewers. Sports is the retention engine for the entire Prime ecosystem.",
-                citation: "Source: Amazon Q4 2024 Earnings Call / Bloomberg Tech",
-                color: "#00A8E1",
-                chartTitle: "E-Commerce Engagement",
-                chartData: [{ label: "Non-Viewers", value: 50, disp: "$Avg" }, { label: "Sports Viewers", value: 85, disp: "+35%" }]
-            },
-            
-            // --- NEW: ASSETS DATA ---
-            cricket: {
-                title: "Cricket: The National Festival",
-                sub: "Mass Market Penetration",
-                stat1: "72%",
-                label1: "Total Population Reach",
-                stat2: "NPL",
-                label2: "Top Property (NPL)",
-                desc: "<strong>Key Properties:</strong> NPL (Nepal Premier League), ICC CWC League II, International Home Series.<br><br>Cricket in Nepal is no longer just a sport; it is a unifying cultural event. Viewership data from 2025 shows that during Nepal Premier League matches, ISPs report a 400% spike in traffic. It is the only property that aggregates the entire family in front of a screen.",
-                citation: "Source: CAN Annual Report 2026 / Worldlink ISP Traffic Data",
-                color: "#003366",
-                chartTitle: "Viewer Demographics",
-                chartData: [{ label: "Male 18-35", value: 60, disp: "60%" }, { label: "Family/Other", value: 40, disp: "40%" }]
-            },
-            football: {
-                title: "Football: Tribal Loyalty",
-                sub: "Youth & Urban Engagement",
-                stat1: "45%",
-                label1: "Gen Z Penetration",
-                stat2: "High",
-                label2: "Social Engagement Rate",
-                desc: "<strong>Key Properties:</strong> SAFF Championship (Men/Women), Women's Franchise League, A-Division League.<br><br>While Cricket has the scale, Football has the passion. Fan clubs for European teams and local A-Division clubs drive the highest social media engagement. This audience is younger, urban, and more likely to make digital payments.",
-                citation: "Source: ANFA Digital Audit 2026 / FIFA Forward Report",
-                color: "#006400",
-                chartTitle: "Age Distribution",
-                chartData: [{ label: "Under 25", value: 65, disp: "65%" }, { label: "Over 25", value: 35, disp: "35%" }]
-            },
-            volleyball: {
-                title: "Volleyball: The Grassroots Giant",
-                sub: "Rural & Semi-Urban King",
-                stat1: "#1",
-                label1: "Sport by Participation",
-                stat2: "35%",
-                label2: "Female Viewership",
-                desc: "<strong>Key Properties:</strong> National Volleyball League (NVL), CAVA Nations League, Club Championships.<br><br>Often overlooked by advertisers, Volleyball is the national sport of Nepal and dominates rural viewership. It has the highest female viewership share of any sport in the country, offering a unique opportunity for FMCG brands targeting household decision-makers.",
-                citation: "Source: Ministry of Youth & Sports 2025 / NVA",
-                color: "#CC5500",
-                chartTitle: "Geographic Reach",
-                chartData: [{ label: "Urban", value: 30, disp: "30%" }, { label: "Rural", value: 70, disp: "70%" }]
-            },
-            esports: {
-                title: "eSports: The Digital Frontier",
-                sub: "Future-Proofing the Platform",
-                stat1: "5M+",
-                label1: "Active Gamers",
-                stat2: "55m",
-                label2: "Avg Daily Time Spent",
-                desc: "<strong>Key Properties:</strong> DGO Pro Series (Own IP), PUBG/FreeFire Regional Qualifiers.<br><br>With globally competitive teams in PUBG Mobile and Free Fire, Nepal's eSports scene is exploding. This audience does not watch TV; they watch streams. Acquiring eSports rights effectively locks in the next generation of subscribers (Age 12-22).",
-                citation: "Source: Newzoo Global Games Market 2026 / Nepal Gaming Alliance",
-                color: "#4B0082",
-                chartTitle: "Device Usage",
-                chartData: [{ label: "Mobile", value: 95, disp: "95%" }, { label: "PC/Console", value: 5, disp: "5%" }]
-            }
+            jio: { title: "JioHotstar Strategy", desc: "Monetizing via massive ad inventory (SSAI) rather than subscription alone. [cite: 457, 634]" },
+            nepal: { title: "The Nepal Opportunity", desc: "Nepal has 12M+ 4G users but zero dominant local sports OTT. DGO is first-mover. [cite: 460, 461, 637]" },
+            cricket: { title: "Cricket", desc: "The unifying cultural event of Nepal. spikes ISP traffic by 400%. [cite: 652, 654]" }
         };
-
-        // --- GEO MAP LOGIC ---
-        function setGeo(sport, btn) {
-            // Update Buttons
-            document.querySelectorAll('.geo-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            // Reset Nodes and Reset Icons to generic
-            const nodes = document.querySelectorAll('.province-node');
-            nodes.forEach(n => {
-                n.classList.remove('active-node');
-                // Optional: You could reset the icon here, but keeping the last set one is fine 
-                // until active state changes. 
-            });
-
-            if(sport === 'all') {
-                nodes.forEach(n => n.classList.add('active-node'));
-            } else if (sport === 'cricket') {
-                // Madhesh, Lumbini, Sudur, Bagmati
-                const targets = ['#pn-madhesh', '#pn-lumbini', '#pn-sudur', '#pn-bagmati'];
-                targets.forEach(id => {
-                    const el = $(id);
-                    el.classList.add('active-node');
-                    el.querySelector('.pn-score').innerText = '🏏';
-                });
-            } else if (sport === 'football') {
-                // Koshi, Gandaki
-                const targets = ['#pn-koshi', '#pn-gandaki'];
-                targets.forEach(id => {
-                    const el = $(id);
-                    el.classList.add('active-node');
-                    el.querySelector('.pn-score').innerText = '⚽';
-                });
-            } else if (sport === 'volleyball') {
-                // Gandaki, Bagmati (KTM)
-                const targets = ['#pn-gandaki', '#pn-bagmati'];
-                targets.forEach(id => {
-                    const el = $(id);
-                    el.classList.add('active-node');
-                    el.querySelector('.pn-score').innerText = '🏐';
-                });
-            } else if (sport === 'esports') {
-                // Bagmati, Gandaki (Kaski)
-                const targets = ['#pn-bagmati', '#pn-gandaki'];
-                targets.forEach(id => {
-                    const el = $(id);
-                    el.classList.add('active-node');
-                    el.querySelector('.pn-score').innerText = '🎮';
-                });
-            }
-        }
-
-        // --- DIASPORA TOGGLE ---
-        function toggleDia(element) {
-            // Close others
-            document.querySelectorAll('.dia-card').forEach(c => {
-                if(c !== element) c.classList.remove('active');
-            });
-            // Toggle clicked
-            element.classList.toggle('active');
-        }
-
-        // --- MODAL LOGIC ---
-        const modal = document.getElementById('modal-overlay');
 
         function openModal(key) {
             const data = modalData[key];
-            if(!data) return;
-
-            // Populate Text
             $('#m-title').innerText = data.title;
-            $('#m-title').style.color = data.color;
-            $('#m-sub').innerText = data.sub;
-            $('#m-sub').style.backgroundColor = data.color + '20'; // 20% opacity hex
-            $('#m-sub').style.color = data.color;
-            $('#m-stat1').innerText = data.stat1;
-            $('#m-label1').innerText = data.label1;
-            $('#m-stat2').innerText = data.stat2;
-            $('#m-label2').innerText = data.label2;
-            $('.d-metric-box').style.borderLeftColor = data.color;
             $('#m-desc').innerHTML = data.desc;
-            $('#m-cite').innerText = data.citation;
-            $('#m-chart-title').innerText = data.chartTitle;
-
-            // Generate Chart
-            const chartContainer = $('#m-chart');
-            chartContainer.innerHTML = ''; // Clear old
-            
-            data.chartData.forEach(item => {
-                const row = document.createElement('div');
-                row.className = 'chart-row';
-                row.innerHTML = `
-                    <div class="c-label">${item.label}</div>
-                    <div class="c-bar-area">
-                        <div class="c-bar-fill" style="width: 0%; background: ${data.color}"></div>
-                    </div>
-                    <div class="c-val">${item.disp}</div>
-                `;
-                chartContainer.appendChild(row);
-                
-                // Trigger animation after render
-                setTimeout(() => {
-                    row.querySelector('.c-bar-fill').style.width = item.value + '%';
-                }, 100);
-            });
-
-            // Show Modal
-            modal.classList.add('active');
+            $('#modal-overlay').classList.add('active');
         }
 
-        function closeModal() {
-            modal.classList.remove('active');
-        }
+        function closeModal() { $('#modal-overlay').classList.remove('active'); }
 
-        // Close on click outside
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
-        
-        // Close on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
-        });
-
-
-        // --- NAV & SCROLL ---
-        const sections = $$('section');
-        const navLinks = $$('.nav-links li a');
-        const progressBar = $('#progress-bar');
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${entry.target.id}`) link.classList.add('active');
-                    });
-                }
-            });
-        }, { threshold: 0.3 });
-        sections.forEach(sec => observer.observe(sec));
-
-        window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            progressBar.style.width = (winScroll / height) * 100 + "%";
-        });
-
-        // --- ANIMATIONS ---
-        const fadeObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    fadeObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-        $$('.fade-in-up').forEach(el => fadeObserver.observe(el));
-
-        // --- MARKET COUNTER ANIMATION ---
-        let marketStatsRun = false;
-        const marketObserver = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting && !marketStatsRun) {
-                marketStatsRun = true;
-                document.querySelectorAll('.market-counter').forEach(counter => {
-                    const target = +counter.getAttribute('data-target');
-                    const duration = 2000;
-                    const startTime = performance.now();
-                    const animate = (currentTime) => {
-                        const elapsed = currentTime - startTime;
-                        const progress = Math.min(elapsed / duration, 1);
-                        const ease = 1 - Math.pow(1 - progress, 4);
-                        const currentVal = Math.floor(ease * target);
-                        counter.innerText = currentVal;
-                        if (progress < 1) requestAnimationFrame(animate);
-                        else counter.innerText = target;
-                    };
-                    requestAnimationFrame(animate);
-                });
-            }
-        }, { threshold: 0.5 });
-        const marketStrip = document.querySelector('.market-strip');
-        if (marketStrip) marketObserver.observe(marketStrip);
-
-        // --- LATENCY SIMULATOR LOGIC (RESTORED) ---
+        // LATENCY SIMULATOR
         let seconds = 0;
-        let timerInterval;
-        const realTimer = document.getElementById('timer-real');
-        const dgoTimer = document.getElementById('timer-dgo');
-        const tvTimer = document.getElementById('timer-tv');
-        const dgoLag = 4; // seconds
-        const tvLag = 15; // cheat: use 15s instead of 45s for faster demo
-
-        function startTimers() {
-            timerInterval = setInterval(() => {
-                seconds++;
-                
-                // Update Realtime
-                realTimer.innerText = formatTime(seconds);
-                
-                // Update DGO (Delayed by 4s)
-                if(seconds > dgoLag) dgoTimer.innerText = formatTime(seconds - dgoLag);
-                
-                // Update TV (Delayed by 15s)
-                if(seconds > tvLag) tvTimer.innerText = formatTime(seconds - tvLag);
-            }, 1000);
-        }
+        setInterval(() => {
+            seconds++;
+            $('#timer-real').innerText = formatTime(seconds);
+            if(seconds > 4) $('#timer-dgo').innerText = formatTime(seconds - 4);
+        }, 1000);
 
         function formatTime(s) {
             const mins = Math.floor(s / 60).toString().padStart(2, '0');
@@ -1873,128 +961,26 @@
         }
 
         function triggerGoal() {
-            // 1. Show Realtime Goal
-            showEvent('event-real');
-            
-            // 2. Show DGO Goal after lag
+            $('#event-real').classList.add('active');
+            setTimeout(() => $('#event-dgo').classList.add('active'), 4000);
             setTimeout(() => {
-                showEvent('event-dgo');
-            }, dgoLag * 1000);
-
-            // 3. Show TV Goal after huge lag
-            setTimeout(() => {
-                showEvent('event-tv');
-            }, tvLag * 1000);
+                $('#event-real').classList.remove('active');
+                $('#event-dgo').classList.remove('active');
+            }, 7000);
         }
 
-        function showEvent(id) {
-            const el = document.getElementById(id);
-            el.innerText = "GOAL !!!";
-            el.classList.add('active');
-            setTimeout(() => {
-                el.classList.remove('active');
-                el.innerText = "MATCH START"; // Reset text
-            }, 3000);
-        }
-
-        // Start timers when section is visible (using existing observer logic)
-        const qualitySection = document.getElementById('quality-gap');
-        const qObserver = new IntersectionObserver((entries) => {
-            if(entries[0].isIntersecting && !timerInterval) {
-                startTimers();
-            }
-        }, { threshold: 0.3 });
-        if(qualitySection) qObserver.observe(qualitySection);
-
-        // --- DASHBOARD TOGGLE LOGIC (NEW) ---
-        const cdData = {
-            legacy: [
-                { label: "Signal Latency", val: "45s - 60s", desc: "Spoiler Risk: HIGH", type: "danger" },
-                { label: "Bitrate Quality", val: "2.5 Mbps", desc: "Visuals: Blocky/Blurry", type: "danger" },
-                { label: "Frame Rate", val: "25 fps", desc: "Motion: Ghosting", type: "danger" },
-                { label: "Reliability", val: "RTMP", desc: "Buffering: Frequent", type: "danger" }
-            ],
-            dgo: [
-                { label: "Signal Latency", val: "4s - 6s", desc: "Spoiler Risk: NONE", type: "success" },
-                { label: "Bitrate Quality", val: "6.5 Mbps", desc: "Visuals: Crystal Clear", type: "success" },
-                { label: "Frame Rate", val: "50 fps", desc: "Motion: Smooth", type: "success" },
-                { label: "Reliability", val: "SRT + HEVC", desc: "Buffering: Zero", type: "success" }
-            ]
-        };
-
-        function setMode(mode) {
-            // 1. Update Buttons
-            const buttons = document.querySelectorAll('.cd-btn');
-            const pill = document.getElementById('cd-pill');
-            
-            buttons.forEach(b => b.classList.remove('active'));
-            
-            if(mode === 'legacy') {
-                buttons[0].classList.add('active');
-                pill.style.transform = "translateX(0)";
-            } else {
-                buttons[1].classList.add('active');
-                pill.style.transform = "translateX(100%)";
-            }
-
-            // 2. Inject Data
-            const grid = document.getElementById('cd-grid');
-            grid.innerHTML = '';
-            
-            cdData[mode].forEach((item, index) => {
-                const card = document.createElement('div');
-                card.className = 'cd-stat-card';
-                // Stagger animation
-                card.style.animation = `fadeInUp 0.3s ease forwards ${index * 0.1}s`;
-                card.style.opacity = '0'; 
-                
-                card.innerHTML = `
-                    <div class="cd-label">${item.label}</div>
-                    <div class="cd-value status-${item.type}">${item.val}</div>
-                    <div class="cd-desc">${item.desc}</div>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        // Add simple animation keyframe
-        const styleSheet = document.createElement("style");
-        styleSheet.innerText = `
-            @keyframes fadeInUp {
-                from { opacity: 0; transform: translateY(10px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
-        `;
-        document.head.appendChild(styleSheet);
-
-        // Initialize Toggle
-        document.addEventListener('DOMContentLoaded', () => {
-            setMode('legacy');
-        });
-
-        // --- EXPERIENCE CARD TOGGLE ---
-        function toggleXP(card) {
-            // Close others
-            document.querySelectorAll('.xp-card').forEach(c => {
-                if(c !== card) c.classList.remove('active');
-            });
-            // Toggle Clicked
-            card.classList.toggle('active');
-        }
-
-        // --- PRESENTER MODE ---
+        // PRESENTER MODE
         $('#presenter-toggle').addEventListener('click', () => {
             document.body.classList.toggle('presenter-mode');
-            const isActive = document.body.classList.contains('presenter-mode');
-            const btn = $('#presenter-toggle span');
-            btn.innerText = isActive ? "Exit Mode" : "Presenter Mode";
-            $('#presenter-toggle').classList.toggle('active');
-            window.dispatchEvent(new Event('resize'));
         });
 
-        document.addEventListener('keydown', (e) => {
-            if(e.key === 'p' || e.key === 'P') $('#presenter-toggle').click();
-        });
+        // FADE IN OBSERVER
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        $$('.fade-in-up').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
