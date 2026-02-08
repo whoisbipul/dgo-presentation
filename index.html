@@ -156,7 +156,7 @@
         }
         .eco-step:hover { transform: translateY(-5px); border-color: var(--brand-red); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
         .eco-step:not(:last-child)::after {
-            content: '→'; position: absolute; right: -18px; top: 50%; transform: translateY(-50%); font-size: 1.5rem; color: #ccc; z-index: 10;
+            content: ''; position: absolute; right: -18px; top: 50%; transform: translateY(-50%); font-size: 1.5rem; color: #ccc; z-index: 10;
         }
         .step-icon {
             font-size: 1.5rem; margin-bottom: 15px; color: var(--brand-red); background: #fafafa; width: 40px; height: 40px;
@@ -191,7 +191,7 @@
         .card-dark .citation-box { color: rgba(255,255,255,0.4) !important; border-color: rgba(255,255,255,0.1) !important; }
         
         .pop-card::after {
-            content: 'View Data ↗'; position: absolute; bottom: 30px; right: 30px; 
+            content: 'View Data '; position: absolute; bottom: 30px; right: 30px; 
             font-size: 0.8rem; font-weight: 700; opacity: 0; transform: translateY(10px); 
             transition: all 0.3s; color: inherit;
         }
@@ -271,7 +271,7 @@
             font-size: 0.75rem; color: white; display: flex; align-items: center; gap: 8px;
             opacity: 0; transition: opacity 0.3s ease 0.1s;
         }
-        .ah-prop-item::before { content: '★'; color: #FFD700; font-size: 0.6rem; }
+        .ah-prop-item::before { content: ''; color: #FFD700; font-size: 0.6rem; }
         
         .asset-hero-card:hover .ah-prop-item { opacity: 1; }
 
@@ -471,72 +471,110 @@
         .nt-line { flex: 1; height: 2px; background: #ddd; margin: 0 5px; }
 
         /* --- 6. COMMERCIAL PLAYBOOK --- */
-
-        /* 1. Story Selling Visualizer */
-        .ss-comparison {
-            display: flex; align-items: center; justify-content: center; gap: 40px;
-            background: white; padding: 40px; border-radius: 16px; border: 1px solid #eee;
-            margin-top: 20px;
+        
+        /* HERO CARDS */
+        .ss-hero-container {
+            display: flex; gap: 30px; margin-top: 30px;
         }
-        .ss-box { text-align: center; flex: 1; max-width: 400px; }
-        .ss-badge { 
-            display: inline-block; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; 
-            padding: 4px 10px; border-radius: 4px; margin-bottom: 10px; letter-spacing: 1px;
+        
+        .ss-hero-card {
+            flex: 1; border-radius: 16px; border: 1px solid #e5e7eb; overflow: hidden;
+            transition: all 0.4s var(--ease-elastic); cursor: pointer;
+            position: relative; display: flex; flex-direction: column;
+            background: white; min-height: 400px;
         }
-        .old-way .ss-badge { background: #f3f4f6; color: #666; }
-        .new-way .ss-badge { background: #ecfdf5; color: #059669; }
-
-        .ss-visual {
-            background: #111; border-radius: 8px; height: 180px; position: relative;
-            margin: 15px 0; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        
+        /* Legacy Card Styles */
+        .ss-legacy { background: #f9fafb; }
+        .ss-legacy .ss-content { color: #666; }
+        .ss-legacy.active { background: #1f2937; border-color: #374151; transform: scale(1.02); z-index: 10; flex: 1.5; }
+        .ss-legacy.active .ss-title { color: white; }
+        .ss-legacy.active .ss-desc { color: #9ca3af; }
+        .ss-legacy.active .tv-screen { background: #374151; border-color: #4b5563; }
+        
+        /* DGO Card Styles */
+        .ss-dgo { background: white; border-color: #eee; }
+        .ss-dgo.active { background: white; border-color: var(--brand-red); box-shadow: 0 20px 40px rgba(211, 47, 47, 0.15); transform: scale(1.02); z-index: 10; flex: 1.5; }
+        
+        .ss-header { padding: 30px; }
+        .ss-badge {
+            display: inline-block; font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
+            padding: 5px 12px; border-radius: 6px; margin-bottom: 12px; letter-spacing: 1px;
         }
-        .tv-screen { width: 100%; height: 100%; position: relative; }
-        .tv-content { 
-    width: 100%; 
-    height: 100%; 
-    /* Fallback color if image fails */
-    background-color: #333; 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-}
+        .ss-legacy .ss-badge { background: #e5e7eb; color: #666; }
+        .ss-dgo .ss-badge { background: #ecfdf5; color: #059669; }
+        
+        .ss-title { font-size: 1.5rem; font-weight: 800; line-height: 1.2; margin-bottom: 10px; transition: color 0.3s; }
+        .ss-desc { font-size: 0.9rem; color: #666; transition: color 0.3s; }
+        
+        /* Visual Area */
+        .ss-visual-area {
+            flex: 1; padding: 0 30px; display: flex; align-items: center; justify-content: center;
+            background: transparent; position: relative;
+        }
+        
+        /* TV Screens */
+        .tv-screen {
+            width: 100%; height: 200px; border-radius: 12px; overflow: hidden; 
+            position: relative; border: 4px solid #333; background: #000;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: all 0.3s;
+        }
+        
+        .tv-content { width: 100%; height: 100%; background: #222; position: relative; }
+        .tv-content::after { content: 'LIVE MATCH'; position: absolute; top: 10px; left: 10px; color: rgba(255,255,255,0.3); font-size: 0.8rem; font-weight: 700; }
+        
+        /* Legacy Visuals */
+        .tv-ad-band {
+            position: absolute; bottom: 20px; left: 0; width: 100%; height: 50px;
+            background: rgba(255, 255, 255, 0.95); display: flex; align-items: center; 
+            justify-content: center; color: #d32f2f; font-weight: 800; font-size: 1.2rem;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.2); z-index: 2;
+            animation: flash 2s infinite;
+        }
+        @keyframes flash { 0% { background: white; } 50% { background: #fee2e2; } 100% { background: white; } }
+        
+        /* DGO Visuals */
+        .tv-overlay-context {
+            position: absolute; top: 20px; right: 20px; width: 160px;
+            background: rgba(17, 24, 39, 0.9); border-radius: 8px; padding: 12px;
+            text-align: left; border-left: 3px solid #F59E0B; backdrop-filter: blur(4px);
+            z-index: 2; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transform: translateX(20px); opacity: 0; transition: all 0.5s ease;
+        }
+        .ss-dgo.active .tv-overlay-context { transform: translateX(0); opacity: 1; }
+        
+        .context-title { display: block; font-size: 0.65rem; color: #ccc; text-transform: uppercase; margin-bottom: 5px; font-weight: 600; }
+        .context-bar { width: 100%; height: 8px; background: #444; border-radius: 4px; margin-bottom: 8px; overflow: hidden; }
+        .cb-fill { width: 30%; height: 100%; background: linear-gradient(90deg, #ef4444, #f59e0b); animation: drain 2s infinite alternate; }
+        .context-brand { display: block; font-size: 0.65rem; color: #fff; }
+        
+        /* Hidden Reveal Section */
+        .ss-reveal {
+            max-height: 0; overflow: hidden; transition: max-height 0.5s ease;
+            padding: 0 30px; opacity: 0;
+        }
+        .ss-hero-card.active .ss-reveal { max-height: 200px; padding-bottom: 30px; opacity: 1; transition-delay: 0.2s; }
+        
+        .reveal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 20px; }
+        .ss-legacy.active .reveal-grid { border-top-color: rgba(255,255,255,0.1); }
+        
+        .r-item h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 4px; }
+        .r-item p { font-size: 0.8rem; line-height: 1.4; }
+        
+        .ss-legacy .r-item h4 { color: #f87171; }
+        .ss-legacy .r-item p { color: #d1d5db; }
+        
+        .ss-dgo .r-item h4 { color: var(--brand-red); }
+        .ss-dgo .r-item p { color: #666; }
+        
+        .click-prompt { 
+            position: absolute; bottom: 20px; right: 20px; font-size: 0.75rem; 
+            font-weight: 700; text-transform: uppercase; opacity: 0.5; 
+            transition: opacity 0.3s;
+        }
+        .ss-hero-card:hover .click-prompt { opacity: 1; color: var(--brand-red); }
+        .ss-hero-card.active .click-prompt { display: none; }
 
-/* Specific Backgrounds */
-.old-way .tv-content {
-    background-image: url('assets/bg-legacy.jpg');
-}
-
-.new-way .tv-content {
-    background-image: url('assets/bg-contextual.jpg');
-}
-
-/* Ensure overlays sit comfortably on top of images */
-.tv-ad-band {
-    position: absolute; bottom: 20px; left: 0; width: 100%; height: 40px;
-    background: rgba(255, 255, 255, 0.95); display: flex; align-items: center; 
-    justify-content: center; color: #d32f2f; font-weight: 800; 
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-    z-index: 2;
-}
-
-.tv-overlay-context {
-    position: absolute; top: 20px; right: 20px; width: 140px;
-    background: rgba(17, 24, 39, 0.9); /* Slightly darker for better text contrast */
-    border-radius: 8px; padding: 10px;
-    text-align: left; border-left: 3px solid #F59E0B;
-    backdrop-filter: blur(4px);
-    z-index: 2;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-        .context-title { display: block; font-size: 0.6rem; color: #ccc; text-transform: uppercase; margin-bottom: 5px; }
-        .context-bar { width: 100%; height: 6px; background: #444; border-radius: 3px; margin-bottom: 8px; }
-        .cb-fill { width: 30%; height: 100%; background: #ef4444; border-radius: 3px; animation: drain 2s infinite alternate; }
-        @keyframes drain { from { width: 30%; background: #ef4444; } to { width: 90%; background: #22c55e; } }
-        .context-brand { display: block; font-size: 0.55rem; color: #fff; }
-
-        .ss-desc { font-size: 0.85rem; color: #666; line-height: 1.4; padding: 0 10px; }
-        .ss-arrow { font-size: 2rem; color: #ddd; }
 
         /* 2. Inventory Grid */
         .inv-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 20px; }
@@ -586,7 +624,7 @@
         }
         .geo-btn:hover { background: #f0f0f0; }
         .geo-btn.active { background: var(--brand-red-light); color: var(--brand-red); border-color: var(--brand-red); }
-        .geo-btn.active::after { content: '→'; }
+        .geo-btn.active::after { content: ''; }
 
         /* --- FIXED MAP IMAGE CONTAINER --- */
         .geo-map-area { 
@@ -767,7 +805,7 @@
         body.presenter-mode section { padding: 40px 60px; border-bottom: none; }
         body.presenter-mode .ecosystem-chain { flex-direction: column; gap: 10px; } 
         body.presenter-mode .eco-step { border-left: 5px solid var(--brand-red); }
-        body.presenter-mode .eco-step:not(:last-child)::after { content: '↓'; right: 50%; top: auto; bottom: -20px; transform: translateX(50%); }
+        body.presenter-mode .eco-step:not(:last-child)::after { content: ''; right: 50%; top: auto; bottom: -20px; transform: translateX(50%); }
         body.presenter-mode .home-title { font-size: 4rem; }
         body.presenter-mode .market-strip { display: flex; } 
         body.presenter-mode .bento-grid { grid-template-columns: 1fr; }
@@ -819,8 +857,7 @@
             .cd-btn { width: 50%; font-size: 0.8rem; padding: 10px; }
             .cd-pill { width: 50%; }
 
-            .ss-comparison { flex-direction: column; gap: 20px; }
-            .ss-arrow { transform: rotate(90deg); }
+            .ss-hero-container { flex-direction: column; }
             .inv-grid { grid-template-columns: 1fr; }
             .si-wrapper { flex-direction: column; gap: 30px; }
             .si-line { width: 2px; height: 50px; margin: 0 auto; }
@@ -977,17 +1014,17 @@
                     <h3 class="grid-header" style="margin-bottom: 25px; border-color: #333;">The Strategic Fit: DGO Ecosystem</h3>
                     <div class="flywheel-container">
                         <div class="fw-item">
-                            <div class="fw-icon">🧲</div>
+                            <div class="fw-icon"></div>
                             <div class="fw-content"><div class="fw-title">Acquisition Hook</div><div class="fw-desc">Sports is the cheapest way to acquire users (Low CPA). It forces immediate app downloads.</div></div>
                         </div>
-                        <div class="fw-arrow">➜</div>
+                        <div class="fw-arrow"></div>
                         <div class="fw-item">
-                            <div class="fw-icon">🔄</div>
+                            <div class="fw-icon"></div>
                             <div class="fw-content"><div class="fw-title">Habit Formation</div><div class="fw-desc">Unlike movies (watch once), sports creates recurring weekly active users (WAU).</div></div>
                         </div>
-                        <div class="fw-arrow">➜</div>
+                        <div class="fw-arrow"></div>
                         <div class="fw-item">
-                            <div class="fw-icon">🏠</div>
+                            <div class="fw-icon"></div>
                             <div class="fw-content"><div class="fw-title">DGO - The Home of Nepal Sports</div><div class="fw-desc">Establishing DGO as a household name for the sports action in country.</div></div>
                         </div>
                     </div>
@@ -1080,13 +1117,13 @@
                     </div>
                     <div class="geo-map-area">
                         <div class="geo-map-bg"></div>
-                        <div class="province-node p-sudur" id="pn-sudur"><span class="pn-score">🏐</span> Sudur</div>
-                        <div class="province-node p-karnali" id="pn-karnali"><span class="pn-score">🏐</span> Karnali</div>
-                        <div class="province-node p-lumbini" id="pn-lumbini"><span class="pn-score">🏏</span> Lumbini</div>
-                        <div class="province-node p-gandaki" id="pn-gandaki"><span class="pn-score">⚽</span> Gandaki</div>
-                        <div class="province-node p-bagmati" id="pn-bagmati"><span class="pn-score">🏏</span> Bagmati</div>
-                        <div class="province-node p-madhesh" id="pn-madhesh"><span class="pn-score">🏏</span> Madhesh</div>
-                        <div class="province-node p-koshi" id="pn-koshi"><span class="pn-score">⚽</span> Koshi</div>
+                        <div class="province-node p-sudur" id="pn-sudur"><span class="pn-score"></span> Sudur</div>
+                        <div class="province-node p-karnali" id="pn-karnali"><span class="pn-score"></span> Karnali</div>
+                        <div class="province-node p-lumbini" id="pn-lumbini"><span class="pn-score"></span> Lumbini</div>
+                        <div class="province-node p-gandaki" id="pn-gandaki"><span class="pn-score"></span> Gandaki</div>
+                        <div class="province-node p-bagmati" id="pn-bagmati"><span class="pn-score"></span> Bagmati</div>
+                        <div class="province-node p-madhesh" id="pn-madhesh"><span class="pn-score"></span> Madhesh</div>
+                        <div class="province-node p-koshi" id="pn-koshi"><span class="pn-score"></span> Koshi</div>
                     </div>
                 </div>
 
@@ -1099,13 +1136,13 @@
                     <div class="diaspora-grid">
                         <div class="dia-card volume-card" onclick="toggleDia(this)">
                             <div class="dia-main-content">
-                                <div class="dia-icon">🏗️</div>
+                                <div class="dia-icon"></div>
                                 <div class="dia-info">
                                     <h4>Middle East & Malaysia</h4>
                                     <div class="dia-stat">2.2M+ <span class="dia-label">Est. Audience</span></div>
                                     <div class="dia-bar-bg"><div class="dia-bar-fill" style="width: 85%;"></div></div>
                                     <p class="dia-insight"><strong>Strategy:</strong> Low Data, Mobile-First. High engagement during weekends (Friday).</p>
-                                    <div class="click-hint">Click for Sources ↓</div>
+                                    <div class="click-hint">Click for Sources </div>
                                 </div>
                             </div>
                             <div class="dia-deep-dive">
@@ -1121,13 +1158,13 @@
 
                         <div class="dia-card value-card" onclick="toggleDia(this)">
                             <div class="dia-main-content">
-                                <div class="dia-icon">🎓</div>
+                                <div class="dia-icon"></div>
                                 <div class="dia-info">
                                     <h4>Australia, USA & UK</h4>
                                     <div class="dia-stat">850K+ <span class="dia-label">Est. Audience</span></div>
                                     <div class="dia-bar-bg"><div class="dia-bar-fill" style="width: 40%; background: #006400;"></div></div>
                                     <p class="dia-insight"><strong>Strategy:</strong> Premium Subscription ($5/mo). High willingness to pay for HD quality.</p>
-                                    <div class="click-hint">Click for Sources ↓</div>
+                                    <div class="click-hint">Click for Sources </div>
                                 </div>
                             </div>
                             <div class="dia-deep-dive">
@@ -1142,13 +1179,13 @@
 
                         <div class="dia-card mix-card" onclick="toggleDia(this)">
                             <div class="dia-main-content">
-                                <div class="dia-icon">🚆</div>
+                                <div class="dia-icon"></div>
                                 <div class="dia-info">
                                     <h4>India</h4>
                                     <div class="dia-stat">600K+ <span class="dia-label">Est. Audience</span></div>
                                     <div class="dia-bar-bg"><div class="dia-bar-fill" style="width: 30%; background: #CC5500;"></div></div>
                                     <p class="dia-insight"><strong>Strategy:</strong> Hybrid Model. Target students and migrant workers in Metros.</p>
-                                    <div class="click-hint">Click for Sources ↓</div>
+                                    <div class="click-hint">Click for Sources </div>
                                 </div>
                             </div>
                             <div class="dia-deep-dive">
@@ -1177,7 +1214,7 @@
                 <div class="quality-grid fade-in-up delay-1">
                     <div class="q-card dark-theme">
                         <div class="qc-header">
-                            <div class="qc-icon">⏱️</div>
+                            <div class="qc-icon"></div>
                             <div>
                                 <h3>The "Spoiler" Effect</h3>
                                 <p class="qc-sub">Latency Simulation</p>
@@ -1207,14 +1244,14 @@
                         </div>
 
                         <div class="latency-controls">
-                            <button class="btn-action" onclick="triggerGoal()">⚽ SIMULATE GOAL</button>
+                            <button class="btn-action" onclick="triggerGoal()"> SIMULATE GOAL</button>
                             <p class="lat-note"><strong>The Insight:</strong> If a user gets a "GOAL!" notification on their phone before they see it on the stream, they feel cheated. We target < 6s latency.</p>
                         </div>
                     </div>
 
                     <div class="q-card light-theme">
                         <div class="qc-header">
-                            <div class="qc-icon" style="background:var(--brand-red); color:white;">🎞️</div>
+                            <div class="qc-icon" style="background:var(--brand-red); color:white;"></div>
                             <div>
                                 <h3>The "Motion" Standard</h3>
                                 <p class="qc-sub">25fps vs. 50fps (Frame Rate)</p>
@@ -1272,12 +1309,12 @@
                         
                         <div class="xp-card" onclick="toggleXP(this)">
                             <div class="xp-preview">
-                                <div class="xp-icon-bg">📊</div>
+                                <div class="xp-icon-bg"></div>
                                 <div class="xp-meta">
                                     <h4>Data Intelligence</h4>
                                     <p>Advanced Stats, Heatmaps & Win Probability.</p>
                                 </div>
-                                <div class="xp-arrow">↓</div>
+                                <div class="xp-arrow"></div>
                             </div>
                             <div class="xp-content">
                                 <div class="xp-visual-box">
@@ -1304,12 +1341,12 @@
 
                         <div class="xp-card" onclick="toggleXP(this)">
                             <div class="xp-preview">
-                                <div class="xp-icon-bg">🎥</div>
+                                <div class="xp-icon-bg"></div>
                                 <div class="xp-meta">
                                     <h4>Visual Immersion</h4>
                                     <p>Broadcast Standard & Vibrant Color.</p>
                                 </div>
-                                <div class="xp-arrow">↓</div>
+                                <div class="xp-arrow"></div>
                             </div>
                             <div class="xp-content">
                                 <div class="xp-visual-box" style="background: #000;">
@@ -1317,7 +1354,7 @@
                                         <div class="cam c-1">Main Gantry</div>
                                         <div class="cam c-2">Dugout</div>
                                         <div class="cam c-3">Drone</div>
-                                        <div class="cam-target">🏏 Pitch</div>
+                                        <div class="cam-target"> Pitch</div>
                                     </div>
                                 </div>
                                 <ul class="xp-list">
@@ -1330,12 +1367,12 @@
 
                         <div class="xp-card" onclick="toggleXP(this)">
                             <div class="xp-preview">
-                                <div class="xp-icon-bg">🎧</div>
+                                <div class="xp-icon-bg"></div>
                                 <div class="xp-meta">
                                     <h4>Sonic Atmosphere</h4>
                                     <p>Audio Engineering & World-Class Commentary.</p>
                                 </div>
-                                <div class="xp-arrow">↓</div>
+                                <div class="xp-arrow"></div>
                             </div>
                             <div class="xp-content">
                                 <div class="xp-visual-box audio-viz">
@@ -1353,12 +1390,12 @@
 
                         <div class="xp-card" onclick="toggleXP(this)">
                             <div class="xp-preview">
-                                <div class="xp-icon-bg">🎭</div>
+                                <div class="xp-icon-bg"></div>
                                 <div class="xp-meta">
                                     <h4>The Narrative</h4>
                                     <p>Storytelling beyond the 90 minutes.</p>
                                 </div>
-                                <div class="xp-arrow">↓</div>
+                                <div class="xp-arrow"></div>
                             </div>
                             <div class="xp-content">
                                 <div class="xp-visual-box narrative-box">
@@ -1392,28 +1429,51 @@
                     <p class="section-subtitle">Moving from "Logo Exposure" to "Story Selling." How we integrate brands into the fabric of the game.</p>
                 </div>
 
+                <!-- NEW HERO CARD INTERACTION -->
                 <div class="story-selling-container fade-in-up delay-1">
                     <h3 class="grid-header" style="border-left-color:#F59E0B;">The Shift: Story Selling</h3>
                     
-                    <div class="ss-comparison">
-                        <div class="ss-box old-way">
-                            <div class="ss-badge">Legacy Sales</div>
-                            <h4>"The Aston Band"</h4>
-                            <div class="ss-visual">
+                    <div class="ss-hero-container">
+                        
+                        <!-- LEGACY CARD -->
+                        <div class="ss-hero-card ss-legacy" onclick="toggleSS(this, 'legacy')">
+                            <div class="ss-header">
+                                <div class="ss-badge">Legacy Sales</div>
+                                <h4 class="ss-title">"The L-Shape" & Squeeze</h4>
+                                <p class="ss-desc">Disruptive overlays that shrink the video.</p>
+                            </div>
+                            
+                            <div class="ss-visual-area">
                                 <div class="tv-screen">
                                     <div class="tv-content"></div>
                                     <div class="tv-ad-band">BUY MY DRINK</div>
                                 </div>
                             </div>
-                            <p class="ss-desc">Disruptive. Ignored by users. Low recall.</p>
+                            
+                            <div class="ss-reveal">
+                                <div class="reveal-grid">
+                                    <div class="r-item">
+                                        <h4>Banner Blindness</h4>
+                                        <p>Users are trained to ignore the bottom 20% of the screen.</p>
+                                    </div>
+                                    <div class="r-item">
+                                        <h4>User Agitation</h4>
+                                        <p>Shrinking the live game during key moments causes negative brand sentiment.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="click-prompt">Click to Reveal "Why It Sucks"</div>
                         </div>
 
-                        <div class="ss-arrow">➔</div>
-
-                        <div class="ss-box new-way">
-                            <div class="ss-badge">DGO Strategy</div>
-                            <h4>"Contextual Narrative"</h4>
-                            <div class="ss-visual">
+                        <!-- DGO CARD -->
+                        <div class="ss-hero-card ss-dgo" onclick="toggleSS(this, 'dgo')">
+                            <div class="ss-header">
+                                <div class="ss-badge">DGO Strategy</div>
+                                <h4 class="ss-title">Contextual Narrative</h4>
+                                <p class="ss-desc">Integrated graphics triggered by game events.</p>
+                            </div>
+                            
+                            <div class="ss-visual-area">
                                 <div class="tv-screen">
                                     <div class="tv-content"></div>
                                     <div class="tv-overlay-context">
@@ -1423,8 +1483,22 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="ss-desc"><strong>Context:</strong> Brand appears when the athlete is tired. <br><strong>Message:</strong> "Recharge." High Recall.</p>
+                            
+                            <div class="ss-reveal">
+                                <div class="reveal-grid">
+                                    <div class="r-item">
+                                        <h4>High Recall</h4>
+                                        <p>The brand appears as a "solution" (e.g., Energy Drink when player is tired).</p>
+                                    </div>
+                                    <div class="r-item">
+                                        <h4>Seamless</h4>
+                                        <p>No shrinking, no audio cuts. It feels like a premium broadcast feature.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="click-prompt">Click to Reveal "Why It Works"</div>
                         </div>
+
                     </div>
                 </div>
 
@@ -1433,7 +1507,7 @@
                     <div class="inv-grid">
                         
                         <div class="inv-card">
-                            <div class="inv-icon">🎮</div>
+                            <div class="inv-icon"></div>
                             <div class="inv-title">Predict & Win</div>
                             <p class="inv-text"><strong>Format:</strong> Live pop-up polls.<br><em>"Who will score next?"</em></p>
                             <div class="inv-brand-value">
@@ -1442,7 +1516,7 @@
                         </div>
 
                         <div class="inv-card">
-                            <div class="inv-icon">⚡</div>
+                            <div class="inv-icon"></div>
                             <div class="inv-title">Moment Ownership</div>
                             <p class="inv-text"><strong>Format:</strong> Triggered graphics.<br><em>"Fastest Sprint"</em> or <em>"Power Strike"</em></p>
                             <div class="inv-brand-value">
@@ -1451,7 +1525,7 @@
                         </div>
 
                         <div class="inv-card">
-                            <div class="inv-icon">📱</div>
+                            <div class="inv-icon"></div>
                             <div class="inv-title">The "Digital Echo"</div>
                             <p class="inv-text"><strong>Format:</strong> Branded 30s clips posted to Insta/TikTok instantly.</p>
                             <div class="inv-brand-value">
@@ -1460,7 +1534,7 @@
                         </div>
 
                         <div class="inv-card">
-                            <div class="inv-icon">🎙️</div>
+                            <div class="inv-icon"></div>
                             <div class="inv-title">Influencer Watch Party</div>
                             <p class="inv-text"><strong>Format:</strong> Popular YouTubers commentary audio stream.</p>
                             <div class="inv-brand-value">
@@ -1474,17 +1548,17 @@
                 <div class="social-integration fade-in-up delay-3">
                     <div class="si-wrapper">
                         <div class="si-node">
-                            <div class="si-icon">🏟️</div>
+                            <div class="si-icon"></div>
                             <div>Live Match<br><span style="font-size:0.7rem; color:#888;">Goal Scored</span></div>
                         </div>
                         <div class="si-line"><div class="si-dot"></div></div>
                         <div class="si-node" style="border-color:var(--brand-red);">
-                            <div class="si-icon">✂️</div>
+                            <div class="si-icon"></div>
                             <div>Clipper Team<br><span style="font-size:0.7rem; color:var(--brand-red);">Adds Brand Bumper</span></div>
                         </div>
                         <div class="si-line"><div class="si-dot" style="animation-delay:0.5s;"></div></div>
                         <div class="si-node">
-                            <div class="si-icon">📲</div>
+                            <div class="si-icon"></div>
                             <div>Social Viral<br><span style="font-size:0.7rem; color:#888;">Instagram/TikTok</span></div>
                         </div>
                     </div>
@@ -1541,7 +1615,7 @@
             jio: {
                 title: "JioHotstar: The Merger Effect",
                 sub: "Dominant Market Leader (2025)",
-                stat1: "₹50Bn+",
+                stat1: "50Bn+",
                 label1: "Proj. Ad Revenue (IPL 25)",
                 stat2: "90%",
                 label2: "Live Sports Market Share",
@@ -1580,7 +1654,7 @@
             sony: {
                 title: "Sony LIV: High ARPU",
                 sub: "The Premium Niche",
-                stat1: "₹1,499",
+                stat1: "1,499",
                 label1: "Annual Premium Plan",
                 stat2: "35M",
                 label2: "Paying Subscribers",
@@ -1651,7 +1725,7 @@
                 label1: "Active Gamers",
                 stat2: "55m",
                 label2: "Avg Daily Time Spent",
-                desc: "<strong>Key Properties:</strong> DGO Pro Series (Own IP), PUBG/FreeFire Regional Qualifiers.<br><br>With globally competitive teams in PUBG Mobile and Free Fire, Nepal's eSports scene is exploding. This audience does not watch TV; they watch streams. Acquiring eSports rights effectively locks in the next generation of subscribers (Age 12-22).",
+                desc: "<strong>Key Properties:</strong> DGO Pro Series (Own IP), PUBG/FreeFire Regionals.<br><br>With globally competitive teams in PUBG Mobile and Free Fire, Nepal's eSports scene is exploding. This audience does not watch TV; they watch streams. Acquiring eSports rights effectively locks in the next generation of subscribers (Age 12-22).",
                 citation: "Source: Newzoo Global Games Market 2026 / Nepal Gaming Alliance",
                 color: "#4B0082",
                 chartTitle: "Device Usage",
@@ -1681,7 +1755,7 @@
                 targets.forEach(id => {
                     const el = $(id);
                     el.classList.add('active-node');
-                    el.querySelector('.pn-score').innerText = '🏏';
+                    el.querySelector('.pn-score').innerText = '';
                 });
             } else if (sport === 'football') {
                 // Koshi, Gandaki
@@ -1689,7 +1763,7 @@
                 targets.forEach(id => {
                     const el = $(id);
                     el.classList.add('active-node');
-                    el.querySelector('.pn-score').innerText = '⚽';
+                    el.querySelector('.pn-score').innerText = '';
                 });
             } else if (sport === 'volleyball') {
                 // Gandaki, Bagmati (KTM)
@@ -1697,7 +1771,7 @@
                 targets.forEach(id => {
                     const el = $(id);
                     el.classList.add('active-node');
-                    el.querySelector('.pn-score').innerText = '🏐';
+                    el.querySelector('.pn-score').innerText = '';
                 });
             } else if (sport === 'esports') {
                 // Bagmati, Gandaki (Kaski)
@@ -1705,7 +1779,7 @@
                 targets.forEach(id => {
                     const el = $(id);
                     el.classList.add('active-node');
-                    el.querySelector('.pn-score').innerText = '🎮';
+                    el.querySelector('.pn-score').innerText = '';
                 });
             }
         }
@@ -1716,6 +1790,17 @@
             document.querySelectorAll('.dia-card').forEach(c => {
                 if(c !== element) c.classList.remove('active');
             });
+            // Toggle clicked
+            element.classList.toggle('active');
+        }
+
+        // --- STORY SELLING TOGGLE (NEW) ---
+        function toggleSS(element, type) {
+            // Close others
+            document.querySelectorAll('.ss-hero-card').forEach(c => {
+                if(c !== element) c.classList.remove('active');
+            });
+            
             // Toggle clicked
             element.classList.toggle('active');
         }
