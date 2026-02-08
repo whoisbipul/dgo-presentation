@@ -160,7 +160,7 @@
         }
         .step-icon {
             font-size: 1.5rem; margin-bottom: 15px; color: var(--brand-red); background: #fafafa; width: 40px; height: 40px;
-            display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid #eee;
+            display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid #eee; font-weight: 700;
         }
         .step-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; }
         .step-desc { font-size: 0.85rem; color: #666; line-height: 1.5; }
@@ -219,7 +219,7 @@
         }
         .fw-item { flex: 1; display: flex; gap: 15px; align-items: flex-start; padding: 0 10px; }
         .fw-icon {
-            font-size: 2rem; background: var(--brand-red-light); width: 50px; height: 50px;
+            font-size: 1.5rem; background: var(--brand-red-light); width: 50px; height: 50px;
             display: flex; align-items: center; justify-content: center; border-radius: 8px; flex-shrink: 0;
         }
         .fw-title { font-weight: 800; color: var(--text-main); margin-bottom: 5px; }
@@ -520,7 +520,18 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: all 0.3s;
         }
         
-        .tv-content { width: 100%; height: 100%; background: #222; position: relative; }
+        .tv-content { 
+            width: 100%; height: 100%; 
+            background-color: #222; 
+            background-size: cover;
+            background-position: center;
+            position: relative; 
+        }
+        
+        /* RESTORED IMAGES FOR COMMERCIAL PLAYBOOK */
+        .ss-legacy .tv-content { background-image: url('assets/bg-legacy.jpg'); }
+        .ss-dgo .tv-content { background-image: url('assets/bg-contextual.jpg'); }
+
         .tv-content::after { content: 'LIVE MATCH'; position: absolute; top: 10px; left: 10px; color: rgba(255,255,255,0.3); font-size: 0.8rem; font-weight: 700; }
         
         /* Legacy Visuals */
@@ -725,7 +736,7 @@
 
         .dia-main-content { display: flex; gap: 15px; align-items: flex-start; width: 100%; }
 
-        .dia-icon { font-size: 2rem; background: #f3f4f6; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 8px; flex-shrink: 0; }
+        .dia-icon { font-size: 1.5rem; background: #f3f4f6; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 8px; flex-shrink: 0; }
 
         .dia-info { flex: 1; }
         .dia-info h4 { font-size: 1rem; font-weight: 700; margin-bottom: 5px; color: #111; }
@@ -1014,17 +1025,17 @@
                     <h3 class="grid-header" style="margin-bottom: 25px; border-color: #333;">The Strategic Fit: DGO Ecosystem</h3>
                     <div class="flywheel-container">
                         <div class="fw-item">
-                            <div class="fw-icon"></div>
+                            <div class="fw-icon">🧲</div>
                             <div class="fw-content"><div class="fw-title">Acquisition Hook</div><div class="fw-desc">Sports is the cheapest way to acquire users (Low CPA). It forces immediate app downloads.</div></div>
                         </div>
                         <div class="fw-arrow"></div>
                         <div class="fw-item">
-                            <div class="fw-icon"></div>
+                            <div class="fw-icon">🔄</div>
                             <div class="fw-content"><div class="fw-title">Habit Formation</div><div class="fw-desc">Unlike movies (watch once), sports creates recurring weekly active users (WAU).</div></div>
                         </div>
                         <div class="fw-arrow"></div>
                         <div class="fw-item">
-                            <div class="fw-icon"></div>
+                            <div class="fw-icon">🏆</div>
                             <div class="fw-content"><div class="fw-title">DGO - The Home of Nepal Sports</div><div class="fw-desc">Establishing DGO as a household name for the sports action in country.</div></div>
                         </div>
                     </div>
@@ -1136,7 +1147,7 @@
                     <div class="diaspora-grid">
                         <div class="dia-card volume-card" onclick="toggleDia(this)">
                             <div class="dia-main-content">
-                                <div class="dia-icon"></div>
+                                <div class="dia-icon">🏗️</div>
                                 <div class="dia-info">
                                     <h4>Middle East & Malaysia</h4>
                                     <div class="dia-stat">2.2M+ <span class="dia-label">Est. Audience</span></div>
@@ -1158,7 +1169,7 @@
 
                         <div class="dia-card value-card" onclick="toggleDia(this)">
                             <div class="dia-main-content">
-                                <div class="dia-icon"></div>
+                                <div class="dia-icon">🎓</div>
                                 <div class="dia-info">
                                     <h4>Australia, USA & UK</h4>
                                     <div class="dia-stat">850K+ <span class="dia-label">Est. Audience</span></div>
@@ -1179,7 +1190,7 @@
 
                         <div class="dia-card mix-card" onclick="toggleDia(this)">
                             <div class="dia-main-content">
-                                <div class="dia-icon"></div>
+                                <div class="dia-icon">🤝</div>
                                 <div class="dia-info">
                                     <h4>India</h4>
                                     <div class="dia-stat">600K+ <span class="dia-label">Est. Audience</span></div>
@@ -1214,7 +1225,7 @@
                 <div class="quality-grid fade-in-up delay-1">
                     <div class="q-card dark-theme">
                         <div class="qc-header">
-                            <div class="qc-icon"></div>
+                            <div class="qc-icon">⏱️</div>
                             <div>
                                 <h3>The "Spoiler" Effect</h3>
                                 <p class="qc-sub">Latency Simulation</p>
@@ -1251,7 +1262,7 @@
 
                     <div class="q-card light-theme">
                         <div class="qc-header">
-                            <div class="qc-icon" style="background:var(--brand-red); color:white;"></div>
+                            <div class="qc-icon" style="background:var(--brand-red); color:white;">🎞️</div>
                             <div>
                                 <h3>The "Motion" Standard</h3>
                                 <p class="qc-sub">25fps vs. 50fps (Frame Rate)</p>
@@ -1309,7 +1320,7 @@
                         
                         <div class="xp-card" onclick="toggleXP(this)">
                             <div class="xp-preview">
-                                <div class="xp-icon-bg"></div>
+                                <div class="xp-icon-bg">📊</div>
                                 <div class="xp-meta">
                                     <h4>Data Intelligence</h4>
                                     <p>Advanced Stats, Heatmaps & Win Probability.</p>
@@ -1341,7 +1352,7 @@
 
                         <div class="xp-card" onclick="toggleXP(this)">
                             <div class="xp-preview">
-                                <div class="xp-icon-bg"></div>
+                                <div class="xp-icon-bg">🎥</div>
                                 <div class="xp-meta">
                                     <h4>Visual Immersion</h4>
                                     <p>Broadcast Standard & Vibrant Color.</p>
@@ -1367,7 +1378,7 @@
 
                         <div class="xp-card" onclick="toggleXP(this)">
                             <div class="xp-preview">
-                                <div class="xp-icon-bg"></div>
+                                <div class="xp-icon-bg">🔊</div>
                                 <div class="xp-meta">
                                     <h4>Sonic Atmosphere</h4>
                                     <p>Audio Engineering & World-Class Commentary.</p>
@@ -1390,7 +1401,7 @@
 
                         <div class="xp-card" onclick="toggleXP(this)">
                             <div class="xp-preview">
-                                <div class="xp-icon-bg"></div>
+                                <div class="xp-icon-bg">📖</div>
                                 <div class="xp-meta">
                                     <h4>The Narrative</h4>
                                     <p>Storytelling beyond the 90 minutes.</p>
@@ -1507,7 +1518,7 @@
                     <div class="inv-grid">
                         
                         <div class="inv-card">
-                            <div class="inv-icon"></div>
+                            <div class="inv-icon">📊</div>
                             <div class="inv-title">Predict & Win</div>
                             <p class="inv-text"><strong>Format:</strong> Live pop-up polls.<br><em>"Who will score next?"</em></p>
                             <div class="inv-brand-value">
@@ -1516,7 +1527,7 @@
                         </div>
 
                         <div class="inv-card">
-                            <div class="inv-icon"></div>
+                            <div class="inv-icon">⚡</div>
                             <div class="inv-title">Moment Ownership</div>
                             <p class="inv-text"><strong>Format:</strong> Triggered graphics.<br><em>"Fastest Sprint"</em> or <em>"Power Strike"</em></p>
                             <div class="inv-brand-value">
@@ -1525,7 +1536,7 @@
                         </div>
 
                         <div class="inv-card">
-                            <div class="inv-icon"></div>
+                            <div class="inv-icon">📱</div>
                             <div class="inv-title">The "Digital Echo"</div>
                             <p class="inv-text"><strong>Format:</strong> Branded 30s clips posted to Insta/TikTok instantly.</p>
                             <div class="inv-brand-value">
@@ -1534,7 +1545,7 @@
                         </div>
 
                         <div class="inv-card">
-                            <div class="inv-icon"></div>
+                            <div class="inv-icon">🎙️</div>
                             <div class="inv-title">Influencer Watch Party</div>
                             <p class="inv-text"><strong>Format:</strong> Popular YouTubers commentary audio stream.</p>
                             <div class="inv-brand-value">
@@ -1548,17 +1559,17 @@
                 <div class="social-integration fade-in-up delay-3">
                     <div class="si-wrapper">
                         <div class="si-node">
-                            <div class="si-icon"></div>
+                            <div class="si-icon">⚽</div>
                             <div>Live Match<br><span style="font-size:0.7rem; color:#888;">Goal Scored</span></div>
                         </div>
                         <div class="si-line"><div class="si-dot"></div></div>
                         <div class="si-node" style="border-color:var(--brand-red);">
-                            <div class="si-icon"></div>
+                            <div class="si-icon">✂️</div>
                             <div>Clipper Team<br><span style="font-size:0.7rem; color:var(--brand-red);">Adds Brand Bumper</span></div>
                         </div>
                         <div class="si-line"><div class="si-dot" style="animation-delay:0.5s;"></div></div>
                         <div class="si-node">
-                            <div class="si-icon"></div>
+                            <div class="si-icon">🚀</div>
                             <div>Social Viral<br><span style="font-size:0.7rem; color:#888;">Instagram/TikTok</span></div>
                         </div>
                     </div>
