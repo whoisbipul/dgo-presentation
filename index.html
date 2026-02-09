@@ -539,13 +539,17 @@
         .ss-arrow { font-size: 2rem; color: #ddd; }
 
         /* 2. Inventory Grid */
-        .inv-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 20px; }
+        .inv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px; }
         .inv-card {
             background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 25px;
             transition: transform 0.3s; display: flex; flex-direction: column;
         }
         .inv-card:hover { transform: translateY(-5px); border-color: #0078BC; box-shadow: 0 10px 25px rgba(0,120,188,0.1); }
-        .inv-icon { font-size: 2rem; margin-bottom: 15px; }
+        
+        .inv-card[role="button"] { cursor: pointer; }
+        .inv-card[role="button"]:active { transform: translateY(-3px) scale(0.99); }
+        .inv-card[role="button"]:focus-visible { outline: 3px solid rgba(0,120,188,0.25); outline-offset: 3px; }
+.inv-icon { font-size: 2rem; margin-bottom: 15px; }
         .inv-title { font-weight: 700; font-size: 1rem; color: #1f2937; margin-bottom: 8px; }
         .inv-text { font-size: 0.8rem; color: #666; line-height: 1.5; flex-grow: 1; margin-bottom: 15px; }
         .inv-brand-value {
@@ -1427,50 +1431,39 @@
                     </div>
                 </div>
 
-                <div class="inventory-section fade-in-up delay-2">
+                                <div class="inventory-section fade-in-up delay-2">
                     <h3 class="grid-header" style="margin-top:50px;">New Digital Inventory (Beyond the Banner)</h3>
                     <div class="inv-grid">
-                        
-                        <div class="inv-card">
-                            <div class="inv-icon">🎮</div>
-                            <div class="inv-title">Predict & Win</div>
-                            <p class="inv-text"><strong>Format:</strong> Live pop-up polls.<br><em>"Who will score next?"</em></p>
+
+                        <div class="inv-card" role="button" tabindex="0" onclick="openModal('inv_polls')" onkeydown="if(event.key==='Enter'||event.key===' ') { event.preventDefault(); openModal('inv_polls'); }">
+                            <div class="inv-icon">🗳️</div>
+                            <div class="inv-title">Sponsored Live Polls</div>
+                            <p class="inv-text"><strong>Format:</strong> Branded live polls & predictions.<br><em>“Who wins the next phase?”</em></p>
                             <div class="inv-brand-value">
-                                <strong>Value:</strong> 1st Party Data (Phone/Email) generation for brands.
+                                <strong>Value:</strong> High engagement + opt-in zero/1st-party signals for brands.
                             </div>
                         </div>
 
-                        <div class="inv-card">
+                        <div class="inv-card" role="button" tabindex="0" onclick="openModal('inv_moment')" onkeydown="if(event.key==='Enter'||event.key===' ') { event.preventDefault(); openModal('inv_moment'); }">
                             <div class="inv-icon">⚡</div>
                             <div class="inv-title">Moment Ownership</div>
-                            <p class="inv-text"><strong>Format:</strong> Triggered graphics.<br><em>"Fastest Sprint"</em> or <em>"Power Strike"</em></p>
+                            <p class="inv-text"><strong>Format:</strong> Triggered graphics on key moments.<br><em>“Power Play”</em> / <em>“Clutch Point”</em></p>
                             <div class="inv-brand-value">
-                                <strong>Value:</strong> Associates brand attributes (Speed, Power) with the game.
+                                <strong>Value:</strong> Hard-links a brand attribute (Speed/Power/Stamina) to the game.
                             </div>
                         </div>
 
-                        <div class="inv-card">
+                        <div class="inv-card" role="button" tabindex="0" onclick="openModal('inv_echo')" onkeydown="if(event.key==='Enter'||event.key===' ') { event.preventDefault(); openModal('inv_echo'); }">
                             <div class="inv-icon">📱</div>
-                            <div class="inv-title">The "Digital Echo"</div>
-                            <p class="inv-text"><strong>Format:</strong> Branded 30s clips posted to Insta/TikTok instantly.</p>
+                            <div class="inv-title">The Digital Echo</div>
+                            <p class="inv-text"><strong>Format:</strong> Branded micro-clips pushed to social + in-app instantly.</p>
                             <div class="inv-brand-value">
-                                <strong>Value:</strong> Reaches the 60% of youth who don't watch the full 90 mins.
-                            </div>
-                        </div>
-
-                        <div class="inv-card">
-                            <div class="inv-icon">🎙️</div>
-                            <div class="inv-title">Influencer Watch Party</div>
-                            <p class="inv-text"><strong>Format:</strong> Popular YouTubers commentary audio stream.</p>
-                            <div class="inv-brand-value">
-                                <strong>Value:</strong> Direct access to Gen-Z cult followings.
+                                <strong>Value:</strong> Captures “skimmers” and extends sponsor reach beyond the live feed.
                             </div>
                         </div>
 
                     </div>
-                </div>
-
-                <div class="social-integration fade-in-up delay-3">
+                </div><div class="social-integration fade-in-up delay-3">
                     <div class="si-wrapper">
                         <div class="si-node">
                             <div class="si-icon">🏟️</div>
@@ -1655,6 +1648,58 @@
                 color: "#4B0082",
                 chartTitle: "Device Usage",
                 chartData: [{ label: "Mobile", value: 95, disp: "95%" }, { label: "PC/Console", value: 5, disp: "5%" }]
+            },
+            inv_polls: {
+                title: "Sponsored Live Polls",
+                sub: "Interactive Inventory — Beyond the Banner",
+                stat1: "Opt-in",
+                label1: "Zero/1st-Party Signal",
+                stat2: "Interactive",
+                label2: "High-Attention Unit",
+                desc: "<strong>What it is:</strong> A branded poll layer that appears at high-attention windows (timeouts, breaks, over changes, halftime).<br><br><strong>How it works:</strong><ul style='margin:10px 0 0 18px; line-height:1.6;'><li><strong>Trigger:</strong> Producer or rules-based automation launches a poll at a match moment.</li><li><strong>Experience:</strong> One-tap vote inside the player (no redirect).</li><li><strong>Optional:</strong> Reward mechanic (points / lucky draw) to drive repeat usage.</li></ul><br><strong>Commercial options:</strong><ul style='margin:10px 0 0 18px; line-height:1.6;'><li>Per-match presenting partner (category exclusive)</li><li>Season package (all polls across a tournament)</li><li>Data/lead add-on (only with explicit user consent)</li></ul><br><strong>KPIs to track:</strong> poll open rate, vote rate, completion rate, opt-in rate (if enabled), and sponsor recall (post-match).<br><em style='color:#6B7280;'>Note: Engagement rates vary widely by sport, UI placement, and incentives.</em>",
+                citation: "Source: DGO inventory concept (internal) — modeled on common live-sport interactivity formats",
+                color: "#0078BC",
+                chartTitle: "Engagement Funnel (Illustrative)",
+                chartData: [
+                    { label: "Impressions", value: 100, disp: "100%" },
+                    { label: "Poll Opens", value: 18, disp: "~18%" },
+                    { label: "Votes", value: 12, disp: "~12%" },
+                    { label: "Opt-ins", value: 4, disp: "~4%" }
+                ]
+            },
+            inv_moment: {
+                title: "Moment Ownership",
+                sub: "Triggered Brand Storytelling",
+                stat1: "Exclusive",
+                label1: "Own a Moment Type",
+                stat2: "Premium",
+                label2: "High-Salience Placement",
+                desc: "<strong>What it is:</strong> The brand becomes the ‘owner’ of a repeatable match moment (e.g., <em>Power Play</em>, <em>Fastest Sprint</em>, <em>Clutch Point</em>).<br><br><strong>Where it shows up:</strong><ul style='margin:10px 0 0 18px; line-height:1.6;'><li>On-screen overlay when the moment happens (score bug / lower-third)</li><li>Optional in-app sting or notification tied to the moment</li><li>Carried into highlights as a consistent naming asset</li></ul><br><strong>Commercial options:</strong><ul style='margin:10px 0 0 18px; line-height:1.6;'><li>Exclusive ‘Moment Partner’ for a tournament</li><li>Per-match buy with guaranteed number of triggers (or make-goods)</li><li>Bundle with sponsor-tagged clips for social</li></ul><br><strong>Why it works:</strong> It ties a brand attribute (speed/power/precision) to a memorable game moment — higher salience than static banners.",
+                citation: "Source: DGO inventory concept (internal) — inspired by global broadcast + OTT moment sponsorship formats",
+                color: "#0078BC",
+                chartTitle: "Placement Mix (Illustrative)",
+                chartData: [
+                    { label: "Live Overlay", value: 55, disp: "~55%" },
+                    { label: "Highlights", value: 25, disp: "~25%" },
+                    { label: "Notifications", value: 20, disp: "~20%" }
+                ]
+            },
+            inv_echo: {
+                title: "The Digital Echo",
+                sub: "Real-time Clips + Social Distribution",
+                stat1: "<3 min",
+                label1: "Clip-to-Post Target",
+                stat2: "Short-form",
+                label2: "Captures Skimmers",
+                desc: "<strong>What it is:</strong> A workflow that converts live moments into branded micro-clips distributed across social + the app.<br><br><strong>The playbook:</strong><ul style='margin:10px 0 0 18px; line-height:1.6;'><li><strong>Clip:</strong> key moment (goal/wicket/KO) within minutes</li><li><strong>Wrap:</strong> sponsor intro/outro bumper + watermark</li><li><strong>Distribute:</strong> publish in-app and to Instagram/TikTok with deep links back to DGO</li></ul><br><strong>Commercial options:</strong><ul style='margin:10px 0 0 18px; line-height:1.6;'><li>Clip presenting sponsor (tournament-wide)</li><li>Moment-by-moment sponsorship (e.g., every goal clip)</li><li>Bundle with live ‘Moment Ownership’ for full-funnel impact</li></ul><br><strong>KPIs to track:</strong> clip views, shares, completion rate, click-through back to the live stream, and follower growth.",
+                citation: "Source: DGO social clipping workflow (internal) — built around the 3-minute publishing rule",
+                color: "#0078BC",
+                chartTitle: "Channel Mix (Illustrative)",
+                chartData: [
+                    { label: "In-app", value: 35, disp: "~35%" },
+                    { label: "Instagram", value: 35, disp: "~35%" },
+                    { label: "TikTok", value: 30, disp: "~30%" }
+                ]
             }
         };
 
