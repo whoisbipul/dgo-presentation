@@ -557,7 +557,129 @@
             color: #0369a1; border: 1px solid #bae6fd;
         }
 
-        /* 3. Social Integration Flow */
+
+        /* --- Inventory Insight Sheet (New Inventory Cards) --- */
+        .inv-overlay {
+            position: fixed; inset: 0; z-index: 2900;
+            background: rgba(17,24,39,0.66); backdrop-filter: blur(10px);
+            opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
+            display: flex; align-items: flex-end; justify-content: center;
+            padding: 18px;
+        }
+        .inv-overlay.open { opacity: 1; pointer-events: auto; }
+        .inv-sheet {
+            width: min(980px, 100%); max-height: 86vh;
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 22px 22px 14px 14px;
+            box-shadow: 0 -30px 85px rgba(0,0,0,0.38);
+            border: 1px solid rgba(255,255,255,0.55);
+            overflow: hidden;
+            transform: translateY(26px);
+            transition: transform 0.28s ease;
+            position: relative;
+        }
+        .inv-overlay.open .inv-sheet { transform: translateY(0); }
+        .inv-sheet::before {
+            content: ""; position: absolute; left: -140px; right: -140px; top: -120px; height: 260px;
+            background:
+                radial-gradient(circle at 20% 35%, rgba(229,9,20,0.22), transparent 60%),
+                radial-gradient(circle at 78% 35%, rgba(0,120,188,0.14), transparent 58%),
+                radial-gradient(circle at 50% 0%, rgba(17,24,39,0.12), transparent 55%);
+            pointer-events: none;
+        }
+        .inv-header {
+            position: relative; padding: 22px 26px 16px;
+            border-bottom: 1px solid #eef2f7;
+        }
+        .inv-hero { display: flex; gap: 14px; align-items: center; }
+        .inv-hero-icon {
+            width: 56px; height: 56px; display: grid; place-items: center;
+            border-radius: 16px; background: #111827; color: #fff;
+            font-size: 1.65rem;
+            box-shadow: 0 14px 30px rgba(17,24,39,0.22);
+        }
+        .inv-title-wrap h2 { margin: 0; font-size: 1.25rem; letter-spacing: -0.02em; }
+        .inv-tag {
+            display: inline-flex; align-items: center; gap: 8px;
+            margin-top: 6px; font-size: 0.78rem;
+            padding: 6px 10px; border-radius: 999px;
+            background: rgba(229,9,20,0.08);
+            color: var(--brand-red);
+            border: 1px solid rgba(229,9,20,0.18);
+            width: fit-content;
+        }
+        .inv-tag .mini-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--brand-red); }
+        .inv-close {
+            position: absolute; top: 14px; right: 14px;
+            width: 44px; height: 44px;
+            border-radius: 14px;
+            background: rgba(17,24,39,0.06);
+            border: 1px solid rgba(17,24,39,0.10);
+            cursor: pointer; font-size: 22px; line-height: 1;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .inv-close:hover { background: rgba(17,24,39,0.10); transform: translateY(-1px); }
+        .inv-body {
+            position: relative;
+            padding: 18px 26px 24px;
+            overflow: auto;
+            max-height: calc(86vh - 92px);
+        }
+        .inv-summary {
+            font-size: 0.95rem; color: #374151; line-height: 1.7;
+        }
+        .inv-grid2 {
+            display: grid; grid-template-columns: 1.15fr 0.85fr;
+            gap: 18px; margin-top: 16px;
+        }
+        .inv-panel {
+            background: #fff; border: 1px solid #e5e7eb;
+            border-radius: 18px; padding: 16px;
+            box-shadow: 0 12px 28px rgba(17,24,39,0.06);
+        }
+        .inv-panel h4 { margin: 0 0 10px; font-size: 0.92rem; color: #111827; }
+        .inv-panel ul { margin: 0; padding-left: 18px; color: #4b5563; line-height: 1.75; font-size: 0.86rem; }
+        .inv-panel .subtle {
+            font-size: 0.8rem; color: #6b7280; line-height: 1.6; margin-top: 10px;
+            border-top: 1px dashed #e5e7eb; padding-top: 10px;
+        }
+        .inv-metrics {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 12px; margin-top: 14px;
+        }
+        .inv-metric {
+            background: #111827; color: #fff;
+            border-radius: 16px; padding: 14px;
+            position: relative; overflow: hidden;
+        }
+        .inv-metric::after {
+            content: ""; position: absolute; inset: -60px;
+            background: radial-gradient(circle at 30% 30%, rgba(229,9,20,0.40), transparent 60%);
+            transform: rotate(8deg);
+            opacity: 0.55;
+        }
+        .inv-metric .k { position: relative; font-size: 0.72rem; color: rgba(255,255,255,0.78); }
+        .inv-metric .v { position: relative; font-size: 1.02rem; font-weight: 800; margin-top: 4px; }
+        .inv-footer {
+            margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap;
+        }
+        .inv-pill {
+            font-size: 0.76rem; padding: 8px 10px; border-radius: 999px;
+            border: 1px solid #e5e7eb; background: #fff;
+            color: #111827; display: inline-flex; gap: 8px; align-items: center;
+        }
+        .inv-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand-red); }
+
+        @media(max-width: 860px) {
+            .inv-grid2 { grid-template-columns: 1fr; }
+            .inv-metrics { grid-template-columns: 1fr; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .inv-overlay, .inv-sheet, .si-line, .si-dot, .si-icon { transition: none !important; animation: none !important; }
+        }
+
+                /* 3. Social Integration Flow */
         .social-integration {
             margin-top: 50px; background: #111827; color: white; padding: 40px;
             border-radius: 16px; text-align: center;
@@ -576,7 +698,71 @@
         }
         .si-caption { font-size: 0.9rem; color: #9ca3af; max-width: 600px; margin: 0 auto; line-height: 1.5; }
 
-        /* --- MAP DASHBOARD --- */
+        
+        /* Enhanced visual motion (eye-catchy but still corporate) */
+        .social-integration { position: relative; overflow: hidden; }
+        .social-integration::before {
+            content: ""; position: absolute; inset: -2px;
+            background:
+                radial-gradient(circle at 18% 30%, rgba(229,9,20,0.18), transparent 55%),
+                radial-gradient(circle at 82% 36%, rgba(255,255,255,0.06), transparent 62%),
+                radial-gradient(circle at 50% 120%, rgba(229,9,20,0.10), transparent 55%);
+            opacity: 0.95; pointer-events: none;
+        }
+        .si-wrapper { position: relative; }
+        .si-node {
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+        .si-node:hover { transform: translateY(-3px); box-shadow: 0 18px 36px rgba(0,0,0,0.22); }
+        .si-node::after {
+            content: ""; position: absolute; inset: -5px; border-radius: 14px;
+            border: 1px solid rgba(229,9,20,0.25);
+            opacity: 0; transform: scale(0.98);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            pointer-events: none;
+        }
+        .social-integration:hover .si-node::after { opacity: 1; transform: scale(1); }
+
+        .si-highlight {
+            box-shadow: 0 0 0 1px rgba(229,9,20,0.35), 0 22px 44px rgba(229,9,20,0.14);
+        }
+        .si-highlight::after { opacity: 1; border-color: rgba(229,9,20,0.55); }
+
+        .si-line {
+            height: 3px; border-radius: 999px;
+            background: linear-gradient(90deg, #374151, rgba(229,9,20,0.60), #374151);
+            background-size: 200% 100%;
+            animation: lineShift 2.6s linear infinite;
+            opacity: 0.95;
+        }
+        @keyframes lineShift { 0% { background-position: 0% 0; } 100% { background-position: 200% 0; } }
+        .si-dot {
+            box-shadow: 0 0 16px rgba(229,9,20,0.90);
+            animation: flow 2s infinite linear, dotPulse 1.2s infinite ease-in-out;
+        }
+        @keyframes dotPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.25); } }
+
+        .si-icon { animation: iconBob 2.4s ease-in-out infinite; }
+        .si-wrapper > .si-node:nth-child(1) .si-icon { animation-delay: 0s; }
+        .si-wrapper > .si-node:nth-child(3) .si-icon { animation-delay: 0.25s; }
+        .si-wrapper > .si-node:nth-child(5) .si-icon { animation-delay: 0.5s; }
+        @keyframes iconBob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+        .si-caption {
+            margin-top: 18px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 14px 16px;
+            border-radius: 14px;
+            box-shadow: inset 0 0 0 1px rgba(229,9,20,0.10);
+        }
+        .si-caption strong { color: #fff; }
+        .si-highlight { animation: highlightGlow 2.6s ease-in-out infinite; }
+        @keyframes highlightGlow {
+            0%,100% { box-shadow: 0 0 0 1px rgba(229,9,20,0.30), 0 22px 44px rgba(229,9,20,0.12); }
+            50% { box-shadow: 0 0 0 1px rgba(229,9,20,0.60), 0 30px 62px rgba(229,9,20,0.22); }
+        }
+
+/* --- MAP DASHBOARD --- */
         .geo-dashboard {
             display: flex; gap: 30px; background: white; border-radius: 16px; border: 1px solid #eee;
             padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); margin-top: 40px;
@@ -1435,7 +1621,7 @@
                     <h3 class="grid-header" style="margin-top:50px;">New Digital Inventory (Beyond the Banner)</h3>
                     <div class="inv-grid">
 
-                        <div class="inv-card" role="button" tabindex="0" onclick="openModal('inv_polls')" onkeydown="if(event.key==='Enter'||event.key===' ') { event.preventDefault(); openModal('inv_polls'); }">
+                        <div class="inv-card" role="button" tabindex="0" onclick="openInventory('inv_polls')" onkeydown="if(event.key==='Enter'||event.key===' ') { event.preventDefault(); openInventory('inv_polls'); }">
                             <div class="inv-icon">🗳️</div>
                             <div class="inv-title">Sponsored Live Polls</div>
                             <p class="inv-text"><strong>Format:</strong> Branded live polls & predictions.<br><em>“Who wins the next phase?”</em></p>
@@ -1444,7 +1630,7 @@
                             </div>
                         </div>
 
-                        <div class="inv-card" role="button" tabindex="0" onclick="openModal('inv_moment')" onkeydown="if(event.key==='Enter'||event.key===' ') { event.preventDefault(); openModal('inv_moment'); }">
+                        <div class="inv-card" role="button" tabindex="0" onclick="openInventory('inv_moment')" onkeydown="if(event.key==='Enter'||event.key===' ') { event.preventDefault(); openInventory('inv_moment'); }">
                             <div class="inv-icon">⚡</div>
                             <div class="inv-title">Moment Ownership</div>
                             <p class="inv-text"><strong>Format:</strong> Triggered graphics on key moments.<br><em>“Power Play”</em> / <em>“Clutch Point”</em></p>
@@ -1453,7 +1639,7 @@
                             </div>
                         </div>
 
-                        <div class="inv-card" role="button" tabindex="0" onclick="openModal('inv_echo')" onkeydown="if(event.key==='Enter'||event.key===' ') { event.preventDefault(); openModal('inv_echo'); }">
+                        <div class="inv-card" role="button" tabindex="0" onclick="openInventory('inv_echo')" onkeydown="if(event.key==='Enter'||event.key===' ') { event.preventDefault(); openInventory('inv_echo'); }">
                             <div class="inv-icon">📱</div>
                             <div class="inv-title">The Digital Echo</div>
                             <p class="inv-text"><strong>Format:</strong> Branded micro-clips pushed to social + in-app instantly.</p>
@@ -1470,7 +1656,7 @@
                             <div>Live Match<br><span style="font-size:0.7rem; color:#888;">Goal Scored</span></div>
                         </div>
                         <div class="si-line"><div class="si-dot"></div></div>
-                        <div class="si-node" style="border-color:var(--brand-red);">
+                        <div class="si-node si-highlight" style="border-color:var(--brand-red);">
                             <div class="si-icon">✂️</div>
                             <div>Clipper Team<br><span style="font-size:0.7rem; color:var(--brand-red);">Adds Brand Bumper</span></div>
                         </div>
@@ -1490,7 +1676,58 @@
 
     </main>
 
-    <div class="modal-overlay" id="modal-overlay">
+    
+    <!-- Inventory Insight Sheet (distinct from standard modal) -->
+    <div class="inv-overlay" id="inv-overlay" aria-hidden="true">
+        <div class="inv-sheet" role="dialog" aria-modal="true" aria-labelledby="inv-title">
+            <div class="inv-header">
+                <div class="inv-hero">
+                    <div class="inv-hero-icon" id="inv-icon">🧩</div>
+                    <div class="inv-title-wrap">
+                        <h2 id="inv-title">Inventory Title</h2>
+                        <div class="inv-tag" id="inv-tag"><span class="mini-dot"></span>Inventory</div>
+                    </div>
+                </div>
+                <button class="inv-close" id="inv-close" aria-label="Close inventory details" onclick="closeInventory()">×</button>
+            </div>
+            <div class="inv-body">
+                <div class="inv-summary" id="inv-summary">Summary</div>
+
+                <div class="inv-metrics" id="inv-metrics">
+                    <div class="inv-metric">
+                        <div class="k" id="inv-kpi1k">KPI</div>
+                        <div class="v" id="inv-kpi1v">Value</div>
+                    </div>
+                    <div class="inv-metric">
+                        <div class="k" id="inv-kpi2k">KPI</div>
+                        <div class="v" id="inv-kpi2v">Value</div>
+                    </div>
+                    <div class="inv-metric">
+                        <div class="k" id="inv-kpi3k">KPI</div>
+                        <div class="v" id="inv-kpi3v">Value</div>
+                    </div>
+                </div>
+
+                <div class="inv-grid2">
+                    <div class="inv-panel">
+                        <h4 id="inv-left-title">How it works</h4>
+                        <ul id="inv-left-list"></ul>
+                        <div class="subtle" id="inv-left-note"></div>
+                    </div>
+
+                    <div class="inv-panel">
+                        <h4 id="inv-right-title">How we sell it</h4>
+                        <ul id="inv-right-list"></ul>
+                        <div class="subtle" id="inv-right-note"></div>
+                    </div>
+                </div>
+
+                <div class="inv-footer" id="inv-footer"></div>
+            </div>
+        </div>
+    </div>
+
+<div class="modal-overlay" id="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
                 <div id="m-header-content">
@@ -1527,6 +1764,187 @@
         const $ = (s) => document.querySelector(s);
         const $$ = (s) => document.querySelectorAll(s);
 
+        // --- Inventory Insight Sheet (distinct click experience) ---
+        let _invLastFocus = null;
+
+        const inventoryData = {
+            inv_polls: {
+                icon: "🗳️",
+                title: "Sponsored Live Polls",
+                tag: "Interactive inventory (high-attention windows)",
+                summary: "A branded poll or prediction layer that appears at key moments (timeouts, over changes, halftime). It turns passive viewing into a one-tap interaction — and gives brands clean, opt-in engagement at the exact moment attention is highest.",
+                kpis: [
+                    ["Open rate", "How many viewers see it"],
+                    ["Vote rate", "How many participate"],
+                    ["Recall lift", "Post-match sponsor recall"]
+                ],
+                leftTitle: "How it works",
+                leftList: [
+                    "Trigger at match moments: timeout, over change, halftime, injury break",
+                    "One-tap vote inside the player (no redirect)",
+                    "Optional: rewards / points / lucky draw to drive repeat engagement",
+                    "Poll results can be shown live as an overlay (adds ‘FOMO’)"
+                ],
+                leftNote: "Best practices: keep the poll to 1 question, 2–3 options, and keep it on screen for 8–12 seconds.",
+                rightTitle: "How we sell it",
+                rightList: [
+                    "Presenting partner: “Match Polls presented by ___”",
+                    "Category exclusive: only one FMCG / one Telco / one Bank etc.",
+                    "Bundle with moment clips: poll + a branded highlight package",
+                    "Add-on: opt-in coupon or voucher (only if user chooses)"
+                ],
+                rightNote: "Pricing anchor: sell as a premium add-on (higher CPM-equivalent) because it’s interactive, not a banner.",
+                pills: ["Producer-triggered", "Rules-based automation", "In-app + social sync"]
+            },
+            inv_moment: {
+                icon: "⚡",
+                title: "Moment Ownership",
+                tag: "Brand owns the ‘named moment’",
+                summary: "A sponsor ‘owns’ a repeated in-game moment type (Power Play, Super Over, Clutch Point, Match Point). Every time it happens, the brand is present with a consistent, premium visual — creating automatic association over an entire season.",
+                kpis: [
+                    ["Frequency", "How often moment occurs"],
+                    ["Share of voice", "Brand appears repeatedly"],
+                    ["Attribute link", "Speed/Power/Stamina"]
+                ],
+                leftTitle: "How it works",
+                leftList: [
+                    "Define 2–4 moment types per sport (simple, repeatable, iconic)",
+                    "Build a consistent graphic template + audio sting",
+                    "Trigger on the moment: lower-third + bumper + scoreboard tag",
+                    "Optional: quick stat overlay (adds credibility & stickiness)"
+                ],
+                leftNote: "The key is repetition: the same brand shows up at the same moment type across the tournament.",
+                rightTitle: "How we sell it",
+                rightList: [
+                    "Exclusive title: “Power Play by ___” (season-long)",
+                    "Tiered packages: Gold (all moments) / Silver (selected matches)",
+                    "Cross-platform extension: moment + a 15s ‘echo’ clip",
+                    "Right of first refusal for the next season (retention lever)"
+                ],
+                rightNote: "Easy pitch line: “This is the single moment fans remember — we attach your brand to it every time.”",
+                pills: ["Season asset", "High repetition", "Best for brand lift"]
+            },
+            inv_echo: {
+                icon: "📱",
+                title: "The Digital Echo",
+                tag: "Live moment → clip → social burst",
+                summary: "A rapid clip pipeline that takes the biggest live moments, wraps them with a sponsor bumper, and pushes them out immediately. It captures skimmers who don’t watch the full match — and extends sponsor reach beyond the live feed.",
+                kpis: [
+                    ["Time-to-post", "Target: minutes, not hours"],
+                    ["Views & shares", "Social amplification"],
+                    ["Click-through", "Back to DGO stream"]
+                ],
+                leftTitle: "How it works",
+                leftList: [
+                    "Clipper team monitors live feed and flags moments instantly",
+                    "Auto templates add sponsor bumper + lower-third",
+                    "Publish to in-app highlights + social (IG/TikTok/Facebook)",
+                    "Link back to live stream or match center for retention"
+                ],
+                leftNote: "Speed wins. The first 3–5 minutes after the moment are where organic distribution is strongest.",
+                rightTitle: "How we sell it",
+                rightList: [
+                    "Sponsor the highlight pipeline: “Highlights by ___”",
+                    "Per-match clip quota (e.g., 10 branded clips per match)",
+                    "Premium ‘hero clip’: goal/knockout/clutch point",
+                    "Bundle with moment ownership for a full narrative loop"
+                ],
+                rightNote: "Position it as ‘performance media’ — measurable reach + direct traffic back to DGO.",
+                pills: ["3–5 minute window", "Sponsor bumper", "Measurable reach"]
+            }
+        };
+
+        function openInventory(key) {
+            const data = inventoryData[key];
+            if(!data) return;
+
+            _invLastFocus = document.activeElement;
+
+            const overlay = document.getElementById('inv-overlay');
+            overlay.classList.add('open');
+            overlay.setAttribute('aria-hidden', 'false');
+
+            document.getElementById('inv-icon').innerText = data.icon;
+            document.getElementById('inv-title').innerText = data.title;
+            document.getElementById('inv-tag').innerHTML = '<span class="mini-dot"></span>' + data.tag;
+            document.getElementById('inv-summary').innerText = data.summary;
+
+            // KPIs
+            const [k1, k2, k3] = data.kpis;
+            document.getElementById('inv-kpi1k').innerText = k1[0];
+            document.getElementById('inv-kpi1v').innerText = k1[1];
+            document.getElementById('inv-kpi2k').innerText = k2[0];
+            document.getElementById('inv-kpi2v').innerText = k2[1];
+            document.getElementById('inv-kpi3k').innerText = k3[0];
+            document.getElementById('inv-kpi3v').innerText = k3[1];
+
+            // Left panel
+            document.getElementById('inv-left-title').innerText = data.leftTitle;
+            const leftList = document.getElementById('inv-left-list');
+            leftList.innerHTML = '';
+            data.leftList.forEach(li => {
+                const el = document.createElement('li');
+                el.textContent = li;
+                leftList.appendChild(el);
+            });
+            document.getElementById('inv-left-note').innerText = data.leftNote || '';
+
+            // Right panel
+            document.getElementById('inv-right-title').innerText = data.rightTitle;
+            const rightList = document.getElementById('inv-right-list');
+            rightList.innerHTML = '';
+            data.rightList.forEach(li => {
+                const el = document.createElement('li');
+                el.textContent = li;
+                rightList.appendChild(el);
+            });
+            document.getElementById('inv-right-note').innerText = data.rightNote || '';
+
+            // Footer pills
+            const footer = document.getElementById('inv-footer');
+            footer.innerHTML = '';
+            (data.pills || []).forEach(t => {
+                const pill = document.createElement('div');
+                pill.className = 'inv-pill';
+                pill.innerHTML = '<span class="dot"></span>' + t;
+                footer.appendChild(pill);
+            });
+
+            // Focus close button for accessibility
+            setTimeout(() => {
+                const c = document.getElementById('inv-close');
+                if(c) c.focus();
+            }, 50);
+        }
+
+        function closeInventory() {
+            const overlay = document.getElementById('inv-overlay');
+            overlay.classList.remove('open');
+            overlay.setAttribute('aria-hidden', 'true');
+
+            if(_invLastFocus && typeof _invLastFocus.focus === 'function') {
+                setTimeout(() => _invLastFocus.focus(), 50);
+            }
+        }
+
+        // Close inventory on backdrop click
+        document.addEventListener('click', (e) => {
+            const overlay = document.getElementById('inv-overlay');
+            if(!overlay || !overlay.classList.contains('open')) return;
+            const sheet = overlay.querySelector('.inv-sheet');
+            if(sheet && !sheet.contains(e.target) && e.target === overlay) {
+                closeInventory();
+            }
+        });
+
+        // Close inventory on Escape
+        document.addEventListener('keydown', (e) => {
+            const overlay = document.getElementById('inv-overlay');
+            if(!overlay || !overlay.classList.contains('open')) return;
+            if(e.key === 'Escape') closeInventory();
+        });
+
+
         // --- DATA DICTIONARY FOR MODALS (2025/26 Data) ---
         const modalData = {
             // ... (Strategy Modals - Existing)
@@ -1538,7 +1956,7 @@
                 stat2: "Free + Ads",
                 label2: "Distribution & Revenue Model",
                 desc: "Post-merger (Reliance + Disney), JioHotstar’s playbook is ‘free sports for scale’. At this scale, monetization shifts from subscriptions to ad-led economics, powered by Server-Side Ad Insertion (SSAI). As a real-world benchmark, JioCinema reported ~32M peak concurrent viewers during the IPL 2023 final — showing what mass, free-to-watch sports can deliver.",
-                citation: "Source: The Economic Times (May 30, 2023) — IPL final hit ~32M peak concurrent viewers on JioCinema",
+                citation: "",
                 color: "#0078BC",
                 chartTitle: "Revenue Mix (Projected 2025)",
                 chartData: [{ label: "Advertising", value: 75, disp: "75%" }, { label: "Subscription", value: 25, disp: "25%" }]
@@ -1657,7 +2075,7 @@
                 stat2: "Interactive",
                 label2: "High-Attention Unit",
                 desc: "<strong>What it is:</strong> A branded poll layer that appears at high-attention windows (timeouts, breaks, over changes, halftime).<br><br><strong>How it works:</strong><ul style='margin:10px 0 0 18px; line-height:1.6;'><li><strong>Trigger:</strong> Producer or rules-based automation launches a poll at a match moment.</li><li><strong>Experience:</strong> One-tap vote inside the player (no redirect).</li><li><strong>Optional:</strong> Reward mechanic (points / lucky draw) to drive repeat usage.</li></ul><br><strong>Commercial options:</strong><ul style='margin:10px 0 0 18px; line-height:1.6;'><li>Per-match presenting partner (category exclusive)</li><li>Season package (all polls across a tournament)</li><li>Data/lead add-on (only with explicit user consent)</li></ul><br><strong>KPIs to track:</strong> poll open rate, vote rate, completion rate, opt-in rate (if enabled), and sponsor recall (post-match).<br><em style='color:#6B7280;'>Note: Engagement rates vary widely by sport, UI placement, and incentives.</em>",
-                citation: "Source: DGO inventory concept (internal) — modeled on common live-sport interactivity formats",
+                citation: "",
                 color: "#0078BC",
                 chartTitle: "Engagement Funnel (Illustrative)",
                 chartData: [
@@ -1675,7 +2093,7 @@
                 stat2: "Premium",
                 label2: "High-Salience Placement",
                 desc: "<strong>What it is:</strong> The brand becomes the ‘owner’ of a repeatable match moment (e.g., <em>Power Play</em>, <em>Fastest Sprint</em>, <em>Clutch Point</em>).<br><br><strong>Where it shows up:</strong><ul style='margin:10px 0 0 18px; line-height:1.6;'><li>On-screen overlay when the moment happens (score bug / lower-third)</li><li>Optional in-app sting or notification tied to the moment</li><li>Carried into highlights as a consistent naming asset</li></ul><br><strong>Commercial options:</strong><ul style='margin:10px 0 0 18px; line-height:1.6;'><li>Exclusive ‘Moment Partner’ for a tournament</li><li>Per-match buy with guaranteed number of triggers (or make-goods)</li><li>Bundle with sponsor-tagged clips for social</li></ul><br><strong>Why it works:</strong> It ties a brand attribute (speed/power/precision) to a memorable game moment — higher salience than static banners.",
-                citation: "Source: DGO inventory concept (internal) — inspired by global broadcast + OTT moment sponsorship formats",
+                citation: "",
                 color: "#0078BC",
                 chartTitle: "Placement Mix (Illustrative)",
                 chartData: [
@@ -1692,7 +2110,7 @@
                 stat2: "Short-form",
                 label2: "Captures Skimmers",
                 desc: "<strong>What it is:</strong> A workflow that converts live moments into branded micro-clips distributed across social + the app.<br><br><strong>The playbook:</strong><ul style='margin:10px 0 0 18px; line-height:1.6;'><li><strong>Clip:</strong> key moment (goal/wicket/KO) within minutes</li><li><strong>Wrap:</strong> sponsor intro/outro bumper + watermark</li><li><strong>Distribute:</strong> publish in-app and to Instagram/TikTok with deep links back to DGO</li></ul><br><strong>Commercial options:</strong><ul style='margin:10px 0 0 18px; line-height:1.6;'><li>Clip presenting sponsor (tournament-wide)</li><li>Moment-by-moment sponsorship (e.g., every goal clip)</li><li>Bundle with live ‘Moment Ownership’ for full-funnel impact</li></ul><br><strong>KPIs to track:</strong> clip views, shares, completion rate, click-through back to the live stream, and follower growth.",
-                citation: "Source: DGO social clipping workflow (internal) — built around the 3-minute publishing rule",
+                citation: "",
                 color: "#0078BC",
                 chartTitle: "Channel Mix (Illustrative)",
                 chartData: [
