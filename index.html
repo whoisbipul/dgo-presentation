@@ -907,6 +907,45 @@
 
 
         /* Story Selling – visual polish (images + micro motion) */
+
+        /* Q&A (wrap-up) – consistent cards, subtle motion */
+        .qa-wrap{ margin-top: 22px; display:grid; gap: 18px; }
+        .qa-hero{ padding: 22px; }
+        .qa-hero{ display:grid; grid-template-columns: 1.05fr 0.95fr; gap: 18px; align-items: stretch; }
+        .qa-bubble{
+            display:inline-flex; align-items:center; gap: 8px;
+            padding: 8px 12px; border-radius: 999px;
+            font-weight: 900; font-size: 0.82rem;
+            background: rgba(229,9,20,0.10);
+            border: 1px solid rgba(229,9,20,0.20);
+            color: var(--brand-red);
+            width: fit-content;
+        }
+        .qa-title{ margin-top: 12px; font-size: 1.55rem; font-weight: 900; letter-spacing: -0.03em; color:#111; }
+        .qa-sub{ margin-top: 8px; color:#5b6472; font-size: 1.02rem; line-height: 1.55; }
+        .qa-hero-right{ display:grid; gap: 12px; }
+        .qa-mini{
+            border-radius: 16px;
+            border: 1px solid rgba(17,24,39,0.10);
+            background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.70));
+            padding: 14px 14px;
+        }
+        .qa-mini-k{ font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 900; color:#6b7280; }
+        .qa-mini-v{ margin-top: 6px; color:#111827; font-weight: 800; line-height: 1.45; }
+        .qa-mini-strong{
+            border-left: 5px solid var(--brand-red);
+            box-shadow: 0 14px 28px rgba(0,0,0,0.08);
+        }
+        .qa-thanks{
+            text-align:center;
+            padding: 26px 18px;
+            border-left: 5px solid var(--brand-red);
+        }
+        .qa-thanks-title{ font-size: 1.9rem; font-weight: 900; letter-spacing: -0.03em; color:#111; }
+        .qa-thanks-sub{ margin-top: 6px; font-weight: 800; color:#374151; }
+        .qa-thanks-sub2{ margin-top: 4px; color:#6b7280; font-weight: 700; font-size: 0.95rem; }
+        body.presenter-mode .qa-hero{ grid-template-columns: 1fr; }
+
         .ss-sheen{ position: relative; overflow: hidden; }
         .ss-sheen:after{
             content:""; position:absolute; inset:-20% -60%;
@@ -1441,6 +1480,7 @@
             <li><a href="#quality-gap">Quality</a></li>
             <li><a href="#commercial-playbook">Sales Strategy</a></li>
             <li><a href="#story-selling">Story Selling</a></li>
+            <li><a href="#qna">Q&amp;A</a></li>
         </ul>
         <div class="controls">
             <button class="btn-toggle" id="presenter-toggle"><span>Presenter Mode</span></button>
@@ -2437,6 +2477,9 @@
                         <div class="ss-pack-row"><div class="ss-pack-k">Reporting</div><div class="ss-pack-v">Watch time, completion, clicks, conversions, subs influenced</div></div>
                     </div>
 
+                                            </div>
+                    </div>
+
                     <h3 class="grid-header" style="border-left-color:#10B981; margin-top:34px;">Metrics that make this commercial (boardroom friendly)</h3>
                     <div class="ss-kpi-grid">
                         <div class="d-metric-box"><div class="d-val">Attention minutes</div><div class="d-lab">Total watch time per viewer</div></div>
@@ -2467,6 +2510,57 @@
                             <div class="ss-rollout-row"><span class="ss-rollout-k">Weeks 7–10:</span> integrate action layer + pitch with pilot</div>
                             <div class="ss-rollout-row"><span class="ss-rollout-k">Weeks 11–13:</span> launch season aligned to sports calendar</div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="qna" class="bg-pattern">
+            <div class="container">
+                <div class="fade-in-up">
+                    <span class="badge badge-red">Wrap Up</span>
+                    <h2 class="section-title">Floor is open for questions</h2>
+                    <p class="section-subtitle">Happy to go deeper on rights, broadcast, product, or commercialization — and align on what we prioritize next.</p>
+                </div>
+
+                <div class="qa-wrap fade-in-up delay-1">
+                    <div class="ss-card qa-hero ss-sheen">
+                        <div class="qa-hero-left">
+                            <div class="qa-bubble">💬 Discussion</div>
+                            <div class="qa-title">What should we unpack?</div>
+                            <div class="qa-sub">Pick a lane — we’ll go deep fast and keep it practical.</div>
+
+                            <div class="inv-chips qa-chips" style="margin-top:14px;">
+                                <span class="inv-chip">Rights &amp; Partnerships</span>
+                                <span class="inv-chip">Broadcast Quality</span>
+                                <span class="inv-chip">Product Experience</span>
+                                <span class="inv-chip">Sales Packaging</span>
+                                <span class="inv-chip">Story Selling</span>
+                                <span class="inv-chip">Data &amp; Reporting</span>
+                            </div>
+                        </div>
+
+                        <div class="qa-hero-right">
+                            <div class="qa-mini">
+                                <div class="qa-mini-k">If we agree today</div>
+                                <div class="qa-mini-v">We can move from “one-off match selling” → “repeatable IP + measurable actions”.</div>
+                            </div>
+                            <div class="qa-mini">
+                                <div class="qa-mini-k">What I’ll share on request</div>
+                                <div class="qa-mini-v">Pricing anchors, sample packages, and an action-layer pilot plan.</div>
+                            </div>
+                            <div class="qa-mini qa-mini-strong">
+                                <div class="qa-mini-k">Decision to unlock</div>
+                                <div class="qa-mini-v">Which 2 IPs we pilot in the next 60–90 days.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ss-card qa-thanks">
+                        <div class="qa-thanks-title">Thank you</div>
+                        <div class="qa-thanks-sub">Bipul Bhattarai • Head of Sports &amp; Operations</div>
+                        <div class="qa-thanks-sub2">Brand Logiq Pvt. Ltd. (DGO)</div>
                     </div>
                 </div>
             </div>
