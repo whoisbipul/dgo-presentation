@@ -905,6 +905,240 @@
         }
         .ss-pack-v{ flex:1; color:#111827; font-size: 0.95rem; line-height: 1.5; }
 
+
+        /* Story Selling – visual polish (images + micro motion) */
+        .ss-sheen{ position: relative; overflow: hidden; }
+        .ss-sheen:after{
+            content:""; position:absolute; inset:-20% -60%;
+            width: 60%; height: 140%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.22), transparent);
+            transform: translateX(-140%) skewX(-16deg);
+            opacity: 0;
+            pointer-events:none;
+        }
+        .ss-sheen:hover:after,
+        .ss-sheen.sheen-run:after{
+            animation: invSheen 1.1s ease both;
+            opacity: 1;
+        }
+
+        .ss-hero-wrap{ margin-top: 18px; margin-bottom: 12px; }
+        .ss-hero{ padding: 0; }
+        .ss-hero-layout{ display:grid; grid-template-columns: 1.05fr 0.95fr; gap: 0; }
+        .ss-hero-media{
+            position: relative; min-height: 320px;
+            background: linear-gradient(135deg, rgba(17,24,39,0.95), rgba(55,65,81,0.85));
+            background-image: var(--ss-img);
+            background-size: cover; background-position: center;
+        }
+        .ss-hero-media-overlay{
+            position:absolute; inset:0;
+            background:
+                radial-gradient(600px 280px at 20% 10%, rgba(229,9,20,0.24), transparent 60%),
+                linear-gradient(180deg, rgba(17,24,39,0.18), rgba(17,24,39,0.80));
+        }
+        .ss-hero-media-top{
+            position:absolute; top: 14px; left: 14px; right: 14px;
+            display:flex; gap: 8px; flex-wrap: wrap; z-index: 2;
+        }
+        .ss-hero-chip{
+            display:inline-flex; align-items:center;
+            padding: 6px 10px; border-radius: 999px;
+            font-size: 0.74rem; font-weight: 800;
+            background: rgba(255,255,255,0.90);
+            border: 1px solid rgba(17,24,39,0.10);
+            color: #111827;
+        }
+        .ss-hero-media-bottom{
+            position:absolute; bottom: 14px; left: 14px; right: 14px; z-index: 2;
+        }
+        .ss-hero-play{
+            display:inline-flex; align-items:center; gap: 8px;
+            width: fit-content;
+            padding: 10px 12px; border-radius: 14px;
+            background: rgba(17,24,39,0.86);
+            color: #fff; font-weight: 900; font-size: 0.82rem;
+            box-shadow: 0 16px 36px rgba(0,0,0,0.28);
+        }
+        .ss-hero-caption{
+            margin-top: 10px;
+            color: rgba(255,255,255,0.92);
+            font-weight: 900;
+            font-size: 1.05rem;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 18px rgba(0,0,0,0.40);
+        }
+        .ss-hero-copy{ padding: 24px 26px; position: relative; }
+        .ss-hero-kicker{
+            font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px;
+            font-weight: 900; color: var(--brand-red);
+            margin-bottom: 10px;
+        }
+        .ss-hero-title{
+            margin: 0 0 10px;
+            font-size: 1.25rem; font-weight: 900; line-height: 1.25;
+            color: #111827;
+        }
+        .ss-hero-text{ color:#4b5563; font-size: 0.95rem; line-height: 1.75; }
+        .ss-hero-micro{
+            display:grid; grid-template-columns: repeat(3, 1fr);
+            gap: 10px; margin-top: 16px;
+        }
+        .ss-hero-micro-card{
+            display:flex; gap: 10px; align-items:center;
+            padding: 10px 12px; border-radius: 14px;
+            border: 1px solid #eef2f7; background: #fff;
+            box-shadow: 0 10px 22px rgba(17,24,39,0.04);
+        }
+        .ss-hero-micro-ico{
+            width: 34px; height: 34px;
+            display:flex; align-items:center; justify-content:center;
+            border-radius: 12px; background: #f3f4f6;
+            font-size: 1rem;
+        }
+        .ss-hero-micro-k{ font-size: 0.78rem; font-weight: 900; color:#111827; }
+        .ss-hero-micro-v{ font-size: 0.78rem; color:#6b7280; margin-top: 2px; line-height: 1.25; }
+
+        .ss-sticker{
+            position:absolute; top: 14px; right: 14px;
+            border-radius: 16px;
+            background: rgba(229,9,20,0.10);
+            border: 1px solid rgba(229,9,20,0.22);
+            padding: 10px 12px;
+            font-weight: 900;
+            color: var(--brand-red);
+            line-height: 1.15;
+            transform: rotate(2deg);
+            animation: iconBob 2.6s var(--ease-out) infinite;
+        }
+        .ss-sticker span{
+            display:block;
+            font-size: 0.82rem;
+            color: #111827;
+            margin-top: 6px;
+            font-weight: 800;
+        }
+
+        .ss-template-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
+        .ss-template{
+            display:flex; gap: 14px;
+            padding: 14px;
+            border-radius: 18px;
+            border: 1px solid #eef2f7;
+            background: #fff;
+            box-shadow: 0 18px 45px rgba(17,24,39,0.06);
+            cursor: pointer;
+            transition: transform 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out);
+        }
+        .ss-template:hover{ transform: translateY(-3px); box-shadow: 0 26px 60px rgba(17,24,39,0.10); }
+        .ss-template-thumb{
+            width: 92px; min-width: 92px; height: 72px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(17,24,39,0.92), rgba(55,65,81,0.82));
+            background-image: var(--ss-img);
+            background-size: cover; background-position:center;
+            position: relative; overflow:hidden;
+        }
+        .ss-template-thumb:after{
+            content:""; position:absolute; inset:0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.00), rgba(0,0,0,0.22));
+        }
+        .ss-template-title{ font-weight: 900; color:#111827; }
+        .ss-template-sub{ color:#6b7280; font-size: 0.88rem; margin-top: 4px; line-height: 1.4; }
+        .ss-template-tags{ margin-top: 10px; display:flex; gap: 8px; flex-wrap: wrap; }
+        .ss-template-tags .pill{
+            font-size: 0.72rem;
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid #eef2f7;
+            background: #f9fafb;
+            color:#111827;
+        }
+
+        .ss-sport-hero{
+            position: relative;
+            border-radius: 16px;
+            border: 1px solid #eef2f7;
+            overflow: hidden;
+            padding: 14px 16px;
+            margin-bottom: 14px;
+            background: linear-gradient(90deg, rgba(17,24,39,0.95), rgba(55,65,81,0.85));
+            background-image: var(--ss-img);
+            background-size: cover; background-position:center;
+        }
+        .ss-sport-hero-overlay{
+            position:absolute; inset:0;
+            background: linear-gradient(90deg, rgba(17,24,39,0.88), rgba(17,24,39,0.40), rgba(17,24,39,0.10));
+        }
+        .ss-sport-hero-inner{
+            position: relative;
+            display:flex; gap: 12px;
+            align-items:center;
+            color:#fff;
+            z-index: 1;
+        }
+        .ss-sport-emoji{
+            width: 40px; height: 40px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.12);
+            display:flex; align-items:center; justify-content:center;
+            font-size: 1.2rem;
+        }
+        .ss-sport-title{ font-weight: 900; font-size: 1.05rem; }
+        .ss-sport-sub{ opacity: 0.88; font-size: 0.85rem; margin-top: 2px; line-height: 1.35; }
+
+        .ss-pack-grid{ display:grid; grid-template-columns: 0.9fr 1.1fr; gap: 18px; align-items: stretch; }
+        .ss-pack-poster{
+            position: relative; border-radius: 16px;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(17,24,39,0.92), rgba(55,65,81,0.84));
+            background-image: var(--ss-img);
+            background-size: cover; background-position:center;
+            border: 1px solid rgba(17,24,39,0.10);
+            min-height: 250px;
+        }
+        .ss-pack-poster-overlay{
+            position:absolute; inset:0;
+            background: linear-gradient(180deg, rgba(17,24,39,0.12), rgba(17,24,39,0.88));
+        }
+        .ss-pack-poster-top{
+            position:absolute; top: 14px; left: 14px; right: 14px;
+            display:flex; gap: 8px; flex-wrap:wrap;
+            z-index: 1;
+        }
+        .ss-pack-poster-top .pill{
+            background: rgba(255,255,255,0.90);
+            border: 1px solid rgba(17,24,39,0.12);
+        }
+        .ss-pack-poster-bottom{
+            position:absolute; bottom: 14px; left: 14px; right: 14px;
+            color:#fff; z-index: 1;
+        }
+        .ss-pack-poster-title{ font-weight: 900; font-size: 1.05rem; line-height: 1.2; }
+        .ss-pack-poster-sub{ margin-top: 6px; opacity: 0.90; font-size: 0.85rem; line-height: 1.35; }
+        .ss-pack-table{ background: transparent; }
+
+        /* Make the Story → Attention → Action connector feel alive (subtle) */
+        .ss-connector:before{
+            background: linear-gradient(90deg, #e5e7eb, rgba(229,9,20,0.45), #e5e7eb);
+            background-size: 200% 100%;
+            animation: lineShift 2.8s linear infinite;
+        }
+
+        @media (max-width: 900px){
+            .ss-hero-layout{ grid-template-columns: 1fr; }
+            .ss-hero-media{ min-height: 260px; }
+            .ss-hero-micro{ grid-template-columns: 1fr; }
+            .ss-template-grid{ grid-template-columns: 1fr; }
+            .ss-pack-grid{ grid-template-columns: 1fr; }
+        }
+
+        body.presenter-mode .ss-hero-layout,
+        body.presenter-mode .ss-pack-grid { grid-template-columns: 1fr; }
+        body.presenter-mode .ss-template-grid { grid-template-columns: 1fr; }
+        body.presenter-mode .ss-sticker { display: none; }
+
+
         .ss-kpi-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 18px; }
         .ss-kpi-grid .d-metric-box{ border-radius: 16px; border-left-width: 5px; }
         .ss-kpi-grid .d-val{ font-size: 1.2rem; }
@@ -1252,11 +1486,11 @@
 
                 <div class="market-strip-container fade-in-up delay-2">
                     <div class="market-strip">
-                        <div class="market-stat"><div class="m-val"><span class="market-counter" data-target="38">0</span>M+</div><div class="m-label">Internet Subscriptions</div></div>
+                        <div class="market-stat"><div class="m-val"><span class="market-counter" data-target="16.5">0</span>M</div><div class="m-label">Internet Users</div></div>
                         <div class="market-stat"><div class="m-val">~<span class="market-counter" data-target="40">0</span>%</div><div class="m-label">Youth Demographic (16-40)</div></div>
                         <div class="market-stat"><div class="m-val"><span class="market-counter" data-target="76">0</span>%</div><div class="m-label">Smartphone Penetration</div></div>
                     </div>
-                    <div class="market-source">Source: NTA MIS (internet subscriptions) / UNFPA (youth share) / National Statistics Office (smartphone ownership)</div>
+                     <div class="market-source">Source: DataReportal Digital 2025 Nepal (internet users) / UNFPA (youth share) / National Statistics Office (smartphone ownership)</div>
                 </div>
 
                 <div class="ecosystem-chain">
@@ -1855,7 +2089,97 @@
                 </div>
 
                 <div class="ss-engine fade-in-up delay-1">
-                    <h3 class="grid-header" style="border-left-color:#E50914;">Why Story Selling beats Match Selling on OTT</h3>
+                    
+                    <!-- Story Selling Hero (visual) -->
+                    <div class="ss-hero-wrap">
+                        <div class="ss-card ss-hero ss-sheen">
+                            <div class="ss-hero-layout">
+                                <div class="ss-hero-media" style="--ss-img: url('assets/story/story-hero.jpg');">
+                                    <div class="ss-hero-media-overlay"></div>
+                                    <div class="ss-hero-media-top">
+                                        <span class="ss-hero-chip">🎬 Series-first</span>
+                                        <span class="ss-hero-chip">📊 Measurable</span>
+                                        <span class="ss-hero-chip">🧠 Low-literacy friendly</span>
+                                    </div>
+                                    <div class="ss-hero-media-bottom">
+                                        <div class="ss-hero-play">▶ 45-sec story pitch</div>
+                                        <div class="ss-hero-caption">A match is the event. A story is the habit.</div>
+                                    </div>
+                                </div>
+
+                                <div class="ss-hero-copy">
+                                    <div class="ss-hero-kicker">What we’re selling (in plain words)</div>
+                                    <h3 class="ss-hero-title">A followable sports “show” that keeps people coming back — even when there’s no match.</h3>
+                                    <p class="ss-hero-text">On OTT, we don’t win by shouting “live now” every day. We win by building a reason to return: characters, stakes, and moments fans can talk about.</p>
+
+                                    <div class="ss-hero-micro">
+                                        <div class="ss-hero-micro-card">
+                                            <div class="ss-hero-micro-ico">⏱️</div>
+                                            <div>
+                                                <div class="ss-hero-micro-k">Attention</div>
+                                                <div class="ss-hero-micro-v">More minutes, higher completion</div>
+                                            </div>
+                                        </div>
+                                        <div class="ss-hero-micro-card">
+                                            <div class="ss-hero-micro-ico">🔁</div>
+                                            <div>
+                                                <div class="ss-hero-micro-k">Habit</div>
+                                                <div class="ss-hero-micro-v">Returns between matchdays</div>
+                                            </div>
+                                        </div>
+                                        <div class="ss-hero-micro-card">
+                                            <div class="ss-hero-micro-ico">✅</div>
+                                            <div>
+                                                <div class="ss-hero-micro-k">Action</div>
+                                                <div class="ss-hero-micro-v">Subscribe • vote • claim • buy</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="ss-sticker" aria-hidden="true">✨ Story-first<br><span>beats banner-first</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ss-template-grid">
+                            <div class="ss-template ss-sheen" tabindex="0" role="button" aria-label="Mic’d Up mini-series template">
+                                <div class="ss-template-thumb" style="--ss-img: url('assets/story/template-micd.jpg');"></div>
+                                <div class="ss-template-body">
+                                    <div class="ss-template-title">🎙️ Mic’d Up</div>
+                                    <div class="ss-template-sub">Short episodes that make fans feel “inside” the team.</div>
+                                    <div class="ss-template-tags">
+                                        <span class="pill">Behind the scenes</span>
+                                        <span class="pill">High retention</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ss-template ss-sheen" tabindex="0" role="button" aria-label="Rivalry Week template">
+                                <div class="ss-template-thumb" style="--ss-img: url('assets/story/template-rivalry.jpg');"></div>
+                                <div class="ss-template-body">
+                                    <div class="ss-template-title">🔥 Rivalry Week</div>
+                                    <div class="ss-template-sub">Build stakes in simple language: “why this match matters”.</div>
+                                    <div class="ss-template-tags">
+                                        <span class="pill">Explainers</span>
+                                        <span class="pill">Matchday tie-in</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ss-template ss-sheen" tabindex="0" role="button" aria-label="Road to Glory template">
+                                <div class="ss-template-thumb" style="--ss-img: url('assets/story/template-road.jpg');"></div>
+                                <div class="ss-template-body">
+                                    <div class="ss-template-title">🏁 Road to Glory</div>
+                                    <div class="ss-template-sub">Hero journeys + weekly checkpoints → perfect for subscriptions.</div>
+                                    <div class="ss-template-tags">
+                                        <span class="pill">Series / episodes</span>
+                                        <span class="pill">Sponsor integration</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+<h3 class="grid-header" style="border-left-color:#E50914;">Why Story Selling beats Match Selling on OTT</h3>
                     <div class="ss-card">
                         <ul class="ss-bullets">
                             <li><strong>OTT is a relationship:</strong> we can build a habit (episodes + returns), not just a match spike.</li>
@@ -2005,6 +2329,17 @@
 
                         <div class="ss-panels">
                             <div class="ss-panel active" data-ss-panel="cricket">
+                                <div class="ss-sport-hero" style="--ss-img: url('assets/story/sport-cricket.jpg');">
+                                    <div class="ss-sport-hero-overlay"></div>
+                                    <div class="ss-sport-hero-inner">
+                                        <div class="ss-sport-emoji">🏏</div>
+                                        <div>
+                                            <div class="ss-sport-title">Cricket</div>
+                                            <div class="ss-sport-sub">Heroes + rivalries + simple explainers convert casual viewers.</div>
+                                        </div>
+                                    </div>
+                                </div>
+    
                                 <ul class="ss-bullets">
                                     <li><strong>Hero journey:</strong> from local nets → national spotlight.</li>
                                     <li><strong>Rivalry week:</strong> two teams, two cultures, one narrative.</li>
@@ -2014,6 +2349,17 @@
                             </div>
 
                             <div class="ss-panel" data-ss-panel="football">
+                                <div class="ss-sport-hero" style="--ss-img: url('assets/story/sport-football.jpg');">
+                                    <div class="ss-sport-hero-overlay"></div>
+                                    <div class="ss-sport-hero-inner">
+                                        <div class="ss-sport-emoji">⚽</div>
+                                        <div>
+                                            <div class="ss-sport-title">Football</div>
+                                            <div class="ss-sport-sub">Identity stories: pride, grit, and “what’s at stake”.</div>
+                                        </div>
+                                    </div>
+                                </div>
+    
                                 <ul class="ss-bullets">
                                     <li><strong>Dressing room:</strong> team talk + emotions before kickoff.</li>
                                     <li><strong>Rivalry + identity:</strong> “who we are” as a club/community.</li>
@@ -2023,6 +2369,17 @@
                             </div>
 
                             <div class="ss-panel" data-ss-panel="volleyball">
+                                <div class="ss-sport-hero" style="--ss-img: url('assets/story/sport-volleyball.jpg');">
+                                    <div class="ss-sport-hero-overlay"></div>
+                                    <div class="ss-sport-hero-inner">
+                                        <div class="ss-sport-emoji">🏐</div>
+                                        <div>
+                                            <div class="ss-sport-title">Volleyball</div>
+                                            <div class="ss-sport-sub">Underdog arcs + team culture — fast, high-emotion episodes.</div>
+                                        </div>
+                                    </div>
+                                </div>
+    
                                 <ul class="ss-bullets">
                                     <li><strong>Bootcamp life:</strong> training grind in short episodes.</li>
                                     <li><strong>Clutch moments:</strong> “one rally that flips the set.”</li>
@@ -2032,6 +2389,17 @@
                             </div>
 
                             <div class="ss-panel" data-ss-panel="esports">
+                                <div class="ss-sport-hero" style="--ss-img: url('assets/story/sport-esports.jpg');">
+                                    <div class="ss-sport-hero-overlay"></div>
+                                    <div class="ss-sport-hero-inner">
+                                        <div class="ss-sport-emoji">🎮</div>
+                                        <div>
+                                            <div class="ss-sport-title">Esports</div>
+                                            <div class="ss-sport-sub">Personalities + clips + community challenges drive daily returns.</div>
+                                        </div>
+                                    </div>
+                                </div>
+    
                                 <ul class="ss-bullets">
                                     <li><strong>Road to qualifiers:</strong> team grind + scrim diaries.</li>
                                     <li><strong>IGL / coach cam:</strong> how decisions are made mid-fight.</li>
@@ -2043,7 +2411,20 @@
                     </div>
 
                     <h3 class="grid-header" style="border-left-color:#F59E0B; margin-top:34px;">Sponsor Packaging (What we sell)</h3>
-                    <div class="ss-card ss-pack">
+                    <div class="ss-card ss-pack ss-sheen">
+                        <div class="ss-pack-grid">
+                            <div class="ss-pack-poster" style="--ss-img: url('assets/story/series-poster.jpg');">
+                                <div class="ss-pack-poster-overlay"></div>
+                                <div class="ss-pack-poster-top">
+                                    <span class="pill">Presented by</span>
+                                    <span class="pill">Category exclusive</span>
+                                </div>
+                                <div class="ss-pack-poster-bottom">
+                                    <div class="ss-pack-poster-title">DGO Originals: Road to Glory</div>
+                                    <div class="ss-pack-poster-sub">Sample sponsor package (episode + shorts + matchday)</div>
+                                </div>
+                            </div>
+                            <div class="ss-pack-table">
                         <div class="ss-pack-row"><div class="ss-pack-k">Series name</div><div class="ss-pack-v"><strong>DGO Originals:</strong> Road to Glory</div></div>
                         <div class="ss-pack-row"><div class="ss-pack-k">Format</div><div class="ss-pack-v">6 episodes × 10–12 mins + 30 shorts</div></div>
                         <div class="ss-pack-row"><div class="ss-pack-k">Presented by</div><div class="ss-pack-v">Category exclusive (1 per category)</div></div>
@@ -2693,23 +3074,41 @@
         }, { threshold: 0.1 });
         $$('.fade-in-up').forEach(el => fadeObserver.observe(el));
 
+        // --- STORY SELLING MICRO SHEEN (subtle "wow") ---
+        const sheenEls = document.querySelectorAll('.ss-sheen');
+        if (sheenEls && sheenEls.length) {
+            const sheenObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('sheen-run');
+                        setTimeout(() => entry.target.classList.remove('sheen-run'), 1200);
+                        sheenObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.35 });
+            sheenEls.forEach(el => sheenObserver.observe(el));
+        }
+
+
         // --- MARKET COUNTER ANIMATION ---
         let marketStatsRun = false;
         const marketObserver = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting && !marketStatsRun) {
                 marketStatsRun = true;
                 document.querySelectorAll('.market-counter').forEach(counter => {
-                    const target = +counter.getAttribute('data-target');
+                    const targetRaw = counter.getAttribute('data-target');
+                    const target = Number(targetRaw);
+                    const hasDecimal = String(targetRaw).includes('.');
                     const duration = 2000;
                     const startTime = performance.now();
                     const animate = (currentTime) => {
                         const elapsed = currentTime - startTime;
                         const progress = Math.min(elapsed / duration, 1);
                         const ease = 1 - Math.pow(1 - progress, 4);
-                        const currentVal = Math.floor(ease * target);
-                        counter.innerText = currentVal;
+                        const currentVal = ease * target;
+                        counter.innerText = hasDecimal ? currentVal.toFixed(1) : Math.floor(currentVal);
                         if (progress < 1) requestAnimationFrame(animate);
-                        else counter.innerText = target;
+                        else counter.innerText = hasDecimal ? Number(target).toFixed(1) : target;
                     };
                     requestAnimationFrame(animate);
                 });
