@@ -586,6 +586,7 @@
                 radial-gradient(circle at 78% 35%, rgba(0,120,188,0.14), transparent 58%),
                 radial-gradient(circle at 50% 0%, rgba(17,24,39,0.12), transparent 55%);
             pointer-events: none;
+            z-index: 0;
         }
         /* Micro shine sweep — adds a premium “wow” without changing layout */
         .inv-sheet::after{
@@ -598,6 +599,7 @@
                 rgba(255,255,255,0) 100%);
             transform: translateX(-140%) skewX(-16deg);
             opacity: 0; pointer-events:none;
+            z-index: 0;
         }
         .inv-overlay.open .inv-sheet::after{
             animation: invSheen 1.15s ease-out 0.08s;
@@ -615,6 +617,7 @@
         .inv-header {
             position: relative; padding: 22px 26px 16px;
             border-bottom: 1px solid #eef2f7;
+            z-index: 1;
         }
         .inv-hero { display: flex; gap: 14px; align-items: center; }
         .inv-hero-icon {
@@ -649,9 +652,16 @@
             padding: 18px 26px 24px;
             overflow: auto;
             max-height: calc(86vh - 92px);
+            z-index: 1;
         }
         .inv-summary {
             font-size: 0.95rem; color: #374151; line-height: 1.7;
+            background: rgba(255,255,255,0.72);
+            border: 1px solid #eef2f7;
+            border-radius: 16px;
+            padding: 14px 14px 12px;
+            margin-top: 12px;
+            box-shadow: inset 0 0 0 1px rgba(229,9,20,0.08);
         }
         .inv-grid2 {
             display: grid; grid-template-columns: 1.15fr 0.85fr;
@@ -811,159 +821,115 @@
         .si-highlight { animation: highlightGlow 2.6s ease-in-out infinite; }
         @keyframes highlightGlow {
             0%,100% { box-shadow: 0 0 0 1px rgba(229,9,20,0.30), 0 22px 44px rgba(229,9,20,0.12); }
-            
-        /* --- STORY SELLING (Sales Enablement Page) --- */
-        .story-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 22px; }
-        .story-tile {
-            background: white; border: 1px solid #e5e7eb; border-radius: 16px; padding: 22px;
-            transition: transform 0.35s var(--ease-elastic), box-shadow 0.35s var(--ease-elastic), border-color 0.35s var(--ease-elastic);
-            position: relative; overflow: hidden;
-        }
-        .story-tile:hover { transform: translateY(-6px); border-color: rgba(229,9,20,0.55); box-shadow: 0 18px 40px rgba(0,0,0,0.10); }
-        .story-tile::before{
-            content:""; position:absolute; inset:-2px;
-            background: radial-gradient(circle at 20% 10%, rgba(229,9,20,0.10), transparent 55%),
-                        radial-gradient(circle at 80% 10%, rgba(0,120,188,0.08), transparent 55%);
-            opacity: 0.9; pointer-events:none;
-        }
-        .story-tile h4{ position: relative; margin: 0 0 8px; font-size: 1.05rem; }
-        .story-tile p{ position: relative; margin: 0; color: #6b7280; font-size: 0.88rem; line-height: 1.5; }
-        .story-kicker{ position: relative; display:flex; align-items:center; gap:10px; font-weight:800; color:#111827; margin-bottom:10px;}
-        .story-kicker .dot{ width:10px; height:10px; border-radius:50%; background: var(--brand-red); box-shadow:0 0 16px rgba(229,9,20,0.55); }
-
-        .spine {
-            margin-top: 26px;
-            background: #111827;
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 18px;
-            padding: 18px 18px 16px;
-            position: relative; overflow: hidden;
-        }
-        .spine::before{
-            content:""; position:absolute; inset:-2px;
-            background:
-                radial-gradient(circle at 20% 35%, rgba(229,9,20,0.18), transparent 55%),
-                radial-gradient(circle at 80% 35%, rgba(255,255,255,0.06), transparent 62%);
-            opacity: 0.95; pointer-events:none;
-        }
-        .spine-row{ position: relative; display:flex; align-items:center; gap:14px; }
-        .spine-step{
-            flex: 1;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.10);
-            border-radius: 14px;
-            padding: 14px 14px 12px;
-            text-align:left;
-            transition: transform 0.25s ease, border-color 0.25s ease;
-        }
-        .spine-step:hover{ transform: translateY(-3px); border-color: rgba(229,9,20,0.40); }
-        .spine-top{ display:flex; align-items:center; gap:10px; font-weight:800; color:#fff; }
-        .spine-top .pill{ font-size:0.7rem; padding:4px 8px; border-radius: 999px; background: rgba(229,9,20,0.12); border:1px solid rgba(229,9,20,0.25); color:#ffd6d9; }
-        .spine-desc{ margin-top:8px; font-size:0.82rem; color:#d1d5db; line-height:1.45; }
-        .spine-line{
-            height: 3px; flex: 0.55; border-radius: 999px; position: relative;
-            background: linear-gradient(90deg, rgba(255,255,255,0.12), rgba(229,9,20,0.65), rgba(255,255,255,0.12));
-            background-size: 200% 100%;
-            animation: lineShift 2.6s linear infinite;
-            opacity: 0.95;
-        }
-        .spine-line::after{
-            content:""; position:absolute; top:50%; left:-28%;
-            width: 32%; height: 14px; transform: translateY(-50%);
-            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.55) 0%, rgba(229,9,20,0.28) 30%, rgba(229,9,20,0) 70%);
-            opacity: 0.75;
-            animation: energySweep 1.85s linear infinite;
+            50% { box-shadow: 0 0 0 1px rgba(229,9,20,0.60), 0 30px 62px rgba(229,9,20,0.22); }
         }
 
-        .story-builder{
-            margin-top: 22px;
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 18px;
-            padding: 22px;
-            box-shadow: 0 14px 34px rgba(0,0,0,0.06);
-            position: relative; overflow:hidden;
-        }
-        .story-builder::before{
-            content:""; position:absolute; inset:-2px;
-            background: radial-gradient(circle at 15% 0%, rgba(229,9,20,0.10), transparent 52%),
-                        radial-gradient(circle at 85% 0%, rgba(0,120,188,0.08), transparent 55%);
-            opacity:0.9; pointer-events:none;
-        }
-        .sb-row{ position: relative; display:flex; gap:14px; flex-wrap:wrap; align-items:flex-end; }
-        .sb-field{ flex: 1; min-width: 220px; }
-        .sb-label{ display:block; font-size:0.78rem; font-weight:800; letter-spacing:0.02em; color:#111827; margin-bottom:8px; }
-        .sb-select{
-            width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid #e5e7eb;
-            background: #fff; font-weight:700; color:#111827;
-            transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
-        }
-        .sb-select:focus{ outline:none; border-color: rgba(229,9,20,0.50); box-shadow: 0 0 0 4px rgba(229,9,20,0.12); }
-        .sb-output{
-            position: relative;
-            margin-top: 16px;
-            background: #0b1220;
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px;
-            padding: 16px 16px 14px;
-            color: #fff;
-            overflow:hidden;
-        }
-        .sb-output::after{
-            content:""; position:absolute; inset:-2px;
-            background: linear-gradient(115deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,0.18) 50%, rgba(255,255,255,0) 60%, rgba(255,255,255,0) 100%);
-            transform: translateX(-140%) skewX(-16deg);
-            opacity:0;
-            pointer-events:none;
-        }
-        .sb-output.sheen::after{
-            animation: invSheen 1.2s ease-out 0.12s;
-        }
-        .sb-title{ font-weight:900; letter-spacing:0.01em; margin-bottom: 10px; display:flex; align-items:center; gap:10px; }
-        .sb-title .mini-dot{ width:10px; height:10px; border-radius:50%; background: var(--brand-red); box-shadow:0 0 16px rgba(229,9,20,0.65); }
-        .sb-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .sb-box{
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.10);
-            border-radius: 14px;
-            padding: 12px;
-        }
-        .sb-k{ font-size:0.72rem; color:#cbd5e1; font-weight:800; letter-spacing:0.03em; text-transform:uppercase; }
-        .sb-v{ margin-top:6px; font-size:0.88rem; color:#fff; line-height:1.45; font-weight:650; }
-        .sb-pitch{
-            margin-top: 12px;
-            border-radius: 14px;
-            padding: 12px;
-            background: rgba(229,9,20,0.10);
-            border: 1px solid rgba(229,9,20,0.25);
-            font-weight:700; line-height:1.5;
-        }
-        .sb-pitch em{ color:#ffd6d9; font-style: normal; }
 
-        .story-accordions{ margin-top: 18px; display:grid; grid-template-columns: 1fr; gap: 10px; }
-        .story-accordions details{
-            background: white; border: 1px solid #e5e7eb; border-radius: 16px; padding: 14px 16px;
-            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        /* --- 7. STORY SELLING: OTT MONETIZATION ENGINE --- */
+        .ss-engine { margin-top: 22px; }
+        .ss-card{
+            background: white; border: 1px solid #eef2f7; border-radius: 18px;
+            padding: 24px; box-shadow: 0 18px 45px rgba(17,24,39,0.06);
         }
-        .story-accordions details[open]{ border-color: rgba(229,9,20,0.45); box-shadow: 0 16px 34px rgba(0,0,0,0.08); transform: translateY(-2px); }
-        .story-accordions summary{
-            list-style:none; cursor:pointer; font-weight:900; color:#111827;
-            display:flex; align-items:center; justify-content:space-between; gap: 12px;
+        .ss-bullets { margin: 0 0 0 18px; color: #4b5563; font-size: 0.92rem; line-height: 1.7; }
+        .ss-bullets li { margin-bottom: 8px; }
+        .ss-bullets strong { color: #111827; }
+        .ss-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px; }
+        .ss-mini{
+            display:inline-flex; align-items:center; gap:8px;
+            font-size: 0.65rem; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;
+            padding: 6px 10px; border-radius: 999px; background: #f3f4f6; color: #6b7280;
+            margin-bottom: 12px;
         }
-        .story-accordions summary::-webkit-details-marker { display:none; }
-        .story-acc-body{ margin-top: 10px; color:#6b7280; font-size: 0.9rem; line-height: 1.55; }
-        .story-acc-body ul{ margin: 10px 0 0 18px; }
-        .story-acc-body li{ margin: 6px 0; }
-        .story-chevron{ width: 34px; height: 34px; border-radius: 10px; background: #f3f4f6; display:flex; align-items:center; justify-content:center; font-weight:900; color:#111827; transition: transform 0.2s ease; }
-        details[open] .story-chevron{ transform: rotate(45deg); background: rgba(229,9,20,0.10); color: var(--brand-red); }
+        .ss-mini-strong{ background: rgba(229,9,20,0.10); color: var(--brand-red); }
+        .ss-col h4{ margin: 0 0 10px; font-size: 1.05rem; font-weight: 900; color: #111827; }
+        .ss-col ul{ margin: 0 0 0 18px; color: #4b5563; font-size: 0.92rem; line-height: 1.7; }
 
-        @media (max-width: 880px){
-            .story-grid{ grid-template-columns: 1fr; }
-            .sb-grid{ grid-template-columns: 1fr; }
-            .spine-row{ flex-direction: column; }
-            .spine-line{ width: 100%; flex: none; height: 3px; }
+        .ss-lever-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 18px; }
+        .ss-lever-top { display:flex; align-items:flex-start; gap: 12px; margin-bottom: 14px; }
+        .ss-ico{
+            width: 42px; height: 42px; border-radius: 14px; display:flex; align-items:center; justify-content:center;
+            background: #f3f4f6; font-size: 1.2rem;
+            box-shadow: inset 0 0 0 1px rgba(229,9,20,0.10);
         }
-50% { box-shadow: 0 0 0 1px rgba(229,9,20,0.60), 0 30px 62px rgba(229,9,20,0.22); }
+        .ss-lever h4{ margin: 0; font-size: 1.05rem; font-weight: 900; color:#111827; }
+        .ss-lever-tag{ margin-top: 4px; font-size: 0.75rem; color:#6b7280; font-weight: 700; }
+        .ss-subhead{
+            font-size: 0.7rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;
+            color: #111827; margin-top: 16px; margin-bottom: 8px;
+        }
+        .ss-mini-list{ margin: 0 0 0 18px; color:#4b5563; font-size: 0.9rem; line-height: 1.7; }
+        .ss-mini-list li{ margin-bottom: 7px; }
+
+        .ss-flow{ display:flex; align-items:stretch; gap: 14px; margin-top: 4px; }
+        .ss-node{
+            flex:1; border:1px solid #eef2f7; border-radius: 16px; padding: 16px 16px 14px;
+            background: linear-gradient(180deg, #ffffff, #f9fafb);
+        }
+        .ss-node-top{ font-weight: 900; color:#111827; display:flex; align-items:center; gap: 10px; }
+        .ss-node-ico{
+            width: 34px; height: 34px; border-radius: 12px; display:flex; align-items:center; justify-content:center;
+            background: rgba(229,9,20,0.10); color: var(--brand-red); font-size: 1rem;
+        }
+        .ss-node-sub{ margin-top: 6px; font-size: 0.85rem; color:#6b7280; line-height: 1.5; }
+        .ss-connector{
+            width: 26px; position: relative;
+        }
+        .ss-connector:before{
+            content:""; position:absolute; left: 50%; top: 50%;
+            width: 26px; height: 2px; background: #e5e7eb; transform: translate(-50%,-50%);
+        }
+        .ss-connector:after{
+            content:"›"; position:absolute; right:-2px; top: 50%;
+            transform: translateY(-52%); color:#9ca3af; font-weight: 900;
+        }
+
+        .ss-toggle{ width: fit-content; }
+        .ss-toggle .cd-btn{ width: 140px; padding: 10px 16px; font-size: 0.85rem; }
+        .ss-toggle .cd-pill{ width: 140px; }
+
+        .ss-panels{ margin-top: 10px; }
+        .ss-panel{ display:none; }
+        .ss-panel.active{ display:block; animation: fadeIn 0.25s ease; }
+        @keyframes fadeIn { from{ opacity:0; transform: translateY(4px); } to { opacity:1; transform: translateY(0); } }
+
+        .ss-pack{ padding-top: 20px; }
+        .ss-pack-row{
+            display:flex; justify-content: space-between; gap: 20px;
+            padding: 12px 0; border-bottom: 1px dashed #e5e7eb;
+        }
+        .ss-pack-row:last-child{ border-bottom:none; }
+        .ss-pack-k{
+            font-size: 0.78rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;
+            color:#6b7280; width: 210px;
+        }
+        .ss-pack-v{ flex:1; color:#111827; font-size: 0.95rem; line-height: 1.5; }
+
+        .ss-kpi-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 18px; }
+        .ss-kpi-grid .d-metric-box{ border-radius: 16px; border-left-width: 5px; }
+        .ss-kpi-grid .d-val{ font-size: 1.2rem; }
+
+        .ss-rollout-timeline{ width: 100%; }
+        .ss-rollout-list{ margin-top: 8px; color:#4b5563; font-size: 0.95rem; line-height: 1.7; }
+        .ss-rollout-row{ padding: 8px 0; border-bottom: 1px dashed #e5e7eb; }
+        .ss-rollout-row:last-child{ border-bottom:none; }
+        .ss-rollout-k{ font-weight: 900; color:#111827; margin-right: 8px; }
+
+        body.presenter-mode .ss-grid-2,
+        body.presenter-mode .ss-lever-grid,
+        body.presenter-mode .ss-kpi-grid { grid-template-columns: 1fr; }
+        body.presenter-mode .ss-flow{ flex-direction: column; }
+        body.presenter-mode .ss-connector{ display:none; }
+
+        @media (max-width: 768px){
+            .ss-grid-2, .ss-lever-grid, .ss-kpi-grid{ grid-template-columns: 1fr; }
+            .ss-flow{ flex-direction: column; }
+            .ss-connector{ display:none; }
+            .ss-toggle{ width: 100%; }
+            .ss-toggle .cd-btn{ width: 25%; padding: 10px 8px; font-size: 0.78rem; }
+            .ss-toggle .cd-pill{ width: 25%; }
+            .ss-pack-row{ flex-direction: column; gap: 6px; }
+            .ss-pack-k{ width: auto; }
         }
 
 /* --- MAP DASHBOARD --- */
@@ -1237,7 +1203,7 @@
             <li><a href="#assets-focus">Our Assets</a></li>
             <li><a href="#quality-gap">Quality</a></li>
             <li><a href="#commercial-playbook">Sales Strategy</a></li>
-            <li><a href="#story-selling">Sell the Story</a></li>
+            <li><a href="#story-selling">Story Selling</a></li>
         </ul>
         <div class="controls">
             <button class="btn-toggle" id="presenter-toggle"><span>Presenter Mode</span></button>
@@ -1740,144 +1706,7 @@
                                 <ul class="xp-list">
                                     <li><strong>The "Roar":</strong> Dedicated crowd ambient mics (-12db).</li>
                                     <li><strong>Commentary:</strong> Separated center channel (-6db).</li>
-                                    <li><strong>Result:</strong> You fee
-
-
-        <section id="story-selling" class="bg-pattern">
-            <div class="container">
-                <div class="fade-in-up">
-                    <span class="badge badge-red">Sales Enablement</span>
-                    <h2 class="section-title">Selling the Story</h2>
-                    <p class="section-subtitle">In sports, brands don’t buy “screen time.” They buy the feeling fans will repeat — <strong>before</strong>, <strong>during</strong>, and <strong>after</strong> the moment.</p>
-                </div>
-
-                <div class="story-grid fade-in-up delay-1">
-                    <div class="story-tile">
-                        <div class="story-kicker"><span class="dot"></span>Old way</div>
-                        <h4>Sell exposure</h4>
-                        <p>“Logo on screen” + generic impressions. Easy to discount, hard to defend, and often skipped.</p>
-                    </div>
-                    <div class="story-tile">
-                        <div class="story-kicker"><span class="dot"></span>New way</div>
-                        <h4>Sell a narrative</h4>
-                        <p>Own a human moment (tension → release) and connect the brand to a <strong>single clear attribute</strong> fans remember.</p>
-                    </div>
-                    <div class="story-tile">
-                        <div class="story-kicker"><span class="dot"></span>Outcome</div>
-                        <h4>Sell performance</h4>
-                        <p>Packages anchored to measurable actions: votes, replays, shares, click-to-offer, and uplift in brand search/intent.</p>
-                    </div>
-                </div>
-
-                <div class="spine fade-in-up delay-2">
-                    <div class="spine-row">
-                        <div class="spine-step">
-                            <div class="spine-top">1) Setup <span class="pill">Pre-match</span></div>
-                            <div class="spine-desc">Build tension: previews, stakes, rivalries, fan choices, prediction moments.</div>
-                        </div>
-                        <div class="spine-line" aria-hidden="true"></div>
-                        <div class="spine-step">
-                            <div class="spine-top">2) Peak <span class="pill">Live</span></div>
-                            <div class="spine-desc">Own the moment: branded triggers, “power plays”, clutch points, live polls.</div>
-                        </div>
-                        <div class="spine-line" aria-hidden="true"></div>
-                        <div class="spine-step">
-                            <div class="spine-top">3) Echo <span class="pill">Post</span></div>
-                            <div class="spine-desc">Extend it: instant micro-clips, social bumpers, recap threads, CTA → offer.</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="story-builder fade-in-up delay-3" aria-label="Story Selling Builder">
-                    <div class="sb-row">
-                        <div class="sb-field">
-                            <label class="sb-label" for="sb-sport">Choose a sport</label>
-                            <select class="sb-select" id="sb-sport">
-                                <option value="cricket">Cricket</option>
-                                <option value="football">Football</option>
-                                <option value="volleyball">Volleyball</option>
-                                <option value="esports">Esports</option>
-                            </select>
-                        </div>
-                        <div class="sb-field">
-                            <label class="sb-label" for="sb-category">Brand category</label>
-                            <select class="sb-select" id="sb-category">
-                                <option value="telco">Telco / ISP</option>
-                                <option value="bank">Bank / Wallet</option>
-                                <option value="beverage">Beverage / Energy</option>
-                                <option value="fmcg">FMCG / Snacks</option>
-                                <option value="mobility">Mobility / Two-wheeler</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="sb-output" id="sb-output">
-                        <div class="sb-title"><span class="mini-dot"></span>Story Pitch — ready for your sales call</div>
-
-                        <div class="sb-grid">
-                            <div class="sb-box">
-                                <div class="sb-k">Audience truth</div>
-                                <div class="sb-v" id="sb-truth">—</div>
-                            </div>
-                            <div class="sb-box">
-                                <div class="sb-k">Tension / stakes</div>
-                                <div class="sb-v" id="sb-stakes">—</div>
-                            </div>
-                            <div class="sb-box">
-                                <div class="sb-k">Brand role</div>
-                                <div class="sb-v" id="sb-role">—</div>
-                            </div>
-                            <div class="sb-box">
-                                <div class="sb-k">Recommended inventory</div>
-                                <div class="sb-v" id="sb-inv">—</div>
-                            </div>
-                        </div>
-
-                        <div class="sb-pitch" id="sb-pitch">—</div>
-                    </div>
-
-                    <div class="story-accordions" style="margin-top:14px;">
-                        <details>
-                            <summary>Use the 30-second pitch <span class="story-chevron">+</span></summary>
-                            <div class="story-acc-body">
-                                <ul>
-                                    <li><strong>What fans feel:</strong> “This match is about ____.”</li>
-                                    <li><strong>What the brand owns:</strong> “We own the moment when ____ happens.”</li>
-                                    <li><strong>What spreads:</strong> “We echo it with clips + social so even skimmers see it.”</li>
-                                    <li><strong>How you prove value:</strong> “We report engagement + replays + shares + CTR.”</li>
-                                </ul>
-                            </div>
-                        </details>
-
-                        <details>
-                            <summary>Ask better questions (to find the story) <span class="story-chevron">+</span></summary>
-                            <div class="story-acc-body">
-                                <ul>
-                                    <li>What single brand attribute must be remembered? (speed / trust / energy / value)</li>
-                                    <li>What audience behavior matters most? (vote / share / click / sign-up / store visit)</li>
-                                    <li>Which moment is your “hero scene”? (first goal, clutch kill, final over, comeback)</li>
-                                    <li>What’s the best offer/CTA fans will actually act on during the hype window?</li>
-                                </ul>
-                            </div>
-                        </details>
-
-                        <details>
-                            <summary>Objection handling (price & measurement) <span class="story-chevron">+</span></summary>
-                            <div class="story-acc-body">
-                                <ul>
-                                    <li><strong>“Too expensive”</strong> → “We’re not selling minutes. We’re selling the <em>moment</em> that fans replay and share.”</li>
-                                    <li><strong>“How do you measure?”</strong> → “Poll participation, clip views, shares, CTR, watch-time lift around the moment.”</li>
-                                    <li><strong>“We want branding only”</strong> → “Cool — we’ll still anchor branding to a named moment so it’s memorable.”</li>
-                                </ul>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-l the stadium, but hear the expert.</li>
+                                    <li><strong>Result:</strong> You feel the stadium, but hear the expert.</li>
                                 </ul>
                             </div>
                         </div>
@@ -2016,7 +1845,250 @@ l the stadium, but hear the expert.</li>
             </div>
         </section>
 
-    </main>
+    
+        <section id="story-selling" class="bg-pattern">
+            <div class="container">
+                <div class="fade-in-up">
+                    <span class="badge badge-red">Sales Enablement</span>
+                    <h2 class="section-title">Story Selling: The OTT Monetization Engine</h2>
+                    <p class="section-subtitle">Shifting from “inventory selling” (ads & logos) to “narrative IP” that drives subscriptions, retention, and premium sponsorships — especially for audiences with low sports literacy.</p>
+                </div>
+
+                <div class="ss-engine fade-in-up delay-1">
+                    <h3 class="grid-header" style="border-left-color:#E50914;">Why Story Selling beats Match Selling on OTT</h3>
+                    <div class="ss-card">
+                        <ul class="ss-bullets">
+                            <li><strong>OTT is a relationship:</strong> we can build a habit (episodes + returns), not just a match spike.</li>
+                            <li><strong>Data makes it measurable:</strong> minutes watched, completion, return frequency, and conversions — not “guesswork reach.”</li>
+                            <li><strong>Interactivity converts attention:</strong> votes, predictions, offers, and login-gated BTS turn viewers into actions.</li>
+                            <li><strong>Better for low sports literacy:</strong> stories explain “who/why” so casual audiences stay longer.</li>
+                            <li><strong>More sellable inventory:</strong> every episode creates premium brand moments (not only matchday slots).</li>
+                        </ul>
+                    </div>
+
+                    <h3 class="grid-header" style="border-left-color:#F59E0B; margin-top:34px;">The Shift: Inventory → Narrative IP</h3>
+                    <div class="ss-grid-2">
+                        <div class="ss-card ss-col">
+                            <div class="ss-mini">Traditional</div>
+                            <h4>Inventory selling</h4>
+                            <ul>
+                                <li>Pre-roll / mid-roll / banner</li>
+                                <li>Logo bug / sponsorship board</li>
+                                <li>“Powered by” naming</li>
+                                <li>One-day spikes tied to match windows</li>
+                            </ul>
+                        </div>
+                        <div class="ss-card ss-col">
+                            <div class="ss-mini ss-mini-strong">Narrative IP</div>
+                            <h4>Story selling</h4>
+                            <ul>
+                                <li>Docu-series, mic’d up, behind-the-scenes</li>
+                                <li>Rivalry weeks, explainers, fan stories</li>
+                                <li>Short-form engine (reels + clips + recaps)</li>
+                                <li>Always-on audience: between matches too</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3 class="grid-header" style="border-left-color:#10B981; margin-top:34px;">The 3 Revenue Levers Story Selling Unlocks</h3>
+                    <div class="ss-lever-grid">
+                        <div class="ss-card ss-lever">
+                            <div class="ss-lever-top">
+                                <div class="ss-ico">📈</div>
+                                <div>
+                                    <h4>Acquisition</h4>
+                                    <div class="ss-lever-tag">Subscription growth</div>
+                                </div>
+                            </div>
+
+                            <div class="ss-subhead">What changes on OTT</div>
+                            <ul class="ss-mini-list">
+                                <li>Stories widen the top-funnel beyond hardcore fans.</li>
+                                <li>Shorts become “trailers” that pull people into the app.</li>
+                            </ul>
+
+                            <div class="ss-subhead">How we monetize</div>
+                            <ul class="ss-mini-list">
+                                <li>Episode drops + matchday tie-ins driving “subscribe to watch.”</li>
+                                <li>Acquisition bundles: story + match + action layer.</li>
+                            </ul>
+                        </div>
+
+                        <div class="ss-card ss-lever">
+                            <div class="ss-lever-top">
+                                <div class="ss-ico">🧲</div>
+                                <div>
+                                    <h4>Retention</h4>
+                                    <div class="ss-lever-tag">Lower churn between matches</div>
+                                </div>
+                            </div>
+
+                            <div class="ss-subhead">What changes on OTT</div>
+                            <ul class="ss-mini-list">
+                                <li>Episodes create a weekly routine (not “event-only” usage).</li>
+                                <li>Fans come back for characters, not only scores.</li>
+                            </ul>
+
+                            <div class="ss-subhead">How we monetize</div>
+                            <ul class="ss-mini-list">
+                                <li>Seasonal IP aligned to the sports calendar (always-on).</li>
+                                <li>Login gates for BTS content (retention hooks).</li>
+                            </ul>
+                        </div>
+
+                        <div class="ss-card ss-lever">
+                            <div class="ss-lever-top">
+                                <div class="ss-ico">🏷️</div>
+                                <div>
+                                    <h4>Premium Sponsorships</h4>
+                                    <div class="ss-lever-tag">Brand integration</div>
+                                </div>
+                            </div>
+
+                            <div class="ss-subhead">What changes on OTT</div>
+                            <ul class="ss-mini-list">
+                                <li>Brands can “belong” inside the story, not just around it.</li>
+                                <li>We can prove actions (click/scan/claim), not just exposure.</li>
+                            </ul>
+
+                            <div class="ss-subhead">How we monetize</div>
+                            <ul class="ss-mini-list">
+                                <li>Category-exclusive presenting partner for a series.</li>
+                                <li>Interactive moments: vote/predict + offer redemption.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3 class="grid-header" style="border-left-color:#3B82F6; margin-top:34px;">Framework: Story → Attention → Action</h3>
+                    <div class="ss-card">
+                        <div class="ss-flow">
+                            <div class="ss-node">
+                                <div class="ss-node-top"><span class="ss-node-ico">🎬</span>Story</div>
+                                <div class="ss-node-sub">Emotion + identity</div>
+                            </div>
+                            <div class="ss-connector"></div>
+                            <div class="ss-node">
+                                <div class="ss-node-top"><span class="ss-node-ico">⏱️</span>Attention</div>
+                                <div class="ss-node-sub">Minutes + completion + return</div>
+                            </div>
+                            <div class="ss-connector"></div>
+                            <div class="ss-node">
+                                <div class="ss-node-top"><span class="ss-node-ico">✅</span>Action</div>
+                                <div class="ss-node-sub">Subscribe, vote, claim, shop, lead</div>
+                            </div>
+                        </div>
+
+                        <div class="ss-action">
+                            <div class="ss-subhead" style="margin-top:18px;">Action Layer examples</div>
+                            <div class="inv-chips" style="margin-top:10px;">
+                                <span class="inv-chip">Vote MVP</span>
+                                <span class="inv-chip">Predict &amp; Win</span>
+                                <span class="inv-chip">Unlock BTS (login gate)</span>
+                                <span class="inv-chip">QR offer</span>
+                                <span class="inv-chip">Merch buy</span>
+                                <span class="inv-chip">Coupon / lead capture</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="grid-header" style="border-left-color:#E50914; margin-top:34px;">What Works in Nepal (Fast, Low-Cost Formats)</h3>
+                    <div class="ss-card">
+                        <div class="cd-controls" style="margin-bottom:18px;">
+                            <div class="cd-toggle-bg ss-toggle" id="ss-toggle">
+                                <div class="cd-pill" id="ss-pill"></div>
+                                <button class="cd-btn active" type="button" data-ss-tab="cricket">Cricket</button>
+                                <button class="cd-btn" type="button" data-ss-tab="football">Football</button>
+                                <button class="cd-btn" type="button" data-ss-tab="volleyball">Volleyball</button>
+                                <button class="cd-btn" type="button" data-ss-tab="esports">Esports</button>
+                            </div>
+                        </div>
+
+                        <div class="ss-panels">
+                            <div class="ss-panel active" data-ss-panel="cricket">
+                                <ul class="ss-bullets">
+                                    <li><strong>Hero journey:</strong> from local nets → national spotlight.</li>
+                                    <li><strong>Rivalry week:</strong> two teams, two cultures, one narrative.</li>
+                                    <li><strong>Explainers:</strong> “what changed this over” in simple language.</li>
+                                    <li><strong>Mic’d up practice:</strong> the human side before matchday.</li>
+                                </ul>
+                            </div>
+
+                            <div class="ss-panel" data-ss-panel="football">
+                                <ul class="ss-bullets">
+                                    <li><strong>Dressing room:</strong> team talk + emotions before kickoff.</li>
+                                    <li><strong>Rivalry + identity:</strong> “who we are” as a club/community.</li>
+                                    <li><strong>Set-piece stories:</strong> the plan behind the moment.</li>
+                                    <li><strong>Fan POV:</strong> travel + watch party + reaction shorts.</li>
+                                </ul>
+                            </div>
+
+                            <div class="ss-panel" data-ss-panel="volleyball">
+                                <ul class="ss-bullets">
+                                    <li><strong>Bootcamp life:</strong> training grind in short episodes.</li>
+                                    <li><strong>Clutch moments:</strong> “one rally that flips the set.”</li>
+                                    <li><strong>Team chemistry:</strong> roles, rituals, and pressure.</li>
+                                    <li><strong>Beginner explainers:</strong> rotations &amp; rules in 60 seconds.</li>
+                                </ul>
+                            </div>
+
+                            <div class="ss-panel" data-ss-panel="esports">
+                                <ul class="ss-bullets">
+                                    <li><strong>Road to qualifiers:</strong> team grind + scrim diaries.</li>
+                                    <li><strong>IGL / coach cam:</strong> how decisions are made mid-fight.</li>
+                                    <li><strong>Meta explainers:</strong> simple breakdown of “why this strategy.”</li>
+                                    <li><strong>Player lifestyle:</strong> routines, setups, and mindset.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="grid-header" style="border-left-color:#F59E0B; margin-top:34px;">Sponsor Packaging (What we sell)</h3>
+                    <div class="ss-card ss-pack">
+                        <div class="ss-pack-row"><div class="ss-pack-k">Series name</div><div class="ss-pack-v"><strong>DGO Originals:</strong> Road to Glory</div></div>
+                        <div class="ss-pack-row"><div class="ss-pack-k">Format</div><div class="ss-pack-v">6 episodes × 10–12 mins + 30 shorts</div></div>
+                        <div class="ss-pack-row"><div class="ss-pack-k">Presented by</div><div class="ss-pack-v">Category exclusive (1 per category)</div></div>
+                        <div class="ss-pack-row"><div class="ss-pack-k">Branded segments</div><div class="ss-pack-v">2 per episode (repeatable + ownable)</div></div>
+                        <div class="ss-pack-row"><div class="ss-pack-k">Interactive layer</div><div class="ss-pack-v">Vote / Predict (opt-in) + offer</div></div>
+                        <div class="ss-pack-row"><div class="ss-pack-k">Matchday tie-ins</div><div class="ss-pack-v">2 tie-ins (moment clip + live poll)</div></div>
+                        <div class="ss-pack-row"><div class="ss-pack-k">Reporting</div><div class="ss-pack-v">Watch time, completion, clicks, conversions, subs influenced</div></div>
+                    </div>
+
+                    <h3 class="grid-header" style="border-left-color:#10B981; margin-top:34px;">Metrics that make this commercial (boardroom friendly)</h3>
+                    <div class="ss-kpi-grid">
+                        <div class="d-metric-box"><div class="d-val">Attention minutes</div><div class="d-lab">Total watch time per viewer</div></div>
+                        <div class="d-metric-box"><div class="d-val">Completion rate</div><div class="d-lab">How many finish episodes/clips</div></div>
+                        <div class="d-metric-box"><div class="d-val">Return frequency</div><div class="d-lab">Weekly visits (habit)</div></div>
+                        <div class="d-metric-box"><div class="d-val">Viewer → Subscriber</div><div class="d-lab">Conversion influenced</div></div>
+                        <div class="d-metric-box"><div class="d-val">Churn delta</div><div class="d-lab">Viewers vs non-viewers</div></div>
+                        <div class="d-metric-box"><div class="d-val">Sponsor actions</div><div class="d-lab">Click / scan / claim</div></div>
+                    </div>
+
+                    <h3 class="grid-header" style="border-left-color:#3B82F6; margin-top:34px;">60–90 Day Rollout (no big risk)</h3>
+                    <div class="ss-card ss-rollout">
+                        <div class="xp-visual-box narrative-box" style="margin-bottom:16px;">
+                            <div class="n-timeline ss-rollout-timeline">
+                                <div class="nt-node active">Weeks 1–2</div>
+                                <div class="nt-line"></div>
+                                <div class="nt-node">Weeks 3–6</div>
+                                <div class="nt-line"></div>
+                                <div class="nt-node">Weeks 7–10</div>
+                                <div class="nt-line"></div>
+                                <div class="nt-node">Weeks 11–13</div>
+                            </div>
+                        </div>
+
+                        <div class="ss-rollout-list">
+                            <div class="ss-rollout-row"><span class="ss-rollout-k">Weeks 1–2:</span> pick 2 IPs + sponsor categories</div>
+                            <div class="ss-rollout-row"><span class="ss-rollout-k">Weeks 3–6:</span> produce pilots + short-form engine</div>
+                            <div class="ss-rollout-row"><span class="ss-rollout-k">Weeks 7–10:</span> integrate action layer + pitch with pilot</div>
+                            <div class="ss-rollout-row"><span class="ss-rollout-k">Weeks 11–13:</span> launch season aligned to sports calendar</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+</main>
 
     
     <!-- Inventory Insight Sheet (distinct from standard modal) -->
@@ -2728,7 +2800,7 @@ l the stadium, but hear the expert.</li>
 
         function setMode(mode) {
             // 1. Update Buttons
-            const buttons = document.querySelectorAll('.cd-btn');
+            const buttons = document.querySelectorAll('.comparison-dashboard .cd-btn');
             const pill = document.getElementById('cd-pill');
             
             buttons.forEach(b => b.classList.remove('active'));
@@ -2769,116 +2841,36 @@ l the stadium, but hear the expert.</li>
                 to { opacity: 1; transform: translateY(0); }
             }
         `;
-        docum
-        // --- STORY SELLING BUILDER (Sales Enablement) ---
-        const storySports = {
-            cricket: {
-                name: "Cricket",
-                truth: "Families and friend groups watch together — the match becomes the plan for the day.",
-                stakes: "Momentum swings fast (powerplay, wickets, chase pressure).",
-                moment: "the one over / one wicket that flips the game",
-                primary: "Moment Ownership (key over / wicket)",
-                echo: "The Digital Echo (instant branded micro-clips)",
-                kpis: ["poll participation", "replay/clip views", "shares + CTR to offer"]
-            },
-            football: {
-                name: "Football",
-                truth: "Fans live inside rivalries — they pick a side and argue every call.",
-                stakes: "Low-scoring makes every chance feel huge (1 goal can decide).",
-                moment: "the goal / save / VAR drama everyone replays",
-                primary: "Moment Ownership (goal/saves / set-piece)",
-                echo: "The Digital Echo (goal clip + sponsor bumper)",
-                kpis: ["goal-clip completion rate", "shares + saves", "click-to-offer CTR"]
-            },
-            volleyball: {
-                name: "Volleyball",
-                truth: "Short rallies create high-frequency peaks — constant mini-moments.",
-                stakes: "Set-point pressure + rapid scoring keeps attention tight.",
-                moment: "set point / comeback run",
-                primary: "Sponsored Live Polls (next set winner / MVP)",
-                echo: "The Digital Echo (set-point clips + highlights thread)",
-                kpis: ["poll participation", "watch-time lift during set points", "shares + CTR"]
-            },
-            esports: {
-                name: "Esports",
-                truth: "Viewers watch with chat + community — reactions are part of the content.",
-                stakes: "Clutch plays decide outcomes instantly (one fight, one round).",
-                moment: "the clutch play / final circle / match-winning kill",
-                primary: "Sponsored Live Polls (predict the clutch / MVP)",
-                echo: "The Digital Echo (instant clip drop to social + in-app)",
-                kpis: ["poll participation", "clip views within 60 mins", "share rate + CTR"]
-            }
-        };
+        document.head.appendChild(styleSheet);
 
-        const storyCats = {
-            telco: {
-                name: "a Telco/ISP",
-                role: "Power the moment: reliability + speed when the pressure spikes.",
-                boost: "Live Polls (zero-rated votes) + data pack CTA"
-            },
-            bank: {
-                name: "a Bank/Wallet",
-                role: "Make fandom frictionless: rewards, cashback, and easy entry-to-win.",
-                boost: "Polls + QR offer + instant redemption"
-            },
-            beverage: {
-                name: "a Beverage/Energy brand",
-                role: "Own stamina + hype: the brand shows up when intensity rises.",
-                boost: "Moment Ownership + “Recharge” bumper in clips"
-            },
-            fmcg: {
-                name: "an FMCG/Snacks brand",
-                role: "Turn snack-time into the ritual: shareable moments & family viewing.",
-                boost: "Echo clips + family bundle CTA"
-            },
-            mobility: {
-                name: "a Mobility/Two-wheeler brand",
-                role: "Own speed + hustle: connect movement to the game’s turning points.",
-                boost: "Moment Ownership + test-ride CTA after the clip"
-            }
-        };
+        // --- STORY SELLING TABS ---
+        function initStorySellingTabs(){
+            const toggle = document.getElementById('ss-toggle');
+            const pill = document.getElementById('ss-pill');
+            if(!toggle || !pill) return;
 
-        function initStoryBuilder(){
-            const sportSel = $('#sb-sport');
-            const catSel = $('#sb-category');
-            if(!sportSel || !catSel) return;
+            const buttons = Array.from(toggle.querySelectorAll('.cd-btn'));
+            const panels = Array.from(document.querySelectorAll('[data-ss-panel]'));
 
-            const update = () => renderStoryBuilder(sportSel.value, catSel.value);
-            sportSel.addEventListener('change', update);
-            catSel.addEventListener('change', update);
+            const setActive = (key) => {
+                const idx = Math.max(0, buttons.findIndex(b => b.dataset.ssTab === key));
+                buttons.forEach((b,i) => b.classList.toggle('active', i === idx));
+                pill.style.transform = `translateX(${idx * 100}%)`;
+                panels.forEach(p => p.classList.toggle('active', p.dataset.ssPanel === key));
+            };
 
-            update();
+            buttons.forEach((btn) => {
+                btn.addEventListener('click', () => setActive(btn.dataset.ssTab));
+            });
+
+            const initial = buttons.find(b => b.classList.contains('active'))?.dataset.ssTab || buttons[0]?.dataset.ssTab || 'cricket';
+            setActive(initial);
         }
-
-        function renderStoryBuilder(sportKey, catKey){
-            const s = storySports[sportKey] || storySports.cricket;
-            const c = storyCats[catKey] || storyCats.telco;
-
-            $('#sb-truth').textContent = s.truth;
-            $('#sb-stakes').textContent = s.stakes;
-            $('#sb-role').textContent = c.role;
-
-            const inv = `<strong>${s.primary}</strong> + ${c.boost} + <strong>${s.echo}</strong>`;
-            $('#sb-inv').innerHTML = inv;
-
-            const pitch = `In ${s.name}, fans obsess over <em>${s.moment}</em>. We help ${c.name} own that moment with <em>${s.primary}</em>, then extend it through <em>${s.echo}</em> so even skimmers feel it. We prove impact with ${s.kpis[0]}, ${s.kpis[1]}, and ${s.kpis[2]}.`;
-            $('#sb-pitch').innerHTML = pitch;
-
-            // re-trigger micro sheen sweep on each update
-            const out = $('#sb-output');
-            if(out){
-                out.classList.remove('sheen');
-                void out.offsetWidth;
-                out.classList.add('sheen');
-            }
-        }
-
-ent.head.appendChild(styleSheet);
 
         // Initialize Toggle
         document.addEventListener('DOMContentLoaded', () => {
             setMode('legacy');
-            initStoryBuilder();
+            initStorySellingTabs();
         });
 
         // --- EXPERIENCE CARD TOGGLE ---
