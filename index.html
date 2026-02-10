@@ -587,6 +587,31 @@
                 radial-gradient(circle at 50% 0%, rgba(17,24,39,0.12), transparent 55%);
             pointer-events: none;
         }
+        /* Micro shine sweep — adds a premium “wow” without changing layout */
+        .inv-sheet::after{
+            content:""; position:absolute; inset:-2px;
+            background: linear-gradient(115deg,
+                rgba(255,255,255,0) 0%,
+                rgba(255,255,255,0) 40%,
+                rgba(255,255,255,0.55) 50%,
+                rgba(255,255,255,0) 60%,
+                rgba(255,255,255,0) 100%);
+            transform: translateX(-140%) skewX(-16deg);
+            opacity: 0; pointer-events:none;
+        }
+        .inv-overlay.open .inv-sheet::after{
+            animation: invSheen 1.15s ease-out 0.08s;
+        }
+        .inv-sheet:hover::after{
+            animation: invSheen 1.15s ease-out;
+        }
+        @keyframes invSheen{
+            0%{ transform: translateX(-140%) skewX(-16deg); opacity: 0; }
+            12%{ opacity: 0.28; }
+            45%{ opacity: 0.20; }
+            100%{ transform: translateX(140%) skewX(-16deg); opacity: 0; }
+        }
+
         .inv-header {
             position: relative; padding: 22px 26px 16px;
             border-bottom: 1px solid #eef2f7;
@@ -735,6 +760,33 @@
             animation: lineShift 2.6s linear infinite;
             opacity: 0.95;
         }
+        /* Energy sweep across the chain (extra “eye-catch” without being gimmicky) */
+        .si-line::after{
+            content:""; position:absolute; top:50%; left:-28%;
+            width: 30%; height: 14px; transform: translateY(-50%);
+            background: radial-gradient(circle at 30% 50%,
+                rgba(255,255,255,0.55) 0%,
+                rgba(229,9,20,0.30) 30%,
+                rgba(229,9,20,0) 70%);
+            filter: blur(0.2px);
+            opacity: 0.75;
+            animation: energySweep 1.9s linear infinite;
+            pointer-events:none;
+        }
+        .si-line:nth-of-type(2)::after{ animation-delay: 0.35s; opacity: 0.68; }
+
+        @keyframes energySweep{
+            0%{ left:-28%; }
+            100%{ left:108%; }
+        }
+        .si-wrapper{
+            animation: chainBreath 3.8s ease-in-out infinite;
+        }
+        @keyframes chainBreath{
+            0%,100%{ transform: translateY(0); }
+            50%{ transform: translateY(-2px); }
+        }
+
         @keyframes lineShift { 0% { background-position: 0% 0; } 100% { background-position: 200% 0; } }
         .si-dot {
             box-shadow: 0 0 16px rgba(229,9,20,0.90);
@@ -759,7 +811,159 @@
         .si-highlight { animation: highlightGlow 2.6s ease-in-out infinite; }
         @keyframes highlightGlow {
             0%,100% { box-shadow: 0 0 0 1px rgba(229,9,20,0.30), 0 22px 44px rgba(229,9,20,0.12); }
-            50% { box-shadow: 0 0 0 1px rgba(229,9,20,0.60), 0 30px 62px rgba(229,9,20,0.22); }
+            
+        /* --- STORY SELLING (Sales Enablement Page) --- */
+        .story-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 22px; }
+        .story-tile {
+            background: white; border: 1px solid #e5e7eb; border-radius: 16px; padding: 22px;
+            transition: transform 0.35s var(--ease-elastic), box-shadow 0.35s var(--ease-elastic), border-color 0.35s var(--ease-elastic);
+            position: relative; overflow: hidden;
+        }
+        .story-tile:hover { transform: translateY(-6px); border-color: rgba(229,9,20,0.55); box-shadow: 0 18px 40px rgba(0,0,0,0.10); }
+        .story-tile::before{
+            content:""; position:absolute; inset:-2px;
+            background: radial-gradient(circle at 20% 10%, rgba(229,9,20,0.10), transparent 55%),
+                        radial-gradient(circle at 80% 10%, rgba(0,120,188,0.08), transparent 55%);
+            opacity: 0.9; pointer-events:none;
+        }
+        .story-tile h4{ position: relative; margin: 0 0 8px; font-size: 1.05rem; }
+        .story-tile p{ position: relative; margin: 0; color: #6b7280; font-size: 0.88rem; line-height: 1.5; }
+        .story-kicker{ position: relative; display:flex; align-items:center; gap:10px; font-weight:800; color:#111827; margin-bottom:10px;}
+        .story-kicker .dot{ width:10px; height:10px; border-radius:50%; background: var(--brand-red); box-shadow:0 0 16px rgba(229,9,20,0.55); }
+
+        .spine {
+            margin-top: 26px;
+            background: #111827;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 18px;
+            padding: 18px 18px 16px;
+            position: relative; overflow: hidden;
+        }
+        .spine::before{
+            content:""; position:absolute; inset:-2px;
+            background:
+                radial-gradient(circle at 20% 35%, rgba(229,9,20,0.18), transparent 55%),
+                radial-gradient(circle at 80% 35%, rgba(255,255,255,0.06), transparent 62%);
+            opacity: 0.95; pointer-events:none;
+        }
+        .spine-row{ position: relative; display:flex; align-items:center; gap:14px; }
+        .spine-step{
+            flex: 1;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.10);
+            border-radius: 14px;
+            padding: 14px 14px 12px;
+            text-align:left;
+            transition: transform 0.25s ease, border-color 0.25s ease;
+        }
+        .spine-step:hover{ transform: translateY(-3px); border-color: rgba(229,9,20,0.40); }
+        .spine-top{ display:flex; align-items:center; gap:10px; font-weight:800; color:#fff; }
+        .spine-top .pill{ font-size:0.7rem; padding:4px 8px; border-radius: 999px; background: rgba(229,9,20,0.12); border:1px solid rgba(229,9,20,0.25); color:#ffd6d9; }
+        .spine-desc{ margin-top:8px; font-size:0.82rem; color:#d1d5db; line-height:1.45; }
+        .spine-line{
+            height: 3px; flex: 0.55; border-radius: 999px; position: relative;
+            background: linear-gradient(90deg, rgba(255,255,255,0.12), rgba(229,9,20,0.65), rgba(255,255,255,0.12));
+            background-size: 200% 100%;
+            animation: lineShift 2.6s linear infinite;
+            opacity: 0.95;
+        }
+        .spine-line::after{
+            content:""; position:absolute; top:50%; left:-28%;
+            width: 32%; height: 14px; transform: translateY(-50%);
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.55) 0%, rgba(229,9,20,0.28) 30%, rgba(229,9,20,0) 70%);
+            opacity: 0.75;
+            animation: energySweep 1.85s linear infinite;
+        }
+
+        .story-builder{
+            margin-top: 22px;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            padding: 22px;
+            box-shadow: 0 14px 34px rgba(0,0,0,0.06);
+            position: relative; overflow:hidden;
+        }
+        .story-builder::before{
+            content:""; position:absolute; inset:-2px;
+            background: radial-gradient(circle at 15% 0%, rgba(229,9,20,0.10), transparent 52%),
+                        radial-gradient(circle at 85% 0%, rgba(0,120,188,0.08), transparent 55%);
+            opacity:0.9; pointer-events:none;
+        }
+        .sb-row{ position: relative; display:flex; gap:14px; flex-wrap:wrap; align-items:flex-end; }
+        .sb-field{ flex: 1; min-width: 220px; }
+        .sb-label{ display:block; font-size:0.78rem; font-weight:800; letter-spacing:0.02em; color:#111827; margin-bottom:8px; }
+        .sb-select{
+            width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid #e5e7eb;
+            background: #fff; font-weight:700; color:#111827;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+        }
+        .sb-select:focus{ outline:none; border-color: rgba(229,9,20,0.50); box-shadow: 0 0 0 4px rgba(229,9,20,0.12); }
+        .sb-output{
+            position: relative;
+            margin-top: 16px;
+            background: #0b1220;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 16px 16px 14px;
+            color: #fff;
+            overflow:hidden;
+        }
+        .sb-output::after{
+            content:""; position:absolute; inset:-2px;
+            background: linear-gradient(115deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,0.18) 50%, rgba(255,255,255,0) 60%, rgba(255,255,255,0) 100%);
+            transform: translateX(-140%) skewX(-16deg);
+            opacity:0;
+            pointer-events:none;
+        }
+        .sb-output.sheen::after{
+            animation: invSheen 1.2s ease-out 0.12s;
+        }
+        .sb-title{ font-weight:900; letter-spacing:0.01em; margin-bottom: 10px; display:flex; align-items:center; gap:10px; }
+        .sb-title .mini-dot{ width:10px; height:10px; border-radius:50%; background: var(--brand-red); box-shadow:0 0 16px rgba(229,9,20,0.65); }
+        .sb-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .sb-box{
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.10);
+            border-radius: 14px;
+            padding: 12px;
+        }
+        .sb-k{ font-size:0.72rem; color:#cbd5e1; font-weight:800; letter-spacing:0.03em; text-transform:uppercase; }
+        .sb-v{ margin-top:6px; font-size:0.88rem; color:#fff; line-height:1.45; font-weight:650; }
+        .sb-pitch{
+            margin-top: 12px;
+            border-radius: 14px;
+            padding: 12px;
+            background: rgba(229,9,20,0.10);
+            border: 1px solid rgba(229,9,20,0.25);
+            font-weight:700; line-height:1.5;
+        }
+        .sb-pitch em{ color:#ffd6d9; font-style: normal; }
+
+        .story-accordions{ margin-top: 18px; display:grid; grid-template-columns: 1fr; gap: 10px; }
+        .story-accordions details{
+            background: white; border: 1px solid #e5e7eb; border-radius: 16px; padding: 14px 16px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+        .story-accordions details[open]{ border-color: rgba(229,9,20,0.45); box-shadow: 0 16px 34px rgba(0,0,0,0.08); transform: translateY(-2px); }
+        .story-accordions summary{
+            list-style:none; cursor:pointer; font-weight:900; color:#111827;
+            display:flex; align-items:center; justify-content:space-between; gap: 12px;
+        }
+        .story-accordions summary::-webkit-details-marker { display:none; }
+        .story-acc-body{ margin-top: 10px; color:#6b7280; font-size: 0.9rem; line-height: 1.55; }
+        .story-acc-body ul{ margin: 10px 0 0 18px; }
+        .story-acc-body li{ margin: 6px 0; }
+        .story-chevron{ width: 34px; height: 34px; border-radius: 10px; background: #f3f4f6; display:flex; align-items:center; justify-content:center; font-weight:900; color:#111827; transition: transform 0.2s ease; }
+        details[open] .story-chevron{ transform: rotate(45deg); background: rgba(229,9,20,0.10); color: var(--brand-red); }
+
+        @media (max-width: 880px){
+            .story-grid{ grid-template-columns: 1fr; }
+            .sb-grid{ grid-template-columns: 1fr; }
+            .spine-row{ flex-direction: column; }
+            .spine-line{ width: 100%; flex: none; height: 3px; }
+        }
+50% { box-shadow: 0 0 0 1px rgba(229,9,20,0.60), 0 30px 62px rgba(229,9,20,0.22); }
         }
 
 /* --- MAP DASHBOARD --- */
@@ -1033,6 +1237,7 @@
             <li><a href="#assets-focus">Our Assets</a></li>
             <li><a href="#quality-gap">Quality</a></li>
             <li><a href="#commercial-playbook">Sales Strategy</a></li>
+            <li><a href="#story-selling">Sell the Story</a></li>
         </ul>
         <div class="controls">
             <button class="btn-toggle" id="presenter-toggle"><span>Presenter Mode</span></button>
@@ -1535,7 +1740,144 @@
                                 <ul class="xp-list">
                                     <li><strong>The "Roar":</strong> Dedicated crowd ambient mics (-12db).</li>
                                     <li><strong>Commentary:</strong> Separated center channel (-6db).</li>
-                                    <li><strong>Result:</strong> You feel the stadium, but hear the expert.</li>
+                                    <li><strong>Result:</strong> You fee
+
+
+        <section id="story-selling" class="bg-pattern">
+            <div class="container">
+                <div class="fade-in-up">
+                    <span class="badge badge-red">Sales Enablement</span>
+                    <h2 class="section-title">Selling the Story</h2>
+                    <p class="section-subtitle">In sports, brands don’t buy “screen time.” They buy the feeling fans will repeat — <strong>before</strong>, <strong>during</strong>, and <strong>after</strong> the moment.</p>
+                </div>
+
+                <div class="story-grid fade-in-up delay-1">
+                    <div class="story-tile">
+                        <div class="story-kicker"><span class="dot"></span>Old way</div>
+                        <h4>Sell exposure</h4>
+                        <p>“Logo on screen” + generic impressions. Easy to discount, hard to defend, and often skipped.</p>
+                    </div>
+                    <div class="story-tile">
+                        <div class="story-kicker"><span class="dot"></span>New way</div>
+                        <h4>Sell a narrative</h4>
+                        <p>Own a human moment (tension → release) and connect the brand to a <strong>single clear attribute</strong> fans remember.</p>
+                    </div>
+                    <div class="story-tile">
+                        <div class="story-kicker"><span class="dot"></span>Outcome</div>
+                        <h4>Sell performance</h4>
+                        <p>Packages anchored to measurable actions: votes, replays, shares, click-to-offer, and uplift in brand search/intent.</p>
+                    </div>
+                </div>
+
+                <div class="spine fade-in-up delay-2">
+                    <div class="spine-row">
+                        <div class="spine-step">
+                            <div class="spine-top">1) Setup <span class="pill">Pre-match</span></div>
+                            <div class="spine-desc">Build tension: previews, stakes, rivalries, fan choices, prediction moments.</div>
+                        </div>
+                        <div class="spine-line" aria-hidden="true"></div>
+                        <div class="spine-step">
+                            <div class="spine-top">2) Peak <span class="pill">Live</span></div>
+                            <div class="spine-desc">Own the moment: branded triggers, “power plays”, clutch points, live polls.</div>
+                        </div>
+                        <div class="spine-line" aria-hidden="true"></div>
+                        <div class="spine-step">
+                            <div class="spine-top">3) Echo <span class="pill">Post</span></div>
+                            <div class="spine-desc">Extend it: instant micro-clips, social bumpers, recap threads, CTA → offer.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="story-builder fade-in-up delay-3" aria-label="Story Selling Builder">
+                    <div class="sb-row">
+                        <div class="sb-field">
+                            <label class="sb-label" for="sb-sport">Choose a sport</label>
+                            <select class="sb-select" id="sb-sport">
+                                <option value="cricket">Cricket</option>
+                                <option value="football">Football</option>
+                                <option value="volleyball">Volleyball</option>
+                                <option value="esports">Esports</option>
+                            </select>
+                        </div>
+                        <div class="sb-field">
+                            <label class="sb-label" for="sb-category">Brand category</label>
+                            <select class="sb-select" id="sb-category">
+                                <option value="telco">Telco / ISP</option>
+                                <option value="bank">Bank / Wallet</option>
+                                <option value="beverage">Beverage / Energy</option>
+                                <option value="fmcg">FMCG / Snacks</option>
+                                <option value="mobility">Mobility / Two-wheeler</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="sb-output" id="sb-output">
+                        <div class="sb-title"><span class="mini-dot"></span>Story Pitch — ready for your sales call</div>
+
+                        <div class="sb-grid">
+                            <div class="sb-box">
+                                <div class="sb-k">Audience truth</div>
+                                <div class="sb-v" id="sb-truth">—</div>
+                            </div>
+                            <div class="sb-box">
+                                <div class="sb-k">Tension / stakes</div>
+                                <div class="sb-v" id="sb-stakes">—</div>
+                            </div>
+                            <div class="sb-box">
+                                <div class="sb-k">Brand role</div>
+                                <div class="sb-v" id="sb-role">—</div>
+                            </div>
+                            <div class="sb-box">
+                                <div class="sb-k">Recommended inventory</div>
+                                <div class="sb-v" id="sb-inv">—</div>
+                            </div>
+                        </div>
+
+                        <div class="sb-pitch" id="sb-pitch">—</div>
+                    </div>
+
+                    <div class="story-accordions" style="margin-top:14px;">
+                        <details>
+                            <summary>Use the 30-second pitch <span class="story-chevron">+</span></summary>
+                            <div class="story-acc-body">
+                                <ul>
+                                    <li><strong>What fans feel:</strong> “This match is about ____.”</li>
+                                    <li><strong>What the brand owns:</strong> “We own the moment when ____ happens.”</li>
+                                    <li><strong>What spreads:</strong> “We echo it with clips + social so even skimmers see it.”</li>
+                                    <li><strong>How you prove value:</strong> “We report engagement + replays + shares + CTR.”</li>
+                                </ul>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary>Ask better questions (to find the story) <span class="story-chevron">+</span></summary>
+                            <div class="story-acc-body">
+                                <ul>
+                                    <li>What single brand attribute must be remembered? (speed / trust / energy / value)</li>
+                                    <li>What audience behavior matters most? (vote / share / click / sign-up / store visit)</li>
+                                    <li>Which moment is your “hero scene”? (first goal, clutch kill, final over, comeback)</li>
+                                    <li>What’s the best offer/CTA fans will actually act on during the hype window?</li>
+                                </ul>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary>Objection handling (price & measurement) <span class="story-chevron">+</span></summary>
+                            <div class="story-acc-body">
+                                <ul>
+                                    <li><strong>“Too expensive”</strong> → “We’re not selling minutes. We’re selling the <em>moment</em> that fans replay and share.”</li>
+                                    <li><strong>“How do you measure?”</strong> → “Poll participation, clip views, shares, CTR, watch-time lift around the moment.”</li>
+                                    <li><strong>“We want branding only”</strong> → “Cool — we’ll still anchor branding to a named moment so it’s memorable.”</li>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+l the stadium, but hear the expert.</li>
                                 </ul>
                             </div>
                         </div>
@@ -2427,11 +2769,116 @@
                 to { opacity: 1; transform: translateY(0); }
             }
         `;
-        document.head.appendChild(styleSheet);
+        docum
+        // --- STORY SELLING BUILDER (Sales Enablement) ---
+        const storySports = {
+            cricket: {
+                name: "Cricket",
+                truth: "Families and friend groups watch together — the match becomes the plan for the day.",
+                stakes: "Momentum swings fast (powerplay, wickets, chase pressure).",
+                moment: "the one over / one wicket that flips the game",
+                primary: "Moment Ownership (key over / wicket)",
+                echo: "The Digital Echo (instant branded micro-clips)",
+                kpis: ["poll participation", "replay/clip views", "shares + CTR to offer"]
+            },
+            football: {
+                name: "Football",
+                truth: "Fans live inside rivalries — they pick a side and argue every call.",
+                stakes: "Low-scoring makes every chance feel huge (1 goal can decide).",
+                moment: "the goal / save / VAR drama everyone replays",
+                primary: "Moment Ownership (goal/saves / set-piece)",
+                echo: "The Digital Echo (goal clip + sponsor bumper)",
+                kpis: ["goal-clip completion rate", "shares + saves", "click-to-offer CTR"]
+            },
+            volleyball: {
+                name: "Volleyball",
+                truth: "Short rallies create high-frequency peaks — constant mini-moments.",
+                stakes: "Set-point pressure + rapid scoring keeps attention tight.",
+                moment: "set point / comeback run",
+                primary: "Sponsored Live Polls (next set winner / MVP)",
+                echo: "The Digital Echo (set-point clips + highlights thread)",
+                kpis: ["poll participation", "watch-time lift during set points", "shares + CTR"]
+            },
+            esports: {
+                name: "Esports",
+                truth: "Viewers watch with chat + community — reactions are part of the content.",
+                stakes: "Clutch plays decide outcomes instantly (one fight, one round).",
+                moment: "the clutch play / final circle / match-winning kill",
+                primary: "Sponsored Live Polls (predict the clutch / MVP)",
+                echo: "The Digital Echo (instant clip drop to social + in-app)",
+                kpis: ["poll participation", "clip views within 60 mins", "share rate + CTR"]
+            }
+        };
+
+        const storyCats = {
+            telco: {
+                name: "a Telco/ISP",
+                role: "Power the moment: reliability + speed when the pressure spikes.",
+                boost: "Live Polls (zero-rated votes) + data pack CTA"
+            },
+            bank: {
+                name: "a Bank/Wallet",
+                role: "Make fandom frictionless: rewards, cashback, and easy entry-to-win.",
+                boost: "Polls + QR offer + instant redemption"
+            },
+            beverage: {
+                name: "a Beverage/Energy brand",
+                role: "Own stamina + hype: the brand shows up when intensity rises.",
+                boost: "Moment Ownership + “Recharge” bumper in clips"
+            },
+            fmcg: {
+                name: "an FMCG/Snacks brand",
+                role: "Turn snack-time into the ritual: shareable moments & family viewing.",
+                boost: "Echo clips + family bundle CTA"
+            },
+            mobility: {
+                name: "a Mobility/Two-wheeler brand",
+                role: "Own speed + hustle: connect movement to the game’s turning points.",
+                boost: "Moment Ownership + test-ride CTA after the clip"
+            }
+        };
+
+        function initStoryBuilder(){
+            const sportSel = $('#sb-sport');
+            const catSel = $('#sb-category');
+            if(!sportSel || !catSel) return;
+
+            const update = () => renderStoryBuilder(sportSel.value, catSel.value);
+            sportSel.addEventListener('change', update);
+            catSel.addEventListener('change', update);
+
+            update();
+        }
+
+        function renderStoryBuilder(sportKey, catKey){
+            const s = storySports[sportKey] || storySports.cricket;
+            const c = storyCats[catKey] || storyCats.telco;
+
+            $('#sb-truth').textContent = s.truth;
+            $('#sb-stakes').textContent = s.stakes;
+            $('#sb-role').textContent = c.role;
+
+            const inv = `<strong>${s.primary}</strong> + ${c.boost} + <strong>${s.echo}</strong>`;
+            $('#sb-inv').innerHTML = inv;
+
+            const pitch = `In ${s.name}, fans obsess over <em>${s.moment}</em>. We help ${c.name} own that moment with <em>${s.primary}</em>, then extend it through <em>${s.echo}</em> so even skimmers feel it. We prove impact with ${s.kpis[0]}, ${s.kpis[1]}, and ${s.kpis[2]}.`;
+            $('#sb-pitch').innerHTML = pitch;
+
+            // re-trigger micro sheen sweep on each update
+            const out = $('#sb-output');
+            if(out){
+                out.classList.remove('sheen');
+                void out.offsetWidth;
+                out.classList.add('sheen');
+            }
+        }
+
+ent.head.appendChild(styleSheet);
 
         // Initialize Toggle
         document.addEventListener('DOMContentLoaded', () => {
             setMode('legacy');
+            initStoryBuilder();
         });
 
         // --- EXPERIENCE CARD TOGGLE ---
