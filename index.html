@@ -808,7 +808,7 @@
         .si-wrapper > .si-node:nth-child(1) .si-icon { animation-delay: 0s; }
         .si-wrapper > .si-node:nth-child(3) .si-icon { animation-delay: 0.25s; }
         .si-wrapper > .si-node:nth-child(5) .si-icon { animation-delay: 0.5s; }
-        @keyframes iconBob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+        @keyframes iconBob { 0%,100% { transform: rotate(2deg) translateY(0); } 50% { transform: rotate(2deg) translateY(-4px); } }
         .si-caption {
             margin-top: 18px;
             background: rgba(255,255,255,0.04);
@@ -973,12 +973,12 @@
             font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px;
             font-weight: 900; color: var(--brand-red);
             margin-bottom: 10px;
-        }
+         padding-right: 170px; }
         .ss-hero-title{
             margin: 0 0 10px;
             font-size: 1.25rem; font-weight: 900; line-height: 1.25;
             color: #111827;
-        }
+         padding-right: 170px; }
         .ss-hero-text{ color:#4b5563; font-size: 0.95rem; line-height: 1.75; }
         .ss-hero-micro{
             display:grid; grid-template-columns: repeat(3, 1fr);
@@ -1010,7 +1010,7 @@
             line-height: 1.15;
             transform: rotate(2deg);
             animation: iconBob 2.6s var(--ease-out) infinite;
-        }
+         max-width: 170px; text-align: center; }
         .ss-sticker span{
             display:block;
             font-size: 0.82rem;
@@ -1131,6 +1131,9 @@
             .ss-hero-micro{ grid-template-columns: 1fr; }
             .ss-template-grid{ grid-template-columns: 1fr; }
             .ss-pack-grid{ grid-template-columns: 1fr; }
+            .ss-hero-kicker, .ss-hero-title{ padding-right: 0; }
+            .ss-sticker{ position: relative; top: auto; right: auto; margin: 12px 0 0 auto; transform: none; animation: none; }
+
         }
 
         body.presenter-mode .ss-hero-layout,
@@ -2094,7 +2097,7 @@
                     <div class="ss-hero-wrap">
                         <div class="ss-card ss-hero ss-sheen">
                             <div class="ss-hero-layout">
-                                <div class="ss-hero-media" style="--ss-img: url('assets/story/story-hero.jpg');">
+                                <div class="ss-hero-media" style="--ss-img: url('assets/story-hero.jpg');">
                                     <div class="ss-hero-media-overlay"></div>
                                     <div class="ss-hero-media-top">
                                         <span class="ss-hero-chip">🎬 Series-first</span>
@@ -2143,7 +2146,7 @@
 
                         <div class="ss-template-grid">
                             <div class="ss-template ss-sheen" tabindex="0" role="button" aria-label="Mic’d Up mini-series template">
-                                <div class="ss-template-thumb" style="--ss-img: url('assets/story/template-micd.jpg');"></div>
+                                <div class="ss-template-thumb" style="--ss-img: url('assets/template-micd.jpg');"></div>
                                 <div class="ss-template-body">
                                     <div class="ss-template-title">🎙️ Mic’d Up</div>
                                     <div class="ss-template-sub">Short episodes that make fans feel “inside” the team.</div>
@@ -2155,7 +2158,7 @@
                             </div>
 
                             <div class="ss-template ss-sheen" tabindex="0" role="button" aria-label="Rivalry Week template">
-                                <div class="ss-template-thumb" style="--ss-img: url('assets/story/template-rivalry.jpg');"></div>
+                                <div class="ss-template-thumb" style="--ss-img: url('assets/template-rivalry.jpg');"></div>
                                 <div class="ss-template-body">
                                     <div class="ss-template-title">🔥 Rivalry Week</div>
                                     <div class="ss-template-sub">Build stakes in simple language: “why this match matters”.</div>
@@ -2167,7 +2170,7 @@
                             </div>
 
                             <div class="ss-template ss-sheen" tabindex="0" role="button" aria-label="Road to Glory template">
-                                <div class="ss-template-thumb" style="--ss-img: url('assets/story/template-road.jpg');"></div>
+                                <div class="ss-template-thumb" style="--ss-img: url('assets/template-road.jpg');"></div>
                                 <div class="ss-template-body">
                                     <div class="ss-template-title">🏁 Road to Glory</div>
                                     <div class="ss-template-sub">Hero journeys + weekly checkpoints → perfect for subscriptions.</div>
@@ -2329,7 +2332,7 @@
 
                         <div class="ss-panels">
                             <div class="ss-panel active" data-ss-panel="cricket">
-                                <div class="ss-sport-hero" style="--ss-img: url('assets/story/sport-cricket.jpg');">
+                                <div class="ss-sport-hero" style="--ss-img: url('assets/sport-cricket.jpg');">
                                     <div class="ss-sport-hero-overlay"></div>
                                     <div class="ss-sport-hero-inner">
                                         <div class="ss-sport-emoji">🏏</div>
@@ -2349,7 +2352,7 @@
                             </div>
 
                             <div class="ss-panel" data-ss-panel="football">
-                                <div class="ss-sport-hero" style="--ss-img: url('assets/story/sport-football.jpg');">
+                                <div class="ss-sport-hero" style="--ss-img: url('assets/sport-football.jpg');">
                                     <div class="ss-sport-hero-overlay"></div>
                                     <div class="ss-sport-hero-inner">
                                         <div class="ss-sport-emoji">⚽</div>
@@ -2369,7 +2372,7 @@
                             </div>
 
                             <div class="ss-panel" data-ss-panel="volleyball">
-                                <div class="ss-sport-hero" style="--ss-img: url('assets/story/sport-volleyball.jpg');">
+                                <div class="ss-sport-hero" style="--ss-img: url('assets/sport-volleyball.jpg');">
                                     <div class="ss-sport-hero-overlay"></div>
                                     <div class="ss-sport-hero-inner">
                                         <div class="ss-sport-emoji">🏐</div>
@@ -2389,7 +2392,7 @@
                             </div>
 
                             <div class="ss-panel" data-ss-panel="esports">
-                                <div class="ss-sport-hero" style="--ss-img: url('assets/story/sport-esports.jpg');">
+                                <div class="ss-sport-hero" style="--ss-img: url('assets/sport-esports.jpg');">
                                     <div class="ss-sport-hero-overlay"></div>
                                     <div class="ss-sport-hero-inner">
                                         <div class="ss-sport-emoji">🎮</div>
@@ -2413,7 +2416,7 @@
                     <h3 class="grid-header" style="border-left-color:#F59E0B; margin-top:34px;">Sponsor Packaging (What we sell)</h3>
                     <div class="ss-card ss-pack ss-sheen">
                         <div class="ss-pack-grid">
-                            <div class="ss-pack-poster" style="--ss-img: url('assets/story/series-poster.jpg');">
+                            <div class="ss-pack-poster" style="--ss-img: url('assets/series-poster.jpg');">
                                 <div class="ss-pack-poster-overlay"></div>
                                 <div class="ss-pack-poster-top">
                                     <span class="pill">Presented by</span>
